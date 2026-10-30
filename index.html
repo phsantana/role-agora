@@ -24,6 +24,8 @@
 }
 *{box-sizing:border-box}
 html,body{height:100%}
+/* drawer aberto: só ele rola; a página atrás fica parada */
+html.locked{overflow:hidden;overscroll-behavior:none}
 body{margin:0;background:var(--outside);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
 button{font:inherit;color:inherit;cursor:pointer}
 button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--text);outline-offset:2px}
@@ -36,6 +38,7 @@ p,h1,h2,h3,h4{margin:0}
 .h1{font-family:var(--display);font-weight:700;font-size:32px;line-height:1.3;margin:0}
 .h2{font-family:var(--display);font-weight:700;font-size:25px;line-height:1.3;margin:0;text-wrap:balance}
 .h3{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.3;margin:0;text-wrap:balance}
+.h4{font-family:var(--display);font-weight:700;font-size:20px;line-height:1.3;margin:0}
 .h5{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.3;margin:0}
 .h6{font-family:var(--display);font-weight:700;font-size:16px;line-height:1.3;margin:0}
 .body-sm{font-size:16px;line-height:1.5}
@@ -57,6 +60,7 @@ p,h1,h2,h3,h4{margin:0}
 .search{position:absolute;z-index:6;top:max(24px,env(safe-area-inset-top,0px));left:max(24px,env(safe-area-inset-left,0px));right:max(24px,env(safe-area-inset-right,0px));display:flex;align-items:center;gap:var(--s-xsm);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);padding:0 var(--s-sm);height:53px;box-shadow:var(--shadow)}
 .search input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;font-size:14px;color:var(--text);height:100%}
 .search input::placeholder{color:var(--text-2)}
+.search input::-webkit-search-cancel-button,.search input::-webkit-search-decoration{-webkit-appearance:none;display:none}
 .search .clear{border:0;background:transparent;padding:4px;border-radius:var(--r-pill);display:grid;place-items:center}
 .radar{position:absolute;inset:0;pointer-events:none}
 .pulse{position:absolute;border-radius:50%;border:2px solid var(--action);opacity:0;transform:translate(-50%,-50%) scale(.2);animation:pulse 3.2s cubic-bezier(.2,.6,.3,1) infinite}
@@ -87,11 +91,23 @@ p,h1,h2,h3,h4{margin:0}
 .suggest{position:absolute;z-index:9;top:calc(max(24px,env(safe-area-inset-top,0px)) + 61px);left:max(24px,env(safe-area-inset-left,0px));right:max(24px,env(safe-area-inset-right,0px));background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xsm);box-shadow:var(--shadow);padding:var(--s-xsm);display:flex;flex-direction:column}
 .suggest button{display:flex;align-items:center;gap:var(--s-xsm);border:0;background:transparent;text-align:left;padding:12px var(--s-xsm);border-radius:var(--r-3xsm);font-size:14px}
 .suggest button:hover,.suggest button.on{background:var(--subtle)}
-.suggest .k{font-size:12px;color:var(--text-2);padding:4px var(--s-xsm)}
+.suggest .k{font-size:12px;font-weight:600;color:var(--text-2);padding:4px var(--s-xsm)}
+.suggest{max-height:min(62vh,520px);overflow:auto;overscroll-behavior:contain}
+.suggest .k+button{margin-top:0}.suggest button+.k{margin-top:var(--s-xsm);border-top:1px solid var(--border);padding-top:var(--s-sm)}
+.suggest .th,.suggest .ib{width:36px;height:36px;border-radius:var(--r-3xsm);flex:none}
+.suggest .th{object-fit:cover}
+.suggest .th.av{border-radius:50%}
+.suggest .ib{background:var(--subtle);display:grid;place-items:center}
+.suggest .st{display:flex;flex-direction:column;min-width:0;flex:1}
+.suggest .st b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.suggest .ss{font-size:12px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.suggest .pinned{border-bottom:1px solid var(--border);border-radius:var(--r-3xsm) var(--r-3xsm) 0 0;margin-bottom:var(--s-xsm);padding-bottom:var(--s-sm)}
+.suggest .pinned+.k{border-top:0;margin-top:0;padding-top:4px}
+.suggest .ib.brand{background:var(--brand-subtle)}
+.suggest .none{font-size:14px;color:var(--text-2);padding:12px var(--s-xsm)}
 .city-msg{margin-top:var(--s-m);border:1px solid var(--border);border-radius:var(--r-xsm);padding:var(--s-sm);display:flex;flex-direction:column;gap:var(--s-xsm);background:var(--surface)}
 .city-msg .row{display:flex;gap:var(--s-xsm);flex-wrap:wrap}
 #geo-msg .city-msg{margin-top:var(--s-sm)}
-.geo-line .link{border:0;background:none;padding:0;font:inherit;font-weight:600;color:var(--brand-text);cursor:pointer;text-decoration:underline}
 .geo-line{display:flex;align-items:center;gap:var(--s-xsm);font-size:12px;color:var(--text-2);margin-top:var(--s-sm)}
 .map-ctl{position:absolute;z-index:5;right:max(24px,env(safe-area-inset-right,0px));top:calc(var(--vis,440px) - 24px);transform:translateY(-100%);display:flex;flex-direction:column;gap:var(--s-xsm);transition:opacity .2s}
 .map-ctl .ctl{width:40px;height:40px;border-radius:50%;border:0;background:var(--surface);box-shadow:var(--shadow);display:grid;place-items:center;cursor:pointer}
@@ -137,6 +153,22 @@ p,h1,h2,h3,h4{margin:0}
 .btn.primary{background:var(--action);color:var(--inverse)}
 .btn.primary:hover{background:var(--action-hover)}
 .btn.secondary{background:transparent;color:var(--action);border-color:var(--action)}
+.when{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;margin:var(--s-m) calc(-1 * max(16px,env(safe-area-inset-right,0px))) 0;padding:0 max(16px,env(safe-area-inset-right,0px))}
+.when::-webkit-scrollbar{display:none}
+.when .chip{cursor:pointer;flex:none}
+.when .chip svg{width:16px;height:16px}
+.when+.total{margin-top:var(--s-sm)}
+.dates{display:flex;flex-direction:column;gap:var(--s-sm);margin-top:var(--s-m)}
+.dates .row2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-sm)}
+.dates label{display:flex;flex-direction:column;gap:var(--s-2xsm);font-size:14px;font-weight:600;color:var(--text)}
+.dates input{height:48px;border:1px solid var(--border);border-radius:var(--r-2xsm);padding:0 12px;font:inherit;font-weight:400;font-size:16px;color:var(--text);background:var(--surface);min-width:0}
+.dates input:focus{outline:2px solid var(--action);outline-offset:1px}
+.dates .acts{display:flex;flex-direction:column;gap:var(--s-xsm);margin-top:var(--s-xsm)}
+.dates .acts .btn{width:100%}
+.total{margin:var(--s-m) 0 0;font-size:12px;line-height:1.5;color:var(--text-2)}
+.total b{color:var(--text);font-weight:600}
+.total+.section{margin-top:var(--s-xsm)}
+.more-btn{width:100%;margin-top:var(--s-sm)}
 .btn.secondary:hover{background:var(--action-subtle)}
 .btn.sec-inverse{background:transparent;color:var(--inverse);border-color:var(--inverse)}
 .btn.sec-inverse:hover{background:rgba(255,255,255,.12)}
@@ -196,9 +228,11 @@ p,h1,h2,h3,h4{margin:0}
 .rail::-webkit-scrollbar{display:none}
 .tile{position:relative;height:152px;border-radius:var(--r-xsm);overflow:hidden;border:0;padding:0;text-align:left;color:var(--inverse);background:#171717;scroll-snap-align:start}
 .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.tile .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.85) 100%)}
+/* degradê preto embaixo: contraste pro nome, data e distância */
+.tile .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.92) 100%)}
 .tile .b{position:absolute;left:8px;top:8px}
 .tile .t{position:absolute;left:8px;right:8px;bottom:8px;display:flex;flex-direction:column}
+.tile .t .desc-sm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tile .t b{font-weight:600;font-size:14px;line-height:1.3;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
 /* Lista vertical (EventCard vertical) */
@@ -223,8 +257,14 @@ p,h1,h2,h3,h4{margin:0}
 /* Sheet (drawer) */
 .scrim{position:fixed;inset:0;z-index:20;background:rgba(23,23,23,.48);opacity:0;pointer-events:none;transition:opacity .2s}
 .scrim.open{opacity:1;pointer-events:auto}
-.sheet{position:fixed;z-index:21;left:50%;bottom:0;width:100%;max-width:430px;max-height:88vh;overflow:auto;transform:translate(-50%,100%);transition:transform .25s ease;background:var(--surface);border-radius:var(--r-xlg) var(--r-xlg) 0 0;padding:var(--s-m) max(24px,env(safe-area-inset-right,0px)) calc(var(--s-m) + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.sheet{position:fixed;z-index:21;left:50%;bottom:0;width:100%;max-width:430px;max-height:88vh;overflow:auto;overscroll-behavior:contain;transform:translate(-50%,100%);transition:transform .25s ease;background:var(--surface);border-radius:var(--r-xlg) var(--r-xlg) 0 0;padding:var(--s-m) max(24px,env(safe-area-inset-right,0px)) calc(var(--s-m) + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
 .sheet.open{transform:translate(-50%,0)}
+.loc-ask{display:flex;flex-direction:column;align-items:center;gap:var(--s-m);padding-top:var(--s-xlg)}
+.loc-ask .ill{width:144px;height:134px}
+.loc-ask .txt{display:flex;flex-direction:column;gap:var(--s-xsm);width:100%}
+.loc-ask .acts{display:flex;flex-direction:column;gap:var(--s-xsm);width:100%}
+.loc-ask .acts .btn{width:100%}
+.loc-ask .acts .btn img{width:16px;height:16px}
 .sheet .handle{width:40px;height:4px;border-radius:var(--r-pill);background:var(--bg-default);margin:-8px auto var(--s-sm)}
 .sheet .close{position:absolute;right:max(24px,env(safe-area-inset-right,0px));top:var(--s-m);width:32px;height:32px;border-radius:50%;border:0;background:var(--subtle);display:grid;place-items:center}
 .sheet-img{height:184px;border-radius:var(--r-xsm);overflow:hidden;margin-bottom:var(--s-sm)}
@@ -320,10 +360,10 @@ body.has-agenda .content{padding-bottom:calc(112px + env(safe-area-inset-bottom,
     <div class="found" id="found"></div>
     <p class="sr" id="found-sr" aria-live="polite"></p>
     <div id="city-msg" aria-live="polite"></div>
-    <div id="sync-msg" aria-live="polite"></div>
     <div id="geo-msg" aria-live="polite"></div>
-    <section class="section" id="sec-itin" aria-label="Roteiro de rolês" hidden></section>
 
+    <div class="when" id="when" role="group" aria-label="Quando"></div>
+    <p class="total" id="total" aria-live="polite"></p>
     <section class="section" id="sec-top" aria-labelledby="t-top">
       <div class="sec-head"><div><h2 class="h2" id="t-top">São a sua cara</h2><p class="desc-lg muted" id="top-sub">Rolês que você provavelmente vai adorar!</p></div></div>
       <div id="taste"></div>
@@ -333,6 +373,7 @@ body.has-agenda .content{padding-bottom:calc(112px + env(safe-area-inset-bottom,
     <section class="section" id="sec-rail" aria-labelledby="t-rail">
       <div class="sec-head"><div><h2 class="h6" id="t-rail">Rolês que você pode gostar</h2></div></div>
     </section>
+    <section class="section" id="sec-itin" aria-label="Roteiro de rolês" hidden></section>
   </main>
 </div>
 
@@ -472,7 +513,38 @@ function ic(n,c,size){c=c||'currentColor';var s=size||16;var P={
 
 /* ---------- Ordenações ---------- */
 function matchesQuery(e){var q=state.q.trim().toLowerCase();if(!q) return true;return [e.name,e.venue,e.bairro,e.genre].join(' ').toLowerCase().indexOf(q)>=0;}
-function visible(){return events.filter(matchesQuery);}
+var AREA_KM=1.5;
+// região dos rolês: por padrão até 1,5 km de você; depois de mexer no mapa, a região que está na tela (a busca por texto vale pra cidade toda)
+// nada até 1,5 km? o raio vai crescendo até achar rolês (respeitando o período escolhido)
+var MIN_Z=9,autoR=AREA_KM,autoTarget=AREA_KM,lastBaseKm=AREA_KM,lastR=172,exp={on:false,cur:AREA_KM};
+function raioTxt(r){return r%1?distTxt(r):r+' km';}
+var PRUDENTE_BBOX=[-22.2057202,-21.7199917,-51.4839479,-51.2235927]; // limites do município (OpenStreetMap)
+// até onde dá pra ir: o ponto mais longe da cidade ou o menor zoom do mapa, o que vier primeiro
+function cityMaxKm(){var bb=state.city.bbox||(state.city.slug==='presidente-prudente-sp'&&!state.city.live?PRUDENTE_BBOX:null);
+  if(bb) return Math.max.apply(null,[[bb[0],bb[2]],[bb[0],bb[3]],[bb[1],bb[2]],[bb[1],bb[3]]].map(function(c){return km(ME,{lat:c[0],lng:c[1]});}));
+  return events.length?Math.max.apply(null,events.map(function(e){return km(ME,e);}))+1:AREA_KM;}
+function mapMaxKm(){return lastR/sScale(MIN_Z);}
+function radiusSteps(){var max=Math.max(AREA_KM,Math.min(cityMaxKm(),mapMaxKm()));max=max>5?Math.round(max):Math.round(max*10)/10;
+  var st=[1.5,3,5,10,20,40,80,160].filter(function(r){return r<max;});st.push(max);return st;}
+function computeAutoR(){
+  autoTarget=AREA_KM;
+  if(!state.area&&!state.q){var st=radiusSteps();autoTarget=st[st.length-1];
+    for(var i=0;i<st.length;i++){var r=st[i];if(events.some(function(e){return inWhen(e)&&km(ME,e)<=r;})){autoTarget=r;break;}}}
+  autoR=exp.on?exp.cur:autoTarget;
+}
+function area(){return state.area||{lat:ME.lat,lng:ME.lng,r:autoR};}
+function inArea(e){if(state.q) return true;var a=area();if(a.bairro) return norm(e.bairro)===a.bairro;return km(a,e)<=a.r;} // bairro escolhido na busca: só os rolês dele
+// período: por padrão, qualquer data; senão hoje, amanhã, fim de semana ou datas escolhidas
+function dayStart(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate());}
+function addDays(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
+function whenRange(k){var t=dayStart(NOW),wd=t.getDay();
+  if(k==='hoje') return {from:t,to:addDays(t,1)};
+  if(k==='amanha') return {from:addDays(t,1),to:addDays(t,2)};
+  // fim de semana: de sexta 18h até domingo (se já é fim de semana, a partir de agora)
+  if(k==='fds'){if(wd===0) return {from:t,to:addDays(t,1)};if(wd===6) return {from:t,to:addDays(t,2)};var fri=addDays(t,5-wd);return {from:new Date(fri.getFullYear(),fri.getMonth(),fri.getDate(),18),to:addDays(fri,3)};}
+  return null;}
+function inWhen(e){var w=state.when;if(!w) return true;return e.date>=w.from&&e.date<w.to;}
+function visible(){computeAutoR();return events.filter(function(e){return matchesQuery(e)&&inArea(e)&&inWhen(e);});}
 function byTop(a,b){ // 1º afinidade, 2º horário mais próximo, 3º distância
   return ((b.aff||0)-(a.aff||0))||(a.date-b.date)||(a.dist-b.dist);}
 function byList(a,b){ // 1º horário, 2º distância, 3º afinidade
@@ -504,7 +576,7 @@ var tileEls={};
 function renderTiles(w,h,cx,cy,scale){
   // mesma projeção dos pins: km a partir de você × escala do radar; (cx,cy) é onde você está na tela
   var cos=Math.cos(ME.lat*Math.PI/180);
-  var z=Math.max(11,Math.min(15,Math.round(Math.log(scale*EARTH_KM*cos/256)/Math.LN2)));
+  var z=Math.max(8,Math.min(15,Math.round(Math.log(scale*EARTH_KM*cos/256)/Math.LN2)));
   function P(lat,lng){return {x:cx+(lng-ME.lng)*111.32*cos*scale,y:cy-(lat-ME.lat)*110.57*scale};}
   function L(px,py){return {lat:ME.lat-(py-cy)/(110.57*scale),lng:ME.lng+(px-cx)/(111.32*cos*scale)};}
   var nw=L(0,0),se=L(w,h),need=[],keep={};
@@ -572,6 +644,9 @@ function search(mcp,q,box){
   // nomes repetidos na mesma cidade (ex.: dois bairros "Cidade Universitária"): fica com o mais perto do centro
   return nominatim(mcp,path).then(function(j){var hs=(j||[]).map(function(h){return {lat:+h.lat,lng:+h.lon};});if(box) hs.sort(function(a,b){return km(a,box)-km(b,box);});var p=hs[0]||null;geoCache[q]=p;saveGeo();return p;});
 }
+function cityBounds(mcp,city){var k='bb:'+city.slug;
+  if(geoCache[k]){city.bbox=geoCache[k];return;}
+  nominatim(mcp,'search?limit=1&countrycodes=br&q='+encodeURIComponent(city.name+', '+city.uf+', Brasil')).then(function(j){var h=j&&j[0];if(h&&h.boundingbox){var bb=h.boundingbox.map(Number);geoCache[k]=bb;saveGeo();if(state.city.slug===city.slug) state.city.bbox=bb;}},function(){});}
 function cityCenter(mcp,c){return search(mcp,c.name+', '+c.uf+', Brasil',null);}
 var UF_OK=/^[A-Z]{2}$/;
 function reverseCity(mcp,p){return nominatim(mcp,'reverse?zoom=10&lat='+p.lat.toFixed(6)+'&lon='+p.lng.toFixed(6)).then(function(j){
@@ -584,7 +659,7 @@ function geocodeVenues(seq,city){
   getMcp().then(function(mcp){if(!mcp) return;
     (function next(){
       if(seq!==loadSeq) return;
-      if(i>=keys.length){geoMsg('');locCard();refreshDistances();render();return;}
+      if(i>=keys.length){geoMsg('');refreshDistances();render();return;}
       var v=VENUES[keys[i++]];geoProgress(i,keys.length);
       var kn=city.slug==='presidente-prudente-sp'&&known[slugify(v.name)];
       var job=kn?Promise.resolve({p:kn,approx:false}):search(mcp,v.name+', '+city.name+', '+city.uf,box).then(function(p){
@@ -604,6 +679,7 @@ function geoProgress(i,n){geoMsg('<p class="geo-line">'+ic('pin','#525252')+'<sp
 
 /* ---------- Sua localização ---------- */
 function useDemo(){
+  resetArea();
   var inP=loc.src!=='demo'&&km(loc,DEMO_ME)<30;
   ME=inP?{lat:loc.lat,lng:loc.lng,you:true}:{lat:DEMO_ME.lat,lng:DEMO_ME.lng,you:loc.src==='demo'};
   VENUES=PRUDENTE.venues;NOW=PRUDENTE.now;
@@ -611,9 +687,16 @@ function useDemo(){
   events=PRUDENTE.all.filter(function(e){return e.date>=NOW&&e.dist<=(inP?8:RADIUS_KM);});PRUDENTE.events=events;
   state.city={name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false,center:DEMO_ME};state.dismissed={};
 }
-function locCard(){if(loc.src!=='demo') return;
-  geoMsg('<div class="city-msg"><h3 class="h6">Você tá vendo um exemplo no Centro de Prudente</h3><p class="desc-lg muted">Libera sua localização pra ver o mapa de onde você tá e a distância real até cada rolê.</p><div class="row"><button type="button" class="btn secondary sm" id="loc-go">'+ic('pin','#D10A87')+'Usar minha localização</button></div></div>');
-  document.getElementById('loc-go').onclick=function(){locate(true);};}
+// antes de carregar os rolês do Rolê Agora: pergunta se pode usar a localização em tempo real
+function askLocation(){
+  var decided=false;
+  openSheet('<div class="loc-ask"><img class="ill" src="data:image/svg+xml;base64,PHN2ZyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBvdmVyZmxvdz0idmlzaWJsZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyIgd2lkdGg9IjE0NCIgaGVpZ2h0PSIxMzQuMzM3IiB2aWV3Qm94PSIwIDAgMTQ0IDEzNC4zMzciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIGlkPSJ1bmRyYXdfY3VycmVudF9sb2NhdGlvbl9yZV9qMTMwIiBjbGlwLXBhdGg9InVybCgjY2xpcDBfMF8xMTApIj4KPHBhdGggaWQ9IlZlY3RvciIgZD0iTTkuODExMTMgMTI1Ljk5NkM5LjExODg2IDEyNS45OTYgOC40MjUxNyAxMjYuMDI5IDcuNzQ3NzIgMTI2LjA5NUw3LjY0OTEzIDEyNi4xMDVDMy4xNTU2MyAxMjYuNTYyIC0wLjEzMTE1MyAxMjkuMjE1IDAuMDA0MDIyNjQgMTMyLjI3NkwwLjAzMDE1NDIgMTMyLjgzQzAuMDQ3Mzg5NCAxMzMuMTggMC4wNjU3NSAxMzMuNTU2IDAuMDgwODYyIDEzMy45NzNDMC4wODkwNDY5IDEzNC4xNzkgMC4zMzI5OTUgMTM0LjMzNyAwLjYzNjU0NCAxMzQuMzM3SDExMS4xNjZDMTE4Ljk1OSAxMzQuMjgyIDEyNi43MjMgMTM0LjIxNCAxMzQuMjQzIDEzNC4xMzNDMTM1LjY1NCAxMzQuMTM2IDEzNy4wNjQgMTM0LjA1MiAxMzguNDY1IDEzMy44ODFDMTQwLjU1NCAxMzMuNTk3IDE0Mi4wMDUgMTMzLjAzMiAxNDIuODk5IDEzMi4xNTZIMTQyLjg5OUMxNDQuMDEyIDEzMS4wNjkgMTQ0LjA0NyAxMjkuNzAxIDE0My45NzkgMTI4LjE1NUMxNDMuODQyIDEyNS4wMzMgMTQzLjcwNiAxMjEuNzU0IDE0My41NzEgMTE4LjQ4NEMxNDMuNDUxIDExNS42MDMgMTQzLjMzMiAxMTIuNzI5IDE0My4yMTMgMTA5Ljk3N0MxNDMuMTM5IDEwOC4zNDUgMTQyLjk3NSAxMDYuOTAzIDE0MS43MTIgMTA1LjgwMkMxNDAuMzQzIDEwNC42MTEgMTM3Ljg0NiAxMDQuMDA3IDEzNC4yOTEgMTA0LjAwN0MxMzQuMjQ4IDEwNC4wMDcgMTM0LjIwNSAxMDQuMDA3IDEzNC4xNjIgMTA0LjAwN0MxMjMuMDIgMTA0LjA1MyAxMTEuOTggMTA4LjQ2MyAxMDYuNjkxIDExNC45ODJDMTA2LjA4MiAxMTUuNzMzIDEwNS41MTQgMTE2LjUzNiAxMDQuOTY1IDExNy4zMTNDMTA0LjE2MyAxMTguNTA3IDEwMy4yNzcgMTE5LjY0MiAxMDIuMzE1IDEyMC43MTFDMTAxLjc4IDEyMS4yODcgMTAxLjE5NCAxMjEuODEyIDEwMC41NjQgMTIyLjI4MkMxMDAuNTIxIDEyMi4zMTYgMTAwLjQ3MiAxMjIuMzUyIDEwMC40MiAxMjIuMzg3QzEwMC4zMDEgMTIyLjQ3NiAxMDAuMTc3IDEyMi41NjIgMTAwLjA1NiAxMjIuNjM5Qzk5LjM1NDggMTIzLjEwNiA5OC42MDY0IDEyMy40OTggOTcuODIzMSAxMjMuODA3TDk3Ljc0NDggMTIzLjgzOEM5Ny42ODU5IDEyMy44NjIgOTcuNjIyMSAxMjMuODg2IDk3LjU1ODIgMTIzLjkwOEM5Ny4xMDY3IDEyNC4wNzUgOTYuNjQ2NCAxMjQuMjE3IDk2LjE3OTMgMTI0LjMzM0M5NC4xNjMxIDEyNC44NDQgOTEuODcwNCAxMjQuOTY3IDg5LjM2NTMgMTI0LjY5N0M4Ny4wNTE2IDEyNC40MzkgODQuNzc3MSAxMjMuOTA1IDgyLjU5MDIgMTIzLjEwN0M4MC4yNzA0IDEyMi4yNjMgNzguMDk5MSAxMjEuMjExIDc1Ljk5OTMgMTIwLjE5M0M3NS4wNzY5IDExOS43NDYgNzQuMTIyOSAxMTkuMjg0IDczLjE3MDEgMTE4Ljg0NkM3Mi45OTEgMTE4Ljc2NCA3Mi44MTQ5IDExOC42ODMgNzIuNjM2IDExOC42MDNDNzEuNDcyNCAxMTguMDggNzAuNDE3NCAxMTcuNjQ5IDY5LjQxMDkgMTE3LjI4NEM2Ni45MzgyIDExNi4zODEgNjQuMzUxMSAxMTUuODMgNjEuNzI1MSAxMTUuNjQ2QzU4Ljk1NCAxMTUuNDcxIDU2LjUxMiAxMTUuOCA1NC40Njg3IDExNi42MjJDNTMuOTAxMSAxMTYuODUgNTMuMzUyMyAxMTcuMTIyIDUyLjgyNzMgMTE3LjQzNkM1MC40MDcxIDExOC44ODMgNDguOTE1MSAxMjEuMDE5IDQ3LjQ3MjQgMTIzLjA4NEM0NS42Nzc2IDEyNS42NTIgNDMuODIxNyAxMjguMzA5IDQwLjE1NzEgMTI5LjY4NkMzNS45Mjg0IDEzMS4yNzYgMjkuNzU2IDEzMC42MTUgMjUuMzg5MSAxMjkuNDY2QzI0LjAxNjEgMTI5LjEwNSAyMi42NDQ4IDEyOC42ODkgMjEuMzE4NiAxMjguMjg3QzIwLjc4MyAxMjguMTI1IDIwLjI0NyAxMjcuOTY0IDE5LjcxMDYgMTI3LjgwM0MxOC42NTY2IDEyNy40OSAxNy43OTQgMTI3LjI1IDE2Ljk5NTkgMTI3LjA0N0wxNi43NDM1IDEyNi45ODNDMTYuNjAzMSAxMjYuOTQ4IDE2LjQ2MjUgMTI2LjkxMyAxNi4zMTk1IDEyNi44NzlDMTUuMzcxNSAxMjYuNjUgMTQuNDg4OCAxMjYuNDcgMTMuNjE5NiAxMjYuMzI4TDEzLjQxMzkgMTI2LjI5M0MxMy4wMDE2IDEyNi4yMzEgMTIuNjE2MSAxMjYuMTc5IDEyLjIzNzkgMTI2LjEzNUwxMi4wODY5IDEyNi4xMThDMTEuMzMxIDEyNi4wMzYgMTAuNTcxMyAxMjUuOTk2IDkuODExMTMgMTI1Ljk5NloiIGZpbGw9IiNGMkYyRjIiLz4KPHBhdGggaWQ9IlBhdGggMjk5NiIgZD0iTTcwLjAwMyA2Ni4yMDI0QzY5LjY3MDIgNjYuMjUwNCA2OS4zMzA5IDY2LjIyNDkgNjkuMDA5IDY2LjEyNzdDNjguNjg3MSA2Ni4wMzA0IDY4LjM5MDQgNjUuODYzOCA2OC4xMzk5IDY1LjYzOTZDNjcuODg5MyA2NS40MTU0IDY3LjY5MDkgNjUuMTM4OSA2Ny41NTg3IDY0LjgyOThDNjcuNDI2NSA2NC41MjA2IDY3LjM2MzYgNjQuMTg2MiA2Ny4zNzQ2IDYzLjg1MDFMNTkuNzQ0IDYwLjkxNzhMNjMuMTk5IDU4LjQ0NjNMNjkuOTE1NCA2MS42MDk4QzcwLjQ3ODkgNjEuNjY1NyA3MS4wMDIzIDYxLjkyNjQgNzEuMzg2NCA2Mi4zNDI1QzcxLjc3MDUgNjIuNzU4NiA3MS45ODg2IDYzLjMwMTIgNzEuOTk5NCA2My44NjczQzcyLjAxMDIgNjQuNDMzNSA3MS44MTI5IDY0Ljk4NCA3MS40NDQ5IDY1LjQxNDNDNzEuMDc2OSA2NS44NDQ3IDcwLjU2MzcgNjYuMTI1MiA3MC4wMDI4IDY2LjIwMjVMNzAuMDAzIDY2LjIwMjRaIiBmaWxsPSIjRkZCN0I3Ii8+CjxwYXRoIGlkPSJQYXRoIDI5OTciIGQ9Ik02NS42NDI2IDY0LjA5ODhMNjYuODM0MSA1OS44OTYyTDY2Ljc3NTQgNTkuODU2M0w1NS42MTU0IDUyLjI3NTNMNDUuOTY4MyA0Mi41OTU1TDQwLjM0ODcgNDQuODQwN0w0MC43MTc3IDQ2LjYxOTRMNDAuNzQxOCA0Ni42NDEyTDUzLjU2ODIgNTguMTI5Nkw1My41OCA1OC4xMzU0TDY1LjY0MjYgNjQuMDk4OFoiIGZpbGw9IiMzRjNENTYiLz4KPHBhdGggaWQ9IlZlY3Rvcl8yIiBkPSJNNTQuMjEwMSA3My42OTgyTDM2LjkzODUgNzEuMjc3MkwzOC40NTg2IDYwLjY3OTFINTEuMTc0TDU0LjIxMDEgNzMuNjk4MloiIGZpbGw9IiNGRkI2QjYiLz4KPHBhdGggaWQ9IlZlY3Rvcl8zIiBkPSJNMjQuODYyOSAxMjUuNTkzTDI4LjQwNTkgMTI2LjQxNkwzMy4yNjc2IDExMy4xNDJMMjguMDM4NiAxMTEuOTI3TDI0Ljg2MjkgMTI1LjU5M1oiIGZpbGw9IiNGRkI2QjYiLz4KPHBhdGggaWQ9IlZlY3Rvcl80IiBkPSJNMjEuNTY2NSAxMzEuMjk3TDI0LjEwNzIgMTMxLjg4N0wyNS4xMTgyIDEyOS41OTRMMjUuNzIyMyAxMzIuMjYzTDMyLjQ2MSAxMzMuODI5QzMyLjc4NCAxMzMuOTA0IDMzLjEyMjUgMTMzLjg3NCAzMy40MjcyIDEzMy43NDNDMzMuNzMxOSAxMzMuNjEyIDMzLjk4NjcgMTMzLjM4NyAzNC4xNTQ1IDEzMy4xMDFDMzQuMzIyMyAxMzIuODE1IDM0LjM5NDMgMTMyLjQ4MyAzNC4zNTk5IDEzMi4xNTNDMzQuMzI1NSAxMzEuODIzIDM0LjE4NjYgMTMxLjUxMyAzMy45NjM0IDEzMS4yNjdMMjkuNDQ1OCAxMjYuM0wzMC4wMDkzIDEyMy44NzVMMjQuMjcwNiAxMjIuODk4TDIxLjU2NjUgMTMxLjI5N1oiIGZpbGw9IiMyRjJFNDEiLz4KPHBhdGggaWQ9IlZlY3Rvcl81IiBkPSJNNDYuNzIzOSAxMjcuNTY3SDUwLjM2MTNMNTIuMDkyMSAxMTMuNTM4SDQ2LjcyMzlWMTI3LjU2N1oiIGZpbGw9IiNGRkI2QjYiLz4KPHBhdGggaWQ9IlZlY3Rvcl82IiBkPSJNNDQuODA0MSAxMzMuODY5SDQ3LjQxMjVMNDcuODc4MSAxMzEuNDA3TDQ5LjA3MDYgMTMzLjg2OUg1NS45ODg5QzU2LjMyMDUgMTMzLjg2OSA1Ni42NDM0IDEzMy43NjMgNTYuOTEwNiAxMzMuNTY3QzU3LjE3NzcgMTMzLjM3IDU3LjM3NSAxMzMuMDk0IDU3LjQ3MzcgMTMyLjc3N0M1Ny41NzI0IDEzMi40NiA1Ny41NjczIDEzMi4xMjEgNTcuNDU5MSAxMzEuODA3QzU3LjM1MSAxMzEuNDk0IDU3LjE0NTUgMTMxLjIyMyA1Ni44NzI2IDEzMS4wMzRMNTEuMzQ3OCAxMjcuMjE5VjEyNC43MjlMNDUuNTM2OCAxMjUuMDc2TDQ0LjgwNDEgMTMzLjg2OVoiIGZpbGw9IiMyRjJFNDEiLz4KPHBhdGggaWQ9IlZlY3Rvcl83IiBkPSJNMzYuNzIwMSA2OS40Nzg4TDUzLjYxMDkgNjguMTM1MkM1OC41OTUyIDc5Ljc3ODQgNTUuNDI1OSA5OC4zNjUzIDUxLjU5NTUgMTE5LjI4OUw0Ni4xNjI3IDExOS45OTFMNDUuNzQxMyA4Ni4zNjk2TDMyLjEyMjIgMTE3LjY0OEwyNi40NTk5IDExNy4zNThMMzYuNzIwMSA2OS40Nzg4WiIgZmlsbD0iIzJGMkU0MSIvPgo8cGF0aCBpZD0iUGF0aCAzMDAyIiBkPSJNNDYuNTUyIDM4LjgxOTFWMzMuMTA0N0M0Ni41NTIgMzEuMDczOSA0NS43NDUyIDI5LjEyNjMgNDQuMzA5MiAyNy42OTAzQzQyLjg3MzIgMjYuMjU0MyA0MC45MjU2IDI1LjQ0NzUgMzguODk0OCAyNS40NDc1QzM2Ljg2NCAyNS40NDc1IDM0LjkxNjQgMjYuMjU0MyAzMy40ODA0IDI3LjY5MDNDMzIuMDQ0NCAyOS4xMjYzIDMxLjIzNzYgMzEuMDczOSAzMS4yMzc2IDMzLjEwNDdDMjkuODg4MSAzNS45MTcgMzAuNzMyNCAzNy4yNTQgMzEuMjM3NiAzOC44MTkxQzMxLjIzODEgMzkuMDkxNiAzMS4zNDY2IDM5LjM1MjkgMzEuNTM5MyAzOS41NDU2QzMxLjczMiAzOS43MzgzIDMxLjk5MzIgMzkuODQ2NyAzMi4yNjU4IDM5Ljg0NzJINDUuNTIzM0M0NS43OTYgMzkuODQ2OSA0Ni4wNTczIDM5LjczODUgNDYuMjUwMiAzOS41NDU3QzQ2LjQ0MyAzOS4zNTMgNDYuNTUxNSAzOS4wOTE3IDQ2LjU1MiAzOC44MTkxWiIgZmlsbD0iIzJGMkU0MSIvPgo8cGF0aCBpZD0iRWxsaXBzZSA1NzIiIGQ9Ik00MC43ODQ1IDM5Ljc2MUM0My44ODUgMzkuNzYxIDQ2LjM5ODUgMzcuMjQ3NSA0Ni4zOTg1IDM0LjE0N0M0Ni4zOTg1IDMxLjA0NjUgNDMuODg1IDI4LjUzMyA0MC43ODQ1IDI4LjUzM0MzNy42ODM5IDI4LjUzMyAzNS4xNzA0IDMxLjA0NjUgMzUuMTcwNCAzNC4xNDdDMzUuMTcwNCAzNy4yNDc1IDM3LjY4MzkgMzkuNzYxIDQwLjc4NDUgMzkuNzYxWiIgZmlsbD0iI0ZGQjdCNyIvPgo8cGF0aCBpZD0iUGF0aCAzMDAzIiBkPSJNNDguMzYzNCAzMy41NjE3QzQ4LjM2MTYgMzEuOTU1OCA0Ny43MjI5IDMwLjQxNjIgNDYuNTg3MyAyOS4yODA3QzQ1LjQ1MTggMjguMTQ1MiA0My45MTIyIDI3LjUwNjQgNDIuMzA2MyAyNy41MDQ2SDQxLjE2MzRDMzkuNTU3NSAyNy41MDY0IDM4LjAxNzkgMjguMTQ1MiAzNi44ODI0IDI5LjI4MDdDMzUuNzQ2OCAzMC40MTYyIDM1LjEwODEgMzEuOTU1OCAzNS4xMDYzIDMzLjU2MTdWMzMuNjc2QzM1Ljk2MjMgMzQuMjYxMiAzNi43NzQ4IDM0LjM0NjggMzcuNTIxNiAzMy42NzZMMzguMzQ1MyAzMS4zNjk0TDM4LjUxMDEgMzMuNjc2SDM5Ljc1ODVMNDAuMTc0NyAzMi41MTIzTDQwLjI1NzkgMzMuNjc2QzQxLjk0NDEgMzUuMTEyMSA0NS4xMzI3IDM0LjQyMzkgNDguMzYzNCAzMy42NzZWMzMuNTYxN1oiIGZpbGw9IiMyRjJFNDEiLz4KPHBhdGggaWQ9IlBhdGggMzAwNCIgZD0iTTM3LjUxMDkgNjMuNzc2N0w1MS44MDQ3IDYzLjIzMjhMNTIuNjAzNiA1My44ODE4QzUzLjIxOTggNTIuMTcwMiA1My4yMjk4IDUwLjY5OTUgNTIuNjMzMyA0OS41MTM3QzUyLjEyMDEgNDguNTM5MSA1MS4yNTgxIDQ3Ljc5NCA1MC4yMTk0IDQ3LjQyNzRMNDcuMDkxNyA0My42NDk4QzQ2LjY4OTQgNDMuMTY0MyA0Ni4xODQyIDQyLjc3NDIgNDUuNjEyNyA0Mi41MDc3QzQ1LjA0MTEgNDIuMjQxMyA0NC40MTc2IDQyLjEwNTEgNDMuNzg3IDQyLjEwOTFMMzUuNjYgNDIuMTY0NkMzNS40NjQyIDQyLjA0NjkgMzQuMjc1OSA0MS40NDMgMzEuOTMyNiA0Mi40NTg0QzI5LjM5MDkgNDMuNTU5OSAyOS45ODExIDQ3LjM4NyAyOS45ODc1IDQ3LjQyNTRMMjkuOTkzMyA0Ny40NjE0TDMwLjAyMTIgNDcuNDg1OUwzNS40MjY3IDUyLjAzOUwzNy41MTA5IDYzLjc3NjdaIiBmaWxsPSIjM0YzRDU2Ii8+CjxwYXRoIGlkPSJWZWN0b3JfOCIgZD0iTTEwMi42NDkgNDcuMzM1NUM5My40MjUgNTcuNzMwMiA2NS42NzM0IDU5LjcxMjkgNDcuNjA5NCA3OC43OTM1QzQxLjU1MzMgNjAuMzUwNCA1MC4xMzI2IDI4LjUxNCA1OC42ODI2IDE2LjM3MzFDNjIuNzg4NSAxMC41NDI5IDY5LjA0MjMgNi41ODI0NSA3Ni4wNjgyIDUuMzYzMTNDODMuMDk0MSA0LjE0MzgxIDkwLjMxNjYgNS43NjU0NSA5Ni4xNDY4IDkuODcxMzNDMTA4LjI4OCAxOC40MjE0IDExMi41MDQgMzYuMjI4NCAxMDIuNjQ5IDQ3LjMzNTVaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMF8xMTApIi8+CjxwYXRoIGlkPSJFbGxpcHNlIDU3NyIgZD0iTTgwLjI5OTkgMzcuMzYzNkM4NS4xNDI4IDM3LjM2MzYgODkuMDY4NyAzMy40Mzc2IDg5LjA2ODcgMjguNTk0OEM4OS4wNjg3IDIzLjc1MTkgODUuMTQyOCAxOS44MjYgODAuMjk5OSAxOS44MjZDNzUuNDU3IDE5LjgyNiA3MS41MzExIDIzLjc1MTkgNzEuNTMxMSAyOC41OTQ4QzcxLjUzMTEgMzMuNDM3NiA3NS40NTcgMzcuMzYzNiA4MC4yOTk5IDM3LjM2MzZaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBpZD0iRWxsaXBzZSA1NzdfMiIgZD0iTTQwLjE5NjcgODguMzQzMkM0My4zNjg3IDg4LjM0MzIgNDUuOTQwMSA4NS43NzE4IDQ1Ljk0MDEgODIuNTk5OEM0NS45NDAxIDc5LjQyNzggNDMuMzY4NyA3Ni44NTY0IDQwLjE5NjcgNzYuODU2NEMzNy4wMjQ4IDc2Ljg1NjQgMzQuNDUzNCA3OS40Mjc4IDM0LjQ1MzQgODIuNTk5OEMzNC40NTM0IDg1Ljc3MTggMzcuMDI0OCA4OC4zNDMyIDQwLjE5NjcgODguMzQzMloiIGZpbGw9InVybCgjcGFpbnQxX2xpbmVhcl8wXzExMCkiLz4KPHBhdGggaWQ9IlBhdGggMzAxMSIgZD0iTTMzLjYyNjMgODIuMTg0NEMzMy4zNzYyIDgxLjk1OTcgMzMuMTc4MyA4MS42ODI5IDMzLjA0NjcgODEuMzczNkMzMi45MTUxIDgxLjA2NDIgMzIuODUyOCA4MC43Mjk3IDMyLjg2NDQgODAuMzkzN0MzMi44NzU5IDgwLjA1NzYgMzIuOTYxIDc5LjcyODIgMzMuMTEzNiA3OS40Mjg2QzMzLjI2NjEgNzkuMTI5IDMzLjQ4MjUgNzguODY2NCAzMy43NDc1IDc4LjY1OTRMMzEuMTA3OSA3MC45MjI4TDM1LjIyMDQgNzEuOTkxMUwzNy4wOTQ1IDc5LjE3MzdDMzcuNDEyOSA3OS42NDIxIDM3LjU0ODQgODAuMjExIDM3LjQ3NTMgODAuNzcyNkMzNy40MDIyIDgxLjMzNDMgMzcuMTI1NiA4MS44NDk1IDM2LjY5NzggODIuMjIwOEMzNi4yNzAxIDgyLjU5MiAzNS43MjEgODIuNzkzNCAzNS4xNTQ3IDgyLjc4NjdDMzQuNTg4NCA4Mi43ODAxIDM0LjA0NDIgODIuNTY1OCAzMy42MjUzIDgyLjE4NDdMMzMuNjI2MyA4Mi4xODQ0WiIgZmlsbD0iI0ZGQjdCNyIvPgo8cGF0aCBpZD0iUGF0aCAzMDEyIiBkPSJNMzIuNDQ3MSA3Ny40ODk0TDM2LjQzNzIgNzUuNzExMkwzNS4wOTY3IDYyLjIxNTJMMzYuMzQ1MiA0OC42MDYzTDMxLjAxNzggNDUuNzMxMkwyOS44ODkxIDQ3LjE1NDRWNDcuMTg2N0wyOS4yOTExIDY0LjM5NTVMMjkuMjk0MiA2NC40MDg1TDMyLjQ0NzEgNzcuNDg5NFoiIGZpbGw9IiMzRjNENTYiLz4KPHBhdGggaWQ9IlZlY3Rvcl85IiBkPSJNMTI3LjU4NSAxMDMuMDg4QzEyNy4zMDYgMTA0LjEzNCAxMjYuNTczIDEwNS4wMDUgMTI1LjY4OSAxMDUuNjRDMTI1LjU0NSAxMDUuNzQ0IDEyNS4zOTYgMTA1Ljg0IDEyNS4yNDYgMTA1LjkzQzEyNS4yIDEwNS45NTcgMTI1LjE1NCAxMDUuOTg2IDEyNS4xMDYgMTA2LjAxMUMxMjUuMDU0IDEwNi4wNDIgMTI1LjAwMiAxMDYuMDcxIDEyNC45NSAxMDYuMDk4SDEyMC43OTFDMTIwLjcxNiAxMDUuOTQ2IDEyMC42NDIgMTA1Ljc5MiAxMjAuNTY5IDEwNS42NEMxMTguNzg3IDEwMS44OTQgMTE3LjUzNSA5Ny44NTEyIDExNy43NDggOTMuNzMzOEMxMTcuODMzIDkyLjEzNjcgMTE4LjE2OCA5MC41NjI5IDExOC43NDIgODkuMDcwMUMxMTkuODg1IDg2LjA5NSAxMjEuOTY5IDgzLjUyIDEyNC44MzcgODIuMjIzOEMxMjQuOTA4IDgyLjE5MTEgMTI0Ljk4MyA4Mi4xNTg0IDEyNS4wNTYgODIuMTI3NkMxMjUuMDMzIDgyLjIxMDMgMTI1LjAxIDgyLjI5MTEgMTI0Ljk4NyA4Mi4zNzM4QzEyNC42NzkgODMuNDgyIDEyNC40NjIgODQuNjEzMyAxMjQuMzM3IDg1Ljc1NjZDMTI0LjMyNSA4NS44NDUgMTI0LjMxNiA4NS45MzM1IDEyNC4zMDggODYuMDIzOUMxMjQuMDM1IDg4Ljc4MTIgMTI0LjI3NyA5MS41NjUzIDEyNS4wMjMgOTQuMjMzOEMxMjUuMDI1IDk0LjIzOTYgMTI1LjAyNyA5NC4yNDcyIDEyNS4wMjkgOTQuMjUzQzEyNS4xOTMgOTQuODQzNCAxMjUuMzgyIDk1LjQyNDggMTI1LjU5OCA5NS45OTczQzEyNS43NjggOTYuNDQ5MiAxMjUuOTUgOTYuODk1NCAxMjYuMTUgOTcuMzMzOUMxMjYuOTg1IDk5LjE3NDMgMTI4LjEwNCAxMDEuMTM2IDEyNy41ODUgMTAzLjA4OFoiIGZpbGw9IiNFNkU2RTYiLz4KPHBhdGggaWQ9IlZlY3Rvcl8xMCIgZD0iTTEyNS4xMDggODIuMjE0MUMxMjUuMDY4IDgyLjI2OCAxMjUuMDI3IDgyLjMxOTkgMTI0Ljk4NyA4Mi4zNzM4QzEyNC4xNDIgODMuNDkzMiAxMjMuNDI1IDg0LjcwMzMgMTIyLjg0OCA4NS45ODE2QzEyMi44MTggODYuMDQ1IDEyMi43ODkgODYuMTA4NSAxMjIuNzY0IDg2LjE3MzlDMTIxLjk3NCA4Ny45NTg5IDEyMS40NjYgODkuODU2MSAxMjEuMjYgOTEuNzk3MkMxMjEuMjU4IDkxLjgxMDUgMTIxLjI1NiA5MS44MjQgMTIxLjI1NiA5MS44Mzc1QzEyMS4yMDggOTIuMjkxNCAxMjEuMTc5IDkyLjc0OTEgMTIxLjE2OCA5My4yMDY4QzEyMS4xMjUgOTQuMDY0NyAxMjEuMjE4IDk0LjkyNDEgMTIxLjQ0MyA5NS43NTMxQzEyMS42NDggOTYuNDMgMTIyLjAwNyA5Ny4wNTAyIDEyMi40OTMgOTcuNTY0N0MxMjIuNTQxIDk3LjYxNjYgMTIyLjU4OSA5Ny42Njg1IDEyMi42NDEgOTcuNzE4NUMxMjIuNjc5IDk3Ljc1ODkgMTIyLjcyMSA5Ny43OTkzIDEyMi43NjIgOTcuODM3N0MxMjMuMTUgOTguMjA4OSAxMjMuNTc1IDk4LjU1MzIgMTIzLjk0MSA5OC45NTEzQzEyNC4xMDggOTkuMTI5OCAxMjQuMjU5IDk5LjMyMjggMTI0LjM5MyA5OS41MjgyQzEyNC42MDUgOTkuODcyNCAxMjQuNzQzIDEwMC4yNTggMTI0Ljc5NiAxMDAuNjU5QzEyNC44NDkgMTAxLjA2IDEyNC44MTYgMTAxLjQ2OCAxMjQuNyAxMDEuODU1QzEyNC40MzkgMTAyLjgyOCAxMjMuODQxIDEwMy42NDkgMTIzLjIyOSAxMDQuNDMyQzEyMi45MjMgMTA0LjgyNSAxMjIuNjA4IDEwNS4yMjEgMTIyLjMzNSAxMDUuNjRDMTIyLjIzNSAxMDUuNzkgMTIyLjE0MyAxMDUuOTQyIDEyMi4wNTggMTA2LjA5OEgxMjEuODE2QzEyMS44OTYgMTA1Ljk0MiAxMjEuOTg1IDEwNS43OSAxMjIuMDgxIDEwNS42NEMxMjIuNzgzIDEwNC41MzQgMTIzLjc4MSAxMDMuNTg0IDEyNC4yOTggMTAyLjM2N0MxMjQuNjQ4IDEwMS41NDYgMTI0Ljc1NCAxMDAuNjE1IDEyNC4zMTIgOTkuODA5QzEyNC4xODIgOTkuNTc0NiAxMjQuMDI1IDk5LjM1NjUgMTIzLjg0NSA5OS4xNTg5QzEyMy40OTMgOTguNzYwOSAxMjMuMDcxIDk4LjQyMDUgMTIyLjY4OSA5OC4wNjA4QzEyMi41OTMgOTcuOTcwNCAxMjIuNDk4IDk3Ljg3ODEgMTIyLjQwOCA5Ny43ODJDMTIxLjkyOSA5Ny4yOTUxIDEyMS41NTkgOTYuNzExNiAxMjEuMzIzIDk2LjA3MDRDMTIxLjA1NiA5NS4yNTYgMTIwLjkzIDk0LjQwMjEgMTIwLjk1IDkzLjU0NTNDMTIwLjk1IDkyLjk5OTEgMTIwLjk3OSA5Mi40NDkxIDEyMS4wMzMgOTEuOTAyOUMxMjEuMDM5IDkxLjgzMzcgMTIxLjA0NiA5MS43NjI1IDEyMS4wNTQgOTEuNjkxNEMxMjEuNDQ3IDg4LjI1NDQgMTIyLjc1MyA4NC45ODU0IDEyNC44MzcgODIuMjIzOEMxMjQuODc1IDgyLjE2OTkgMTI0LjkxNiA4Mi4xMTggMTI0Ljk1NiA4Mi4wNjYxQzEyNS4wMzkgODEuOTU4NCAxMjUuMTkxIDgyLjEwODQgMTI1LjEwOCA4Mi4yMTQxWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggaWQ9IlZlY3Rvcl8xMSIgZD0iTTEyMS4xMzIgOTEuOTIxMUMxMjAuNDY2IDkxLjgwOTMgMTE5Ljg2MSA5MS40NjQyIDExOS40MjYgOTAuOTQ3N0MxMTguOTkgOTAuNDMxMiAxMTguNzUzIDg5Ljc3NjcgMTE4Ljc1NiA4OS4xMDEzQzExOC43NTYgODkuMDczNyAxMTguNzY3IDg5LjA0NzQgMTE4Ljc4NyA4OS4wMjc4QzExOC44MDYgODkuMDA4MyAxMTguODMyIDg4Ljk5NyAxMTguODYgODguOTk2NEMxMTguODg3IDg4Ljk5NTggMTE4LjkxNCA4OS4wMDU5IDExOC45MzQgODkuMDI0NkMxMTguOTU0IDg5LjA0MzMgMTE4Ljk2NyA4OS4wNjkxIDExOC45NjggODkuMDk2N0MxMTguOTY0IDg5LjcyNTYgMTE5LjE4NiA5MC4zMzUyIDExOS41OTIgOTAuODE1NEMxMTkuOTk4IDkxLjI5NTYgMTIwLjU2MyA5MS42MTQ3IDEyMS4xODQgOTEuNzE1MkMxMjEuMzE5IDkxLjczNzIgMTIxLjI2NiA5MS45NDMgMTIxLjEzMiA5MS45MjExWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggaWQ9IlZlY3Rvcl8xMiIgZD0iTTEyMi40MzkgOTcuNjAzM0MxMjMuNTcxIDk2LjgxMjMgMTI0LjM2MyA5NS42MjM4IDEyNC42NTcgOTQuMjc0OEMxMjQuNjg2IDk0LjE0MTEgMTI0Ljg5MiA5NC4xOTMyIDEyNC44NjMgOTQuMzI2N0MxMjQuNTU0IDk1LjczIDEyMy43MjggOTYuOTY1MSAxMjIuNTQ4IDk3Ljc4NTdDMTIyLjQzNiA5Ny44NjM5IDEyMi4zMjcgOTcuNjgxIDEyMi40MzkgOTcuNjAzM1oiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGlkPSJWZWN0b3JfMTMiIGQ9Ik0xMjIuNzg1IDg1Ljk1OTFDMTIzLjAzMyA4Ni4wNTYxIDEyMy4zMDIgODYuMDg5OCAxMjMuNTY3IDg2LjA1NzJDMTIzLjgzMiA4Ni4wMjQ2IDEyNC4wODUgODUuOTI2NiAxMjQuMzAzIDg1Ljc3MjJDMTI0LjQxNCA4NS42OTI3IDEyNC41MjIgODUuODc1NiAxMjQuNDEyIDg1Ljk1NDZDMTI0LjE3IDg2LjEyNDEgMTIzLjg5MSA4Ni4yMzE5IDEyMy41OTggODYuMjY4NkMxMjMuMzA2IDg2LjMwNTMgMTIzLjAwOCA4Ni4yNjk3IDEyMi43MzMgODYuMTY1MUMxMjIuNzA2IDg2LjE1NzQgMTIyLjY4MyA4Ni4xMzk4IDEyMi42NjkgODYuMTE1OEMxMjIuNjU0IDg2LjA5MTggMTIyLjY1IDg2LjA2MzMgMTIyLjY1NiA4Ni4wMzYxQzEyMi42NjMgODYuMDA4OSAxMjIuNjggODUuOTg1NSAxMjIuNzA0IDg1Ljk3MTFDMTIyLjcyOSA4NS45NTY3IDEyMi43NTcgODUuOTUyNCAxMjIuNzg1IDg1Ljk1OTFaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBpZD0iVmVjdG9yXzE0IiBkPSJNMTM5LjUzNSA4OS42NTA5QzEzOS40NjggODkuNzAyOSAxMzkuMzk5IDg5Ljc1NDggMTM5LjMzMiA4OS44MDg2QzEzOC40MTkgOTAuNTA3NCAxMzcuNTY0IDkxLjI3OTIgMTM2Ljc3NiA5Mi4xMTY0QzEzNi43MTQgOTIuMTc5OSAxMzYuNjUzIDkyLjI0NTMgMTM2LjU5MyA5Mi4zMTA2TDEzNi41OTEgOTIuMzEyNkMxMzQuNzIzIDk0LjM0MSAxMzMuMjQ1IDk2LjY5NzMgMTMyLjIzMyA5OS4yNjI4TDEzMi4yMjcgOTkuMjgwMUMxMzIuMjI2IDk5LjI4NTkgMTMyLjIyNCA5OS4yODk3IDEzMi4yMjIgOTkuMjk1NUMxMzEuODIxIDEwMC4zMjIgMTMxLjQ5NyAxMDEuMzc4IDEzMS4yNTQgMTAyLjQ1M0MxMzEuMDIgMTAzLjUwMyAxMzAuODI3IDEwNC42MjggMTMwLjQ2IDEwNS42NEMxMzAuNDA0IDEwNS43OTYgMTMwLjM0MyAxMDUuOTUgMTMwLjI3NyAxMDYuMDk4SDEyMS43MjdDMTIxLjc1NiAxMDUuOTQ2IDEyMS43ODcgMTA1Ljc5MiAxMjEuODE4IDEwNS42NEMxMjIuMjUyIDEwMy40MTIgMTIyLjkzMiAxMDEuMjM4IDEyMy44NDUgOTkuMTU4OUMxMjMuODc1IDk5LjA4OTcgMTIzLjkwNiA5OS4wMjA1IDEyMy45NDEgOTguOTUxMkMxMjQuNDEyIDk3LjkyMzkgMTI0Ljk2NSA5Ni45MzY3IDEyNS41OTYgOTUuOTk5MkwxMjUuNTk3IDk1Ljk5ODVMMTI1LjU5NyA5NS45OTc5TDEyNS41OTggOTUuOTk3NEwxMjUuNTk4IDk1Ljk5NzNDMTI1Ljk0NSA5NS40ODU4IDEyNi4zMTcgOTQuOTkyMiAxMjYuNzE0IDk0LjUxODRDMTI3Ljc0MiA5My4yOTQ3IDEyOC45NTcgOTIuMjQwNyAxMzAuMzE0IDkxLjM5NTJDMTMwLjMyMiA5MS4zODk1IDEzMC4zMzEgOTEuMzg1NiAxMzAuMzM5IDkxLjM3OThDMTMzLjAzOSA4OS43MDQ4IDEzNi4yMzkgODguOTA2NyAxMzkuMjk5IDg5LjU5NzFIMTM5LjMwMUMxMzkuMzggODkuNjE0NCAxMzkuNDU3IDg5LjYzMTcgMTM5LjUzNSA4OS42NTA5WiIgZmlsbD0iI0U2RTZFNiIvPgo8cGF0aCBpZD0iVmVjdG9yXzE1IiBkPSJNMTM5LjUyNiA4OS43NTI5QzEzOS40NiA4OS43NzAyIDEzOS4zOTUgODkuNzg5NCAxMzkuMzMyIDg5LjgwODZDMTM3Ljk4NCA5MC4xOTM4IDEzNi42ODMgOTAuNzI3MiAxMzUuNDUzIDkxLjM5OTFDMTM1LjM5MSA5MS40MzE4IDEzNS4zMyA5MS40NjY0IDEzNS4yNjggOTEuNTAxQzEzMy41NjggOTIuNDQ5OSAxMzIuMDI1IDkzLjY1NTggMTMwLjY5MyA5NS4wNzYxQzEzMC42OTIgOTUuMDc3MiAxMzAuNjkxIDk1LjA3ODUgMTMwLjY5MSA5NS4wOEMxMzAuNjc2IDk1LjA5NTMgMTMwLjY1OCA5NS4xMTI3IDEzMC42NDUgOTUuMTI4MUMxMzAuMzM3IDk1LjQ1ODggMTMwLjA0MSA5NS44MDMxIDEyOS43NiA5Ni4xNTY5QzEyOS4yMTEgOTYuODE2NyAxMjguNzY4IDk3LjU1ODQgMTI4LjQ0OSA5OC4zNTUxQzEyOC4yMDQgOTkuMDE5MSAxMjguMTE4IDk5LjczMDkgMTI4LjE5NyAxMDAuNDM0QzEyOC4yMDIgMTAwLjUwNSAxMjguMjEyIDEwMC41NzQgMTI4LjIyMiAxMDAuNjQ2QzEyOC4yMjkgMTAwLjcwMSAxMjguMjM3IDEwMC43NTcgMTI4LjI0NyAxMDAuODE1QzEyOC4zNzQgMTAxLjU4NiAxMjguNTkzIDEwMi4zNTkgMTI4LjUzMSAxMDMuMTQ2QzEyOC40OTQgMTAzLjU0OSAxMjguMzcxIDEwMy45MzkgMTI4LjE3MiAxMDQuMjkyQzEyNy45NzMgMTA0LjY0NCAxMjcuNzAxIDEwNC45NSAxMjcuMzc1IDEwNS4xOUMxMjcuMTU0IDEwNS4zNjEgMTI2LjkxNyAxMDUuNTEyIDEyNi42NjggMTA1LjY0QzEyNi4zMTEgMTA1LjgyNCAxMjUuOTQgMTA1Ljk3NyAxMjUuNTU4IDEwNi4wOThIMTI0LjgwMkMxMjQuOTA0IDEwNi4wNjkgMTI1LjAwNCAxMDYuMDQgMTI1LjEwNiAxMDYuMDExQzEyNS40NjggMTA1LjkwOSAxMjUuODIzIDEwNS43ODUgMTI2LjE3IDEwNS42NEMxMjYuMzY4IDEwNS41NTcgMTI2LjU2IDEwNS40NjIgMTI2Ljc0NyAxMDUuMzU1QzEyNy41MiAxMDQuOTExIDEyOC4xNjQgMTA0LjIzIDEyOC4yOTkgMTAzLjMyMUMxMjguNDE2IDEwMi41MjQgMTI4LjE4OSAxMDEuNzI4IDEyOC4wNTQgMTAwLjk0OUMxMjguMDMxIDEwMC44MTUgMTI4LjAxIDEwMC42ODIgMTI3Ljk5OCAxMDAuNTQ5QzEyNy45MDcgOTkuODc0OSAxMjcuOTYyIDk5LjE4ODYgMTI4LjE2MiA5OC41Mzc4QzEyOC40MzkgOTcuNzI2IDEyOC44NTIgOTYuOTY3NSAxMjkuMzg1IDk2LjI5NTRDMTI5LjcxNSA5NS44NTc4IDEzMC4wNjYgOTUuNDM3MyAxMzAuNDM5IDk1LjAzNTdDMTMwLjQ4NSA5NC45ODM4IDEzMC41MzMgOTQuOTMxOSAxMzAuNTgzIDk0Ljg4QzEzMS45NDMgOTMuNDQ5NSAxMzMuNTEzIDkyLjIzNDggMTM1LjIzOSA5MS4yNzc5SDEzNS4yNDFDMTM2LjUyNCA5MC41NjM0IDEzNy44ODYgODkuOTk5NCAxMzkuMjk5IDg5LjU5NzFIMTM5LjMwMUMxMzkuMzY0IDg5LjU3NzkgMTM5LjQzIDg5LjU1ODYgMTM5LjQ5MyA4OS41NDEzQzEzOS42MjYgODkuNTA2NyAxMzkuNjU3IDg5LjcxNjMgMTM5LjUyNiA4OS43NTI5WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggaWQ9IlZlY3Rvcl8xNiIgZD0iTTEzMC41MDcgOTUuMTA4N0MxMzAuMDQzIDk0LjYxODMgMTI5Ljc2OCA5My45Nzg4IDEyOS43MzEgOTMuMzA0M0MxMjkuNjk1IDkyLjYyOTkgMTI5Ljg5OSA5MS45NjQ0IDEzMC4zMDggOTEuNDI2OEMxMzAuMzkxIDkxLjMxODMgMTMwLjU2MyA5MS40NDIzIDEzMC40OCA5MS41NTA5QzEzMC4wOTkgOTIuMDUwOSAxMjkuOTA4IDkyLjY3MDggMTI5Ljk0NCA5My4yOTg4QzEyOS45NzkgOTMuOTI2OCAxMzAuMjM3IDk0LjUyMTUgMTMwLjY3MyA5NC45NzU2QzEzMC43NjcgOTUuMDc0MyAxMzAuNjAxIDk1LjIwNjkgMTMwLjUwNyA5NS4xMDg3WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggaWQ9IlZlY3Rvcl8xNyIgZD0iTTEyOC4xMyAxMDAuNDMzQzEyOS41MSAxMDAuNDgzIDEzMC44NTggMTAwLjAxIDEzMS45MDUgOTkuMTEwNUMxMzIuMDA5IDk5LjAyMTMgMTMyLjE0MiA5OS4xODY5IDEzMi4wMzggOTkuMjc2QzEzMC45NDcgMTAwLjIxIDEyOS41NDMgMTAwLjY5OSAxMjguMTA3IDEwMC42NDRDMTI3Ljk3IDEwMC42MzkgMTI3Ljk5NCAxMDAuNDI4IDEyOC4xMyAxMDAuNDMzWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggaWQ9IlZlY3Rvcl8xOCIgZD0iTTEzNS40MTcgOTEuMzQzNkMxMzUuNTU3IDkxLjU3MDggMTM1Ljc1MSA5MS43NTk2IDEzNS45ODIgOTEuODkzMUMxMzYuMjE0IDkyLjAyNjYgMTM2LjQ3NCA5Mi4xMDA1IDEzNi43NDEgOTIuMTA4M0MxMzYuODc4IDkyLjExMTkgMTM2Ljg1NCA5Mi4zMjMxIDEzNi43MTggOTIuMzE5NUMxMzYuNDIzIDkyLjMwOTUgMTM2LjEzNiA5Mi4yMjc1IDEzNS44OCA5Mi4wODA2QzEzNS42MjQgOTEuOTMzNyAxMzUuNDA4IDkxLjcyNjMgMTM1LjI1MSA5MS40NzY4QzEzNS4yMzQgOTEuNDU0NSAxMzUuMjI3IDkxLjQyNjYgMTM1LjIzIDkxLjM5ODlDMTM1LjIzMyA5MS4zNzEyIDEzNS4yNDYgOTEuMzQ1NiAxMzUuMjY3IDkxLjMyNzRDMTM1LjI4OSA5MS4zMDk5IDEzNS4zMTcgOTEuMzAxOCAxMzUuMzQ1IDkxLjMwNDhDMTM1LjM3MyA5MS4zMDc4IDEzNS4zOTkgOTEuMzIxOCAxMzUuNDE3IDkxLjM0MzZaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBpZD0iVmVjdG9yXzE5IiBkPSJNNzUuNzY3OSAxMzAuNzMyQzc1LjQ4OSAxMzEuNzc4IDc0Ljc1NjMgMTMyLjY0OSA3My44NzE2IDEzMy4yODRDNzMuNzI3NCAxMzMuMzg4IDczLjU3OTMgMTMzLjQ4NCA3My40MjkzIDEzMy41NzRDNzMuMzgzMiAxMzMuNjAxIDczLjMzNyAxMzMuNjMgNzMuMjg4OSAxMzMuNjU1QzczLjIzNyAxMzMuNjg2IDczLjE4NTEgMTMzLjcxNSA3My4xMzMxIDEzMy43NDJINjguOTczNEM2OC44OTg0IDEzMy41OSA2OC44MjUzIDEzMy40MzYgNjguNzUyMiAxMzMuMjg0QzY2Ljk2OTUgMTI5LjUzOCA2NS43MTc1IDEyNS40OTUgNjUuOTMxIDEyMS4zNzhDNjYuMDE1NyAxMTkuNzgxIDY2LjM1MTIgMTE4LjIwNyA2Ni45MjUzIDExNi43MTRDNjguMDY3NiAxMTMuNzM5IDcwLjE1MjMgMTExLjE2NCA3My4wMTk3IDEwOS44NjhDNzMuMDkwOCAxMDkuODM1IDczLjE2NTggMTA5LjgwMiA3My4yMzg5IDEwOS43NzJDNzMuMjE1OSAxMDkuODU0IDczLjE5MjggMTA5LjkzNSA3My4xNjk3IDExMC4wMThDNzIuODYyMSAxMTEuMTI2IDcyLjY0NDcgMTEyLjI1NyA3Mi41MTk3IDExMy40QzcyLjUwODEgMTEzLjQ4OSA3Mi40OTg1IDExMy41NzcgNzIuNDkwOCAxMTMuNjY4QzcyLjIxNzYgMTE2LjQyNSA3Mi40NjAyIDExOS4yMDkgNzMuMjA2MiAxMjEuODc4QzczLjIwODEgMTIxLjg4MyA3My4yMTAxIDEyMS44OTEgNzMuMjEyIDEyMS44OTdDNzMuMzc1NSAxMjIuNDg3IDczLjU2NTIgMTIzLjA2OSA3My43ODEyIDEyMy42NDFDNzMuOTUwNSAxMjQuMDkzIDc0LjEzMzIgMTI0LjUzOSA3NC4zMzMyIDEyNC45NzhDNzUuMTY3OCAxMjYuODE4IDc2LjI4NzEgMTI4Ljc4IDc1Ljc2NzkgMTMwLjczMloiIGZpbGw9IiNFNkU2RTYiLz4KPHBhdGggaWQ9IlZlY3Rvcl8yMCIgZD0iTTczLjI5MDggMTA5Ljg1OEM3My4yNTA1IDEwOS45MTIgNzMuMjEwMSAxMDkuOTY0IDczLjE2OTcgMTEwLjAxOEM3Mi4zMjUgMTExLjEzNyA3MS42MDc3IDExMi4zNDcgNzEuMDMxMiAxMTMuNjI2QzcxLjAwMDQgMTEzLjY4OSA3MC45NzE1IDExMy43NTIgNzAuOTQ2NSAxMTMuODE4QzcwLjE1NjUgMTE1LjYwMyA2OS42NDkxIDExNy41IDY5LjQ0MjYgMTE5LjQ0MUM2OS40NDA0IDExOS40NTQgNjkuNDM5MSAxMTkuNDY4IDY5LjQzODggMTE5LjQ4MUM2OS4zOTA3IDExOS45MzUgNjkuMzYxOSAxMjAuMzkzIDY5LjM1MDMgMTIwLjg1MUM2OS4zMDc2IDEyMS43MDkgNjkuNDAwNCAxMjIuNTY4IDY5LjYyNTMgMTIzLjM5N0M2OS44MzA1IDEyNC4wNzQgNzAuMTg5OSAxMjQuNjk0IDcwLjY3NTQgMTI1LjIwOUM3MC43MjM1IDEyNS4yNjEgNzAuNzcxNSAxMjUuMzEyIDcwLjgyMzUgMTI1LjM2MkM3MC44NjE5IDEyNS40MDMgNzAuOTA0MiAxMjUuNDQzIDcwLjk0NDYgMTI1LjQ4MkM3MS4zMzMxIDEyNS44NTMgNzEuNzU4MSAxMjYuMTk3IDcyLjEyMzUgMTI2LjU5NUM3Mi4yOTEgMTI2Ljc3NCA3Mi40NDIyIDEyNi45NjcgNzIuNTc1NCAxMjcuMTcyQzcyLjc4ODEgMTI3LjUxNiA3Mi45MjU0IDEyNy45MDIgNzIuOTc4NCAxMjguMzAzQzczLjAzMTUgMTI4LjcwNCA3Mi45OTkgMTI5LjExMSA3Mi44ODMxIDEyOS40OTlDNzIuNjIxNiAxMzAuNDcyIDcyLjAyMzUgMTMxLjI5MyA3MS40MTE5IDEzMi4wNzZDNzEuMTA2MiAxMzIuNDY4IDcwLjc5MDggMTMyLjg2NSA3MC41MTc3IDEzMy4yODRDNzAuNDE3NyAxMzMuNDM0IDcwLjMyNTQgMTMzLjU4NiA3MC4yNDA4IDEzMy43NDJINjkuOTk4NEM3MC4wNzkyIDEzMy41ODYgNzAuMTY3NyAxMzMuNDM0IDcwLjI2MzggMTMzLjI4NEM3MC45NjU4IDEzMi4xNzggNzEuOTYzOSAxMzEuMjI4IDcyLjQ4MTIgMTMwLjAxMUM3Mi44MzEyIDEyOS4xODkgNzIuOTM3IDEyOC4yNTkgNzIuNDk0NyAxMjcuNDUzQzcyLjM2NSAxMjcuMjE5IDcyLjIwODIgMTI3IDcyLjAyNzQgMTI2LjgwM0M3MS42NzU0IDEyNi40MDUgNzEuMjU0MyAxMjYuMDY0IDcwLjg3MTUgMTI1LjcwNUM3MC43NzU0IDEyNS42MTQgNzAuNjgxMiAxMjUuNTIyIDcwLjU5MDggMTI1LjQyNkM3MC4xMTE2IDEyNC45MzkgNjkuNzQxOCAxMjQuMzU2IDY5LjUwNjEgMTIzLjcxNEM2OS4yMzkzIDEyMi45IDY5LjExMzEgMTIyLjA0NiA2OS4xMzMgMTIxLjE4OUM2OS4xMzMgMTIwLjY0MyA2OS4xNjE5IDEyMC4wOTMgNjkuMjE1NyAxMTkuNTQ3QzY5LjIyMTUgMTE5LjQ3OCA2OS4yMjkyIDExOS40MDYgNjkuMjM2OSAxMTkuMzM1QzY5LjYzMDIgMTE1Ljg5OCA3MC45MzYzIDExMi42MjkgNzMuMDE5NyAxMDkuODY4QzczLjA1ODIgMTA5LjgxNCA3My4wOTg2IDEwOS43NjIgNzMuMTM4OSAxMDkuNzFDNzMuMjIxNiAxMDkuNjAyIDczLjM3MzUgMTA5Ljc1MiA3My4yOTA4IDEwOS44NThaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBpZD0iVmVjdG9yXzIxIiBkPSJNNjkuMzE0NSAxMTkuNTY1QzY4LjY0ODQgMTE5LjQ1MyA2OC4wNDM3IDExOS4xMDggNjcuNjA4NSAxMTguNTkyQzY3LjE3MzMgMTE4LjA3NSA2Ni45MzU4IDExNy40MjEgNjYuOTM4NiAxMTYuNzQ1QzY2LjkzOSAxMTYuNzE4IDY2Ljk1IDExNi42OTEgNjYuOTY5NCAxMTYuNjcyQzY2Ljk4ODggMTE2LjY1MiA2Ny4wMTUgMTE2LjY0MSA2Ny4wNDI2IDExNi42NEM2Ny4wNzAxIDExNi42NCA2Ny4wOTY4IDExNi42NSA2Ny4xMTcgMTE2LjY2OUM2Ny4xMzczIDExNi42ODcgNjcuMTQ5NCAxMTYuNzEzIDY3LjE1MSAxMTYuNzQxQzY3LjE0NzMgMTE3LjM3IDY3LjM2ODUgMTE3Ljk3OSA2Ny43NzQ4IDExOC40NTlDNjguMTgxIDExOC45MzkgNjguNzQ1NiAxMTkuMjU5IDY5LjM2NjUgMTE5LjM1OUM2OS41MDE0IDExOS4zODEgNjkuNDQ4NiAxMTkuNTg3IDY5LjMxNDUgMTE5LjU2NVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGlkPSJWZWN0b3JfMjIiIGQ9Ik03MC42MjIgMTI1LjI0N0M3MS43NTM3IDEyNC40NTYgNzIuNTQ1NyAxMjMuMjY4IDcyLjg0IDEyMS45MTlDNzIuODY5IDEyMS43ODUgNzMuMDc1IDEyMS44MzcgNzMuMDQ2IDEyMS45NzFDNzIuNzM3MSAxMjMuMzc0IDcxLjkxMDQgMTI0LjYwOSA3MC43MzA5IDEyNS40M0M3MC42MTg0IDEyNS41MDggNzAuNTEwMSAxMjUuMzI1IDcwLjYyMiAxMjUuMjQ3WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggaWQ9IlZlY3Rvcl8yMyIgZD0iTTcwLjk2NzUgMTEzLjYwM0M3MS4yMTYyIDExMy43IDcxLjQ4NTIgMTEzLjczNCA3MS43NTAxIDExMy43MDFDNzIuMDE1MSAxMTMuNjY4IDcyLjI2NzggMTEzLjU3MSA3Mi40ODU2IDExMy40MTZDNzIuNTk3IDExMy4zMzcgNzIuNzA1MSAxMTMuNTIgNzIuNTk0NCAxMTMuNTk5QzcyLjM1MyAxMTMuNzY4IDcyLjA3MzggMTEzLjg3NiA3MS43ODEyIDExMy45MTNDNzEuNDg4NSAxMTMuOTQ5IDcxLjE5MTMgMTEzLjkxNCA3MC45MTU2IDExMy44MDlDNzAuODg4NyAxMTMuODAxIDcwLjg2NTkgMTEzLjc4NCA3MC44NTE2IDExMy43NkM3MC44MzczIDExMy43MzYgNzAuODMyNiAxMTMuNzA3IDcwLjgzODYgMTEzLjY4QzcwLjg0NTYgMTEzLjY1MyA3MC44NjMxIDExMy42MjkgNzAuODg3MiAxMTMuNjE1QzcwLjkxMTQgMTEzLjYwMSA3MC45NDAyIDExMy41OTYgNzAuOTY3NSAxMTMuNjAzWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggaWQ9IlZlY3Rvcl8yNCIgZD0iTTg3LjcxODIgMTE3LjI5NUM4Ny42NTA5IDExNy4zNDcgODcuNTgxNyAxMTcuMzk5IDg3LjUxNDQgMTE3LjQ1M0M4Ni42MDEzIDExOC4xNTEgODUuNzQ2NiAxMTguOTIzIDg0Ljk1ODUgMTE5Ljc2Qzg0Ljg5NyAxMTkuODI0IDg0LjgzNTUgMTE5Ljg4OSA4NC43NzU4IDExOS45NTVMODQuNzczOSAxMTkuOTU2QzgyLjkwNTQgMTIxLjk4NSA4MS40MjggMTI0LjM0MSA4MC40MTYxIDEyNi45MDdMODAuNDEwMyAxMjYuOTI0QzgwLjQwODQgMTI2LjkzIDgwLjQwNjUgMTI2LjkzNCA4MC40MDQ1IDEyNi45MzlDODAuMDAzNSAxMjcuOTY2IDc5LjY4MDEgMTI5LjAyMiA3OS40MzcyIDEzMC4wOTdDNzkuMjAyNiAxMzEuMTQ3IDc5LjAxMDMgMTMyLjI3MiA3OC42NDI5IDEzMy4yODRDNzguNTg3MiAxMzMuNDQgNzguNTI1NiAxMzMuNTkzIDc4LjQ2MDMgMTMzLjc0Mkg2OS45MUM2OS45Mzg4IDEzMy41OSA2OS45Njk2IDEzMy40MzYgNzAuMDAwNCAxMzMuMjg0QzcwLjQzNTMgMTMxLjA1NSA3MS4xMTUxIDEyOC44ODIgNzIuMDI3MyAxMjYuODAzQzcyLjA1ODEgMTI2LjczNCA3Mi4wODg5IDEyNi42NjQgNzIuMTIzNSAxMjYuNTk1QzcyLjU5NDQgMTI1LjU2OCA3My4xNDgyIDEyNC41ODEgNzMuNzc5MyAxMjMuNjQzTDczLjc3OTUgMTIzLjY0Mkw3My43Nzk5IDEyMy42NDJMNzMuNzgwNSAxMjMuNjQxTDczLjc4MTMgMTIzLjY0MUM3NC4xMjc4IDEyMy4xMyA3NC41MDAxIDEyMi42MzYgNzQuODk2NyAxMjIuMTYyQzc1LjkyNTIgMTIwLjkzOSA3Ny4xNDAxIDExOS44ODUgNzguNDk2OCAxMTkuMDM5Qzc4LjUwNDUgMTE5LjAzMyA3OC41MTQxIDExOS4wMyA3OC41MjE4IDExOS4wMjRDODEuMjIxOSAxMTcuMzQ5IDg0LjQyMiAxMTYuNTUxIDg3LjQ4MTcgMTE3LjI0MUg4Ny40ODM2Qzg3LjU2MjUgMTE3LjI1OCA4Ny42Mzk0IDExNy4yNzYgODcuNzE4MiAxMTcuMjk1WiIgZmlsbD0iI0U2RTZFNiIvPgo8cGF0aCBpZD0iVmVjdG9yXzI1IiBkPSJNODcuNzA4NiAxMTcuMzk3Qzg3LjY0MzIgMTE3LjQxNCA4Ny41Nzc5IDExNy40MzMgODcuNTE0NCAxMTcuNDUzQzg2LjE2NjYgMTE3LjgzOCA4NC44NjU2IDExOC4zNzEgODMuNjM1NCAxMTkuMDQzQzgzLjU3MzkgMTE5LjA3NiA4My41MTIzIDExOS4xMSA4My40NTA4IDExOS4xNDVDODEuNzUwNyAxMjAuMDk0IDgwLjIwNzQgMTIxLjMgNzguODc1NiAxMjIuNzJDNzguODc0NiAxMjIuNzIxIDc4Ljg3MzkgMTIyLjcyMiA3OC44NzM3IDEyMi43MjRDNzguODU4MyAxMjIuNzM5IDc4Ljg0MSAxMjIuNzU3IDc4LjgyNzYgMTIyLjc3MkM3OC41MTk5IDEyMy4xMDMgNzguMjIzNyAxMjMuNDQ3IDc3Ljk0MjkgMTIzLjgwMUM3Ny4zOTM3IDEyNC40NjEgNzYuOTUxMSAxMjUuMjAyIDc2LjYzMTMgMTI1Ljk5OUM3Ni4zODcgMTI2LjY2MyA3Ni4zMDA3IDEyNy4zNzUgNzYuMzc5NCAxMjguMDc4Qzc2LjM4NTIgMTI4LjE0OSA3Ni4zOTQ4IDEyOC4yMTggNzYuNDA0NCAxMjguMjg5Qzc2LjQxMjEgMTI4LjM0NSA3Ni40MTk4IDEyOC40MDEgNzYuNDI5NCAxMjguNDU5Qzc2LjU1NjMgMTI5LjIzIDc2Ljc3NTYgMTMwLjAwMyA3Ni43MTQgMTMwLjc5Qzc2LjY3NjYgMTMxLjE5MyA3Ni41NTQyIDEzMS41ODMgNzYuMzU1IDEzMS45MzVDNzYuMTU1OCAxMzIuMjg4IDc1Ljg4NDMgMTMyLjU5NCA3NS41NTgyIDEzMi44MzRDNzUuMzM2NiAxMzMuMDA1IDc1LjA5OTcgMTMzLjE1NiA3NC44NTA1IDEzMy4yODRDNzQuNDk0MiAxMzMuNDY4IDc0LjEyMyAxMzMuNjIxIDczLjc0MDkgMTMzLjc0Mkg3Mi45ODUxQzczLjA4NyAxMzMuNzEzIDczLjE4NyAxMzMuNjg0IDczLjI4ODkgMTMzLjY1NUM3My42NTA2IDEzMy41NTMgNzQuMDA1OCAxMzMuNDI5IDc0LjM1MjQgMTMzLjI4NEM3NC41NTA0IDEzMy4yMDEgNzQuNzQzMSAxMzMuMTA2IDc0LjkyOTQgMTMyLjk5OUM3NS43MDI1IDEzMi41NTUgNzYuMzQ2NyAxMzEuODc0IDc2LjQ4MTMgMTMwLjk2NUM3Ni41OTg3IDEzMC4xNjggNzYuMzcxNyAxMjkuMzcyIDc2LjIzNzEgMTI4LjU5M0M3Ni4yMTQgMTI4LjQ1OSA3Ni4xOTI5IDEyOC4zMjYgNzYuMTgxMyAxMjguMTkzQzc2LjA4OTUgMTI3LjUxOSA3Ni4xNDUzIDEyNi44MzIgNzYuMzQ0OCAxMjYuMTgyQzc2LjYyMTUgMTI1LjM3IDc3LjAzNTIgMTI0LjYxMSA3Ny41Njc5IDEyMy45MzlDNzcuODk3NSAxMjMuNTAyIDc4LjI0OTIgMTIzLjA4MSA3OC42MjE4IDEyMi42OEM3OC42NjggMTIyLjYyOCA3OC43MTYgMTIyLjU3NiA3OC43NjYgMTIyLjUyNEM4MC4xMjU4IDEyMS4wOTMgODEuNjk1OCAxMTkuODc5IDgzLjQyMiAxMTguOTIySDgzLjQyMzlDODQuNzA3MyAxMTguMjA3IDg2LjA2OSAxMTcuNjQzIDg3LjQ4MTcgMTE3LjI0MUg4Ny40ODM2Qzg3LjU0NzEgMTE3LjIyMiA4Ny42MTI1IDExNy4yMDMgODcuNjc2IDExNy4xODVDODcuODA4NiAxMTcuMTUxIDg3LjgzOTQgMTE3LjM2IDg3LjcwODYgMTE3LjM5N1oiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGlkPSJWZWN0b3JfMjYiIGQ9Ik03OC42ODk5IDEyMi43NTNDNzguMjI1NSAxMjIuMjYyIDc3Ljk1MDQgMTIxLjYyMyA3Ny45MTM5IDEyMC45NDhDNzcuODc3NCAxMjAuMjc0IDc4LjA4MTggMTE5LjYwOCA3OC40OTA3IDExOS4wNzFDNzguNTczOCAxMTguOTYyIDc4Ljc0NjMgMTE5LjA4NiA3OC42NjMxIDExOS4xOTVDNzguMjgxNCAxMTkuNjk1IDc4LjA5MTEgMTIwLjMxNSA3OC4xMjYzIDEyMC45NDNDNzguMTYxNiAxMjEuNTcxIDc4LjQyMDIgMTIyLjE2NSA3OC44NTU0IDEyMi42MTlDNzguOTQ5OSAxMjIuNzE4IDc4Ljc4MzkgMTIyLjg1MSA3OC42ODk5IDEyMi43NTNaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBpZD0iVmVjdG9yXzI3IiBkPSJNNzYuMzEyOCAxMjguMDc3Qzc3LjY5MjcgMTI4LjEyNyA3OS4wNDA2IDEyNy42NTQgODAuMDg3OCAxMjYuNzU0QzgwLjE5MTUgMTI2LjY2NSA4MC4zMjQ1IDEyNi44MzEgODAuMjIxIDEyNi45MkM3OS4xMjk1IDEyNy44NTQgNzcuNzI1OCAxMjguMzQzIDc2LjI5IDEyOC4yODhDNzYuMTUzMSAxMjguMjgzIDc2LjE3NjcgMTI4LjA3MSA3Ni4zMTI4IDEyOC4wNzdaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBpZD0iVmVjdG9yXzI4IiBkPSJNODMuNTk5NCAxMTguOTg4QzgzLjczOTYgMTE5LjIxNSA4My45MzQgMTE5LjQwNCA4NC4xNjUyIDExOS41MzdDODQuMzk2NCAxMTkuNjcgODQuNjU3MSAxMTkuNzQ0IDg0LjkyMzkgMTE5Ljc1MkM4NS4wNjA4IDExOS43NTYgODUuMDM3IDExOS45NjcgODQuOTAxMSAxMTkuOTYzQzg0LjYwNjMgMTE5Ljk1MyA4NC4zMTg0IDExOS44NzEgODQuMDYyNyAxMTkuNzI0QzgzLjgwNjkgMTE5LjU3OCA4My41OTEgMTE5LjM3IDgzLjQzMzkgMTE5LjEyMUM4My40MTcxIDExOS4wOTggODMuNDA5NCAxMTkuMDcxIDgzLjQxMjQgMTE5LjA0M0M4My40MTU0IDExOS4wMTUgODMuNDI4OSAxMTguOTkgODMuNDUgMTE4Ljk3MUM4My40NzIgMTE4Ljk1NCA4My41MDAxIDExOC45NDYgODMuNTI4IDExOC45NDlDODMuNTU2IDExOC45NTIgODMuNTgxNiAxMTguOTY2IDgzLjU5OTQgMTE4Ljk4OFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGlkPSJWZWN0b3JfMjkiIGQ9Ik04NS4wMTU1IDc4LjM2NzlDODYuMjkwMSA3OC4zNjc5IDg3LjMyMzMgNzcuMzM0NyA4Ny4zMjMzIDc2LjA2MDJDODcuMzIzMyA3NC43ODU2IDg2LjI5MDEgNzMuNzUyNCA4NS4wMTU1IDczLjc1MjRDODMuNzQxIDczLjc1MjQgODIuNzA3OCA3NC43ODU2IDgyLjcwNzggNzYuMDYwMkM4Mi43MDc4IDc3LjMzNDcgODMuNzQxIDc4LjM2NzkgODUuMDE1NSA3OC4zNjc5WiIgZmlsbD0iI0YyRjJGMiIvPgo8cGF0aCBpZD0iVmVjdG9yXzMwIiBkPSJNMTEzLjY4NCA1MC43MjQzQzExNC45NTkgNTAuNzI0MyAxMTUuOTkyIDQ5LjY5MTEgMTE1Ljk5MiA0OC40MTY2QzExNS45OTIgNDcuMTQyIDExNC45NTkgNDYuMTA4OCAxMTMuNjg0IDQ2LjEwODhDMTEyLjQxIDQ2LjEwODggMTExLjM3NiA0Ny4xNDIgMTExLjM3NiA0OC40MTY2QzExMS4zNzYgNDkuNjkxMSAxMTIuNDEgNTAuNzI0MyAxMTMuNjg0IDUwLjcyNDNaIiBmaWxsPSIjRjJGMkYyIi8+CjxwYXRoIGlkPSJWZWN0b3JfMzEiIGQ9Ik0zNC40NTE4IDQuNjE1NTRDMzUuNzI2MyA0LjYxNTU0IDM2Ljc1OTYgMy41ODIzMSAzNi43NTk2IDIuMzA3NzdDMzYuNzU5NiAxLjAzMzIyIDM1LjcyNjMgMCAzNC40NTE4IDBDMzMuMTc3MiAwIDMyLjE0NCAxLjAzMzIyIDMyLjE0NCAyLjMwNzc3QzMyLjE0NCAzLjU4MjMxIDMzLjE3NzIgNC42MTU1NCAzNC40NTE4IDQuNjE1NTRaIiBmaWxsPSIjRjJGMkYyIi8+CjxwYXRoIGlkPSJQYXRoIDI5NjAiIGQ9Ik0wLjIzOTgxOCAxMzQuMTA5SDE0My43NkMxNDMuODI0IDEzNC4xMDkgMTQzLjg4NSAxMzQuMDg0IDE0My45MyAxMzQuMDM5QzE0My45NzUgMTMzLjk5NCAxNDQgMTMzLjkzMyAxNDQgMTMzLjg2OUMxNDQgMTMzLjgwNiAxNDMuOTc1IDEzMy43NDUgMTQzLjkzIDEzMy43QzE0My44ODUgMTMzLjY1NSAxNDMuODI0IDEzMy42MyAxNDMuNzYgMTMzLjYzSDAuMjM5ODE4QzAuMTc2MjE1IDEzMy42MyAwLjExNTIxNyAxMzMuNjU1IDAuMDcwMjQzMyAxMzMuN0MwLjAyNTI2OTEgMTMzLjc0NSA1Ljg2ODk2ZS0wNyAxMzMuODA2IDUuODY4OTZlLTA3IDEzMy44NjlDNS44Njg5NmUtMDcgMTMzLjkzMyAwLjAyNTI2OTEgMTMzLjk5NCAwLjA3MDI0MzMgMTM0LjAzOUMwLjExNTIxNyAxMzQuMDg0IDAuMTc2MjE1IDEzNC4xMDkgMC4yMzk4MTggMTM0LjEwOVoiIGZpbGw9IiNDQ0NDQ0MiLz4KPHBhdGggaWQ9IlZlY3Rvcl8zMiIgb3BhY2l0eT0iMC4yIiBkPSJNODcuODg2NiAyNC4zOTY2Qzg4LjkzNzkgMjYuMTkzOCA4OS4zMTUyIDI4LjMwNjUgODguOTUxMSAzMC4zNTY2Qzg4LjU4NyAzMi40MDY2IDg3LjUwNTIgMzQuMjYwMSA4NS44OTk0IDM1LjU4NTRDODQuMjkzNSAzNi45MTA3IDgyLjI2ODQgMzcuNjIxMiA4MC4xODY2IDM3LjU4OTlDNzguMTA0NyAzNy41NTg1IDc2LjEwMiAzNi43ODcyIDc0LjUzNjggMzUuNDE0MUM3NS4xNzc1IDM2LjUxMTYgNzYuMDQ5MiAzNy40NTY2IDc3LjA5MTMgMzguMTgzOEM3OC4xMzM1IDM4LjkxMSA3OS4zMjEyIDM5LjQwMyA4MC41NzIzIDM5LjYyNTdDODEuODIzNSAzOS44NDg0IDgzLjEwOCAzOS43OTY1IDg0LjMzNzEgMzkuNDczNkM4NS41NjYyIDM5LjE1MDggODYuNzEwNCAzOC41NjQ2IDg3LjY5MDUgMzcuNzU1N0M4OC42NzA2IDM2Ljk0NjggODkuNDYzMiAzNS45MzQ2IDkwLjAxMzQgMzQuNzg5MUM5MC41NjM1IDMzLjY0MzYgOTAuODU4MiAzMi4zOTIxIDkwLjg3NjggMzEuMTIxNUM5MC44OTU1IDI5Ljg1MDkgOTAuNjM3NyAyOC41OTEzIDkwLjEyMTQgMjcuNDMwMkM4OS42MDUxIDI2LjI2OSA4OC44NDI2IDI1LjIzMzkgODcuODg2NiAyNC4zOTY2WiIgZmlsbD0iIzIzMUYyMCIvPgo8cGF0aCBpZD0iVmVjdG9yXzMzIiBvcGFjaXR5PSIwLjIiIGQ9Ik05OC42NTI0IDEyLjQzNTNDMTA1Ljg1MSAyMS43NDI2IDEwNy4wOTIgMzUuMTE4NyA5OS4xMTYzIDQ0LjEwNzVDOTAuMjA0NSA1NC4xNTA3IDYzLjk5NzkgNTYuMzQyOCA0NS45NDI5IDczLjY4ODhDNDYuMjQzNSA3NS40OTc4IDQ2LjY3NzUgNzcuMjgyMSA0Ny4yNDEzIDc5LjAyNzFDNjUuMzA1MiA1OS45NDY2IDkzLjA1NjkgNTcuOTYzOSAxMDIuMjggNDcuNTY5MkMxMTEuMzEyIDM3LjM5MDYgMTA4LjUyNSAyMS41ODY3IDk4LjY1MjQgMTIuNDM1M1oiIGZpbGw9IiMyMzFGMjAiLz4KPC9nPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyXzBfMTEwIiB4MT0iNzYuODQ5OSIgeTE9IjQuOTY3MDQiIHgyPSI3Ni44NDk5IiB5Mj0iNzguNzkzNSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjRTEyQTI2Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0QxMzQ5NyIvPgo8L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MV9saW5lYXJfMF8xMTAiIHgxPSI0MC4xOTY3IiB5MT0iNzYuODU2NCIgeDI9IjQwLjE5NjciIHkyPSI4OC4zNDMyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNFMTJBMjYiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRDEzNDk3Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjxjbGlwUGF0aCBpZD0iY2xpcDBfMF8xMTAiPgo8cmVjdCB3aWR0aD0iMTQ0IiBoZWlnaHQ9IjEzNC4zMzciIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==" alt=""><div class="txt"><h2 class="h4" id="sheet-title">Ative sua localização e encontre rolês perto de você</h2><p class="body-sm">Para te ajudar a descobrir tudo que está rolando perto de você, ative sua localização em tempo real.</p></div>'+
+    '<div class="acts"><button type="button" class="btn primary lg" id="loc-yes"><img src="data:image/svg+xml;base64,PHN2ZyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBvdmVyZmxvdz0idmlzaWJsZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyIgd2lkdGg9IjE0LjY2NjciIGhlaWdodD0iMTQuNjY2NyIgdmlld0JveD0iMCAwIDE0LjY2NjcgMTQuNjY2NyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9Ikdyb3VwIj4KPHBhdGggaWQ9IlZlY3RvciIgZD0iTTYuNjY2NjcgMFYxLjM3MjM5QzMuODcwNDggMS42NzY1NyAxLjY3NjU3IDMuODcwNDggMS4zNzIzOSA2LjY2NjY3SDBWOEgxLjM3MjM5QzEuNjc2NTcgMTAuNzk2MiAzLjg3MDQ4IDEyLjk5MDEgNi42NjY2NyAxMy4yOTQzVjE0LjY2NjdIOFYxMy4yOTQzQzEwLjc5NjIgMTIuOTkwMSAxMi45OTAxIDEwLjc5NjIgMTMuMjk0MyA4SDE0LjY2NjdWNi42NjY2N0gxMy4yOTQzQzEyLjk5MDEgMy44NzA0OCAxMC43OTYyIDEuNjc2NTcgOCAxLjM3MjM5VjBINi42NjY2N1pNNy4zMzMzNCAyLjY2NjY3QzkuOTMzMzQgMi42NjY2NyAxMiA0LjczMzMzIDEyIDcuMzMzMzRDMTIgOS45MzMzNCA5LjkzMzM0IDEyIDcuMzMzMzQgMTJDNC43MzMzMyAxMiAyLjY2NjY3IDkuOTMzMzQgMi42NjY2NyA3LjMzMzM0QzIuNjY2NjcgNC43MzMzMyA0LjczMzMzIDIuNjY2NjcgNy4zMzMzNCAyLjY2NjY3Wk03LjMzMzM0IDUuMzMzMzNDNi4yMjg3NyA1LjMzMzMzIDUuMzMzMzMgNi4yMjg3NyA1LjMzMzMzIDcuMzMzMzRDNS4zMzMzMyA4LjQzNzkgNi4yMjg3NyA5LjMzMzM0IDcuMzMzMzQgOS4zMzMzNEM4LjQzNzkgOS4zMzMzNCA5LjMzMzM0IDguNDM3OSA5LjMzMzM0IDcuMzMzMzRDOS4zMzMzNCA2LjIyODc3IDguNDM3OSA1LjMzMzMzIDcuMzMzMzQgNS4zMzMzM1oiIGZpbGw9IndoaXRlIi8+CjwvZz4KPC9zdmc+Cg==" alt="">Ativar localização em tempo real</button><button type="button" class="btn secondary lg" id="loc-later">Ativar depois</button></div></div>','Ativar localização');
+  // fechou de qualquer jeito (Ativar depois, X, fora, arrastando): segue sem localização
+  sheetOnClose=function(){if(!decided){decided=true;syncOnOpen();}};
+  document.getElementById('loc-yes').onclick=function(){decided=true;closeSheet();locate(true);};
+  document.getElementById('loc-later').onclick=function(){closeSheet();};
+}
 function gps(){return new Promise(function(res,rej){
   if(!navigator.geolocation) return rej({code:'unsupported'});
   navigator.geolocation.getCurrentPosition(function(p){res({lat:p.coords.latitude,lng:p.coords.longitude,acc:p.coords.accuracy,src:'gps'});},
@@ -629,7 +712,7 @@ function locate(manual){
     if(!manual){syncOnOpen();throw err;} // sem clique, nada de abrir o navegador do app; sincroniza a cidade atual
     return ipLocate().then(null,function(){throw err;});
   }).then(setLocation,function(err){
-    locating=false;
+    locating=false;syncOnOpen(); // sem localização: carrega a cidade atual mesmo assim
     var why=err&&err.code==='denied'?'A localização tá bloqueada pra esta página.':'Não deu pra achar sua localização agora.';
     geoMsg('<div class="city-msg"><h3 class="h6">'+why+'</h3><p class="desc-lg muted">Libere a localização no navegador, ou abra no app Claude para desktop pra usarmos a localização aproximada da sua rede. Enquanto isso, seguimos no exemplo do Centro de Prudente.</p><div class="row"><button type="button" class="btn secondary sm" id="loc-go">Tentar de novo</button></div></div>');
     document.getElementById('loc-go').onclick=function(){locate(true);};
@@ -668,12 +751,12 @@ function watchMe(){
 }
 function initLocation(){
   var q=navigator.permissions&&navigator.permissions.query?navigator.permissions.query({name:'geolocation'}):Promise.reject();
-  q.then(function(s){if(s.state==='granted') locate(false);else{locCard();syncOnOpen();}},function(){locCard();syncOnOpen();});
+  q.then(function(s){if(s.state==='granted') locate(false);else askLocation();},askLocation);
 }
 /* ---------- Sincronização com o site do Rolê Agora ao abrir ---------- */
-function syncOnOpen(){loadCity({name:state.city.name,uf:state.city.uf,sync:true});}
-function hhmm(d){return d.getHours()+'h'+String(d.getMinutes()).padStart(2,'0');}
-function syncMsg(html){document.getElementById('sync-msg').innerHTML=html||'';}
+var syncStarted=false;
+function syncOnOpen(){if(syncStarted) return;syncStarted=true;loadCity({name:state.city.name,uf:state.city.uf,sync:true});}
+
 
 var mapEl=document.getElementById('map');
 var contentEl=document.getElementById('content'),pinsEl=document.getElementById('pins'),pinEls={},meEl=null,radarEls=null,lastB=null;
@@ -686,7 +769,7 @@ function renderMap(b){
   mapEl.style.setProperty('--vis',vis+'px');mapEl.classList.toggle('low',vis<220);
   if(vis<140) return; // folha cobrindo o mapa: nada pra desenhar
   var top=128,bottom=Math.max(top+120,vis-32),cx=w/2+view.px,cy=(top+bottom)/2+view.py;
-  var R=Math.min(w*0.46,(bottom-top)/2+24);
+  var R=Math.min(w*0.46,(bottom-top)/2+24);lastR=R;
   if(!radarEls){var r=document.getElementById('radar');r.innerHTML='<div class="area"></div><div class="sweep"></div><div class="pulse"></div><div class="pulse"></div><div class="pulse"></div>';radarEls=[].slice.call(r.children);}
   radarEls.forEach(function(el,i){var d=(i===0?R*2.2:R*2)+'px';el.style.left=cx+'px';el.style.top=cy+'px';el.style.width=d;el.style.height=d;});
   // um pin por local, com o rolê mais compatível (ou o mais próximo no tempo)
@@ -694,10 +777,12 @@ function renderMap(b){
   var all=scan.on?b.all.filter(function(e){return scan.ids[e.id];}):b.all;
   var byVenue={};all.forEach(function(e){var k=e.venueKey;if(!byVenue[k]) byVenue[k]=[];byVenue[k].push(e);});
   var maxKm=0;b.all.forEach(function(e){maxKm=Math.max(maxKm,e.dist);});
-  var base=R/Math.max(1.2,Math.min(8,maxKm));
-  var scale=Math.max(sScale(10.6),Math.min(sScale(14.45),base*view.zoom));view.zoom=scale/base;
-  document.getElementById('zin').disabled=scale>=sScale(14.45)-1e-6;document.getElementById('zout').disabled=scale<=sScale(10.6)+1e-6;
+  var baseKm=state.area?(state.area.baseKm||AREA_KM):autoR;lastBaseKm=baseKm;
+  var base=R/baseKm;
+  var scale=Math.max(sScale(MIN_Z),Math.min(sScale(14.45),base*view.zoom));view.zoom=scale/base;
+  document.getElementById('zin').disabled=scale>=sScale(14.45)-1e-6;document.getElementById('zout').disabled=scale<=sScale(MIN_Z)+1e-6;
   renderTiles(w,h,cx,cy,scale);
+  lastGeo={w:w,cx:cx,cy:cy,cy0:(top+bottom)/2,top:top,bottom:bottom,scale:scale};
   var cos=Math.cos(ME.lat*Math.PI/180);
   var free=view.zoom>1.05||Math.abs(view.px)>8||Math.abs(view.py)>8; // mexeu no mapa: posição exata, sem prender os pins na borda
   // posição real (escala única a partir do usuário) + afastamento para os pins não se sobreporem
@@ -758,13 +843,24 @@ contentEl.addEventListener('focusin',function(){toResults();});
 document.getElementById('grab').onclick=function(ev){ev.stopPropagation();if(window.scrollY<openY()-4) smooth(openY());else smooth(0);};
 
 /* ---------- Zoom e arrasto no mapa ---------- */
+var lastGeo=null,areaT=null;
+// depois de dar zoom ou arrastar: carrega os rolês da região que está na tela
+function scheduleArea(){clearTimeout(areaT);areaT=setTimeout(updateArea,350);}
+function updateArea(){
+  var g=lastGeo;if(!g) return;var cos=Math.cos(ME.lat*Math.PI/180);
+  var lat=ME.lat-(g.cy0-g.cy)/(110.57*g.scale),lng=ME.lng+(g.w/2-g.cx)/(111.32*cos*g.scale);
+  var r=Math.max(g.w/2,(g.bottom-g.top)/2)/g.scale;
+  var a=state.area;if(a&&Math.abs(a.lat-lat)<1e-4&&Math.abs(a.lng-lng)<1e-4&&Math.abs(a.r-r)<.02) return;
+  state.area={lat:lat,lng:lng,r:r,baseKm:lastBaseKm};render();
+}
+function resetArea(){state.area=null;view.zoom=1;view.px=0;view.py=0;}
 function zoomAt(f,mx,my){
   // aproxima mantendo parado o ponto (mx,my) da tela; sem ponto, em volta de você
   var w=mapEl.clientWidth,vis=Math.min(mapEl.clientHeight,contentEl.getBoundingClientRect().top),cy0=(128+Math.max(248,vis-32))/2;
   var cx=w/2+view.px,cy=cy0+view.py;if(mx==null){mx=cx;my=cy;}
   var z0=view.zoom;view.zoom=Math.max(.05,Math.min(40,z0*f));view.touched=true;
   renderMap(lastB||buckets());var g=view.zoom/z0; // renderMap limita o zoom ao que o mapa tem
-  view.px=mx+(cx-mx)*g-w/2;view.py=my+(cy-my)*g-cy0;clampPan();renderMap(lastB||buckets());
+  view.px=mx+(cx-mx)*g-w/2;view.py=my+(cy-my)*g-cy0;clampPan();renderMap(lastB||buckets());scheduleArea();
 }
 function clampPan(){var w=mapEl.clientWidth;view.px=Math.max(-w*1.5,Math.min(w*1.5,view.px));view.py=Math.max(-w*2,Math.min(w*2,view.py));}
 document.getElementById('zin').onclick=function(){toMap();zoomAt(1.6);};
@@ -774,7 +870,7 @@ mapEl.addEventListener('wheel',function(ev){
   ev.preventDefault();var r=mapEl.getBoundingClientRect();zoomAt(Math.exp(-ev.deltaY*.01),ev.clientX-r.left,ev.clientY-r.top);
 },{passive:false});
 mapEl.addEventListener('dblclick',function(ev){if(ev.target.closest('button,input,label,.suggest')) return;var r=mapEl.getBoundingClientRect();zoomAt(1.6,ev.clientX-r.left,ev.clientY-r.top);});
-var ptrs={},drag=null,mapMoved=false;
+var ptrs={},drag=null,mapMoved=false,dragEndAt=0;
 mapEl.addEventListener('pointerdown',function(ev){
   if(ev.target.closest('.search,.suggest,.city,.map-ctl')) return;
   ptrs[ev.pointerId]={x:ev.clientX,y:ev.clientY};mapMoved=false;
@@ -794,11 +890,11 @@ window.addEventListener('pointermove',function(ev){
   if(!rafM) rafM=requestAnimationFrame(function(){rafM=0;renderMap(lastB||buckets());});
 });
 function endPtr(ev){if(!ptrs[ev.pointerId]) return;delete ptrs[ev.pointerId];
-  if(!Object.keys(ptrs).length){drag=null;mapEl.classList.remove('dragging');if(!mapMoved&&!ev.target.closest('.pin')) toMap();}
+  if(!Object.keys(ptrs).length){drag=null;mapEl.classList.remove('dragging');if(mapMoved){scheduleArea();dragEndAt=Date.now();}else if(!ev.target.closest('.pin')) toMap();}
   else{var id=Object.keys(ptrs)[0];drag={x:ptrs[id].x,y:ptrs[id].y,px:view.px,py:view.py};}}
 window.addEventListener('pointerup',endPtr);window.addEventListener('pointercancel',endPtr);
 // arrastou o mapa: o clique que vem junto não abre o pin
-mapEl.addEventListener('click',function(ev){if(mapMoved){ev.stopPropagation();ev.preventDefault();mapMoved=false;}},true);
+mapEl.addEventListener('click',function(ev){if(mapMoved&&Date.now()-dragEndAt<300){ev.stopPropagation();ev.preventDefault();}mapMoved=false;},true);
 
 /* ---------- Render: conteúdo ---------- */
 /* ---------- Varredura: o contador só existe enquanto a busca roda ---------- */
@@ -807,6 +903,10 @@ var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: 
 function startScan(){
   toMap();
   clearTimeout(scan.t);clearTimeout(scan.hideT);
+  // nada no raio padrão? primeiro o card conta a expansão, passo a passo
+  exp.on=false;computeAutoR();
+  if(!state.area&&!state.q&&autoTarget>AREA_KM&&!exp.skip){exp.on=true;exp.cur=AREA_KM;exp.pending=true;}
+  exp.skip=false;
   withScores();
   scan.order=visible().slice().sort(function(a,b){return a.dist-b.dist;}); // encontra do mais perto para o mais longe
   scan.shown=0;scan.ids={};scan.seen={};scan.on=true;
@@ -814,22 +914,38 @@ function startScan(){
   document.getElementById('found-sr').textContent='Procurando rolês pertinho de você';
   var r=document.getElementById('radar');r.style.display='none';void r.offsetWidth;r.style.display='';
   var delay=reduceMotion?0:Math.max(20,Math.min(160,2400/Math.max(1,scan.order.length)));
+  scan.label=null;
+  if(exp.pending){exp.pending=false;return expandThenScan();}
   (function step(){
     renderMap(buckets());renderFound();
     if(scan.shown>=scan.order.length){finishScan();return;}
     scan.t=setTimeout(function(){var e=scan.order[scan.shown];scan.ids[e.id]=1;scan.shown++;step();},scan.shown===0?500:delay);
   })();
 }
+function expandThenScan(){
+  var st=radiusSteps(),target=autoTarget,i=0,found=events.some(function(e){return inWhen(e)&&km(ME,e)<=target;});
+  var pause=reduceMotion?300:1100;
+  function say(t){scan.label=t;renderFound();document.getElementById('found-sr').textContent=t;}
+  (function next(){
+    var r=st[i];
+    say('Nenhum rolê encontrado até '+raioTxt(r));
+    if(r>=target&&!found){scan.t=setTimeout(function(){exp.on=false;scan.label=null;scan.order=[];finishScan();},pause);return;}
+    scan.t=setTimeout(function(){
+      var nr=st[i+1];say('Expandindo o raio pra '+raioTxt(nr)+'...');exp.cur=nr;render();
+      scan.t=setTimeout(function(){i++;if(nr>=target&&found){exp.on=false;exp.skip=true;render();startScan();}else next();},pause);
+    },pause);
+  })();
+}
 function finishScan(){
   scan.on=false;renderMap(buckets());renderFound();
   var n=scan.order.length;
   document.getElementById('found-sr').textContent=n?n+(n===1?' rolê encontrado':' rolês encontrados'):'Nenhum rolê encontrado';
-  scan.hideT=setTimeout(function(){var el=document.getElementById('found');el.classList.add('hide');setTimeout(function(){if(el.classList.contains('hide')) el.hidden=true;},600);},1600);
+  scan.hideT=setTimeout(function(){if(exp.on||cityLoading) return;var el=document.getElementById('found');el.classList.add('hide');setTimeout(function(){if(el.classList.contains('hide')) el.hidden=true;},600);},1600);
 }
 function renderFound(){
   var el=document.getElementById('found'),n=scan.shown,done=!scan.on;
   var found=scan.order.slice(0,n),pics=found.slice(-3).reverse();
-  var txt=!n?(done?'Nenhum rolê encontrado':(scan.label||'Procurando rolês...')):n+(n===1?' rolê encontrado':' rolês encontrados')+(done?'':'...');
+  var txt=!n?(done?'Nenhum rolê encontrado até '+raioTxt(autoR):(scan.label||'Procurando rolês...')):n+(n===1?' rolê encontrado':' rolês encontrados')+(done?'':'...');
   var stack=pics.length?'<div class="stack">'+pics.map(function(e){return '<img src="'+e.img+'" alt="">';}).join('')+'</div>':'<div class="stack"><span class="spin" style="width:40px;height:40px;margin:0;border-width:3px;border-top-color:var(--action)"></span></div>';
   el.innerHTML=stack.replace('<img','<img class="'+(scan.on?'new':'')+'"')+'<p class="h6" aria-hidden="true">'+txt+'</p>';
 }
@@ -871,6 +987,7 @@ function renderTop(b){
   tasteBar();
   if(!state.profile){sub.textContent='Rolês que você provavelmente vai adorar!';el.innerHTML=onboarding();document.getElementById('connect').onclick=connectSpotify;document.getElementById('pick').onclick=openGenres;return;}
   var deck=b.top.filter(function(e){return !state.dismissed[e.id];});
+  if(!b.top.length&&!state.q){el.innerHTML='<div class="empty"><h3 class="h5">Nada rolando '+(whenText()?whenText()+' ':'')+(state.area?'nesta região':'até '+raioTxt(autoR)+' '+deVoce())+'</h3><p class="desc-lg muted">'+(state.when?'Tenta outra data, afaste o zoom ou arraste o mapa.':'Afaste o zoom ou arraste o mapa pra encontrar mais rolês.')+'</p></div>';return;}
   if(!b.top.length){el.innerHTML='<div class="empty"><h3 class="h5">Nada rolando por aqui com essa busca</h3><p class="desc-lg muted">Que tal limpar a busca ou procurar outro gênero?</p><button type="button" class="btn secondary md" id="clear2">Limpar busca</button></div>';document.getElementById('clear2').onclick=clearSearch;return;}
   if(!deck.length){el.innerHTML='<div class="empty"><h3 class="h5">Você viu os 3 mais a sua cara</h3><p class="desc-lg muted">Dá uma olhada nos outros rolês aqui embaixo ou veja o top 3 de novo.</p><button type="button" class="btn secondary md" id="reset-top">'+ic('redo','#D10A87')+'Ver de novo</button></div>';document.getElementById('reset-top').onclick=function(){state.dismissed={};render();};return;}
   var e=deck[0],pos=b.top.indexOf(e)+1;
@@ -878,10 +995,12 @@ function renderTop(b){
   el.innerHTML='<div class="deck">'+peeks+heroCard(e,pos,b.top.length)+'</div>';
   bindHero(e);
 }
+// data curta dos cards do carrossel: "Hoje" ou DD/MM, com o horário
+function dataCurta(d){var dia=dayDiff(d)===0?'Hoje':String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0');return dia+(d.noTime?'':' • '+hora(d));}
 function tileHtml(e){
   return '<button type="button" class="tile" data-open="'+e.id+'"><img src="'+e.img+'" alt=""><div class="shade"></div>'+
-   (state.going[e.id]?'<span class="badge going b">Você vai</span>':e.aff!=null?'<span class="badge ok b">'+e.aff+'%</span>':'')+
-   '<div class="t"><b>'+esc(e.name)+'</b><span class="desc-sm">'+quando(e.date)+'</span><span class="desc-sm">'+dTxt(e)+'</span></div></button>';
+   (state.going[e.id]?'<span class="badge going b">Você vai</span>':e.aff!=null?'<span class="badge ok b">'+e.aff+'% sua cara</span>':'')+
+   '<div class="t"><b>'+esc(e.name)+'</b><span class="desc-sm">'+dataCurta(e.date)+'</span><span class="desc-sm">'+dTxt(e)+'</span></div></button>';
 }
 function evHtml(e,inAgenda){
   var going=state.going[e.id];
@@ -904,25 +1023,62 @@ function renderRail(b){
   rail.innerHTML=b.rail.map(tileHtml).join('');
   sec.appendChild(rail);
 }
+var LIST_PAGE=5,moreOpen={};
 function renderLists(b){
   var main=document.querySelector('main');
   var old=document.getElementById('sec-more');if(old) old.remove();
   var oldNote=document.getElementById('note');if(oldNote) oldNote.remove();
-  var groups=[['Vale a caminhada','até 1,5 km',0,1.5],['Vale o Uber','até 3,5 km',1.5,3.5]];
+  var groups=[['Vale a caminhada','até 1,5 km',-1,1.5],['Vale o Uber','até 3,5 km',1.5,3.5],['Mais longe','acima de 3,5 km',3.5,Infinity]];
   var sec=document.createElement('section');sec.className='section';sec.id='sec-more';sec.setAttribute('aria-labelledby','t-more');
   sec.removeAttribute('aria-labelledby');sec.setAttribute('aria-label','Outros rolês por distância');
   var inner='',any=false;
   groups.forEach(function(g,i){var items=b.rest.filter(function(e){return e.dist>g[2]&&e.dist<=g[3];});if(!items.length) return;
-    inner+='<div class="group"'+(any?'':' style="margin-top:0"')+'><div class="sec-head"><h3 class="h6">'+g[0]+'</h3><span class="desc-sm muted">'+g[1]+'</span></div><div class="list">'+items.map(evHtml).join('')+'</div></div>';any=true;});
+    // 5 por seção; o resto entra pelo "Ver +X"
+    var open=moreOpen[g[0]],shown=open?items:items.slice(0,LIST_PAGE),left=items.length-shown.length;
+    inner+='<div class="group"'+(any?'':' style="margin-top:0"')+'><div class="sec-head"><h3 class="h6">'+g[0]+'</h3><span class="desc-sm muted">'+g[1]+'</span></div><div class="list">'+shown.map(function(e){return evHtml(e);}).join('')+'</div>'+
+      (left>0?'<button type="button" class="btn secondary md more-btn" data-more="'+esc(g[0])+'">Ver +'+left+'</button>':'')+'</div>';any=true;});
   if(!any) inner+='<p class="desc-lg muted">'+(state.q?'Nada rolando por aqui com essa busca. Que tal limpar a busca?':'Os outros rolês já estão lá em cima.')+'</p>';
   sec.innerHTML=inner;main.appendChild(sec);
+  sec.querySelectorAll('[data-more]').forEach(function(btn){btn.onclick=function(){moreOpen[btn.getAttribute('data-more')]=true;renderLists(buckets());};});
   var note=document.createElement('p');note.className='note';note.id='note';
   note.textContent=state.city.live
     ?'Agenda pública do Rolê Agora em '+state.city.name+', '+state.city.uf+', lida agora no site. O site não informa coordenadas, então as distâncias são estimadas por bairro. As fotos dos artistas só aparecem no site.'
     :'Agenda pública do Rolê Agora em Presidente Prudente, coletada em 25/10/2026. Distâncias medidas a partir do Centro com as coordenadas dos bares (a do Agrobar é aproximada). Relógio da demonstração: domingo, 25 de outubro, 18h50.';
   main.appendChild(note);
 }
-function render(){withScores();var b=buckets();renderCityChip();renderMap(b);renderItinCTA();renderTop(b);renderRail(b);renderLists(b);renderAgendaFab();}
+// total de rolês encontrados (na cidade, ou pra busca atual)
+function ddmm(d){return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0');}
+function whenText(){var w=state.when;if(!w) return '';if(w.k==='hoje') return 'hoje';if(w.k==='amanha') return 'amanhã';if(w.k==='fds') return 'no fim de semana';var last=addDays(w.to,-1);return dayStart(w.from).getTime()===dayStart(last).getTime()?'em '+ddmm(w.from):'de '+ddmm(w.from)+' a '+ddmm(last);}
+var CAL_IC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>';
+function renderWhen(){
+  var w=state.when,k=w?w.k:'all',opts=[['all','Qualquer data'],['hoje','Hoje'],['amanha','Amanhã'],['fds','Fim de semana']];
+  var custom=k==='custom'?whenText().replace(/^em /,'').replace(/^de /,''):'Escolher data';
+  var el=document.getElementById('when');
+  el.innerHTML=opts.map(function(o){return '<button type="button" class="chip" data-when="'+o[0]+'" aria-pressed="'+(k===o[0])+'">'+o[1]+'</button>';}).join('')+
+    '<button type="button" class="chip" data-when="custom" aria-pressed="'+(k==='custom')+'">'+CAL_IC+custom+'</button>';
+  // o chip escolhido fica inteiro à vista na fileira
+  var on=el.querySelector('[aria-pressed=true]');if(on){var r=on.offsetLeft+on.offsetWidth-el.clientWidth+16;el.scrollLeft=on.offsetLeft<el.scrollLeft?on.offsetLeft-16:Math.max(el.scrollLeft,r);}
+  el.querySelectorAll('[data-when]').forEach(function(b){b.onclick=function(){var v=b.getAttribute('data-when');if(v==='custom') return openDates();setWhen(v==='all'?null:Object.assign({k:v},whenRange(v)));};});
+}
+function setWhen(w){state.when=w;state.dismissed={};moreOpen={};render();startScan();}
+// data ou período específico
+function isoDay(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function parseDay(v){var p=String(v||'').split('-');return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null;}
+function openDates(){
+  var w=state.when&&state.when.k==='custom'?state.when:null,min=isoDay(dayStart(NOW));
+  openSheet('<h2 class="h4" id="sheet-title">Quando você quer sair?</h2><p class="body-sm muted">Escolha um dia ou um período. Deixe o “até” vazio pra ver só um dia.</p>'+
+    '<div class="dates"><div class="row2"><label>De<input type="date" id="d-from" min="'+min+'" value="'+(w?isoDay(w.from):min)+'"></label><label>Até<input type="date" id="d-to" min="'+min+'" value="'+(w?isoDay(addDays(w.to,-1)):'')+'"></label></div>'+
+    '<div class="acts"><button type="button" class="btn primary lg" id="d-ok">Ver rolês</button><button type="button" class="btn secondary lg" id="d-clear">Qualquer data</button></div></div>','Escolher data');
+  var f=document.getElementById('d-from'),t=document.getElementById('d-to');
+  f.onchange=function(){t.min=f.value||min;if(t.value&&t.value<f.value) t.value=f.value;};
+  document.getElementById('d-ok').onclick=function(){var a=parseDay(f.value);if(!a){f.focus();return;}var b=parseDay(t.value)||a;if(b<a){var x=a;a=b;b=x;}closeSheet();setWhen({k:'custom',from:a,to:addDays(b,1)});};
+  document.getElementById('d-clear').onclick=function(){closeSheet();setWhen(null);};
+}
+function renderTotal(b){var n=b.all.length,el=document.getElementById('total');
+  var quando=whenText();quando=quando?quando+' ':'';
+  var onde=quando+(state.q?'em '+esc(state.city.name):state.area?(state.area.label?'em '+esc(state.area.label):'nesta região do mapa'):'até '+raioTxt(autoR)+' '+deVoce()+(autoR>AREA_KM&&n?' (não tinha nada até '+raioTxt(AREA_KM)+')':''));
+  el.innerHTML=n?'<b>'+n+(n===1?' rolê encontrado':' rolês encontrados')+'</b> '+(state.q?'pra “'+esc(state.q)+'” ':'')+onde:'Nenhum rolê encontrado'+(state.q?' pra “'+esc(state.q)+'”':'')+' '+onde+(state.q?'':(!state.area&&autoR>=radiusSteps().slice(-1)[0])?(state.when?'. Tenta outra data.':''):state.when?'. Tenta outra data ou afaste o mapa.':'. Afaste o mapa pra ver mais.');}
+function render(){withScores();var b=buckets();renderCityChip();renderMap(b);renderWhen();renderTotal(b);renderItinCTA();renderTop(b);renderRail(b);renderLists(b);renderAgendaFab();}
 
 /* ---------- Agenda: rolês com "Bora", do que acontece antes para o que acontece depois ---------- */
 /* A agenda guarda um retrato de cada rolê, então sobrevive à troca de cidade */
@@ -1094,8 +1250,47 @@ function act(a,e,swiped){
 
 /* ---------- Sheets ---------- */
 var sheet=document.getElementById('sheet'),scrim=document.getElementById('scrim'),body=document.getElementById('sheet-body'),lastFocus=null;
-function openSheet(html,label){lastFocus=document.activeElement;body.innerHTML=html;sheet.setAttribute('aria-label',label||'');sheet.classList.add('open');scrim.classList.add('open');setTimeout(function(){var f=sheet.querySelector('button,input');if(f) f.focus();},60);}
-function closeSheet(){sheet.classList.remove('open');scrim.classList.remove('open');if(lastFocus&&lastFocus.focus) lastFocus.focus();}
+var sheetOnClose=null;
+function openSheet(html,label){sheetOnClose=null;lastFocus=document.activeElement;body.innerHTML=html;sheet.scrollTop=0;sheet.setAttribute('aria-label',label||'');sheet.classList.add('open');scrim.classList.add('open');document.documentElement.classList.add('locked');setTimeout(function(){var f=sheet.querySelector('button,input');if(f) f.focus();},60);}
+function closeSheet(){var cb=sheetOnClose;sheetOnClose=null;if(cb) setTimeout(cb,0);sheet.classList.remove('open');scrim.classList.remove('open');document.documentElement.classList.remove('locked');if(lastFocus&&lastFocus.focus) lastFocus.focus({preventScroll:true});}
+// gestos fora do drawer (no fundo escurecido) não rolam a página
+['wheel','touchmove'].forEach(function(t){scrim.addEventListener(t,function(ev){ev.preventDefault();},{passive:false});});
+// arrastar o drawer pra baixo fecha — só se a rolagem interna estiver no topo (ou não existir) quando o gesto começa
+var pull={y0:0,dy:0,on:false,can:false},wheelT=null,lastInner=0;
+sheet.addEventListener('scroll',function(){lastInner=Date.now();},{passive:true});
+function pullMove(dy){pull.dy=Math.max(0,dy);sheet.style.transition='none';sheet.style.transform='translate(-50%,'+pull.dy+'px)';scrim.style.opacity=String(Math.max(.15,1-pull.dy/420));}
+function pullEnd(){
+  if(!pull.on) return;pull.on=false;
+  var close=pull.dy>Math.min(140,sheet.offsetHeight*.3);pull.dy=0;
+  sheet.style.transition='';scrim.style.opacity='';
+  if(close){sheet.style.transform='translate(-50%,100%)';closeSheet();setTimeout(function(){sheet.style.transform='';},300);}
+  else sheet.style.transform='';
+}
+// toque
+sheet.addEventListener('touchstart',function(ev){if(ev.touches.length!==1) return;pull.y0=ev.touches[0].clientY;pull.can=sheet.scrollTop<=0;pull.on=false;},{passive:true});
+sheet.addEventListener('touchmove',function(ev){
+  if(!pull.can) return;var dy=ev.touches[0].clientY-pull.y0;
+  if(!pull.on){if(dy<-2){pull.can=false;return;}if(dy<6) return;pull.on=true;}
+  ev.preventDefault();pullMove(dy);
+},{passive:false});
+sheet.addEventListener('touchend',pullEnd);sheet.addEventListener('touchcancel',pullEnd);
+// mouse: arrastar o drawer (fora de botões e campos)
+sheet.addEventListener('pointerdown',function(ev){
+  if(ev.pointerType!=='mouse'||ev.button!==0||ev.target.closest('button,a,input,select,textarea,label')) return;
+  pull.y0=ev.clientY;pull.can=sheet.scrollTop<=0;pull.on=false;
+  function mv(e){if(!pull.can) return;var dy=e.clientY-pull.y0;if(!pull.on){if(dy<-2){pull.can=false;return;}if(dy<6) return;pull.on=true;}e.preventDefault();pullMove(dy);}
+  function up(){window.removeEventListener('pointermove',mv);window.removeEventListener('pointerup',up);if(pull.on){pullEnd();sheet.addEventListener('click',function(c){c.stopPropagation();c.preventDefault();},{capture:true,once:true});}}
+  window.addEventListener('pointermove',mv);window.addEventListener('pointerup',up);
+});
+// roda do mouse / trackpad: no topo, rolar pra cima puxa o drawer pra baixo; no fim, o gesto não passa pra página
+sheet.addEventListener('wheel',function(ev){
+  var up=ev.deltaY<0,atTop=sheet.scrollTop<=0,atEnd=sheet.scrollTop+sheet.clientHeight>=sheet.scrollHeight-1;
+  if(pull.on||(up&&atTop&&Date.now()-lastInner>250)){ // 250ms parado no topo: a inércia de quem rolou a lista até o topo não fecha o drawer
+    ev.preventDefault();if(!pull.on){pull.on=true;pull.dy=0;}
+    pullMove(pull.dy-ev.deltaY*.6);clearTimeout(wheelT);wheelT=setTimeout(pullEnd,160);return;
+  }
+  if((up&&atTop)||(!up&&atEnd)) ev.preventDefault();
+},{passive:false});
 document.getElementById('sheet-close').onclick=closeSheet;scrim.onclick=closeSheet;
 document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&sheet.classList.contains('open')) closeSheet();});
 
@@ -1162,14 +1357,114 @@ function cityMatches(text){
   return out.slice(0,4);
 }
 var POPULAR=[{name:'São Paulo',uf:'SP'},{name:'Rio de Janeiro',uf:'RJ'},{name:'Belo Horizonte',uf:'MG'},{name:'Presidente Prudente',uf:'SP'}];
-var sugEl=document.getElementById('suggest'),sugList=[],sugIdx=0;
-function renderSuggest(list,popular){
-  sugList=list;sugIdx=0;
-  if(!list.length){sugEl.hidden=true;sugEl.innerHTML='';return;}
-  sugEl.innerHTML='<span class="k">'+(popular?'Trocar de cidade':'Buscar em outra cidade')+'</span>'+list.map(function(c,i){return '<button type="button" role="option" data-city="'+i+'"'+(i===0?' class="on"':'')+'>'+ic('pin','#D10A87')+'<span>'+(isCurrent(c)?'Você está em ':'Ver rolês em ')+'<b class="sb">'+esc(c.name)+', '+c.uf+'</b></span></button>';}).join('');
-  sugEl.hidden=false;
-  sugEl.querySelectorAll('[data-city]').forEach(function(b){b.onmousedown=function(ev){ev.preventDefault();};b.onclick=function(){chooseCity(sugList[+b.getAttribute('data-city')]);};});
+var sugEl=document.getElementById('suggest'),sugList=[],sugIdx=-1;
+// sugestões da busca, em seções: cada item é {html, act}
+function renderSuggest(sections,emptyMsg,pinned){
+  sections=(sections||[]).filter(function(sec){return sec.items.length;});
+  sugList=[];sugIdx=-1;
+  if(!sections.length&&!emptyMsg&&!pinned){sugEl.hidden=true;sugEl.innerHTML='';return;}
+  // item fixo no topo (ex.: "Usar minha localização" ao trocar de cidade), separado das seções
+  var top='';if(pinned){sugList.push(pinned);top='<button type="button" role="option" class="pinned" data-i="0">'+pinned.html+'</button>';}
+  var html=sections.map(function(sec){return '<span class="k" role="presentation">'+sec.title+'</span>'+sec.items.map(function(it){sugList.push(it);return '<button type="button" role="option" data-i="'+(sugList.length-1)+'">'+it.html+'</button>';}).join('');}).join('');
+  sugEl.innerHTML=top+(html||(emptyMsg?'<p class="none">'+emptyMsg+'</p>':''));sugEl.hidden=false;sugEl.scrollTop=0;
+  sugEl.querySelectorAll('[data-i]').forEach(function(b){b.onmousedown=function(ev){ev.preventDefault();};b.onclick=function(){pickSuggest(+b.getAttribute('data-i'));};});
 }
+function pickSuggest(i){var it=sugList[i];if(!it) return;renderSuggest([]);q.blur();it.act();}
+function norm(s){return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();}
+function cityItem(c){return {html:'<span class="ib">'+ic('pin','#D10A87')+'</span><span class="st"><b>'+esc(c.name)+', '+c.uf+'</b><span class="ss">'+(isCurrent(c)?'Você está vendo essa cidade':'Ver rolês nessa cidade')+'</span></span>',act:function(){chooseCity(c);}};}
+// itens das sugestões: rolê = capa quadrada (como no mapa), artista = foto redonda (pessoa)
+function evItem(e){return {html:'<img class="th" src="'+e.img+'" alt=""><span class="st"><b>'+esc(e.name)+'</b><span class="ss">'+quando(e.date)+' • '+esc(e.venue)+(e.aff!=null?' • '+e.aff+'%':'')+'</span></span>',act:function(){openEvent(e.id);}};}
+function venueItem(k,a){var v=VENUES[k]||{name:a[0].venue};return {html:'<span class="ib">'+ic('pin','#525252')+'</span><span class="st"><b>'+esc(v.name)+'</b><span class="ss">'+a.length+(a.length>1?' rolês':' rolê')+' • '+esc(a[0].bairro)+' • '+dTxt(a[0])+'</span></span>',act:function(){toMap();openVenue(k);}};}
+function artistItem(a){var e=a[0];return {html:'<img class="th av" src="'+e.img+'" alt=""><span class="st"><b>'+esc(e.name)+'</b><span class="ss">'+(a.length>1?a.length+' rolês • próximo '+quando(e.date):quando(e.date)+' • '+esc(e.venue))+'</span></span>',act:function(){if(a.length===1) openEvent(e.id);else applyQuery(e.name);}};}
+function bairroItem(a){var nv={};a.forEach(function(e){nv[e.venueKey]=1;});var n=Object.keys(nv).length;
+  return {html:'<span class="ib"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="2" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span><span class="st"><b>'+esc(a[0].bairro)+'</b><span class="ss">'+a.length+(a.length>1?' rolês':' rolê')+' em '+n+(n>1?' locais':' local')+' • '+dTxt(a[0])+'</span></span>',act:function(){goBairro(a);}};}
+// leva o mapa até o bairro e carrega os rolês de lá
+function goBairro(a){
+  var lat=0,lng=0;a.forEach(function(e){lat+=e.lat;lng+=e.lng;});lat/=a.length;lng/=a.length;
+  var c={lat:lat,lng:lng},r=Math.max(.6,Math.max.apply(null,a.map(function(e){return km(c,e);}))+.4);
+  goRegion(lat,lng,r,a[0].bairro,norm(a[0].bairro));
+}
+// leva o mapa até um ponto e carrega os rolês de lá (com bairroKey, só os rolês daquele bairro)
+function goRegion(lat,lng,r,label,bairroKey){
+  // escolher um lugar troca a busca por texto pela região
+  q.value='';qc.hidden=true;lastQ='';state.q='';
+  // (o zoom respeita o máximo do mapa antes de calcular o deslocamento)
+  toMap();var g=lastGeo;if(g){var base=g.scale/view.zoom,cos=Math.cos(ME.lat*Math.PI/180);
+    var sc=Math.max(sScale(MIN_Z),Math.min(sScale(14.45),base*lastBaseKm/r));view.zoom=sc/base;view.px=-(lng-ME.lng)*111.32*cos*sc;view.py=(lat-ME.lat)*110.57*sc;clampPan();view.touched=true;}
+  state.area={lat:lat,lng:lng,r:r,label:label,bairro:bairroKey||null,baseKm:lastBaseKm};render();
+}
+// "Curitiba batel", "batel curitiba", "Batel, Curitiba PR": separa a cidade do bairro
+function splitCityBairro(text){
+  var words=text.trim().split(/[\s,\-–\/]+/).filter(Boolean),nw=words.map(norm);if(words.length<2) return null;
+  var list=CITIES.slice().sort(function(a,b){return b[0].length-a[0].length;});
+  for(var i=0;i<list.length;i++){
+    var c=list[i],cw=norm(c[0]).split(' '),n=cw.length,uf=c[1].toLowerCase();if(words.length<=n) continue;
+    var rest=null;
+    if(nw.slice(0,n).join(' ')===cw.join(' ')) rest=words.slice(n);
+    else{var tail=nw[nw.length-1]===uf?1:0;if(nw.slice(nw.length-n-tail,nw.length-tail).join(' ')===cw.join(' ')) rest=words.slice(0,nw.length-n-tail);}
+    if(rest){rest=rest.filter(function(w){return norm(w)!==uf;});if(rest.join(' ').length>=3) return {city:{name:c[0],uf:c[1]},bairro:titleCase(rest.join(' '))};}
+  }
+  return null;
+}
+var pendingBairro=null;
+function cityBairroItem(cb){return {html:'<span class="ib"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="2" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span><span class="st"><b>'+esc(cb.bairro)+', '+esc(cb.city.name)+' – '+cb.city.uf+'</b><span class="ss">Ver rolês nesse bairro</span></span>',act:function(){pendingBairro={slug:citySlug(cb.city),name:cb.bairro};if(isCurrent(cb.city)) applyPendingBairro();else chooseCity(cb.city);}};}
+// depois de carregar a cidade: vai até o bairro pedido
+function applyPendingBairro(){
+  var p=pendingBairro;if(!p||p.slug!==state.city.slug) return;pendingBairro=null;
+  var nb=norm(p.name),inB=events.filter(function(e){return norm(e.bairro).indexOf(nb)>=0;});
+  var key=inB.length?norm(inB[0].bairro):null,label=inB.length?inB[0].bairro:p.name;
+  if(!state.city.live&&inB.length){goBairro(inB);return;}
+  // cidade lida ao vivo: os locais ainda estão com posição aproximada, então o centro do bairro vem do mapa
+  getMcp().then(function(mcp){if(!mcp) throw 0;return search(mcp,p.name+', '+state.city.name+', '+state.city.uf,state.city.center);}).then(function(pt){
+    if(pt) goRegion(pt.lat,pt.lng,inB.length?1.2:AREA_KM,label,key);
+    else if(inB.length) goBairro(inB);
+    else geoMsg('<p class="geo-line">'+ic('pin','#525252')+'<span>Não achamos o bairro '+esc(p.name)+' em '+esc(state.city.name)+'.</span></p>');
+  },function(){if(inB.length) goBairro(inB);});
+}
+function byVenueOf(list){var vm={};list.forEach(function(e){(vm[e.venueKey]=vm[e.venueKey]||[]).push(e);});return vm;}
+function searchSections(text){
+  var t=norm(text.trim());if(t.length<2) return [];
+  var cb=splitCityBairro(text);
+  if(cb){if(isCurrent(cb.city)){var inner=searchSections(cb.bairro);inner.forEach(function(sec){if(sec.title==='Bairros'&&!sec.items.length) sec.items=[cityBairroItem(cb)];});return inner;}
+    return [{title:'Bairros',items:[cityBairroItem(cb)]},{title:'Cidades',items:[cityItem(cb.city)]}];}
+  function hit(v){return norm(v).indexOf(t)>=0;}
+  var byName=state.profile?byTop:byList;
+  // Rolês: cada data/local de um evento com esse nome
+  var evs=events.filter(function(e){return hit(e.name);}).sort(byName).slice(0,4);
+  // Artistas: um por nome, com quantos rolês tem e o próximo
+  var am={};events.filter(function(e){return hit(e.name);}).slice().sort(function(a,b){return a.date-b.date;}).forEach(function(e){var k=norm(e.name);(am[k]=am[k]||[]).push(e);});
+  var arts=Object.keys(am).sort(function(a,b){return am[b].length-am[a].length||am[a][0].date-am[b][0].date;}).slice(0,3);
+  // Lugares: pelo nome do local
+  var vm=byVenueOf(events.filter(function(e){return hit(e.venue);}));
+  // Bairros: um por bairro, com quantos rolês e locais tem
+  var bm={};events.forEach(function(e){if(e.bairro&&hit(e.bairro)){var k=norm(e.bairro);(bm[k]=bm[k]||[]).push(e);}});
+  var bks=Object.keys(bm).sort(function(a,b){return bm[b].length-bm[a].length;}).slice(0,3);
+  var vks=Object.keys(vm).sort(function(a,b){return vm[a][0].dist-vm[b][0].dist;}).slice(0,3);
+  // Gêneros musicais
+  var gm={};events.forEach(function(e){if(hit(e.genre)) gm[e.genre]=(gm[e.genre]||0)+1;});
+  var gs=Object.keys(gm).sort(function(a,b){return gm[b]-gm[a];}).slice(0,3);
+  return [
+    {title:'Rolês',items:evs.map(evItem)},
+    {title:'Artistas',items:arts.map(function(k){return artistItem(am[k]);})},
+    {title:'Lugares',items:vks.map(function(k){return venueItem(k,vm[k]);})},
+    {title:'Bairros',items:bks.map(function(k){return bairroItem(bm[k]);})},
+    {title:'Gêneros musicais',items:gs.map(function(g){return {html:'<span class="ib">'+ic('note','#525252')+'</span><span class="st"><b>'+esc(g)+'</b><span class="ss">'+gm[g]+(gm[g]>1?' rolês':' rolê')+' em '+esc(state.city.name)+'</span></span>',act:function(){applyQuery(g);}};})},
+    {title:'Cidades',items:(t.length>=3?cityMatches(text):[]).slice(0,3).map(cityItem)}
+  ];
+}
+// ao tocar na busca vazia: o que mais está rolando na cidade
+function popularSections(){
+  var seen={},evs=events.filter(function(e){return !e.date.noTime;}).slice().sort(state.profile?byTop:byList).filter(function(e){var k=norm(e.name);if(seen[k]) return false;seen[k]=1;return true;}).slice(0,4);
+  var vm=byVenueOf(events),vks=Object.keys(vm).sort(function(a,b){return vm[b].length-vm[a].length||vm[a][0].dist-vm[b][0].dist;}).slice(0,3);
+  return [{title:'Rolês populares em '+esc(state.city.name),items:evs.map(evItem)},{title:'Lugares populares',items:vks.map(function(k){return venueItem(k,vm[k]);})}];
+}
+function locItem(){
+  var here=loc.src!=='demo'&&loc.slug;
+  return {html:'<span class="ib brand"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#D10A87" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span><span class="st"><b>Usar minha localização</b><span class="ss">'+(here?'Rolês perto de onde você está agora':'Ver rolês perto de você')+'</span></span>',act:function(){toMap();view.zoom=1;view.px=0;view.py=0;locate(true);}};
+}
+function showPopularRoles(){if(!q.value&&!showPopular) renderSuggest(popularSections());}
+// filtra o radar e as listas por um texto (ex.: um gênero escolhido nas sugestões)
+function applyQuery(v){q.value=v;qc.hidden=!v;lastQ=v;state.q=v;state.dismissed={};render();clearTimeout(qt);startScan();}
 function renderCityChip(){document.getElementById('city').innerHTML=ic('pin','#171717')+esc(state.city.name)+', '+state.city.uf+' <span>• Trocar</span>';}
 function cityMsg(html){var el=document.getElementById('city-msg');el.innerHTML=html?'<div class="city-msg">'+html+'</div>':'';}
 function stopLoadingPill(){scan.on=false;scan.order=[];scan.shown=0;var el=document.getElementById('found');el.classList.add('hide');setTimeout(function(){if(el.classList.contains('hide')) el.hidden=true;},400);}
@@ -1180,7 +1475,9 @@ function chooseCity(c){
   loadCity(c);
 }
 var loadSeq=0;
+var cityLoading=false;
 function loadCity(c){
+  cityLoading=true;
   var seq=++loadSeq,slug=citySlug(c),url='https://www.roleagora.com.br/city/'+slug;
   cityMsg('');clearTimeout(scan.t);clearTimeout(scan.hideT);
   scan.on=true;scan.order=[];scan.shown=0;scan.ids={};scan.label='Procurando rolês em '+c.name+'...';
@@ -1201,9 +1498,9 @@ function loadCity(c){
         var parsed=parseCity(text,c,slug);
         if(!parsed.events.length){ME=old;return cityFail(/n[aã]o encontrad|404/i.test(text)?'notfound':'empty',c,url);}
         VENUES=parsed.venues;events=parsed.events;NOW=new Date();
-        state.city={name:parsed.name||c.name,uf:c.uf,slug:slug,live:true,center:ctr||ME};state.dismissed={};scan.label=null;
-        syncMsg('<p class="geo-line">'+ic('check','#1E810D')+'<span>Agenda sincronizada com o Rolê Agora às '+hhmm(new Date())+'</span></p>');
-        render();startScan();geocodeVenues(seq,state.city);fetchCovers(seq,url);
+        resetArea();state.city={name:parsed.name||c.name,uf:c.uf,slug:slug,live:true,center:ctr||ME};state.dismissed={};scan.label=null;
+        cityLoading=false;cityBounds(mcp,state.city);
+        render();startScan();applyPendingBairro();geocodeVenues(seq,state.city);fetchCovers(seq,url);
       });
     }).then(null,function(err){if(seq===loadSeq) cityFail(err&&err.code,c,url,err);});
   });
@@ -1314,14 +1611,12 @@ function parseCity(text,c,slug){
   return {name:name,venues:venues,events:out};
 }
 function cityFail(code,c,url,err){
+  cityLoading=false;
   stopLoadingPill();scan.label=null;
   if(c.fromLoc){if(loc.slug==='presidente-prudente-sp'||km(loc,DEMO_ME)<30) useDemo();else ME.you=false;}
-  if(c.sync){
+  if(c.sync){ // sem aviso: segue com a agenda salva
     if(state.city.live||state.city.slug!=='presidente-prudente-sp'){useDemo();startScan();}
-    render();
-    var why=(code==='nohost'||code==='server_not_connected'||code==='capability_disabled')?'Pra sincronizar com o Rolê Agora, abra no app Claude para desktop.':(code==='cancelled'||code==='not_granted'||code==='consent_required'||code==='approval_required')?'A sincronização precisa da sua permissão pro navegador do app.':'O site do Rolê Agora não respondeu agora.';
-    syncMsg('<p class="geo-line">'+ic('pin','#525252')+'<span>Mostrando a agenda salva em 25/10. '+why+' <button type="button" class="link" id="sync-retry">Sincronizar de novo</button></span></p>');
-    document.getElementById('sync-retry').onclick=function(ev){ev.stopPropagation();syncMsg('');syncOnOpen();};
+    render();applyPendingBairro();
     return;
   }
   render();
@@ -1341,28 +1636,33 @@ function cityFail(code,c,url,err){
   var r=document.getElementById('city-retry');if(r) r.onclick=function(){loadCity(c);};
 }
 var showPopular=false;
-document.getElementById('city').onclick=function(){showPopular=true;q.placeholder='Digite uma cidade, ex.: São Paulo, SP';q.focus();renderSuggest(POPULAR,true);};
+document.getElementById('city').onclick=function(){showPopular=true;q.placeholder='Digite uma cidade, ex.: São Paulo, SP';q.focus();renderSuggest([{title:'Trocar de cidade',items:POPULAR.map(cityItem)}],'',locItem());};
 q.addEventListener('blur',function(){setTimeout(function(){renderSuggest([]);q.placeholder='Bar, rolê, gênero musical...';showPopular=false;},150);});
 q.addEventListener('keydown',function(ev){
   if(sugEl.hidden) return;
-  if(ev.key==='ArrowDown'||ev.key==='ArrowUp'){ev.preventDefault();sugIdx=(sugIdx+(ev.key==='ArrowDown'?1:-1)+sugList.length)%sugList.length;sugEl.querySelectorAll('[data-city]').forEach(function(b,i){b.classList.toggle('on',i===sugIdx);});}
-  else if(ev.key==='Enter'){ev.preventDefault();chooseCity(sugList[sugIdx]);}
+  if((ev.key==='ArrowDown'||ev.key==='ArrowUp')&&sugList.length){ev.preventDefault();var n=sugList.length;sugIdx=ev.key==='ArrowDown'?(sugIdx<0?0:(sugIdx+1)%n):(sugIdx<=0?n-1:sugIdx-1);sugEl.querySelectorAll('[data-i]').forEach(function(b,i){b.classList.toggle('on',i===sugIdx);if(i===sugIdx) b.scrollIntoView({block:'nearest'});});}
+  else if(ev.key==='Enter'){ev.preventDefault();if(sugIdx>=0) pickSuggest(sugIdx);else{renderSuggest([]);q.blur();}} // sem item escolhido: Enter só aplica o filtro
   else if(ev.key==='Escape'){renderSuggest([]);}
 });
 var qt=null,lastQ='';
 function anyHit(t){t=t.trim().toLowerCase();return events.some(function(e){return [e.name,e.venue,e.bairro,e.genre].join(' ').toLowerCase().indexOf(t)>=0;});}
 q.addEventListener('input',function(){
   qc.hidden=!q.value;
-  var sugg=q.value?cityMatches(q.value):(showPopular?POPULAR:[]);renderSuggest(sugg,!q.value);
+  // trocando de cidade: "Usar minha localização" fica fixo no topo, com ou sem texto
+  var pin=showPopular?locItem():null;
+  if(q.value){var secs=searchSections(q.value);renderSuggest(secs,norm(q.value.trim()).length>=2?'Nada com “'+esc(q.value.trim())+'” por aqui. Tenta outro nome, gênero ou cidade.':'',pin);}
+  else renderSuggest(showPopular?[{title:'Trocar de cidade',items:POPULAR.map(cityItem)}]:popularSections(),'',pin);
   // digitando uma cidade: não filtra os rolês por esse texto, só sugere a troca
-  var next=(sugg.length&&!anyHit(q.value))?'':q.value;
+  var cbq=q.value&&splitCityBairro(q.value);
+  var next=(q.value&&(cityMatches(q.value).length||(cbq&&!isCurrent(cbq.city)))&&!anyHit(q.value))?'':q.value;
   if(next===lastQ) return;
   lastQ=next;state.q=next;state.dismissed={};render();clearTimeout(qt);qt=setTimeout(startScan,450);
 });
 function clearSearch(){q.value='';state.q='';lastQ='';qc.hidden=true;renderSuggest([]);render();startScan();q.focus();}
 qc.onclick=clearSearch;
-document.getElementById('locate').onclick=function(){toMap();view.zoom=1;view.px=0;view.py=0;renderMap(lastB||buckets());if(loc.src==='demo') locate(true);};
-q.addEventListener('focus',toMap);
+document.getElementById('locate').onclick=function(){toMap();resetArea();render();if(loc.src==='demo') locate(true);};
+q.addEventListener('focus',function(){toMap();showPopularRoles();});
+q.addEventListener('click',function(){if(sugEl.hidden) showPopularRoles();});
 document.addEventListener('click',function(ev){var o=ev.target.closest('[data-open]');if(o&&!sheet.contains(o)){openEvent(o.getAttribute('data-open'));return;}var p=ev.target.closest('.pin');if(p){openVenue(p.getAttribute('data-venue'));}});
 var rt=null;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){layout();renderMap(buckets());},120);});
 layout();render();startScan();initLocation();
