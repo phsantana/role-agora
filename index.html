@@ -68,7 +68,7 @@ p,h1,h2,h3,h4{margin:0}
 @keyframes pulse{0%{opacity:.55;transform:translate(-50%,-50%) scale(.15)}100%{opacity:0;transform:translate(-50%,-50%) scale(1)}}
 .area{position:absolute;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(209,10,135,.16) 0%,rgba(209,10,135,.08) 55%,rgba(209,10,135,0) 72%)}
 .sweep{position:absolute;border-radius:50%;transform:translate(-50%,-50%);background:conic-gradient(from 0deg,rgba(209,10,135,.28),rgba(209,10,135,0) 22%,rgba(209,10,135,0) 100%);animation:spin 4s linear infinite;-webkit-mask:radial-gradient(closest-side,#000 98%,transparent 100%);mask:radial-gradient(closest-side,#000 98%,transparent 100%)}
-@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(-360deg)}} /* sentido anti-horário: a faixa forte vai na frente e o rastro esmaece atrás */
 .me{position:absolute;z-index:3;width:0;height:0;pointer-events:none}
 .me .halo{position:absolute;left:0;top:0;transform:translate(-50%,-50%);border-radius:50%;background:rgba(23,23,23,.08);border:1px solid rgba(23,23,23,.24)}
 .me .pt{position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:var(--action);border:3px solid var(--surface);box-shadow:0 1px 4px rgba(23,23,23,.25)}
@@ -77,13 +77,18 @@ p,h1,h2,h3,h4{margin:0}
 .me.center .you{top:12px;background:var(--surface);color:var(--text);border:1px solid var(--border)}
 .pin{position:absolute;z-index:4;transform:translate(-50%,-30%);display:flex;flex-direction:column;align-items:center;border:0;background:transparent;padding:0;transition:transform .2s}
 .pin:hover{transform:translate(-50%,-30%) scale(1.06)}
-.pin .ring{border-radius:var(--r-2xsm);padding:3px;background:var(--action);box-shadow:var(--shadow)}
+.pin .ring{border-radius:50%;padding:3px;background:var(--ok);box-shadow:var(--shadow)} /* mais compatíveis: verde */
 .pin.mid .ring{background:#E64AAF}
 .pin.low .ring{background:var(--bg-strong)}
-.pin .ring img{display:block;border-radius:9px;object-fit:cover;border:2px solid var(--surface)}
-.pin .tag{margin-top:-8px;background:var(--action);color:var(--inverse);border-radius:var(--r-pill);padding:2px 8px;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(23,23,23,.18)}
+.pin .ring img{display:block;border-radius:50%;object-fit:cover;border:2px solid var(--surface)}
+.pin .tag{margin-top:-8px;background:var(--ok-text);color:var(--inverse);border-radius:var(--r-pill);padding:2px 8px;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(23,23,23,.18)}
 .pin.mid .tag{background:var(--brand-subtle);color:var(--brand-text)}
 .pin.low .tag{background:var(--surface);color:var(--text-2)}
+.fogo{display:inline-flex;transform-origin:50% 90%;animation:fogo .8s ease-in-out infinite;filter:drop-shadow(0 0 3px rgba(255,90,31,.7))}
+@keyframes fogo{0%,100%{transform:scale(1) rotate(-4deg)}35%{transform:scale(1.12,1.2) rotate(3deg)}70%{transform:scale(.96,1.05) rotate(-2deg)}}
+.hero .aff.quente{box-shadow:0 0 0 2px rgba(255,194,26,.6),0 0 16px rgba(255,90,31,.55)}
+.pin .ring{position:relative}
+.pin .pin-fogo{position:absolute;z-index:2;top:-10px;left:-10px;width:28px;height:28px;border-radius:50%;background:var(--surface);display:grid;place-items:center;box-shadow:var(--shadow)}
 .pin .count{position:absolute;top:-4px;right:-6px;min-width:20px;height:20px;border-radius:var(--r-pill);background:var(--text);color:var(--inverse);font-size:12px;font-weight:600;display:grid;place-items:center;padding:0 4px}
 .city{position:absolute;z-index:6;top:calc(max(24px,env(safe-area-inset-top,0px)) + 61px);left:max(24px,env(safe-area-inset-left,0px));display:inline-flex;align-items:center;gap:var(--s-2xsm);height:30px;padding:0 12px;border-radius:var(--r-pill);border:1px solid var(--border);background:var(--surface);font-size:12px;font-weight:600;color:var(--text);box-shadow:0 2px 8px rgba(23,23,23,.08)}
 .city span{color:var(--brand-text)}
@@ -130,9 +135,17 @@ p,h1,h2,h3,h4{margin:0}
 .section{margin-top:var(--s-m)}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s-sm);margin-bottom:var(--s-xsm)}
 .sec-head>div{min-width:0}
-.taste{display:flex;align-items:center;gap:var(--s-xsm);flex-wrap:wrap;margin-bottom:var(--s-xsm)}
+.taste{display:flex;align-items:center;gap:var(--s-xsm);margin-bottom:var(--s-xsm)}
+/* gosto musical (Figma "Gosto musical (Spotify)"): chips em contorno rosa que rolam pro lado, esmaecendo à direita; ícone do Spotify fora da rolagem */
+.taste-chips{position:relative;flex:1;min-width:0}
+.taste-chips .row{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;padding-right:40px}
+.taste-chips .row::-webkit-scrollbar{display:none}
+.taste-chips::after{content:'';position:absolute;right:0;top:0;bottom:0;width:40px;background:linear-gradient(270deg,var(--page),rgba(255,255,255,0));pointer-events:none}
+.tchip{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2xsm);padding:8px 16px;border:1px solid var(--action);border-radius:var(--r-pill);background:transparent;color:var(--action);font-size:12px;line-height:1.5;white-space:nowrap}
+button.tchip{cursor:pointer}
+button.tchip:hover{background:var(--action-subtle)}
+.taste .sp{flex:none;display:grid;place-items:center}
 #sec-top .sec-head{position:relative}
-#edit-taste{position:absolute;right:calc(-1 * var(--s-xsm));top:0;height:32px;padding:0 var(--s-xsm)}
 .chip{display:inline-flex;align-items:center;gap:var(--s-2xsm);height:37px;padding:0 var(--s-sm);border-radius:var(--r-pill);border:1px solid var(--border);background:var(--surface);font-size:14px;color:var(--text);white-space:nowrap}
 .chip.sm{height:30px;padding:0 12px;font-size:12px}
 .chip[aria-pressed=true]{background:var(--action);border-color:var(--action);color:var(--inverse);font-weight:600}
@@ -244,6 +257,28 @@ p,h1,h2,h3,h4{margin:0}
 .ev .thumb{position:relative;flex:none;width:88px;height:90px;border-radius:var(--r-xsm);overflow:hidden;background:var(--subtle)}
 .ev .thumb img{width:100%;height:100%;object-fit:cover}
 .ev .thumb .badge{position:absolute;left:4px;bottom:4px}
+/* Clima (INMET) */
+.clima-chip{position:absolute;z-index:6;top:calc(max(24px,env(safe-area-inset-top,0px)) + 61px);left:280px;display:inline-flex;align-items:center;gap:var(--s-2xsm);height:30px;padding:0 12px;border-radius:var(--r-pill);border:1px solid var(--border);background:var(--surface);font-size:12px;font-weight:600;color:var(--text);box-shadow:0 2px 8px rgba(23,23,23,.08)}
+.clima-chip.risco{border-color:var(--live);color:var(--live)}
+.clima-chip .lbl{display:none}
+@media (min-width:640px){.clima-chip .lbl{display:inline}}
+.badge.risco{background:var(--live);color:var(--inverse);font-weight:600}
+.hero .risco{position:absolute;left:0;top:80px;background:var(--live);color:var(--inverse);font-weight:600;font-size:12px;padding:6px 8px 6px 16px;border-radius:0 var(--r-pill) var(--r-pill) 0;display:flex;gap:var(--s-2xsm);align-items:center}
+.alerta-risco{display:flex;gap:var(--s-xsm);align-items:flex-start;padding:12px 16px;border-radius:var(--r-xsm);background:var(--live);color:var(--inverse);font-size:14px;line-height:1.5}
+.alerta-risco .ico{margin-top:2px;flex:none}
+.alerta-risco b{display:block}
+.clima-linha{display:flex;gap:var(--s-xsm);align-items:center;font-size:14px;line-height:1.5}
+.clima-linha .ico{flex:none}
+.evs .clima-linha{margin-top:var(--s-m);color:rgba(255,255,255,.85)}
+.evs .alerta-risco{margin-top:var(--s-sm)}
+.ag-card .ag-tempo{display:flex;align-items:center;gap:var(--s-2xsm);font-size:14px;line-height:1.5;color:var(--text-2)}
+.ag-card.next .ag-tempo{color:var(--inverse)}
+.ag-card .ag-tempo.sem{font-size:12px}
+.ag-card .risco-pill{align-self:flex-start;display:inline-flex;gap:var(--s-2xsm);align-items:center;font-size:12px;font-weight:600;color:var(--inverse);background:var(--live);border-radius:var(--r-xsm);padding:4px 10px}
+.clima-dias{display:flex;flex-direction:column;gap:var(--s-sm);margin-top:var(--s-sm)}
+.clima-dia{border:1px solid var(--border);border-radius:var(--r-xsm);padding:12px 16px;display:flex;flex-direction:column;gap:var(--s-2xsm)}
+.clima-dia .per{display:grid;grid-template-columns:56px 20px 1fr;gap:var(--s-xsm);align-items:center;font-size:14px}
+.clima-dia .per span:first-child{color:var(--text-2);font-size:12px}
 .ev .meta{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:var(--s-2xsm)}
 .ev .meta .ev-title{line-height:24px}
 .ev .meta .l{line-height:18px}
@@ -278,37 +313,54 @@ p,h1,h2,h3,h4{margin:0}
 @keyframes rot{to{transform:rotate(360deg)}}
 .genres{display:flex;flex-wrap:wrap;gap:var(--s-xsm);margin:var(--s-sm) 0 var(--s-m)}
 
-/* Roteiro de rolês */
-.itin-cta{display:flex;gap:var(--s-sm);align-items:flex-start;padding:var(--s-sm);border-radius:var(--r-xsm);background:var(--brand-subtle)}
-.itin-ic{flex:none;width:40px;height:40px;border-radius:var(--r-pill);background:var(--surface);display:grid;place-items:center}
-.itin-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--s-2xsm)}
-.itin-btns{display:flex;flex-wrap:wrap;gap:var(--s-xsm);margin-top:var(--s-xsm)}
-.scope{display:flex;gap:var(--s-2xsm);padding:var(--s-2xsm);border-radius:var(--r-pill);background:var(--brand-subtle);margin-top:var(--s-sm)}
-.scope button{flex:1;height:37px;border:0;border-radius:var(--r-pill);background:transparent;color:var(--brand-text);font-size:14px;font-weight:600}
-.scope button[aria-checked=true]{background:var(--action);color:var(--inverse)}
-.tl{list-style:none;margin:var(--s-sm) 0 0;padding:0;display:flex;flex-direction:column}
-.tl-day{margin-top:var(--s-m)}
-.tl-stop{display:grid;grid-template-columns:64px 16px minmax(0,1fr);gap:var(--s-xsm);align-items:start;position:relative}
+/* Agenda automática: banner, carregando, opções */
+.ag-auto{margin-top:var(--s-m);width:100%;display:flex;align-items:center;gap:var(--s-sm);padding:var(--s-sm) var(--s-m) var(--s-sm) var(--s-sm);border:0;border-radius:var(--r-xlg);background:var(--text);color:var(--inverse);text-align:left;cursor:pointer}
+.ag-auto .art{flex:none;width:64px;height:64px;border-radius:50%;background:var(--action);display:grid;place-items:center;position:relative}
+.ag-auto .art::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(209,10,135,.45)}
+.ag-auto .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.ag-auto .tx .h6{color:var(--inverse)}
+.ag-auto .tx span{font-size:14px;line-height:1.5;color:rgba(255,255,255,.75)}
+.ag-load{margin-top:var(--s-lg);display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--s-m);padding:var(--s-m) 0}
+.ag-load .rad{position:relative;width:120px;height:120px}
+.ag-load .rad .pulse{width:120px;height:120px;left:50%;top:50%}
+.ag-load .rad .core{position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:var(--action);display:grid;place-items:center;box-shadow:0 8px 24px rgba(209,10,135,.35)}
+.ag-load .steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--s-xsm);align-items:flex-start;text-align:left}
+.ag-load .steps li{display:flex;gap:var(--s-xsm);align-items:center;font-size:14px;color:var(--bg-strong);transition:color .3s}
+.ag-load .steps li.on{color:var(--text)}
+.ag-load .steps li.ok{color:var(--text-2)}
+.ag-load .steps li i{width:16px;height:16px;border-radius:50%;border:2px solid currentColor;flex:none;display:grid;place-items:center}
+.ag-load .steps li.ok i{background:var(--ok);border-color:var(--ok)}
+.ag-gen{margin-top:var(--s-m);display:flex;flex-direction:column;gap:var(--s-sm);padding-bottom:96px}
+.ag-gen .hd{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s-sm)}
+.gen-opt{border:1px solid var(--border);border-radius:var(--r-xlg);padding:var(--s-m);display:flex;flex-direction:column;gap:var(--s-sm);background:var(--surface);cursor:pointer;text-align:left;width:100%;font:inherit;color:inherit}
+.gen-opt[aria-checked=true]{border:2px solid var(--action);padding:calc(var(--s-m) - 1px);box-shadow:0 0 0 4px var(--brand-subtle)}
+.gen-opt .t{display:flex;align-items:center;justify-content:space-between;gap:var(--s-sm)}
+.gen-opt .radio{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--bg-strong);display:grid;place-items:center}
+.gen-opt[aria-checked=true] .radio{border-color:var(--action);background:var(--action)}
+.gen-why{display:flex;flex-direction:column;gap:4px}
+.gen-why li{display:flex;gap:var(--s-xsm);align-items:flex-start;font-size:14px;line-height:1.5}
+.gen-why .ico{margin-top:3px}
+.gen-meta{display:flex;flex-wrap:wrap;gap:var(--s-2xsm)}
+.gen-day{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin-top:var(--s-2xsm)}
+.gen-tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.tl-stop{display:grid;grid-template-columns:52px 16px minmax(0,1fr);gap:var(--s-xsm);align-items:start;position:relative}
 .tl-time{display:flex;flex-direction:column;padding-top:2px}
 .tl-time b{font-family:var(--display);font-size:16px;line-height:1.3}
-.tl-time span{font-size:12px;line-height:1.5;color:var(--text-2);white-space:nowrap}
 .tl-dot{width:16px;height:16px;border-radius:50%;background:var(--action);box-shadow:0 0 0 4px var(--brand-subtle);margin-top:4px;position:relative;z-index:1}
-.tl-stop::before,.tl-leg .tl-rail{content:"";position:absolute;left:calc(64px + 8px + 7px);top:0;bottom:0;width:2px;background:var(--bg-default)}
+.tl-stop::before,.tl-leg .tl-rail{content:"";position:absolute;left:calc(52px + 8px + 7px);top:0;bottom:0;width:2px;background:var(--bg-default)}
 .tl-stop:first-child::before{top:12px}
 .tl-stop:last-child::before{bottom:auto;height:12px}
-.tl-card{border:1px solid var(--border);border-radius:var(--r-xsm);padding:12px;display:flex;flex-direction:column;gap:var(--s-xsm);background:var(--surface);min-width:0}
-.tl-main{display:flex;gap:12px;align-items:center;border:0;background:transparent;padding:0;text-align:left;min-width:0}
-.tl-main img{flex:none;width:56px;height:56px;border-radius:var(--r-2xsm);object-fit:cover}
+.tl-stop:only-child::before{display:none}
+.tl-card{display:flex;flex-direction:column;gap:4px;min-width:0;padding-bottom:var(--s-xsm)}
+.tl-main{display:flex;gap:12px;align-items:center;min-width:0}
+.tl-main img{flex:none;width:48px;height:48px;border-radius:var(--r-2xsm);object-fit:cover}
 .tl-main>span{display:flex;flex-direction:column;min-width:0}
-.tl-main .ev-title{white-space:normal}
-.tl-g{display:flex;gap:4px;align-items:center}
-.tl-acts{display:flex;flex-wrap:wrap;gap:var(--s-xsm)}
-.tl-acts .btn.sm{height:32px;padding:0 12px;font-size:12px}
-.tl-leg{position:relative;display:grid;grid-template-columns:64px 16px minmax(0,1fr);gap:var(--s-xsm);padding:var(--s-xsm) 0}
+.tl-why{display:flex;gap:4px;align-items:flex-start;font-size:12px;line-height:1.5;color:var(--brand-text)}
+.tl-why .ico{margin-top:2px}
+.tl-leg{position:relative;display:grid;grid-template-columns:52px 16px minmax(0,1fr);gap:var(--s-xsm);padding:4px 0 var(--s-xsm)}
 .tl-leg .tl-rail{background:repeating-linear-gradient(var(--bg-strong) 0 4px,transparent 4px 8px)}
-.tl-leg-txt{grid-column:3;display:flex;gap:var(--s-xsm);align-items:flex-start;font-size:12px;color:var(--text-2);background:var(--subtle);border-radius:var(--r-3xsm);padding:8px 12px}
-.tl-note{margin-top:var(--s-sm)}
-.tl-foot{display:flex;flex-direction:column;gap:var(--s-xsm);margin-top:var(--s-m)}
+.tl-leg-txt{grid-column:3;display:flex;gap:var(--s-xsm);align-items:center;font-size:12px;color:var(--text-2);background:var(--subtle);border-radius:var(--r-3xsm);padding:6px 10px}
+.ag-gen-bar{position:sticky;bottom:0;z-index:3;margin:0 calc(-1 * max(24px,env(safe-area-inset-right,0px)));padding:var(--s-sm) max(24px,env(safe-area-inset-right,0px)) calc(var(--s-sm) + env(safe-area-inset-bottom,0px));background:linear-gradient(0deg,var(--page) 75%,rgba(255,255,255,0));display:flex;flex-direction:column;gap:var(--s-2xsm)}
 .btn.success:disabled{opacity:1}
 /* Agenda */
 .agenda-fab{position:fixed;z-index:15;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,0);display:inline-flex;align-items:center;gap:var(--s-xsm);height:53px;padding:0 var(--s-m);border:0;border-radius:var(--r-pill);background:var(--text);color:var(--inverse);font-weight:600;font-size:14px;box-shadow:0 8px 24px rgba(23,23,23,.28);transition:transform .25s ease,opacity .25s ease}
@@ -324,6 +376,34 @@ body.has-agenda .content{padding-bottom:calc(112px + env(safe-area-inset-bottom,
 /* Agenda: dias com rolê numa faixa; os rolês do dia escolhido em cards */
 /* Agenda: tela própria que entra da direita */
 html.screen-open{overflow:hidden}
+/* Detalhe do rolê (opção C, imersiva): foto no topo esmaecendo no escuro, informações em branco por cima */
+.screen.evs{background:#171717;color:var(--inverse)}
+.evs .photo{position:absolute;left:0;right:0;top:0;height:min(56vh,520px);background:#171717 center/cover no-repeat}
+.evs .photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,23,23,.45) 0%,rgba(23,23,23,0) 25%,rgba(23,23,23,0) 55%,#171717 100%)}
+.evs .in{position:relative;max-width:430px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;padding:0 max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px))}
+.evs .top{display:grid;grid-template-columns:48px 1fr 48px;align-items:center;gap:var(--s-xsm);padding:max(16px,env(safe-area-inset-top,0px)) 0 0}
+.evs .top h2{text-align:center;color:var(--inverse)}
+.evs .glass{width:48px;height:48px;border-radius:50%;border:0;display:grid;place-items:center;background:rgba(255,255,255,.22);color:var(--inverse);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.evs .spacer{height:calc(min(56vh,520px) - 64px - 200px);min-height:120px}
+.evs .head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s-sm)}
+.evs .head .h1{color:var(--inverse);overflow-wrap:anywhere}
+.evs .soft{color:rgba(255,255,255,.75)}
+.evs .where{display:flex;gap:var(--s-2xsm);align-items:center;margin-top:var(--s-2xsm);font-size:14px}
+.evs .pillw{flex:none;display:inline-flex;align-items:center;gap:var(--s-2xsm);background:var(--surface);color:var(--text);border-radius:var(--r-pill);padding:10px 14px;font-size:14px;font-weight:600;white-space:nowrap}
+.evs .when{display:flex;align-items:center;gap:var(--s-m);margin-top:var(--s-m)}
+.evs .when b{display:block;font-size:16px;line-height:1.5}
+.evs .when span{font-size:12px;color:rgba(255,255,255,.7)}
+.evs .when .cal{margin-left:auto;background:rgba(255,255,255,.14)}
+.evs .why{margin-top:var(--s-m);font-size:14px}
+.evs .why b{color:var(--inverse)}
+.evs .more{margin-top:var(--s-m);display:flex;flex-direction:column;gap:var(--s-xsm)}
+.evs .mini{display:flex;align-items:center;gap:12px;border:0;background:transparent;color:inherit;padding:4px 0;text-align:left}
+.evs .mini img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none}
+.evs .bar{position:sticky;bottom:0;margin-top:auto;display:flex;gap:12px;padding:var(--s-m) 0 calc(var(--s-m) + env(safe-area-inset-bottom,0px));background:linear-gradient(0deg,#171717 70%,rgba(23,23,23,0))}
+.evs .bar .site{flex:none;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.14);color:var(--inverse)}
+.evs .bar .btn{flex:1;height:56px}
+@media (min-width:640px){.evs .in{max-width:640px}}
+@media (min-width:1024px){.evs .in{max-width:none;padding-left:32px;padding-right:32px}}
 .screen{position:fixed;inset:0;z-index:19;background:var(--page);overflow-y:auto;overscroll-behavior:contain;transform:translateX(100%);visibility:hidden;transition:transform .32s cubic-bezier(.2,.7,.2,1),visibility 0s linear .32s}
 .screen.open{transform:none;visibility:visible;transition:transform .32s cubic-bezier(.2,.7,.2,1)}
 .screen-in{max-width:430px;margin:0 auto;padding:0 max(24px,env(safe-area-inset-right,0px)) calc(var(--s-xlg) + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
@@ -350,12 +430,12 @@ html.screen-open{overflow:hidden}
 .ag-day[aria-pressed=true]{background:var(--action)}
 .ag-day[aria-pressed=true] span,.ag-day[aria-pressed=true] b{color:var(--inverse)}
 .ag-day[aria-pressed=true] .mk svg path{fill:var(--inverse)}
-.ag-day.past b,.ag-day.past span{opacity:.5}
-.ag-day[aria-pressed=true].past b,.ag-day[aria-pressed=true].past span{opacity:1}
+.ag-day:disabled{cursor:default}
+.ag-day:disabled b,.ag-day:disabled span{color:var(--bg-strong)}
 .ag-tl{margin-top:var(--s-m);display:flex;flex-direction:column}
 /* timeline do dia: hora à esquerda, linha ligando os rolês, card à direita */
 .ag-row{display:grid;grid-template-columns:48px minmax(0,1fr);gap:var(--s-xsm)}
-.ag-row .tl{display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:var(--s-sm)}
+.ag-row .tl{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:var(--s-sm);padding-top:var(--s-sm)}
 .ag-row .tl b{font-size:14px;font-weight:700;line-height:1.3;color:var(--text);white-space:nowrap}
 .ag-row .tl i{flex:none;width:10px;height:10px;border-radius:50%;background:var(--action)}
 .ag-row .tl .ln{flex:1;width:2px;min-height:16px;background:var(--border)}
@@ -436,7 +516,7 @@ html.screen-open{overflow:hidden}
   .list{grid-template-columns:repeat(2,minmax(0,1fr))}
   .app{--col:clamp(520px,40vw,720px)}
 }
-@media (prefers-reduced-motion:reduce){.pulse,.sweep,.spin{animation:none}.pulse{opacity:.25;transform:translate(-50%,-50%) scale(.6)}*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){.fogo{animation:none}.pulse,.sweep,.spin{animation:none}.pulse{opacity:.25;transform:translate(-50%,-50%) scale(.6)}*{transition:none!important}}
 </style>
 
 <div class="app" id="app">
@@ -453,6 +533,7 @@ html.screen-open{overflow:hidden}
       <button class="clear" id="qclear" type="button" aria-label="Limpar busca" hidden><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     </label>
     <button class="city" id="city" type="button" aria-label="Trocar cidade"></button>
+    <button class="clima-chip" id="clima-chip" type="button" hidden></button>
     <div class="suggest" id="suggest" role="listbox" aria-label="Cidades" hidden></div>
     <div class="map-ctl" role="group" aria-label="Controles do mapa">
       <button class="ctl" id="zin" type="button" aria-label="Aproximar o mapa"><svg class="ico ico-24" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
@@ -479,11 +560,11 @@ html.screen-open{overflow:hidden}
     <section class="section" id="sec-rail" aria-labelledby="t-rail">
       <div class="sec-head"><div><h2 class="h6" id="t-rail">Rolês que você pode gostar</h2></div></div>
     </section>
-    <section class="section" id="sec-itin" aria-label="Roteiro de rolês" hidden></section>
   </main>
 </div>
 
 <section class="screen" id="agenda" role="dialog" aria-modal="true" aria-labelledby="ag-title" aria-hidden="true"><div class="screen-in"><header class="screen-bar"><button type="button" class="back" id="ag-back" aria-label="Voltar"><svg class="ico ico-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button><h2 class="h5" id="ag-title">Sua agenda</h2><span></span></header><div id="ag-body"></div></div></section>
+<section class="screen evs" id="evs" role="dialog" aria-modal="true" aria-labelledby="evs-title" aria-hidden="true"></section>
 <div class="scrim" id="scrim"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title"><div class="handle"></div><button class="close" id="sheet-close" type="button" aria-label="Fechar"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button><div id="sheet-body"></div></div>
 <button type="button" class="agenda-fab" id="agenda-fab" hidden><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Sua agenda<span class="n" id="agenda-n">0</span></button>
@@ -547,8 +628,8 @@ var SPOTIFY_MOCK={name:'Seu Spotify',weights:{Pop:.92,Rock:.85,Soul:.74,Sertanej
 
 var state={profile:null,source:null,q:'',dismissed:{},going:{},topIdx:0,city:{name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false}};
 try{var saved=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(saved&&saved.profile){state.profile=saved.profile;state.source=saved.source;state.going=saved.going||{};}}catch(e){}
-try{var savedI=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(savedI&&savedI.itin) state.itin=savedI.itin; if(savedI&&savedI.going&&!saved.profile) state.going=savedI.going;}catch(e){}
-function persist(){try{localStorage.setItem('radar-roles',JSON.stringify({profile:state.profile,source:state.source,going:state.going,itin:state.itin||null}));}catch(e){}}
+try{var savedI=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(savedI&&savedI.going&&!saved.profile) state.going=savedI.going;}catch(e){}
+function persist(){try{localStorage.setItem('radar-roles',JSON.stringify({profile:state.profile,source:state.source,going:state.going}));}catch(e){}}
 
 /* ---------- Cálculos ---------- */
 function hash(s){var h=0;for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0;}return Math.abs(h);}
@@ -570,7 +651,80 @@ events=events.filter(function(e){return e.date>=NOW&&e.dist<=RADIUS_KM;});PRUDEN
 var FAMILY={'Rock Alternativo':'Rock',Blues:'Rock',Metal:'Rock',Punk:'Rock','Pop Rock':'Rock',Indie:'Rock','Forró':'Sertanejo',Arrocha:'Sertanejo',Brasilidades:'MPB',Jazz:'MPB','Bossa Nova':'MPB','Voz e Violão':'MPB',Choro:'Samba','Samba Rock':'Samba','Eletrônica':'Discotecagem',Funk:'Discotecagem',Flashback:'Discotecagem','Dança':'Discotecagem','Hip Hop':'Discotecagem',Rap:'Discotecagem','R&B':'MPB',Reggae:'MPB',Pop:'Discotecagem'};
 function fam(g){return SIM.Rock[g]!=null?g:(FAMILY[g]||'MPB');}
 
-function withScores(){var pr=state.profile;events.forEach(function(e){var a=affinity(e,pr);e.aff=a?a.pct:null;e.why=a?a.why:null;});}
+// foguinho animado dos rolês com mais de 90% de compatibilidade
+function fogo(t){return '<span class="fogo" aria-hidden="true"><svg width="'+(t||16)+'" height="'+(t||16)+'" viewBox="0 0 24 24"><path fill="#FF5A1F" d="M12 2c.6 3.2 3.8 5 4.9 8.4C18.2 14.6 15.9 21 12 21c-3.8 0-6.4-3.1-6-7.2.3-2.6 1.9-4 2.6-5.3.4 1.6 1.2 2.6 2.2 3.2-.3-3.6.5-6.6 1.2-9.7z"/><path fill="#FFC21A" d="M12.3 11.5c.8 1.7 2.9 2.9 2.4 5.6-.3 1.8-1.6 2.9-3 2.9s-2.8-1.1-2.8-3c0-1.5.8-2.3 1.4-3 .2.8.6 1.3 1.1 1.6 0-1.4.3-2.7.9-4.1z"/></svg></span>';}
+function withScores(){var pr=state.profile;events.forEach(function(e){var a=affinity(e,pr);e.aff=a?a.pct:null;e.why=a?a.why:null;comClima(e);});}
+/* ---------- Clima: previsão do INMET (apiprevmet3.inmet.gov.br), por município (código IBGE) ----------
+   Os 2 primeiros dias vêm por período (manhã, tarde, noite); os demais, o dia inteiro. Madrugada (0h–6h) usa a noite anterior. */
+var CLIMA={slug:null,dias:null,loading:false,falhou:{}};
+try{var cc=JSON.parse(localStorage.getItem('radar-clima')||'null');if(cc&&cc.slug&&Date.now()-cc.at<3*36e5){CLIMA.slug=cc.slug;CLIMA.dias=cc.dias;}}catch(e){}
+var IBGE={'presidente-prudente-sp':'3541406'};
+function dataBR(d){return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();}
+function climaDe(d){
+  if(!CLIMA.dias||CLIMA.slug!==state.city.slug) return null;
+  var h=d.noTime?20:d.getHours(),base=h<6?addDays(d,-1):d,per=h<6||h>=18?'noite':h<12?'manha':'tarde';
+  var dia=CLIMA.dias[dataBR(base)];if(!dia) return null;
+  var v=dia.manha?dia[per]:dia;if(!v) return null;
+  var r=String(v.resumo||'');
+  return {resumo:r,min:v.temp_min,max:v.temp_max,periodo:dia.manha?(per==='manha'?'manhã':per):'dia',
+    tempestade:/trovoada|tempestade/i.test(r),chuva:/chuva|chuvisco|pancada|garoa|trovoada|tempestade/i.test(r)};
+}
+// sem previsão pro rolê: explica o porquê em vez de esconder
+function semClimaTxt(e){if(+e.date+DURACAO<NOW) return 'Esse rolê já passou';if(CLIMA.dias&&CLIMA.slug===state.city.slug) return 'A previsão do tempo sai até 5 dias antes do rolê';return 'Previsão do tempo indisponível agora';}
+function alertaCurto(e){var t=e.clima.tempestade?'tempestade':'chuva';return e.arLivre?'Arriscado: '+t+' ao ar livre':'Atenção: previsão de '+t;}
+function climaCurto(c){var r=c.resumo;return c.tempestade?'Trovoadas':/chuvisco|garoa/i.test(r)?'Chuvisco':c.chuva?'Chuva':/encoberto/i.test(r)?'Encoberto':/muitas nuvens|nublado/i.test(r)?'Nublado':/nuvens/i.test(r)?'Poucas nuvens':'Tempo firme';}
+function climaIc(c,cor,t){return ic(c.tempestade?'raio':c.chuva?'chuva':/nuvens|encoberto|nublado/i.test(c.resumo)?'nuvem':'sol',cor,t||16);}
+// lugar ao ar livre: o site não informa. Primeiro a lista conferida dos lugares conhecidos; se o lugar não está nela, vem do nome do lugar ou do rolê
+var AR_LIVRE={ // Presidente Prudente
+  'villa 18 container bar':true,'ibiza lounge bar':true,'valete bar':true,
+  'agrobar':false,'fabrica gastrobar':false,'bar da onca':false,'cult bar':false};
+function aoArLivre(e){var k=norm(e.venue).replace(/\s+/g,' ').trim();
+  if(AR_LIVRE[k]!=null) return AR_LIVRE[k];
+  return /\b(pra[çc]a|parque|arena|est[áa]dio|concha|ar livre|open ?air|rooftop|prainha|lago|balne[áa]rio|deck|ch[áa]cara|rancho|feira|cal[çc]ad[ãa]o|largo|festival)\b/i.test((e.venue||'')+' '+(e.name||''));}
+// o clima entra na compatibilidade: chuva ou tempestade ao ar livre pesa bastante; em lugar fechado, só um pouco
+function comClima(e){
+  e.clima=climaDe(e.date);e.arLivre=aoArLivre(e);e.alerta=!!(e.clima&&e.clima.chuva);e.risco=e.alerta&&e.arLivre;e.climaAdj=0;
+  if(!e.clima||e.aff==null) return;
+  var adj=e.arLivre?(e.clima.tempestade?-30:e.clima.chuva?-20:4):(e.clima.tempestade?-6:e.clima.chuva?-3:0);
+  e.climaAdj=adj;e.aff=Math.max(12,Math.min(99,e.aff+adj));
+}
+function readJsonGrande(mcp,url){ // a resposta do INMET traz ícones em base64: lê tudo e descarta os ícones
+  return withBrowser(function(){return mcp.callTool(S,'navigate',{url:url},{cache:false}).then(function(){return mcp.callTool(S,'get_page_text',{max_chars:400000},{cache:false});});}).then(function(r){
+    var t=text(r),k=t.indexOf('\n---');if(k>=0) t=t.slice(k+4);
+    t=t.replace(/"(icone|temp_max_tende_icone|temp_min_tende_icone)":"[^"]*"/g,'"$1":""');
+    var a=t.indexOf('{'),b=t.lastIndexOf('}');if(a<0||b<a) throw {code:'json'};
+    return JSON.parse(t.slice(a,b+1));
+  });
+}
+function loadClima(){
+  var c=state.city,slug=c.slug;if(!slug||CLIMA.loading||CLIMA.falhou[slug]||(CLIMA.slug===slug&&CLIMA.dias)) return;
+  CLIMA.loading=true;
+  getMcp().then(function(mcp){if(!mcp) throw {code:'nohost'};
+    var cod=IBGE[slug]||geoCache['ibge:'+slug];
+    var codP=cod?Promise.resolve(cod):nominatim(mcp,'search?limit=1&extratags=1&countrycodes=br&q='+encodeURIComponent(c.name+', '+c.uf+', Brasil')).then(function(j){var x=j&&j[0]&&j[0].extratags&&j[0].extratags['IBGE:GEOCODIGO'];if(!x) throw {code:'ibge'};geoCache['ibge:'+slug]=x;saveGeo();return x;});
+    return codP.then(function(cod){return readJsonGrande(mcp,'https://apiprevmet3.inmet.gov.br/previsao/'+cod).then(function(j){var d=j[cod];if(!d) throw {code:'inmet'};
+      CLIMA.slug=slug;CLIMA.dias=d;try{localStorage.setItem('radar-clima',JSON.stringify({slug:slug,at:Date.now(),dias:d}));}catch(e){}});});
+  }).then(function(){CLIMA.loading=false;render();},function(){CLIMA.loading=false;CLIMA.falhou[slug]=1;});
+}
+function renderClimaChip(){
+  var el=document.getElementById('clima-chip'),c=climaDe(new Date(NOW));
+  if(!c){el.hidden=true;if(state.city.slug) loadClima();return;}
+  el.hidden=false;el.classList.toggle('risco',c.tempestade);
+  el.innerHTML=climaIc(c,c.tempestade?'#E11410':'#171717')+'<span>'+c.max+'°<span class="lbl"> • '+climaCurto(c)+'</span></span>';
+  var city=document.getElementById('city');el.style.left=(city.offsetLeft+city.offsetWidth+8)+'px'; // logo depois do chip da cidade
+  el.setAttribute('aria-label','Previsão do tempo em '+state.city.name+': '+c.resumo+', máxima de '+c.max+' graus. Ver previsão dos próximos dias');
+}
+function openClima(){
+  var dias=CLIMA.dias||{},nome={manha:'Manhã',tarde:'Tarde',noite:'Noite'};
+  openSheet('<p class="eyebrow">Previsão do tempo • '+esc(state.city.name)+'</p><h2 class="h3" id="sheet-title">Como vai tá o tempo</h2>'+
+    '<div class="clima-dias">'+Object.keys(dias).map(function(k){var v=dias[k],p=k.split('/'),d=new Date(+p[2],+p[1]-1,+p[0]),dd=dayDiff(d);
+      var rot=dd===0?'Hoje':dd===1?'Amanhã':capt(SEM_LONGO[d.getDay()]);var any=v.manha?v.manha:v;
+      var linha=function(x,lbl){var c={resumo:x.resumo,tempestade:/trovoada|tempestade/i.test(x.resumo),chuva:/chuva|chuvisco|pancada|garoa|trovoada|tempestade/i.test(x.resumo)};return '<div class="per"><span>'+lbl+'</span>'+climaIc(c,c.tempestade?'#E11410':'#525252',18)+'<span>'+esc(x.resumo)+'</span></div>';};
+      return '<div class="clima-dia"><div style="display:flex;justify-content:space-between;align-items:baseline"><b class="h6">'+rot+', '+p[0]+'/'+p[1]+'</b><span class="desc-sm muted">'+any.temp_min+'° – '+any.temp_max+'°</span></div>'+
+        (v.manha?['manha','tarde','noite'].map(function(q){return linha(v[q],nome[q]);}).join(''):linha(v,'Dia'))+'</div>';}).join('')+'</div>'+
+    '<p class="desc-sm muted" style="margin-top:16px">Fonte: INMET (Instituto Nacional de Meteorologia). A previsão é pra cidade toda.</p>','Previsão do tempo');
+}
+document.getElementById('clima-chip').onclick=openClima;
 
 /* ---------- Formatação (tom de voz do DS) ---------- */
 var MES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
@@ -613,6 +767,12 @@ function ic(n,c,size){c=c||'currentColor';var s=size||16;var P={
  car:'<path d="M5 17h14v-5l-2-5H7l-2 5zM5 12h14"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/>',
  route:'<circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/><path d="M9 19h6.5a3.5 3.5 0 0 0 0-7h-7a3.5 3.5 0 0 1 0-7H15"/>',
  chev:'<path d="M9 6l6 6-6 6"/>',
+ sol:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ nuvem:'<path d="M7 18h10a4 4 0 0 0 .5-8 6 6 0 0 0-11.6 1.5A3.3 3.3 0 0 0 7 18z"/>',
+ chuva:'<path d="M7 15h10a4 4 0 0 0 .5-8 6 6 0 0 0-11.6 1.5A3.3 3.3 0 0 0 7 15z"/><path d="M8 18l-1 3M12 18l-1 3M16 18l-1 3"/>',
+ raio:'<path d="M7 14h10a4 4 0 0 0 .5-8 6 6 0 0 0-11.6 1.5A3.3 3.3 0 0 0 7 14z"/><path d="M12.5 14l-2.5 4h3l-2 4"/>',
+ alerta:'<path d="M12 3l9.5 17h-19z"/><path d="M12 10v4M12 17.5v.01"/>',
+ share:'<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>',
  arrow:'<path d="M7 17L17 7M8 7h9v9"/>',
  swap:'<path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/>'
 };
@@ -648,15 +808,16 @@ function byTop(a,b){ // 1º afinidade, 2º horário mais próximo, 3º distânci
   return ((b.aff||0)-(a.aff||0))||(a.date-b.date)||(a.dist-b.dist);}
 function byList(a,b){ // 1º horário, 2º distância, 3º afinidade
   return (a.date-b.date)||(a.dist-b.dist)||((b.aff||0)-(a.aff||0));}
-var TOP_MIN=60;
+var TOP_MIN=60,DECK_MIN=80,FOGO_MIN=90; // sugestões e "Rolês que você pode gostar": 60% a 80%; "São a sua cara": mais de 80%; foguinho: mais de 90%
 function buckets(){
   var list=visible();
   var top=[],rail=[],rest=[];
   if(state.profile){
     var ranked=list.slice().sort(byTop);
-    // "São a sua cara" só com rolês de 60% ou mais de compatibilidade
-    top=ranked.filter(function(e){return e.aff>=TOP_MIN;}).slice(0,3);
-    rail=ranked.filter(function(e){return e.aff>=60&&top.indexOf(e)<0;}).slice(0,8);
+    // "São a sua cara": todos os rolês com mais de 80% de compatibilidade que você ainda não marcou
+    top=ranked.filter(function(e){return e.aff>DECK_MIN&&!state.going[e.id];});
+    // "Rolês que você pode gostar": de 60% a 80%
+    rail=ranked.filter(function(e){return e.aff>=TOP_MIN&&e.aff<=DECK_MIN;});
   } else {
     rail=list.slice().sort(byList).slice(0,6);
   }
@@ -905,7 +1066,7 @@ function renderMap(b){
     var tier=e.aff==null?'mid':e.aff>=80?'hi':e.aff>=60?'mid':'low';
     var size=tier==='hi'?56:tier==='mid'?44:34;
     var label=dTxt(e)+(e.aff!=null?' • '+e.aff+'%':'');
-    var inner='<span class="ring"><img src="'+e.img+'" alt="" style="width:'+size+'px;height:'+size+'px"></span><span class="tag">'+label+'</span>'+(arr.length>1?'<span class="count">'+arr.length+'</span>':'');
+    var inner='<span class="ring">'+(e.aff>FOGO_MIN?'<span class="pin-fogo">'+fogo(20)+'</span>':'')+'<img src="'+e.img+'" alt="" style="width:'+size+'px;height:'+size+'px"></span><span class="tag">'+label+'</span>'+(arr.length>1?'<span class="count">'+arr.length+'</span>':'');
     var el=pinEls[k];
     if(!el){el=document.createElement('button');el.type='button';el.setAttribute('data-venue',k);el.className='pin '+tier+(scan.seen[k]?'':' in');pinEls[k]=el;pinsEl.appendChild(el);}
     scan.seen[k]=1;
@@ -1039,11 +1200,13 @@ function renderFound(){
 }
 function tasteBar(){
   var el=document.getElementById('taste');
-  if(!state.profile){el.innerHTML='';var eb=document.getElementById('edit-taste');if(eb) eb.remove();return;}
+  if(!state.profile){el.innerHTML='';return;}
   var gs=Object.keys(state.profile).sort(function(a,b){return state.profile[b]-state.profile[a];});
-  el.innerHTML='<div class="taste">'+(state.source==='spotify'?ic('spotify',null,20):'')+gs.map(function(g){return '<span class="chip sm static">'+g+'</span>';}).join('')+'</div>';
-  var head=document.querySelector('#sec-top .sec-head');
-  if(!document.getElementById('edit-taste')){var b=document.createElement('button');b.type='button';b.className='btn ghost sm';b.id='edit-taste';b.innerHTML=ic('edit')+'Editar';b.setAttribute('aria-label','Editar seu gosto musical');head.appendChild(b);}
+  // o primeiro chip (ajustes) edita o gosto; os gêneros vêm em ordem de peso
+  el.innerHTML='<div class="taste"><div class="taste-chips"><div class="row" role="list" aria-label="Seu gosto musical">'+
+    '<button type="button" class="tchip" id="edit-taste" aria-label="Editar seu gosto musical"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 7h10M19 7h2M3 17h2M11 17h10"/><circle cx="16" cy="7" r="2.5"/><circle cx="8" cy="17" r="2.5"/></svg></button>'+
+    gs.map(function(g){return '<span class="tchip" role="listitem">'+g+'</span>';}).join('')+'</div></div>'+
+    (state.source==='spotify'?'<span class="sp" title="Gosto vindo do seu Spotify" aria-label="Gosto vindo do seu Spotify" role="img"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1DB954" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 9.4c3.3-1 7.2-.7 10 1M7.6 12.6c2.8-.8 5.8-.5 8.2.9M8.2 15.5c2.2-.6 4.5-.4 6.4.7"/></svg></span>':'')+'</div>';
   document.getElementById('edit-taste').onclick=openGenres;
 }
 function onboarding(){
@@ -1058,7 +1221,8 @@ function heroCard(e,pos,total){
   var d=e.date,going=!!state.going[e.id];
   return '<article class="hero" id="hero" data-id="'+e.id+'" aria-label="'+esc(e.name)+'">'+
    '<img src="'+e.img+'" alt="">'+'<div class="shade"></div>'+
-   '<div class="aff">'+e.aff+'% compatível '+ic('star','#fff')+'</div>'+
+   '<div class="aff'+(e.aff>FOGO_MIN?' quente':'')+'">'+e.aff+'% compatível '+(e.aff>FOGO_MIN?fogo(18):ic('star','#fff'))+'</div>'+
+   (e.alerta?'<div class="risco">'+ic('alerta','#fff',14)+(e.clima.tempestade?'Tempestade':'Chuva')+(e.arLivre?' ao ar livre':' prevista')+'</div>':'')+
    '<div class="pos" aria-hidden="true">'+pos+' de '+total+'</div>'+
    '<div class="stamp yes" id="st-yes" aria-hidden="true">Bora!</div><div class="stamp no" id="st-no" aria-hidden="true">Vô não</div>'+
    '<div class="info"><div class="row"><div class="txt">'+
@@ -1096,7 +1260,7 @@ function evHtml(e,inAgenda){
   var going=state.going[e.id];
   // EventCard vertical do Figma: sobrancelha (gênero · compatibilidade), título, "Hoje • 22h30", "900 m • Bairro"
   var other=e.city&&e.city!==state.city.name;
-  return '<button type="button" class="ev" data-open="'+e.id+'"><span class="thumb"><img src="'+e.img+'" alt="">'+(going&&!inAgenda?'<span class="badge going">Você vai</span>':'')+'</span>'+
+  return '<button type="button" class="ev" data-open="'+e.id+'"><span class="thumb"><img src="'+e.img+'" alt="">'+(e.alerta?'<span class="badge risco">'+ic('alerta','#fff',12)+(e.arLivre?'Arriscado':e.clima.tempestade?'Tempestade':'Chuva')+'</span>':going&&!inAgenda?'<span class="badge going">Você vai</span>':'')+'</span>'+
    '<span class="meta"><span class="l">'+ic('note','#A3A3A3')+'<span>'+e.genre+(e.aff!=null?' · '+e.aff+'% compatível':'')+'</span></span>'+
    '<span class="ev-title">'+esc(e.name)+'</span>'+
    '<span class="l">'+ic('cal','#A3A3A3')+'<span>'+quando(e.date)+'</span></span>'+
@@ -1168,12 +1332,13 @@ function renderTotal(b){var n=b.all.length,el=document.getElementById('total');
   var quando=whenText();quando=quando?quando+' ':'';
   var onde=quando+(state.q?'em '+esc(state.city.name):state.area?(state.area.label?'em '+esc(state.area.label):'nesta região do mapa'):'em '+esc(state.city.name));
   el.innerHTML=n?'<b>'+n+(n===1?' rolê encontrado':' rolês encontrados')+'</b> '+(state.q?'pra “'+esc(state.q)+'” ':'')+onde:'Nenhum rolê encontrado'+(state.q?' pra “'+esc(state.q)+'”':'')+' '+onde+(state.q?'':!state.area?(state.when?'. Tenta outra data.':''):state.when?'. Tenta outra data ou afaste o mapa.':'. Afaste o mapa pra ver mais.');}
-function render(){withScores();var b=buckets();renderCityChip();renderMap(b);renderWhen();renderTotal(b);renderItinCTA();renderTop(b);renderRail(b);renderLists(b);renderAgendaFab();renderAgenda();}
+function render(){withScores();var b=buckets();renderCityChip();renderClimaChip();renderMap(b);renderWhen();renderTotal(b);renderTop(b);renderRail(b);renderLists(b);renderAgendaFab();renderAgenda();}
 
 /* ---------- Agenda: rolês com "Bora", do que acontece antes para o que acontece depois ---------- */
 /* A agenda guarda um retrato de cada rolê, então sobrevive à troca de cidade */
 function findEvent(id){return events.filter(function(x){return x.id===id;})[0]||PRUDENTE.events.filter(function(x){return x.id===id;})[0];}
-function agendaItems(){return Object.keys(state.going).map(function(id){var e=findEvent(id),v=state.going[id];if(e) return e;if(v&&typeof v==='object'){var d=new Date(v.date);if(v.noTime) d.noTime=true;return {id:id,name:v.name,venue:v.venue,bairro:v.bairro,genre:v.genre,date:d,dist:v.dist,aff:v.aff,city:v.city,img:v.img||ph(v.name,v.genre)};}return null;}).filter(Boolean).sort(function(a,b){return (a.date-b.date)||a.name.localeCompare(b.name,'pt-BR');});}
+// rolê que já acabou (começo + ~3h) sai da agenda; com 'todos', volta (pra abrir um rolê antigo, por exemplo)
+function agendaItems(todos){return Object.keys(state.going).map(function(id){var e=findEvent(id),v=state.going[id];if(e) return e;if(v&&typeof v==='object'){var d=new Date(v.date);if(v.noTime) d.noTime=true;return {id:id,name:v.name,venue:v.venue,bairro:v.bairro,genre:v.genre,date:d,dist:v.dist,aff:v.aff,city:v.city,img:v.img||ph(v.name,v.genre)};}return null;}).filter(function(e){return e&&(todos||+e.date+DURACAO>NOW);}).sort(function(a,b){return (a.date-b.date)||a.name.localeCompare(b.name,'pt-BR');});}
 var lastCount=null;
 function renderAgendaFab(){
   var n=agendaItems().length,fab=document.getElementById('agenda-fab');
@@ -1194,30 +1359,35 @@ var dkey=function(d){return d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();};
 var capt=function(t){return t.charAt(0).toUpperCase()+t.slice(1);};
 function openAgenda(){
   if(sheet.classList.contains('open')) closeSheet();
-  var items=agendaItems(),hoje=dayStart(NOW);
-  var prox=items.filter(function(e){return dayStart(e.date)>=hoje;})[0];
-  agSelD=dayStart(prox?prox.date:NOW);agWeek=addDays(agSelD,-agSelD.getDay());
+  // abre sempre no dia de hoje, na semana atual, sem o gerador aberto
+  clearTimeout(agGenT);agGen=null;
+  agSelD=dayStart(NOW);agWeek=addDays(agSelD,-agSelD.getDay());
   agLastFocus=document.activeElement;agOpen=true;renderAgenda();
   agEl.scrollTop=0;agEl.classList.add('open');agEl.setAttribute('aria-hidden','false');document.documentElement.classList.add('screen-open');
   setTimeout(function(){document.getElementById('ag-back').focus({preventScroll:true});},50);
 }
 function closeAgenda(){
-  agOpen=false;agEl.classList.remove('open');agEl.setAttribute('aria-hidden','true');document.documentElement.classList.remove('screen-open');
+  agOpen=false;agEl.classList.remove('open');agEl.setAttribute('aria-hidden','true');syncScreenLock();
   if(agLastFocus&&agLastFocus.focus) agLastFocus.focus({preventScroll:true});
 }
 document.getElementById('ag-back').onclick=closeAgenda;
-document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&agOpen&&!sheet.classList.contains('open')) closeAgenda();});
+document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&agOpen&&!evsOpen&&!sheet.classList.contains('open')) closeAgenda();});
 function agCard(e,nx,bate){
   return '<article class="ag-card'+(nx?' next':'')+'">'+(nx?'<span class="tag">Seu próximo rolê</span>':'')+
     '<div class="top"><img src="'+e.img+'" alt=""><button type="button" class="nm h6" data-open="'+e.id+'">'+esc(e.name)+'</button>'+
     '<button type="button" class="go" data-open="'+e.id+'" aria-label="Ver detalhes de '+esc(e.name)+'">'+ic('arrow',null,20)+'</button></div>'+
+    (e.clima?'<p class="ag-tempo">'+climaIc(e.clima,nx?'#fff':e.clima.tempestade?'#E11410':'#525252',16)+'<span>'+climaCurto(e.clima)+' '+(e.clima.periodo==='dia'?'no dia':'na hora')+' • '+e.clima.min+'°–'+e.clima.max+'°</span></p>'
+      :'<p class="ag-tempo sem">'+ic('nuvem',nx?'#fff':'#A3A3A3',16)+'<span>'+semClimaTxt(e)+'</span></p>')+
+    (e.alerta?'<span class="risco-pill">'+ic('alerta','#fff',14)+alertaCurto(e)+'</span>':'')+
     (bate&&bate.length?'<p class="ag-conf">'+ic('clock','#E11410')+'<span>Conflita com '+bate.map(function(b){return esc(b.name);}).join(' e ')+'</span></p>':'')+
     '<div class="bot"><span class="it">'+ic('pin')+'<span>'+esc(e.venue)+'</span></span>'+
     '<button type="button" class="rm" data-rm="'+e.id+'" aria-label="Tirar '+esc(e.name)+' da agenda">'+ic('x',null,16)+'</button></div></article>';
 }
 // sugestão: rolê do dia que você não marcou; se bate com o horário de um marcado, só entra quando é mais a sua cara que todos com que bate
-var DURACAO=3*36e5; // sem hora de fim no site: cada rolê ocupa ~3h
-function bateHorario(a,b){if(a.date.noTime||b.date.noTime) return false;return a.date<+b.date+DURACAO&&b.date<+a.date+DURACAO;}
+var DURACAO=3*36e5; // sem hora de fim no site: um rolê conta como encerrado ~3h depois de começar
+// conflito: começam no mesmo horário ou com menos de 1h de diferença
+var CONFLITO=36e5;
+function bateHorario(a,b){if(a.date.noTime||b.date.noTime) return false;return Math.abs(a.date-b.date)<CONFLITO;}
 function e_aff(e){return e.aff==null?0:e.aff;}
 function horaCurta(d){return d.noTime?'--':hora(d);}
 function renderAgenda(dir){
@@ -1237,14 +1407,17 @@ function renderAgenda(dir){
     '<div class="ag-weekwrap"><div class="ag-week" role="group" aria-label="Dias da semana">'+week.map(function(d){var k=dkey(d),m=marcados[k],sug=!m&&(doDia[k]||[]).some(function(e){return e.aff!=null&&e.aff>=TOP_MIN;});
       var mk=m?'<img src="'+m[0].img+'" alt="">':sug?ic('star','#D10A87',12):'';
       var lab=diaCompleto(d)+(m?', '+m.length+(m.length>1?' rolês marcados':' rolê marcado'):sug?', tem rolê a sua cara':'');
-      return '<button type="button" class="ag-day'+(d<hoje?' past':'')+'" data-day="'+d.getTime()+'" aria-pressed="'+(k===selK)+'" aria-label="'+lab+'"><span>'+capt(SEM[d.getDay()])+'</span><b>'+d.getDate()+'</b><span class="mk" aria-hidden="true">'+mk+'</span></button>';}).join('')+'</div></div></div>';
+      if(d<hoje){mk='';lab=diaCompleto(d)+', já passou';}
+      return '<button type="button" class="ag-day'+(d<hoje?' past':'')+'" data-day="'+d.getTime()+'" aria-pressed="'+(k===selK)+'" aria-label="'+lab+'"'+(d<hoje?' disabled':'')+'><span>'+capt(SEM[d.getDay()])+'</span><b>'+d.getDate()+'</b><span class="mk" aria-hidden="true">'+mk+'</span></button>';}).join('')+'</div></div></div>';
+  html+='<button type="button" class="ag-auto" id="ag-auto"'+(agGen?' hidden':'')+'><span class="art" aria-hidden="true">'+ic('star','#fff',28)+'</span><span class="tx"><b class="h6">Monte sua agenda com a gente</b><span>Juntamos seu gosto, os horários e o caminho entre os bares</span></span>'+ic('chev','#fff',20)+'</button>';
   var m=marcados[selK]||[],dia=doDia[selK]||[];
   // sugere só o que é 60%+ a sua cara, sem atropelar o que você já escolheu
   var sugs=dia.filter(function(e){return e.aff!=null&&e.aff>=TOP_MIN;}).map(function(e){return {e:e,bate:m.filter(function(b){return bateHorario(e,b);})};})
     .filter(function(x){return x.bate.every(function(b){return e_aff(x.e)>e_aff(b);});});
   // as sugestões vêm da cidade carregada no app: o nome dela aparece junto
   var cidade=esc(state.city.name)+(state.city.uf?', '+state.city.uf:''),emCidade='<p class="ag-city">'+ic('pin','#525252')+'<span>Sugestões em <b>'+cidade+'</b></span></p>';
-  if(!m.length&&!sugs.length) html+='<div class="ag-none"><span class="ib">'+ic('cal','#525252',24)+'</span>'+(dia.length
+  if(agGen) html+=agGenHtml();
+  else if(!m.length&&!sugs.length) html+='<div class="ag-none"><span class="ib">'+ic('cal','#525252',24)+'</span>'+(dia.length
     ?'<h3 class="h6">Nenhum rolê com a sua cara pra esse dia</h3><p class="desc-lg muted">'+(state.profile?'Tem rolê rolando em '+cidade+', mas nenhum chega a 60% de compatibilidade com o seu gosto. Tenta outro dia da semana.':'Conecte seu Spotify ou escolha seus gêneros pra gente sugerir rolês com a sua cara em '+cidade+'.')+'</p>'
     :'<h3 class="h6">Nenhum rolê encontrado pra esse dia</h3><p class="desc-lg muted">Não achamos nada rolando em '+cidade+' '+(dayDiff(agSelD)===0?'hoje':'nesse dia')+'. Tenta outro dia da semana.</p>')+'</div>';
   else{
@@ -1271,121 +1444,109 @@ function renderAgenda(dir){
   var ano=week[6].getFullYear(),suf=ano!==NOW.getFullYear()?' '+ano:'';
   mesEl.textContent=ms.map(function(x){return capt(MES_LONGO[x]);}).join('/')+suf;
   if(ms.length>1&&mesEl.scrollWidth>mesEl.clientWidth) mesEl.textContent=ms.map(function(x){return capt(MES[x]);}).join('/')+suf;
-  agBody.querySelectorAll('[data-day]').forEach(function(b){b.onclick=function(){agSelD=new Date(+b.getAttribute('data-day'));renderAgenda();};});
+  agBody.querySelectorAll('[data-day]').forEach(function(b){b.onclick=function(){agSelD=new Date(+b.getAttribute('data-day'));if(agGen&&agGen!=='loading') agGen=null;renderAgenda();};});
+  document.getElementById('ag-auto').onclick=startGen;
+  var gx=document.getElementById('ag-gen-x');if(gx) gx.onclick=function(){agGen=null;renderAgenda();};
+  var gt=document.getElementById('ag-gen-taste');if(gt) gt.onclick=function(){agGen=null;closeAgenda();openGenres();};
+  var gu=document.getElementById('ag-gen-use');if(gu) gu.onclick=function(){usarAgenda(agGen.ops[agGenPick]);};
+  agBody.querySelectorAll('[data-pick]').forEach(function(o){var pick=function(){agGenPick=+o.getAttribute('data-pick');var y=agEl.scrollTop;renderAgenda();agEl.scrollTop=y;};o.onclick=pick;o.onkeydown=function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();pick();}};});
   document.getElementById('ag-prev').onclick=function(){agWeek=addDays(agWeek,-7);agSelD=agWeek<hoje&&addDays(agWeek,7)>hoje?hoje:agWeek;renderAgenda(-1);};
   document.getElementById('ag-next').onclick=function(){agWeek=addDays(agWeek,7);agSelD=agWeek;renderAgenda(1);};
-  agBody.querySelectorAll('[data-rm]').forEach(function(b){b.onclick=function(){var id=b.getAttribute('data-rm'),snap=state.going[id],e=agendaItems().filter(function(x){return x.id===id;})[0];delete state.going[id];persist();render();
+  agBody.querySelectorAll('[data-rm]').forEach(function(b){b.onclick=function(){var id=b.getAttribute('data-rm'),snap=state.going[id],e=agendaItems(true).filter(function(x){return x.id===id;})[0];delete state.going[id];persist();render();
     toast('Tiramos '+e.name+' da sua agenda.',function(){state.going[id]=snap;persist();render();});};});
 }
 function snapshotGoing(e){state.going[e.id]={name:e.name,venue:e.venue,bairro:e.bairro,genre:e.genre,date:e.date.toISOString(),noTime:!!e.date.noTime,dist:e.dist,aff:e.aff,city:state.city.name,img:(e.img&&e.img.indexOf('data:image/svg')===0)?e.img:null};}
 function addToAgenda(e){snapshotGoing(e);persist();toast('Bora! '+e.name+' entrou na sua agenda.',openAgenda,'Ver agenda');}
-document.getElementById('agenda-fab').onclick=openAgenda; // abre sempre no dia do próximo rolê
+document.getElementById('agenda-fab').onclick=openAgenda;
 
-/* ---------- Roteiro de rolês (gerador de itinerário) ----------
-   Regras: 1) afinidade com o gosto (corte de 45% quando há perfil); 2) linha do tempo sem sobreposição:
-   cada parada tem um tempo de permanência estimado e a próxima só começa depois da saída + deslocamento + 5 min de folga;
-   3) logística: no máximo 4 km entre paradas; até 1,2 km a pé, acima disso de Uber. */
-var MIN_AFF=45,MAX_LEG_KM=4,MAX_STOPS=4,BUFFER_MIN=5;
+/* ---------- Agenda automática ----------
+   Monta agendas com os rolês 60%+ a sua cara dos próximos 14 dias, sem horário batendo:
+   1) nada a menos de 1h de outro rolê (nem dos que você já marcou);
+   2) no mesmo dia, o próximo só entra se dá tempo de ficar no anterior (~1h30, 2h nos de pista, 2h30 na madrugada) + deslocamento + 5 min de folga;
+   3) deslocamento: até 1,2 km a pé (80 m/min), acima disso de Uber (~2,4 min/km + 3 min), no máximo 4 km entre um bar e outro. */
+var MAX_LEG_KM=4,BUFFER_MIN=5,GEN_DIAS=14;
 function stayMin(e){if(e.genre==='Discotecagem'||e.genre==='Eletrônica') return 120;var h=e.date.getHours();return (h>=23||h<5)?150:90;}
 function endOf(e){return new Date(e.date.getTime()+stayMin(e)*6e4);}
-function legKm(a,b){return a.venueKey===b.venueKey?0:km({lat:a.lat,lng:a.lng},{lat:b.lat,lng:b.lng});}
+function legKm(a,b){return a.venueKey&&a.venueKey===b.venueKey?0:km({lat:a.lat,lng:a.lng},{lat:b.lat,lng:b.lng});}
 function leg(a,b){var d=legKm(a,b);if(d===0) return {km:0,min:0,mode:'same',txt:'No mesmo lugar'};if(d<=1.2){var m=Math.max(2,Math.ceil(d*1000/80));return {km:d,min:m,mode:'walk',txt:m+' min a pé'};}var u=Math.ceil(d*2.4+3);return {km:d,min:u,mode:'car',txt:u+' min de Uber'};}
-function fits(a,b){if(b.date.noTime||a.date.noTime) return false;if(legKm(a,b)>MAX_LEG_KM) return false;return b.date.getTime()>=endOf(a).getTime()+(leg(a,b).min+BUFFER_MIN)*6e4;}
-function dayKey(d){return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
-// fase pela posição na noite: abre com o esquenta, o meio é o show principal, quem fecha tarde é o after
-function phase(e,i,n){var h=e.date.getHours(),late=h<5||h>=23;if(n===1) return late?'After':h<19?'Esquenta':'Rolê da noite';if(i===0) return late?'After':'Esquenta';if(i===n-1&&(late||h>=22)) return late?'After':'Fechando a noite';return 'Show principal';}
-function itinPool(key){var all=events.filter(function(e){return dayKey(e.date)===key&&e.date>=NOW&&!e.date.noTime;});var cut=state.profile?all.filter(function(e){return (e.aff||0)>=MIN_AFF;}):all;return {all:all,pool:cut.length?cut:all,relaxed:state.profile&&!cut.length&&all.length};}
-function stopScore(e){return (e.aff!=null?e.aff:50)+12;}
-// cadeia de maior pontuação (intervalos ponderados com deslocamento), até 4 paradas
-function bestChain(pool){
+function cabe(a,b){if(b.date.noTime||a.date.noTime) return false;if(legKm(a,b)>MAX_LEG_KM) return false;return b.date.getTime()>=endOf(a).getTime()+(leg(a,b).min+BUFFER_MIN)*6e4;}
+function idaDeVoce(e){var d=km(ME,e);return d<=1.2?{min:Math.max(2,Math.ceil(d*1000/80)),mode:'walk'}:{min:Math.ceil(d*2.4+3),mode:'car'};}
+// melhor sequência do dia (intervalos ponderados com deslocamento), até `max` rolês
+function melhorDia(pool,score,max){
   var s=pool.slice().sort(function(a,b){return a.date-b.date;}),best=[];
-  s.forEach(function(e,i){var cand={score:stopScore(e),chain:[e]};
-    for(var j=0;j<i;j++){var p=best[j];if(!p||p.chain.length>=MAX_STOPS) continue;var last=p.chain[p.chain.length-1];if(!fits(last,e)) continue;
-      var sc=p.score+stopScore(e)-leg(last,e).min*0.3;if(sc>cand.score) cand={score:sc,chain:p.chain.concat([e])};}
+  s.forEach(function(e,i){var cand={score:score(e),chain:[e]};
+    for(var j=0;j<i;j++){var p=best[j];if(!p||p.chain.length>=max) continue;var last=p.chain[p.chain.length-1];if(!cabe(last,e)) continue;
+      var sc=p.score+score(e)-leg(last,e).min*0.4;if(sc>cand.score) cand={score:sc,chain:p.chain.concat([e])};}
     best[i]=cand;});
   return best.reduce(function(a,b){return !a||b.score>a.score?b:a;},null);
 }
-function buildDay(key){var p=itinPool(key);if(!p.all.length) return null;var b=bestChain(p.pool);return {key:key,ids:b?b.chain.map(function(e){return e.id;}):[],relaxed:p.relaxed,total:p.all.length};}
-function itinDays(){var out=[];for(var i=0;i<7;i++){var d=new Date(NOW.getFullYear(),NOW.getMonth(),NOW.getDate()+i);var k=dayKey(d);if(itinPool(k).all.length) out.push({key:k,date:d});}return out;}
-function stopsOf(day){return day.ids.map(findEvent).filter(Boolean);}
-var itinDraft={scope:'day',key:null};
-function renderItinCTA(){
-  var sec=document.getElementById('sec-itin'),days=itinDays();
-  if(!days.length){sec.hidden=true;sec.innerHTML='';return;}
-  sec.hidden=false;
-  var it=state.itin&&state.itin.city===state.city.slug?state.itin:null;
-  var title=it?(it.saved?'Seu roteiro tá salvo':'Seu roteiro tá pronto'):'Monte seu roteiro';
-  var desc=it?itinTitle(it)+' • '+it.days.reduce(function(n,d){return n+d.ids.length;},0)+' paradas, sem horário batendo.':'A gente encaixa os rolês mais a sua cara em sequência, sem horário batendo e com o deslocamento contado.';
-  sec.innerHTML='<div class="itin-cta"><span class="itin-ic">'+ic('route','#D10A87',24)+'</span><div class="itin-txt"><h2 class="h6">'+title+'</h2><p class="desc-lg muted">'+desc+'</p>'+
-   '<div class="itin-btns">'+(it?'<button type="button" class="btn secondary sm" id="itin-see">Ver roteiro</button><button type="button" class="btn ghost sm" id="itin-new">Montar outro</button>':'<button type="button" class="btn secondary sm" id="itin-new">'+ic('route','#D10A87')+'Montar meu roteiro</button>')+'</div></div></div>';
-  document.getElementById('itin-new').onclick=openItinBuilder;
-  var see=document.getElementById('itin-see');if(see) see.onclick=function(){openItin();};
+// por que cada rolê entrou: só com o que o app sabe de verdade (gosto, artista, compatibilidade, distância)
+function motivos(e,ant){var out=[],g=e.why||e.genre;
+  if(state.profile&&state.profile[g]!=null) out.push('Porque você curte '+g+', e quem sobe no palco é '+e.name);
+  else out.push('Porque quem sobe no palco é '+e.name);
+  if(e.aff>DECK_MIN) out.push(e.aff+'% sua cara: tá entre os rolês mais a sua cara da cidade');
+  if(!ant&&e.dist<=1.2) out.push('Fica a '+distTxt(e.dist)+' de você, dá pra ir a pé');
+  if(ant&&legKm(ant,e)===0) out.push('No mesmo lugar do rolê anterior, sem deslocamento');
+  if(e.clima&&!e.clima.chuva) out.push('Sem chuva prevista na hora: '+climaCurto(e.clima).toLowerCase()+', '+e.clima.max+'° de máxima');
+  return out.slice(0,2);}
+var agGen=null,agGenPick=0,agGenT=null;
+function gerarAgendas(){
+  var hoje=dayStart(NOW),fim=addDays(hoje,GEN_DIAS),marcados=agendaItems();
+  var livre=function(e){return !marcados.some(function(b){return bateHorario(e,b)||(dkey(b.date)===dkey(e.date)&&!(cabe(b,e)||cabe(e,b)));});};
+  var pool=events.filter(function(e){return e.date>=NOW&&e.date<fim&&!e.date.noTime&&!state.going[e.id]&&e.aff!=null&&e.aff>=TOP_MIN&&!e.risco&&livre(e);});
+  var porDia={};pool.forEach(function(e){(porDia[dkey(e.date)]=porDia[dkey(e.date)]||[]).push(e);});
+  var dias=Object.keys(porDia);
+  function montar(score,max,limiteDias,filtro){
+    var cadeias=dias.map(function(k){var p=porDia[k].filter(filtro||function(){return true;});return p.length?melhorDia(p,score,max):null;}).filter(Boolean);
+    cadeias.sort(function(a,b){return b.score-a.score;});
+    return cadeias.slice(0,limiteDias).map(function(c){return c.chain;}).sort(function(a,b){return a[0].date-b[0].date;});
+  }
+  var ops=[
+    {id:'cara',titulo:'A mais a sua cara',sub:'Os rolês com maior compatibilidade, um por noite',dias:montar(function(e){return e.aff;},1,4)},
+    {id:'perto',titulo:'Pertinho de você',sub:'Rolês a até 3 km, pra ir a pé ou num Uber rapidinho',dias:montar(function(e){return e.aff-e.dist*12;},2,3,function(e){return e.dist<=3;})},
+    {id:'noite',titulo:'Noite completa',sub:'Mais de um rolê na mesma noite, com tempo pra ir de um pro outro',dias:montar(function(e){return e.aff+30;},3,2).filter(function(c){return c.length>1;})}
+  ];
+  var vistos={};
+  return ops.filter(function(o){if(!o.dias.length) return false;var sig=o.dias.map(function(c){return c.map(function(e){return e.id;}).join(',');}).join('|');if(vistos[sig]) return false;vistos[sig]=1;return true;})
+    .map(function(o){var all=[].concat.apply([],o.dias),gs={};all.forEach(function(e){gs[e.why||e.genre]=1;});
+      var desloc=0;o.dias.forEach(function(c){desloc+=idaDeVoce(c[0]).min;for(var i=1;i<c.length;i++) desloc+=leg(c[i-1],c[i]).min;});
+      var media=Math.round(all.reduce(function(n,e){return n+e.aff;},0)/all.length);
+      var gl=Object.keys(gs);o.porque=['Porque você curte '+(gl.length>1?gl.slice(0,-1).join(', ')+' e '+gl[gl.length-1]:gl[0]),'Média de '+media+'% de compatibilidade com o seu gosto','Nenhum rolê batendo horário, nem com o que você já marcou'];
+      o.total=all.length;o.desloc=desloc;return o;});
 }
-function itinTitle(it){if(it.scope==='week') return 'Sua semana';var d=keyDate(it.days[0].key);var t=diaTitulo(d);return t==='Hoje'?'Seu hoje':t==='Amanhã'?'Seu amanhã':'Seu '+SEM_LONGO[d.getDay()];}
-function keyDate(k){var p=k.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
-function openItinBuilder(){
-  var days=itinDays();if(!itinDraft.key||!days.some(function(d){return d.key===itinDraft.key;})){var best=days.map(function(d){return {d:d,b:buildDay(d.key)};}).sort(function(a,b){return b.b.ids.length-a.b.ids.length;})[0];itinDraft.key=best.d.key;}
-  var genres=state.profile?Object.keys(state.profile).sort(function(a,b){return state.profile[b]-state.profile[a];}).slice(0,3).join(', '):null;
-  openSheet('<p class="eyebrow">Roteiro de rolês</p><h2 class="h3" id="sheet-title">Monte seu roteiro</h2>'+
-   '<p class="desc-lg muted" style="margin-top:4px">Escolha se quer planejar um dia ou a semana. A gente encaixa os rolês sem horário batendo e conta o deslocamento entre eles.</p>'+
-   '<div class="scope" role="radiogroup" aria-label="Escopo do roteiro"><button type="button" role="radio" data-scope="day" aria-checked="'+(itinDraft.scope==='day')+'">Um dia</button><button type="button" role="radio" data-scope="week" aria-checked="'+(itinDraft.scope==='week')+'">A semana</button></div>'+
-   '<div id="itin-days"'+(itinDraft.scope==='week'?' hidden':'')+'><p class="eyebrow" style="margin:16px 0 8px">Qual dia?</p><div class="genres" style="margin:0">'+days.map(function(d){var n=itinPool(d.key).all.length;return '<button type="button" class="chip" data-day="'+d.key+'" aria-pressed="'+(d.key===itinDraft.key)+'">'+diaTitulo(d.date)+' • '+n+(n===1?' rolê':' rolês')+'</button>';}).join('')+'</div></div>'+
-   '<p class="desc-sm muted" style="margin:16px 0">'+(genres?'Prioriza o que combina com o seu gosto ('+esc(genres)+') e deixa de fora o que tiver menos de '+MIN_AFF+'% de compatibilidade.':'Sem gosto definido, priorizamos horário e distância. Conecte o Spotify pra ficar mais a sua cara.')+'</p>'+
-   '<button type="button" class="btn primary lg block" id="itin-go">'+ic('route','#fff')+'Gerar roteiro</button>','Monte seu roteiro');
-  body.querySelectorAll('[data-scope]').forEach(function(b){b.onclick=function(){itinDraft.scope=b.getAttribute('data-scope');body.querySelectorAll('[data-scope]').forEach(function(x){x.setAttribute('aria-checked',x===b);});document.getElementById('itin-days').hidden=itinDraft.scope==='week';};});
-  body.querySelectorAll('[data-day]').forEach(function(b){b.onclick=function(){itinDraft.key=b.getAttribute('data-day');body.querySelectorAll('[data-day]').forEach(function(x){x.setAttribute('aria-pressed',x===b);});};});
-  document.getElementById('itin-go').onclick=function(){
-    var ds=itinDraft.scope==='week'?itinDays().map(function(d){return buildDay(d.key);}).filter(function(d){return d&&d.ids.length;}):[buildDay(itinDraft.key)];
-    state.itin={scope:itinDraft.scope,city:state.city.slug,days:ds,saved:false};persist();render();openItin(true);
-  };
+function genStops(c){
+  return '<ol class="gen-tl">'+c.map(function(e,i){var ant=c[i-1],l=ant?leg(ant,e):null,ida=!ant?idaDeVoce(e):null;
+    var perna=ant?'<li class="tl-leg"><span class="tl-rail" aria-hidden="true"></span><span class="tl-leg-txt">'+ic(l.mode==='car'?'car':'walk','#525252')+'<span>'+l.txt+(l.km?' • '+distTxt(l.km):'')+' • sai ~'+hora(endOf(ant))+'</span></span></li>':'';
+    return perna+'<li class="tl-stop"><div class="tl-time"><b>'+hora(e.date)+'</b></div><span class="tl-dot" aria-hidden="true"></span><div class="tl-card">'+
+      '<div class="tl-main"><img src="'+e.img+'" alt=""><span><span class="h6">'+esc(e.name)+'</span><span class="desc-sm muted">'+esc(e.venue)+' • '+(ida?(ida.mode==='car'?ida.min+' min de Uber':ida.min+' min a pé')+' de você':esc(e.bairro))+'</span></span></div>'+
+      motivos(e,ant).map(function(t){return '<span class="tl-why">'+ic('star','#D10A87',12)+'<span>'+esc(t)+'</span></span>';}).join('')+'</div></li>';}).join('')+'</ol>';
 }
-function legHtml(a,b){var l=leg(a,b),arrive=new Date(endOf(a).getTime()+l.min*6e4),slack=Math.round((b.date-arrive)/6e4);
-  return '<li class="tl-leg"><span class="tl-rail" aria-hidden="true"></span><span class="tl-leg-txt">'+ic(l.mode==='car'?'car':'walk','#525252')+'<span><b class="sb">'+l.txt+'</b>'+(l.km?' • '+distTxt(l.km):'')+' • sai ~'+hora(endOf(a))+', chega com '+slack+' min de folga</span></span></li>';}
-function stopHtml(e,di,si,n){var going=!!state.going[e.id];
-  return '<li class="tl-stop"><div class="tl-time"><b>'+hora(e.date)+'</b><span>até ~'+hora(endOf(e))+'</span></div><span class="tl-dot" aria-hidden="true"></span>'+
-   '<div class="tl-card"><span class="eyebrow">'+phase(e,si,n)+'</span>'+
-   '<button type="button" class="tl-main" data-ev="'+e.id+'"><img src="'+e.img+'" alt=""><span><span class="ev-title">'+esc(e.name)+'</span><span class="desc-sm muted">'+esc(e.venue)+' • '+esc(e.bairro)+'</span><span class="desc-sm muted tl-g">'+ic('note','#A3A3A3')+e.genre+'</span></span></button>'+
-   '<div class="tags">'+(e.aff!=null?'<span class="badge ok">'+ic('star','#1E810D')+e.aff+'% compatível</span>':'')+(si===0&&!e.city?'<span class="badge neutral">'+dTxt(e)+' '+deVoce()+'</span>':'')+'</div>'+
-   '<div class="tl-acts"><button type="button" class="btn ghost sm" data-swap="'+di+':'+si+'">'+ic('swap','#D10A87')+'Trocar rolê</button>'+
-   (going?'<button type="button" class="btn success sm" data-going="'+e.id+'">'+ic('check','#fff')+'Presença confirmada</button>':'<button type="button" class="btn secondary sm" data-going="'+e.id+'">'+ic('check','#D10A87')+'Confirmar presença</button>')+'</div></div></li>';}
-function openItin(fresh){
-  var it=state.itin;if(!it) return openItinBuilder();
-  var html='<p class="eyebrow">Roteiro de rolês • '+esc(state.city.name)+'</p><h2 class="h3" id="sheet-title">'+itinTitle(it)+'</h2>';
-  var totalStops=0;
-  it.days.forEach(function(day,di){
-    var st=stopsOf(day);totalStops+=st.length;
-    if(it.scope==='week'||!st.length){var d=keyDate(day.key);html+='<div class="day-head tl-day"><h3 class="h6">'+diaTitulo(d)+'</h3><span class="desc-sm muted">'+diaCompleto(d)+'</span></div>';}
-    if(!st.length){html+='<p class="desc-lg muted" style="margin-top:8px">Nada que combine com você nesse dia. Que tal ver a semana inteira?</p>';return;}
-    if(it.scope==='day') html+='<p class="desc-lg muted" style="margin-top:4px">'+st.length+(st.length===1?' parada':' paradas')+' • das '+hora(st[0].date)+' até ~'+hora(endOf(st[st.length-1]))+(st.length>1?' • '+(st.length-1)+(st.length===2?' deslocamento':' deslocamentos'):'')+'</p>';
-    var out=day.total-st.length;
-    html+='<ol class="tl">';st.forEach(function(e,si){html+=stopHtml(e,di,si,st.length);if(si<st.length-1) html+=legHtml(e,st[si+1]);});html+='</ol>';
-    if(out>0) html+='<p class="desc-sm muted tl-note">'+(st.length===1?'Os outros '+out+(out===1?' rolê começa':' rolês começam')+' em horário que bate com este ou não combinam tanto com você. Toque em “Trocar rolê” pra ver.':'Ficaram de fora '+out+(out===1?' rolê':' rolês')+' com horário batendo ou menos a sua cara.')+'</p>';
-    if(day.relaxed) html+='<p class="desc-sm muted tl-note">Nenhum rolê passou do corte de '+MIN_AFF+'% nesse dia, então mostramos os que cabem no horário.</p>';
-  });
-  html+='<div class="tl-foot">'+(it.saved?'<button type="button" class="btn success lg block" id="itin-save" disabled>'+ic('check','#fff')+'Roteiro salvo na agenda</button>':'<button type="button" class="btn primary lg block" id="itin-save"'+(totalStops?'':' disabled')+'>'+ic('cal','#fff')+'Salvar roteiro na agenda</button>')+
-   '<button type="button" class="btn ghost md block" id="itin-redo">Mudar dia ou escopo</button></div>';
-  openSheet(html,itinTitle(it));
-  body.querySelectorAll('[data-ev]').forEach(function(b){b.onclick=function(){openEvent(b.getAttribute('data-ev'));};});
-  body.querySelectorAll('[data-going]').forEach(function(b){b.onclick=function(){var id=b.getAttribute('data-going'),e=findEvent(id);if(state.going[id]){delete state.going[id];toast('Pode deixar, tiramos '+e.name+' da sua agenda.');}else{snapshotGoing(e);toast('Presença confirmada em '+e.name+'.',openAgenda,'Ver agenda');}persist();render();openItin();};});
-  body.querySelectorAll('[data-swap]').forEach(function(b){b.onclick=function(){var p=b.getAttribute('data-swap').split(':');openSwap(+p[0],+p[1]);};});
-  document.getElementById('itin-redo').onclick=openItinBuilder;
-  var sv=document.getElementById('itin-save');if(sv&&!it.saved) sv.onclick=function(){var n=0;it.days.forEach(function(d){stopsOf(d).forEach(function(e){if(!state.going[e.id]){snapshotGoing(e);n++;}});});it.saved=true;persist();render();openItin();
-    toast('Roteiro salvo: '+totalStops+(totalStops===1?' rolê':' rolês')+' na sua agenda.',openAgenda,'Ver agenda');};
-  if(fresh) toast('Roteiro pronto: '+totalStops+(totalStops===1?' parada':' paradas')+', sem horário batendo.');
+function agGenHtml(){
+  if(agGen==='loading') return '<div class="ag-load" role="status" aria-live="polite"><div class="rad" aria-hidden="true"><span class="pulse"></span><span class="pulse"></span><span class="pulse"></span><span class="core">'+ic('star','#fff',24)+'</span></div>'+
+    '<h3 class="h5">Montando sua agenda...</h3><ul class="steps" id="ag-steps">'+['Lendo seu gosto musical','Separando os rolês 60%+ a sua cara','Checando horários pra nada bater','Calculando Uber e caminhada entre os bares'].map(function(t,i){return '<li><i></i><span>'+t+'</span></li>';}).join('')+'</ul></div>';
+  var ops=agGen.ops,h='<div class="ag-gen"><div class="hd"><div><h3 class="h5">Agendas pra você</h3><p class="desc-lg muted">'+(ops.length?'Escolha a que mais combina com você. Os rolês dos próximos '+GEN_DIAS+' dias em '+esc(state.city.name)+'.':'')+'</p></div>'+
+    '<button type="button" class="btn ghost sm" id="ag-gen-x" aria-label="Fechar sugestões de agenda">'+ic('x')+'</button></div>';
+  if(!state.profile) return h+'<div class="ag-none"><span class="ib">'+ic('note','#525252',24)+'</span><h3 class="h6">Conta pra gente do que você curte</h3><p class="desc-lg muted">Pra montar sua agenda a gente precisa saber seu gosto musical.</p><button type="button" class="btn secondary md" id="ag-gen-taste">Escolher meus gêneros</button></div></div>';
+  if(!ops.length) return h+'<div class="ag-none"><span class="ib">'+ic('cal','#525252',24)+'</span><h3 class="h6">Não deu pra montar uma agenda agora</h3><p class="desc-lg muted">Nos próximos '+GEN_DIAS+' dias não achamos rolês 60%+ a sua cara em '+esc(state.city.name)+' que caibam sem bater horário com o que você já marcou.</p></div></div>';
+  h+='<div role="radiogroup" aria-label="Agendas sugeridas" style="display:flex;flex-direction:column;gap:16px">'+ops.map(function(o,i){
+    return '<div class="gen-opt" role="radio" tabindex="0" data-pick="'+i+'" aria-checked="'+(i===agGenPick)+'"><div class="t"><div><h4 class="h5">'+o.titulo+'</h4><p class="desc-sm muted">'+o.sub+'</p></div><span class="radio" aria-hidden="true">'+(i===agGenPick?ic('check','#fff',14):'')+'</span></div>'+
+      '<div class="gen-meta"><span class="badge brand">'+o.total+(o.total>1?' rolês':' rolê')+'</span><span class="badge neutral">'+o.dias.length+(o.dias.length>1?' noites':' noite')+'</span><span class="badge neutral">'+ic('car','#525252')+'~'+o.desloc+' min de deslocamento</span></div>'+
+      '<ul class="gen-why" style="list-style:none;margin:0;padding:0">'+o.porque.map(function(t){return '<li>'+ic('check','#24990F')+'<span>'+esc(t)+'</span></li>';}).join('')+'</ul>'+
+      o.dias.map(function(c){var d=c[0].date;return '<p class="gen-day">'+(dayDiff(d)===0?'Hoje':dayDiff(d)===1?'Amanhã':capt(SEM_LONGO[d.getDay()]))+', '+d.getDate()+' de '+MES_LONGO[d.getMonth()]+'</p>'+genStops(c);}).join('')+'</div>';}).join('')+'</div>'+
+    '<div class="ag-gen-bar"><button type="button" class="btn primary lg block" id="ag-gen-use">'+ic('check','#fff')+'Usar esta agenda</button></div></div>';
+  return h;
 }
-// alternativas que cabem entre a parada anterior e a próxima, no mesmo horário (até 90 min de diferença)
-function swapOptions(day,si){var st=stopsOf(day),cur=st[si],prev=st[si-1],next=st[si+1],used={};st.forEach(function(e){used[e.id]=1;});
-  return itinPool(day.key).all.filter(function(c){return !used[c.id]&&Math.abs(c.date-cur.date)<=90*6e4&&(!prev||fits(prev,c))&&(!next||fits(c,next));}).sort(function(a,b){return ((b.aff||0)-(a.aff||0))||(a.dist-b.dist);});}
-function openSwap(di,si){
-  var it=state.itin,day=it.days[di],st=stopsOf(day),cur=st[si],opts=swapOptions(day,si),prev=st[si-1],next=st[si+1];
-  var html='<p class="eyebrow">Trocar rolê • '+hora(cur.date)+'</p><h2 class="h3" id="sheet-title">No lugar de '+esc(cur.name)+'</h2><p class="desc-lg muted" style="margin:4px 0 16px">Opções no mesmo horário que cabem entre '+(prev?esc(prev.name):'o começo do rolê')+' e '+(next?esc(next.name):'o fim da noite')+'.</p>';
-  if(!opts.length) html+='<div class="empty"><h3 class="h6">Nenhuma outra opção cabe nesse horário</h3><p class="desc-lg muted">Os outros rolês do dia batem com as paradas vizinhas ou ficam longe demais.</p></div>';
-  else html+='<div class="list">'+opts.map(function(c){var l1=prev?leg(prev,c).txt+' desde '+esc(prev.name):dTxt(c)+' '+deVoce();return '<div class="ag">'+evHtml(c,true)+'<button type="button" class="btn secondary sm" data-pick="'+c.id+'" aria-label="Trocar por '+esc(c.name)+'">Escolher</button></div><p class="desc-sm muted" style="margin:-8px 0 0 104px">'+l1+'</p>';}).join('')+'</div>';
-  html+='<div class="tl-foot"><button type="button" class="btn ghost md block" id="swap-back">Voltar ao roteiro</button></div>';
-  openSheet(html,'Trocar rolê');
-  document.getElementById('swap-back').onclick=function(){openItin();};
-  body.querySelectorAll('[data-pick]').forEach(function(b){b.onclick=function(){var id=b.getAttribute('data-pick'),old=day.ids[si];day.ids[si]=id;it.saved=false;persist();render();openItin();
-    toast('Trocamos '+findEvent(old).name+' por '+findEvent(id).name+'.',function(){day.ids[si]=old;persist();render();openItin();});};});
+function startGen(){
+  clearTimeout(agGenT);agGen='loading';agGenPick=0;renderAgenda();
+  var passo=0,steps=function(){var ul=document.getElementById('ag-steps');if(!ul) return;[].forEach.call(ul.children,function(li,i){li.className=i<passo?'ok':i===passo?'on':'';li.querySelector('i').innerHTML=i<passo?ic('check','#fff',10):'';});};
+  steps();
+  var tick=function(){passo++;steps();if(passo<4) agGenT=setTimeout(tick,reduceMotion?150:750);else agGenT=setTimeout(function(){agGen={ops:gerarAgendas()};renderAgenda();var g=agBody.querySelector('.ag-gen');if(g) g.scrollIntoView({block:'start',behavior:reduceMotion?'auto':'smooth'});},reduceMotion?150:500);};
+  agGenT=setTimeout(tick,reduceMotion?150:750);
+}
+function usarAgenda(o){
+  var all=[].concat.apply([],o.dias);all.forEach(function(e){snapshotGoing(e);});persist();
+  agGen=null;var d=dayStart(o.dias[0][0].date);agSelD=d;agWeek=addDays(d,-d.getDay());render();
+  agEl.scrollTop=0;toast('Pronto! '+all.length+(all.length>1?' rolês entraram':' rolê entrou')+' na sua agenda.');
 }
 
 /* ---------- Interações do card destaque ---------- */
@@ -1458,18 +1619,57 @@ sheet.addEventListener('wheel',function(ev){
 document.getElementById('sheet-close').onclick=closeSheet;scrim.onclick=closeSheet;
 document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&sheet.classList.contains('open')) closeSheet();});
 
+// Detalhe do rolê: tela própria que entra da direita (como a agenda)
+var evsEl=document.getElementById('evs'),evsOpen=false,evsLastFocus=null,evsId=null;
+function syncScreenLock(){document.documentElement.classList.toggle('screen-open',agOpen||evsOpen);}
 function openEvent(id){
-  var e=findEvent(id)||agendaItems().filter(function(x){return x.id===id;})[0];if(!e) return;
-  var going=state.going[e.id];
-  var why=e.aff!=null?'<div>'+ic('star','#24990F')+'<span><b class="sb">'+e.aff+'% compatível.</b> Combina com o seu gosto por '+e.why+'.</span></div>':'';
-  openSheet('<div class="sheet-img"><img src="'+e.img+'" alt=""></div>'+
-    '<p class="eyebrow">'+e.genre+'</p><h2 class="h3" id="sheet-title">'+esc(e.name)+'</h2>'+
-    '<div class="kv"><div>'+ic('cal','#525252')+'<span>'+quandoCompleto(e.date)+'</span></div>'+
-    '<div>'+ic('pin','#525252')+'<span>'+esc(e.venue)+' • '+esc(e.bairro)+'<br><span class="muted">'+trajetoE(e)+'</span></span></div>'+why+'</div>'+
-    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">'+
-    '<a class="btn secondary md" href="https://www.roleagora.com.br/city/presidente-prudente-sp" target="_blank" rel="noopener">'+ic('out','#D10A87')+'Ver no site</a>'+
-    (going?'<button type="button" class="btn success md" id="sh-go">'+ic('check','#fff')+'Você vai!</button>':'<button type="button" class="btn primary md" id="sh-go">'+ic('check','#fff')+'Bora</button>')+'</div>',e.name);
-  document.getElementById('sh-go').onclick=function(){if(state.going[e.id]){delete state.going[e.id];persist();toast('Pode deixar, tiramos da sua agenda.');}else{addToAgenda(e);}render();openEvent(e.id);};
+  var e=findEvent(id)||agendaItems(true).filter(function(x){return x.id===id;})[0];if(!e) return;
+  if(sheet.classList.contains('open')) closeSheet();
+  if(!evsOpen) evsLastFocus=document.activeElement;
+  evsId=e.id;renderEvScreen(e);evsEl.scrollTop=0;
+  if(!evsOpen){evsOpen=true;evsEl.classList.add('open');evsEl.setAttribute('aria-hidden','false');syncScreenLock();}
+  setTimeout(function(){var b=document.getElementById('evs-back');if(b) b.focus({preventScroll:true});},50);
+}
+function closeEvent(){
+  evsOpen=false;evsEl.classList.remove('open');evsEl.setAttribute('aria-hidden','true');syncScreenLock();
+  if(evsLastFocus&&evsLastFocus.focus) evsLastFocus.focus({preventScroll:true});
+}
+document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&evsOpen&&!sheet.classList.contains('open')){ev.stopImmediatePropagation();closeEvent();}},true);
+function gcalLink(e){ // "Pôr no calendário": abre o Google Agenda já preenchido (~3h de duração)
+  var f=function(d){return d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+(e.date.noTime?'':'T'+String(d.getHours()).padStart(2,'0')+String(d.getMinutes()).padStart(2,'0')+'00');};
+  var fim=e.date.noTime?addDays(e.date,1):new Date(+e.date+DURACAO);
+  return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(e.name)+'&dates='+f(e.date)+'/'+f(fim)+'&location='+encodeURIComponent(e.venue+', '+(e.city||state.city.name))+'&ctz=America/Sao_Paulo';
+}
+function renderEvScreen(e){
+  var going=!!state.going[e.id],d=e.date,dd=dayDiff(d);
+  var dia=dd===0?'Hoje':dd===1?'Amanhã':capt(SEM_LONGO[d.getDay()]);
+  var longe=e.city&&e.city!==state.city.name?esc(e.city):dTxt(e)+' de você';
+  var outros=events.filter(function(x){return x.venueKey&&x.venueKey===e.venueKey&&x.id!==e.id&&x.date>=NOW;}).sort(function(a,b){return a.date-b.date;}).slice(0,3);
+  var site='https://www.roleagora.com.br/city/'+(state.city.slug||'presidente-prudente-sp');
+  evsEl.innerHTML='<div class="photo" style="background-image:url(\''+e.img+'\')"></div><div class="in">'+
+    '<div class="top"><button type="button" class="glass" id="evs-back" aria-label="Voltar"><svg class="ico ico-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>'+
+      '<h2 class="h6">'+esc(e.genre)+'</h2><button type="button" class="glass" id="evs-share" aria-label="Compartilhar">'+ic('share',null,20)+'</button></div>'+
+    '<div class="spacer"></div>'+
+    '<div class="head"><div><h1 class="h1" id="evs-title">'+esc(e.name)+'</h1><p class="where soft">'+ic('pin','rgba(255,255,255,.75)',14)+'<span>'+esc(e.venue)+(e.arLivre?' • Ao ar livre':'')+'</span></p></div>'+
+      (e.aff!=null?'<span class="pillw">'+ic('star','#24990F',16)+e.aff+'% sua cara</span>':'')+'</div>'+
+    '<div class="when"><div><b>'+d.getDate()+'</b><span>'+MES_LONGO[d.getMonth()]+'</span></div><div><b>'+dia+'</b><span>'+(d.noTime?'Horário a confirmar':hora(d))+' • '+longe+'</span></div>'+
+      '<a class="glass cal" href="'+gcalLink(e)+'" target="_blank" rel="noopener" aria-label="Pôr no calendário">'+ic('cal','#fff',20)+'</a></div>'+
+    (e.clima?'<p class="clima-linha">'+climaIc(e.clima,'#fff',20)+'<span>Previsão '+(e.clima.periodo==='dia'?'pro dia':(e.clima.periodo==='noite'?'pra noite':e.clima.periodo==='tarde'?'pra tarde':'pra manhã'))+': '+esc(e.clima.resumo)+' • '+e.clima.min+'°–'+e.clima.max+'° <span class="soft">(INMET)</span></span></p>'
+      :'<p class="clima-linha soft">'+ic('nuvem','rgba(255,255,255,.6)',20)+'<span>'+semClimaTxt(e)+'.</span></p>')+
+    (e.alerta?'<div class="alerta-risco" role="alert">'+ic('alerta','#fff',20)+'<span><b>'+(e.arLivre?'Esse rolê é muito arriscado':'Atenção: '+(e.clima.tempestade?'tempestade':'chuva')+' na previsão')+'</b>Previsão de '+(e.clima.tempestade?'tempestade com trovoadas':'chuva')+' '+(e.clima.periodo==='dia'?'no dia':'na hora do rolê')+
+      (e.arLivre?', e o lugar é ao ar livre. Confere com o lugar antes de sair.':'. O lugar é fechado, mas o caminho pode complicar: vai de Uber e fica de olho no tempo.')+'</span></div>':'')+
+    (e.aff!=null&&e.aff>=TOP_MIN&&e.why?'<p class="why soft"><b>Por que é a sua cara:</b> '+capt(e.why)+' é um dos gêneros que você mais ouve. '+e.aff+'% compatível com o seu gosto'+(e.climaAdj<0?', já descontando a previsão do tempo':e.climaAdj>0?', com tempo firme ajudando':'')+'.</p>':'')+
+    (outros.length?'<div class="more"><h3 class="h6">Também na '+esc(e.venue)+'</h3>'+outros.map(function(x){return '<button type="button" class="mini" data-evs="'+x.id+'"><img src="'+x.img+'" alt=""><span><b class="sb" style="display:block">'+esc(x.name)+'</b><span class="desc-sm soft">'+capt(SEM[x.date.getDay()])+', '+dataCurta(x.date)+'</span></span></button>';}).join('')+'</div>':'')+
+    '<div class="bar"><a class="site" href="'+site+'" target="_blank" rel="noopener" aria-label="Ver no site do Rolê Agora">'+ic('out','#fff',20)+'</a>'+
+      (going?'<button type="button" class="btn success lg" id="sh-go">'+ic('check','#fff')+'Você vai!</button>':'<button type="button" class="btn primary lg" id="sh-go">'+ic('check','#fff')+'Bora</button>')+'</div></div>';
+  document.getElementById('evs-back').onclick=closeEvent;
+  document.getElementById('sh-go').onclick=function(){if(state.going[e.id]){delete state.going[e.id];persist();toast('Pode deixar, tiramos da sua agenda.');}else{addToAgenda(e);}render();renderEvScreen(e);};
+  document.getElementById('evs-share').onclick=function(){
+    var txt=e.name+' • '+quandoCompleto(d)+' • '+e.venue;
+    if(navigator.share){navigator.share({title:e.name,text:txt,url:site}).catch(function(){});return;}
+    (navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(txt+' — '+site):Promise.reject()).then(function(){toast('Copiamos os detalhes do rolê pra você colar onde quiser.');},function(){toast(txt);});
+  };
+  evsEl.querySelectorAll('[data-evs]').forEach(function(b){b.onclick=function(){openEvent(b.getAttribute('data-evs'));};});
 }
 function openVenue(k){
   var v=VENUES[k],items=visible().filter(function(e){return e.venueKey===k;}).sort(state.profile?byTop:byList);
@@ -1827,7 +2027,7 @@ qc.onclick=clearSearch;
 document.getElementById('locate').onclick=function(){toMap();resetArea();render();if(loc.src==='demo') locate(true);};
 q.addEventListener('focus',function(){toMap();showPopularRoles();});
 q.addEventListener('click',function(){if(sugEl.hidden) showPopularRoles();});
-document.addEventListener('click',function(ev){var o=ev.target.closest('[data-open]');if(o&&!sheet.contains(o)){openEvent(o.getAttribute('data-open'));return;}var p=ev.target.closest('.pin');if(p){openVenue(p.getAttribute('data-venue'));}});
+document.addEventListener('click',function(ev){var o=ev.target.closest('[data-open]');if(o&&!sheet.contains(o)&&!evsEl.contains(o)){openEvent(o.getAttribute('data-open'));return;}var p=ev.target.closest('.pin');if(p){openVenue(p.getAttribute('data-venue'));}});
 var rt=null;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){layout();renderMap(buckets());},120);});
 layout();render();startScan();initLocation();
 })();
