@@ -71,9 +71,8 @@ p,h1,h2,h3,h4{margin:0}
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
 .me{position:absolute;z-index:3;width:0;height:0;pointer-events:none}
 .me .halo{position:absolute;left:0;top:0;transform:translate(-50%,-50%);border-radius:50%;background:rgba(23,23,23,.08);border:1px solid rgba(23,23,23,.24)}
-.me .av{position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;padding:3px;background:var(--surface);box-shadow:0 0 0 2px var(--text),var(--shadow)}
-.me .av img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-.me .you{position:absolute;left:0;top:26px;transform:translateX(-50%);background:var(--text);color:var(--inverse);border-radius:var(--r-pill);padding:2px 8px;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(23,23,23,.18)}
+.me .pt{position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:var(--action);border:3px solid var(--surface);box-shadow:0 1px 4px rgba(23,23,23,.25)}
+.me .you{position:absolute;left:0;top:16px;transform:translateX(-50%);background:var(--text);color:var(--inverse);border-radius:var(--r-pill);padding:2px 8px;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(23,23,23,.18)}
 .me .dot{position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;background:var(--text);border:3px solid var(--surface);box-shadow:var(--shadow)}
 .me.center .you{top:12px;background:var(--surface);color:var(--text);border:1px solid var(--border)}
 .pin{position:absolute;z-index:4;transform:translate(-50%,-30%);display:flex;flex-direction:column;align-items:center;border:0;background:transparent;padding:0;transition:transform .2s}
@@ -322,6 +321,80 @@ body.has-agenda .content{padding-bottom:calc(112px + env(safe-area-inset-bottom,
 .day-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s-xsm);padding-bottom:var(--s-xsm);border-bottom:1px solid var(--border)}
 .day .list{margin-top:var(--s-sm)}
 .ag{display:flex;align-items:center;gap:var(--s-xsm)}
+/* Agenda: dias com rolê numa faixa; os rolês do dia escolhido em cards */
+/* Agenda: tela própria que entra da direita */
+html.screen-open{overflow:hidden}
+.screen{position:fixed;inset:0;z-index:19;background:var(--page);overflow-y:auto;overscroll-behavior:contain;transform:translateX(100%);visibility:hidden;transition:transform .32s cubic-bezier(.2,.7,.2,1),visibility 0s linear .32s}
+.screen.open{transform:none;visibility:visible;transition:transform .32s cubic-bezier(.2,.7,.2,1)}
+.screen-in{max-width:430px;margin:0 auto;padding:0 max(24px,env(safe-area-inset-right,0px)) calc(var(--s-xlg) + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.screen-bar{position:sticky;top:0;z-index:2;background:var(--page);display:grid;grid-template-columns:48px 1fr 48px;align-items:center;gap:var(--s-xsm);padding:max(16px,env(safe-area-inset-top,0px)) 0 var(--s-xsm)}
+.screen-bar h2{text-align:center}
+.screen-bar .back{width:48px;height:48px;border-radius:50%;border:0;background:var(--subtle);display:grid;place-items:center;color:var(--text)}
+.ag-sub{text-align:center;margin-top:-4px}
+.ag-when{margin-top:var(--s-m);display:flex;flex-direction:column;gap:var(--s-xsm)}
+.ag-when .hd{display:flex;align-items:center;justify-content:space-between;gap:var(--s-xsm)}
+.ag-when .hd .eyebrow{letter-spacing:0;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ag-nav{display:flex;gap:var(--s-xsm);flex:none}
+.ag-nav button{width:32px;height:32px;border-radius:50%;border:0;background:var(--subtle);display:grid;place-items:center;color:var(--brand-text)}
+.ag-nav button:disabled{color:var(--bg-strong);background:transparent;cursor:default}
+.ag-nav .prev svg{transform:rotate(180deg)}
+.ag-weekwrap{position:relative;overflow:hidden}
+.ag-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.ag-week.ghost{position:absolute;inset:0;pointer-events:none}
+.ag-day{min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 4px 12px;border:0;border-radius:var(--r-pill);background:transparent;font-size:12px;line-height:1.5}
+.ag-day span{color:var(--text-2)}
+.ag-day b{font-weight:700;color:var(--text)}
+/* marcador: foto do 1º rolê marcado, estrela de sugestão ou nada (mesma altura nos três) */
+.ag-day .mk{height:20px;display:grid;place-items:center}
+.ag-day .mk img{width:20px;height:20px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--surface)}
+.ag-day[aria-pressed=true]{background:var(--action)}
+.ag-day[aria-pressed=true] span,.ag-day[aria-pressed=true] b{color:var(--inverse)}
+.ag-day[aria-pressed=true] .mk svg path{fill:var(--inverse)}
+.ag-day.past b,.ag-day.past span{opacity:.5}
+.ag-day[aria-pressed=true].past b,.ag-day[aria-pressed=true].past span{opacity:1}
+.ag-tl{margin-top:var(--s-m);display:flex;flex-direction:column}
+/* timeline do dia: hora à esquerda, linha ligando os rolês, card à direita */
+.ag-row{display:grid;grid-template-columns:48px minmax(0,1fr);gap:var(--s-xsm)}
+.ag-row .tl{display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:var(--s-sm)}
+.ag-row .tl b{font-size:14px;font-weight:700;line-height:1.3;color:var(--text);white-space:nowrap}
+.ag-row .tl i{flex:none;width:10px;height:10px;border-radius:50%;background:var(--action)}
+.ag-row .tl .ln{flex:1;width:2px;min-height:16px;background:var(--border)}
+.ag-row:last-child .tl .ln{visibility:hidden}
+.ag-row.conf .tl i{background:var(--live)}
+.ag-conf{align-self:flex-start;display:inline-flex;gap:var(--s-2xsm);align-items:flex-start;font-size:12px;line-height:1.5;font-weight:600;color:var(--live);background:var(--surface);border-radius:var(--r-xsm);padding:4px 10px}
+.ag-conf .ico{margin-top:2px;flex:none}
+.ag-row .ag-card{margin-bottom:var(--s-sm)}
+.ag-card .bot .it:first-child:not(:last-of-type){flex:none} /* a hora nunca corta; o lugar é que encurta */
+.ag-sugt{margin-top:var(--s-m)}
+.ag-sugt+.list,.ag-msg+.list,.ag-city+.list{margin-top:var(--s-sm)}
+.ag-city{display:flex;align-items:center;gap:var(--s-2xsm);font-size:12px;line-height:1.5;color:var(--text-2);margin-top:var(--s-2xsm)}
+.ag-city b{color:var(--text);font-weight:600}
+.ag-tl+.list{margin-top:var(--s-m)}
+.ag-sug{display:flex;flex-direction:column;gap:var(--s-2xsm)}
+.ag-bate{display:flex;gap:var(--s-2xsm);align-items:flex-start;font-size:12px;line-height:1.5;color:var(--live);padding-left:calc(88px + var(--s-sm))}
+.ag-bate .ico{margin-top:2px}
+.ag-msg{margin-top:var(--s-m);display:flex;flex-direction:column;gap:var(--s-2xsm)}
+.ag-msg+.list{margin-top:var(--s-sm)}
+.ag-none{margin-top:var(--s-m);display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--s-xsm);padding:var(--s-lg) var(--s-m);border-radius:var(--r-xsm);background:var(--subtle)}
+.ag-none .ib{width:48px;height:48px;border-radius:50%;background:var(--surface);display:grid;place-items:center}
+@media (min-width:640px){.screen-in{max-width:640px}}
+@media (min-width:1440px){.screen{width:clamp(520px,40vw,720px)!important}}
+@media (min-width:1024px){.screen{right:auto;width:clamp(420px,34vw,520px);box-shadow:1px 0 0 var(--border)}.screen-in{max-width:none;padding-left:32px;padding-right:32px}}
+.ag-list{display:flex;flex-direction:column;gap:var(--s-sm);margin-top:var(--s-m)}
+.ag-card{border-radius:var(--r-xlg);background:var(--subtle);padding:var(--s-sm);display:flex;flex-direction:column;gap:var(--s-sm)}
+.ag-card .top{display:flex;gap:var(--s-sm);align-items:center}
+.ag-card .top img{width:64px;height:64px;border-radius:var(--r-xsm);object-fit:cover;flex:none}
+.ag-card .nm{flex:1;min-width:0;text-align:left;border:0;background:transparent;padding:0;color:inherit;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ag-card .go{flex:none;width:48px;height:48px;border-radius:50%;border:0;background:var(--surface);display:grid;place-items:center;color:var(--text)}
+.ag-card .bot{display:flex;align-items:center;gap:var(--s-xsm);font-size:14px;color:var(--text-2);min-width:0}
+.ag-card .bot .it{display:flex;align-items:center;gap:var(--s-2xsm);min-width:0}
+.ag-card .bot .it span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ag-card .bot .sep{width:1px;height:14px;background:currentColor;opacity:.5;flex:none}
+.ag-card .bot .rm{margin-left:auto;flex:none;width:32px;height:32px;border-radius:50%;border:0;background:var(--surface);display:grid;place-items:center;color:var(--text)}
+.ag-card.next{background:var(--action);color:var(--inverse)}
+.ag-card.next .bot{color:var(--inverse)}
+.ag-card.next .go,.ag-card.next .bot .rm{background:rgba(255,255,255,.18);color:var(--inverse)}
+.ag-card .tag{font-size:12px;font-weight:600;letter-spacing:.02em}
 .ag .ev{flex:1;min-width:0}
 .ag .rm{flex:none;width:32px;height:32px;border-radius:50%;border:0;background:var(--subtle);display:grid;place-items:center}
 .ag .rm:hover{background:var(--bg-default)}
@@ -330,6 +403,39 @@ body.has-agenda .content{padding-bottom:calc(112px + env(safe-area-inset-bottom,
 .toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 .toast button{flex:none;white-space:nowrap;border:0;background:transparent;color:#F28CCE;font-weight:600;padding:4px 8px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* ---------- Telas maiores ---------- */
+/* tablet: o app ocupa a largura toda; listas em duas colunas */
+@media (min-width:640px){
+  .app{max-width:none;box-shadow:none}
+  .search{right:auto;width:min(560px,calc(100% - 48px))}
+  .suggest{right:auto;width:min(560px,calc(100% - 48px))}
+  .content{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}
+  .rail{padding-left:32px;padding-right:32px;scroll-padding-left:32px;margin-left:-32px!important;margin-right:-32px!important}
+  .when{margin-left:-32px;margin-right:-32px;padding-left:32px;padding-right:32px}
+  .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-sm)}
+  .deck{max-width:480px}
+  .found{max-width:560px}
+  .sheet{max-width:560px}
+}
+/* desktop: lista à esquerda, mapa à direita, sempre à vista */
+@media (min-width:1024px){
+  .app{display:grid;grid-template-columns:var(--col) minmax(0,1fr);min-height:100vh;--col:clamp(420px,34vw,520px)}
+  .map{grid-column:2;grid-row:1;align-self:start}
+  .content{grid-column:1;grid-row:1;margin-top:0!important;border-radius:0;box-shadow:1px 0 0 var(--border);min-height:100vh;padding-top:var(--s-lg)}
+  .content{padding-left:32px;padding-right:32px}
+  .grab{display:none}
+  .list{grid-template-columns:minmax(0,1fr)}
+  .deck,.found{max-width:none}
+  .agenda-fab,.toast{left:calc(var(--col) / 2)}
+  /* drawers viram uma janela no meio da tela */
+  .sheet{max-width:520px;top:50%;bottom:auto;max-height:min(86vh,800px);border-radius:var(--r-xlg);transform:translate(-50%,-46%);opacity:0;visibility:hidden;transition:transform .2s ease,opacity .2s ease,visibility 0s linear .2s;box-shadow:var(--shadow)}
+  .sheet.open{transform:translate(-50%,-50%);opacity:1;visibility:visible;transition:transform .2s ease,opacity .2s ease}
+  .sheet .handle{display:none}
+}
+@media (min-width:1440px){
+  .list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .app{--col:clamp(520px,40vw,720px)}
+}
 @media (prefers-reduced-motion:reduce){.pulse,.sweep,.spin{animation:none}.pulse{opacity:.25;transform:translate(-50%,-50%) scale(.6)}*{transition:none!important}}
 </style>
 
@@ -377,6 +483,7 @@ body.has-agenda .content{padding-bottom:calc(112px + env(safe-area-inset-bottom,
   </main>
 </div>
 
+<section class="screen" id="agenda" role="dialog" aria-modal="true" aria-labelledby="ag-title" aria-hidden="true"><div class="screen-in"><header class="screen-bar"><button type="button" class="back" id="ag-back" aria-label="Voltar"><svg class="ico ico-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button><h2 class="h5" id="ag-title">Sua agenda</h2><span></span></header><div id="ag-body"></div></div></section>
 <div class="scrim" id="scrim"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title"><div class="handle"></div><button class="close" id="sheet-close" type="button" aria-label="Fechar"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button><div id="sheet-body"></div></div>
 <button type="button" class="agenda-fab" id="agenda-fab" hidden><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Sua agenda<span class="n" id="agenda-n">0</span></button>
@@ -505,6 +612,8 @@ function ic(n,c,size){c=c||'currentColor';var s=size||16;var P={
  walk:'<circle cx="13" cy="4" r="2"/><path d="M10 22l2-6 3 3v3M9 12l1-4 4 1 2 3 3 1M7 21l2-5"/>',
  car:'<path d="M5 17h14v-5l-2-5H7l-2 5zM5 12h14"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/>',
  route:'<circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/><path d="M9 19h6.5a3.5 3.5 0 0 0 0-7h-7a3.5 3.5 0 0 1 0-7H15"/>',
+ chev:'<path d="M9 6l6 6-6 6"/>',
+ arrow:'<path d="M7 17L17 7M8 7h9v9"/>',
  swap:'<path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/>'
 };
  if(n==='star') return '<svg class="ico" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" aria-hidden="true"><path fill="'+c+'" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>';
@@ -513,27 +622,17 @@ function ic(n,c,size){c=c||'currentColor';var s=size||16;var P={
 
 /* ---------- Ordenações ---------- */
 function matchesQuery(e){var q=state.q.trim().toLowerCase();if(!q) return true;return [e.name,e.venue,e.bairro,e.genre].join(' ').toLowerCase().indexOf(q)>=0;}
-var AREA_KM=1.5;
-// região dos rolês: por padrão até 1,5 km de você; depois de mexer no mapa, a região que está na tela (a busca por texto vale pra cidade toda)
-// nada até 1,5 km? o raio vai crescendo até achar rolês (respeitando o período escolhido)
-var MIN_Z=9,autoR=AREA_KM,autoTarget=AREA_KM,lastBaseKm=AREA_KM,lastR=172,exp={on:false,cur:AREA_KM};
-function raioTxt(r){return r%1?distTxt(r):r+' km';}
-var PRUDENTE_BBOX=[-22.2057202,-21.7199917,-51.4839479,-51.2235927]; // limites do município (OpenStreetMap)
-// até onde dá pra ir: o ponto mais longe da cidade ou o menor zoom do mapa, o que vier primeiro
-function cityMaxKm(){var bb=state.city.bbox||(state.city.slug==='presidente-prudente-sp'&&!state.city.live?PRUDENTE_BBOX:null);
-  if(bb) return Math.max.apply(null,[[bb[0],bb[2]],[bb[0],bb[3]],[bb[1],bb[2]],[bb[1],bb[3]]].map(function(c){return km(ME,{lat:c[0],lng:c[1]});}));
-  return events.length?Math.max.apply(null,events.map(function(e){return km(ME,e);}))+1:AREA_KM;}
+var AREA_KM=1.5; // raio de um bairro escolhido na busca
+// região dos rolês: por padrão a cidade toda; depois de mexer no mapa, a região que está na tela
+var MIN_Z=9,autoR=AREA_KM,lastBaseKm=AREA_KM,lastR=172;
 function mapMaxKm(){return lastR/sScale(MIN_Z);}
-function radiusSteps(){var max=Math.max(AREA_KM,Math.min(cityMaxKm(),mapMaxKm()));max=max>5?Math.round(max):Math.round(max*10)/10;
-  var st=[1.5,3,5,10,20,40,80,160].filter(function(r){return r<max;});st.push(max);return st;}
+// zoom inicial do mapa: o suficiente pra caber o rolê mais longe (do período escolhido)
 function computeAutoR(){
-  autoTarget=AREA_KM;
-  if(!state.area&&!state.q){var st=radiusSteps();autoTarget=st[st.length-1];
-    for(var i=0;i<st.length;i++){var r=st[i];if(events.some(function(e){return inWhen(e)&&km(ME,e)<=r;})){autoTarget=r;break;}}}
-  autoR=exp.on?exp.cur:autoTarget;
+  var far=0;events.forEach(function(e){if(inWhen(e)) far=Math.max(far,km(ME,e));});
+  autoR=Math.max(1.2,Math.min(mapMaxKm(),far*1.05));
 }
 function area(){return state.area||{lat:ME.lat,lng:ME.lng,r:autoR};}
-function inArea(e){if(state.q) return true;var a=area();if(a.bairro) return norm(e.bairro)===a.bairro;return km(a,e)<=a.r;} // bairro escolhido na busca: só os rolês dele
+function inArea(e){if(state.q||!state.area) return true;var a=area();if(a.bairro) return norm(e.bairro)===a.bairro;return km(a,e)<=a.r;} // bairro escolhido na busca: só os rolês dele
 // período: por padrão, qualquer data; senão hoje, amanhã, fim de semana ou datas escolhidas
 function dayStart(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate());}
 function addDays(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
@@ -549,13 +648,15 @@ function byTop(a,b){ // 1º afinidade, 2º horário mais próximo, 3º distânci
   return ((b.aff||0)-(a.aff||0))||(a.date-b.date)||(a.dist-b.dist);}
 function byList(a,b){ // 1º horário, 2º distância, 3º afinidade
   return (a.date-b.date)||(a.dist-b.dist)||((b.aff||0)-(a.aff||0));}
+var TOP_MIN=60;
 function buckets(){
   var list=visible();
   var top=[],rail=[],rest=[];
   if(state.profile){
     var ranked=list.slice().sort(byTop);
-    top=ranked.slice(0,3);
-    rail=ranked.slice(3).filter(function(e){return e.aff>=60;}).slice(0,8);
+    // "São a sua cara" só com rolês de 60% ou mais de compatibilidade
+    top=ranked.filter(function(e){return e.aff>=TOP_MIN;}).slice(0,3);
+    rail=ranked.filter(function(e){return e.aff>=60&&top.indexOf(e)<0;}).slice(0,8);
   } else {
     rail=list.slice().sort(byList).slice(0,6);
   }
@@ -644,9 +745,6 @@ function search(mcp,q,box){
   // nomes repetidos na mesma cidade (ex.: dois bairros "Cidade Universitária"): fica com o mais perto do centro
   return nominatim(mcp,path).then(function(j){var hs=(j||[]).map(function(h){return {lat:+h.lat,lng:+h.lon};});if(box) hs.sort(function(a,b){return km(a,box)-km(b,box);});var p=hs[0]||null;geoCache[q]=p;saveGeo();return p;});
 }
-function cityBounds(mcp,city){var k='bb:'+city.slug;
-  if(geoCache[k]){city.bbox=geoCache[k];return;}
-  nominatim(mcp,'search?limit=1&countrycodes=br&q='+encodeURIComponent(city.name+', '+city.uf+', Brasil')).then(function(j){var h=j&&j[0];if(h&&h.boundingbox){var bb=h.boundingbox.map(Number);geoCache[k]=bb;saveGeo();if(state.city.slug===city.slug) state.city.bbox=bb;}},function(){});}
 function cityCenter(mcp,c){return search(mcp,c.name+', '+c.uf+', Brasil',null);}
 var UF_OK=/^[A-Z]{2}$/;
 function reverseCity(mcp,p){return nominatim(mcp,'reverse?zoom=10&lat='+p.lat.toFixed(6)+'&lon='+p.lng.toFixed(6)).then(function(j){
@@ -659,8 +757,8 @@ function geocodeVenues(seq,city){
   getMcp().then(function(mcp){if(!mcp) return;
     (function next(){
       if(seq!==loadSeq) return;
-      if(i>=keys.length){geoMsg('');refreshDistances();render();return;}
-      var v=VENUES[keys[i++]];geoProgress(i,keys.length);
+      if(i>=keys.length){refreshDistances();render();return;}
+      var v=VENUES[keys[i++]];
       var kn=city.slug==='presidente-prudente-sp'&&known[slugify(v.name)];
       var job=kn?Promise.resolve({p:kn,approx:false}):search(mcp,v.name+', '+city.name+', '+city.uf,box).then(function(p){
         if(p) return {p:p,approx:false};
@@ -675,7 +773,6 @@ function refreshDistances(){
   Object.keys(VENUES).forEach(function(k){var v=VENUES[k];v.dist=km(ME,v);});
 }
 function geoMsg(html){document.getElementById('geo-msg').innerHTML=html||'';}
-function geoProgress(i,n){geoMsg('<p class="geo-line">'+ic('pin','#525252')+'<span>Calculando a distância real até cada local • '+i+' de '+n+'</span></p>');}
 
 /* ---------- Sua localização ---------- */
 function useDemo(){
@@ -697,42 +794,46 @@ function askLocation(){
   document.getElementById('loc-yes').onclick=function(){decided=true;closeSheet();locate(true);};
   document.getElementById('loc-later').onclick=function(){closeSheet();};
 }
-function gps(){return new Promise(function(res,rej){
-  if(!navigator.geolocation) return rej({code:'unsupported'});
+function fix(opts){return new Promise(function(res,rej){var t0=Date.now();
   navigator.geolocation.getCurrentPosition(function(p){res({lat:p.coords.latitude,lng:p.coords.longitude,acc:p.coords.accuracy,src:'gps'});},
-    function(e){rej({code:e&&e.code===1?'denied':'unavailable'});},{enableHighAccuracy:true,timeout:10000,maximumAge:60000});});}
+    function(e){rej({code:e&&e.code===1?'denied':e&&e.code===3?'timeout':'unavailable',fast:Date.now()-t0<400});},opts);});}
+// GPS preciso primeiro; se demorar ou falhar (comum no iPhone em lugar fechado), aceita a posição aproximada do aparelho
+function gps(){
+  if(!navigator.geolocation||!window.isSecureContext) return Promise.reject({code:'unsupported'});
+  return fix({enableHighAccuracy:true,timeout:15000,maximumAge:60000}).then(null,function(err){
+    if(err.code==='denied') throw err;
+    return fix({enableHighAccuracy:false,timeout:20000,maximumAge:600000});
+  });
+}
 function ipLocate(){return getMcp().then(function(mcp){if(!mcp) throw {code:'nohost'};
   return readJson(mcp,'https://ipwho.is/').then(function(j){if(!j||j.success===false||j.latitude==null) throw {code:'ip'};
     return {lat:+j.latitude,lng:+j.longitude,acc:5000,src:'ip',city:j.city,uf:UF_OK.test(j.region_code||'')?j.region_code:null};});});}
 var locating=false;
 function locate(manual){
   if(locating) return;locating=true;
-  geoMsg('<p class="geo-line">'+ic('pin','#525252')+'<span>Procurando você no mapa...</span></p>');
   gps().then(null,function(err){
     if(!manual){syncOnOpen();throw err;} // sem clique, nada de abrir o navegador do app; sincroniza a cidade atual
     return ipLocate().then(null,function(){throw err;});
-  }).then(setLocation,function(err){
-    locating=false;syncOnOpen(); // sem localização: carrega a cidade atual mesmo assim
-    var why=err&&err.code==='denied'?'A localização tá bloqueada pra esta página.':'Não deu pra achar sua localização agora.';
-    geoMsg('<div class="city-msg"><h3 class="h6">'+why+'</h3><p class="desc-lg muted">Libere a localização no navegador, ou abra no app Claude para desktop pra usarmos a localização aproximada da sua rede. Enquanto isso, seguimos no exemplo do Centro de Prudente.</p><div class="row"><button type="button" class="btn secondary sm" id="loc-go">Tentar de novo</button></div></div>');
-    document.getElementById('loc-go').onclick=function(){locate(true);};
+  }).then(setLocation,function(){
+    // sem localização (o app roda numa moldura do claude.ai que pode bloquear o GPS mesmo com o navegador liberado):
+    // segue na cidade atual, sem aviso; dá pra trocar a cidade na busca
+    locating=false;syncOnOpen();
   });
 }
 function setLocation(p){
   locating=false;
   loc={lat:p.lat,lng:p.lng,acc:p.acc,src:p.src};
   var inP=km(loc,DEMO_ME)<30;
-  var note=p.src==='ip'?'<p class="geo-line">'+ic('pin','#525252')+'<span>Localização aproximada pela sua rede. Libere a localização do aparelho pra ficar mais preciso.</span></p>':'';
   getMcp().then(function(mcp){
     var cityP=p.city&&p.uf?Promise.resolve({name:p.city,uf:p.uf}):mcp?reverseCity(mcp,loc):Promise.reject({code:'nohost'});
     return cityP.then(function(c){
       loc.slug=citySlug(c);
       if(!mcp) throw {code:'nohost'};
-      var cc={name:titleCase(c.name),uf:c.uf,fromLoc:true};loadCity(cc);geoMsg(note);
+      var cc={name:titleCase(c.name),uf:c.uf,fromLoc:true};loadCity(cc);geoMsg('');
     });
   }).then(null,function(){
     // sem o navegador do app: em Prudente, usa os rolês da demonstração a partir de onde você está
-    if(inP){loc.slug='presidente-prudente-sp';loadSeq++;useDemo();render();startScan();geoMsg(note);}
+    if(inP){loc.slug='presidente-prudente-sp';loadSeq++;useDemo();render();startScan();geoMsg('');}
     else{ME.you=false;render();geoMsg('<div class="city-msg"><h3 class="h6">Achamos você fora de Presidente Prudente</h3><p class="desc-lg muted">Pra ver os rolês da sua cidade, abra no app Claude para desktop ou troque a cidade na busca.</p></div>');}
   });
   if(p.src==='gps') watchMe();
@@ -765,7 +866,7 @@ function sScale(z){return 256*Math.pow(2,z)/(EARTH_KM*Math.cos(ME.lat*Math.PI/18
 function renderMap(b){
   lastB=b;
   // área útil do radar: entre a busca (topo) e o topo da folha de resultados
-  var w=mapEl.clientWidth,h=mapEl.clientHeight,vis=Math.max(0,Math.min(h,Math.round(contentEl.getBoundingClientRect().top)));
+  var w=mapEl.clientWidth,h=mapEl.clientHeight,vis=visH();
   mapEl.style.setProperty('--vis',vis+'px');mapEl.classList.toggle('low',vis<220);
   if(vis<140) return; // folha cobrindo o mapa: nada pra desenhar
   var top=128,bottom=Math.max(top+120,vis-32),cx=w/2+view.px,cy=(top+bottom)/2+view.py;
@@ -815,7 +916,7 @@ function renderMap(b){
   Object.keys(pinEls).forEach(function(k){if(!keep[k]){pinEls[k].remove();delete pinEls[k];}});
   // você: círculo com a sua foto e a etiqueta escura "Você"; rolês: quadrados com a capa e a etiqueta rosa
   var halo=ME.you&&loc.acc>40?Math.round(Math.max(80,Math.min(R*2.2,loc.acc/1000*scale*2))):0;
-  var meInner=ME.you?(halo?'<span class="halo" style="width:'+halo+'px;height:'+halo+'px"></span>':'')+'<span class="av"><img src="data:image/jpeg;base64,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" alt=""></span><span class="you">Você</span>':'<span class="dot"></span><span class="you">Centro</span>';
+  var meInner=ME.you?(halo?'<span class="halo" style="width:'+halo+'px;height:'+halo+'px"></span>':'')+'<span class="pt"></span>':'<span class="dot"></span><span class="you">Centro</span>';
   if(!meEl){meEl=document.createElement('div');meEl.setAttribute('role','img');pinsEl.appendChild(meEl);}
   if(meEl._inner!==meInner){meEl.innerHTML=meInner;meEl._inner=meInner;}
   meEl.className='me'+(ME.you?'':' center');meEl.setAttribute('aria-label',ME.you?'Você está aqui':'Centro de '+state.city.name);
@@ -825,17 +926,22 @@ function renderMap(b){
 /* ---------- Mapa em destaque × resultados à vista ---------- */
 var PEEK=.72,OPEN=.45; // onde a folha começa: 72% da tela (mapa em destaque) ou 45% (resultados à vista)
 function vh(){return window.innerHeight||document.documentElement.clientHeight||800;}
-function layout(){var H=vh();mapEl.style.height=H+'px';contentEl.style.marginTop=(Math.round(H*PEEK)-H)+'px';}
+// telas largas (a partir de 1024 px): lista à esquerda, mapa inteiro à direita, sem folha subindo
+var wideMQ=window.matchMedia?window.matchMedia('(min-width:1024px)'):null;
+function wide(){return !!(wideMQ&&wideMQ.matches);}
+// altura do mapa que está à vista: até o topo da folha (celular) ou o mapa todo (tela larga)
+function visH(){var h=mapEl.clientHeight;return wide()?h:Math.max(0,Math.min(h,Math.round(contentEl.getBoundingClientRect().top)));}
+function layout(){var H=vh();mapEl.style.height=H+'px';contentEl.style.marginTop=wide()?'0':(Math.round(H*PEEK)-H)+'px';}
 function openY(){return Math.round(vh()*(PEEK-OPEN));}
 function smooth(y){window.scrollTo({top:y,behavior:reduceMotion?'auto':'smooth'});}
-function toMap(){if(window.scrollY>2) smooth(0);}
-function toResults(){if(window.scrollY<openY()-4) smooth(openY());}
+function toMap(){if(!wide()&&window.scrollY>2) smooth(0);}
+function toResults(){if(!wide()&&window.scrollY<openY()-4) smooth(openY());}
 var rafM=0,lastY=0,dirY=0,snapT=null;
 window.addEventListener('scroll',function(){
   var y=window.scrollY;if(y!==lastY){dirY=y>lastY?1:-1;lastY=y;}
   if(!rafM) rafM=requestAnimationFrame(function(){rafM=0;renderMap(lastB||buckets());});
   // solta no meio do caminho: encaixa no mapa em destaque ou nos resultados, conforme a direção
-  clearTimeout(snapT);snapT=setTimeout(function(){var y=window.scrollY,o=openY();if(y>4&&y<o-4) smooth(dirY<0?0:o);},160);
+  clearTimeout(snapT);if(!wide()) snapT=setTimeout(function(){var y=window.scrollY,o=openY();if(y>4&&y<o-4) smooth(dirY<0?0:o);},160);
 },{passive:true});
 // mexeu nos resultados: eles sobem e ficam à vista
 contentEl.addEventListener('click',function(){toResults();});
@@ -856,7 +962,7 @@ function updateArea(){
 function resetArea(){state.area=null;view.zoom=1;view.px=0;view.py=0;}
 function zoomAt(f,mx,my){
   // aproxima mantendo parado o ponto (mx,my) da tela; sem ponto, em volta de você
-  var w=mapEl.clientWidth,vis=Math.min(mapEl.clientHeight,contentEl.getBoundingClientRect().top),cy0=(128+Math.max(248,vis-32))/2;
+  var w=mapEl.clientWidth,vis=visH(),cy0=(128+Math.max(248,vis-32))/2;
   var cx=w/2+view.px,cy=cy0+view.py;if(mx==null){mx=cx;my=cy;}
   var z0=view.zoom;view.zoom=Math.max(.05,Math.min(40,z0*f));view.touched=true;
   renderMap(lastB||buckets());var g=view.zoom/z0; // renderMap limita o zoom ao que o mapa tem
@@ -903,10 +1009,7 @@ var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: 
 function startScan(){
   toMap();
   clearTimeout(scan.t);clearTimeout(scan.hideT);
-  // nada no raio padrão? primeiro o card conta a expansão, passo a passo
-  exp.on=false;computeAutoR();
-  if(!state.area&&!state.q&&autoTarget>AREA_KM&&!exp.skip){exp.on=true;exp.cur=AREA_KM;exp.pending=true;}
-  exp.skip=false;
+  computeAutoR();
   withScores();
   scan.order=visible().slice().sort(function(a,b){return a.dist-b.dist;}); // encontra do mais perto para o mais longe
   scan.shown=0;scan.ids={};scan.seen={};scan.on=true;
@@ -915,37 +1018,22 @@ function startScan(){
   var r=document.getElementById('radar');r.style.display='none';void r.offsetWidth;r.style.display='';
   var delay=reduceMotion?0:Math.max(20,Math.min(160,2400/Math.max(1,scan.order.length)));
   scan.label=null;
-  if(exp.pending){exp.pending=false;return expandThenScan();}
   (function step(){
     renderMap(buckets());renderFound();
     if(scan.shown>=scan.order.length){finishScan();return;}
     scan.t=setTimeout(function(){var e=scan.order[scan.shown];scan.ids[e.id]=1;scan.shown++;step();},scan.shown===0?500:delay);
   })();
 }
-function expandThenScan(){
-  var st=radiusSteps(),target=autoTarget,i=0,found=events.some(function(e){return inWhen(e)&&km(ME,e)<=target;});
-  var pause=reduceMotion?300:1100;
-  function say(t){scan.label=t;renderFound();document.getElementById('found-sr').textContent=t;}
-  (function next(){
-    var r=st[i];
-    say('Nenhum rolê encontrado até '+raioTxt(r));
-    if(r>=target&&!found){scan.t=setTimeout(function(){exp.on=false;scan.label=null;scan.order=[];finishScan();},pause);return;}
-    scan.t=setTimeout(function(){
-      var nr=st[i+1];say('Expandindo o raio pra '+raioTxt(nr)+'...');exp.cur=nr;render();
-      scan.t=setTimeout(function(){i++;if(nr>=target&&found){exp.on=false;exp.skip=true;render();startScan();}else next();},pause);
-    },pause);
-  })();
-}
 function finishScan(){
   scan.on=false;renderMap(buckets());renderFound();
   var n=scan.order.length;
   document.getElementById('found-sr').textContent=n?n+(n===1?' rolê encontrado':' rolês encontrados'):'Nenhum rolê encontrado';
-  scan.hideT=setTimeout(function(){if(exp.on||cityLoading) return;var el=document.getElementById('found');el.classList.add('hide');setTimeout(function(){if(el.classList.contains('hide')) el.hidden=true;},600);},1600);
+  scan.hideT=setTimeout(function(){if(cityLoading) return;var el=document.getElementById('found');el.classList.add('hide');setTimeout(function(){if(el.classList.contains('hide')) el.hidden=true;},600);},1600);
 }
 function renderFound(){
   var el=document.getElementById('found'),n=scan.shown,done=!scan.on;
   var found=scan.order.slice(0,n),pics=found.slice(-3).reverse();
-  var txt=!n?(done?'Nenhum rolê encontrado até '+raioTxt(autoR):(scan.label||'Procurando rolês...')):n+(n===1?' rolê encontrado':' rolês encontrados')+(done?'':'...');
+  var txt=!n?(done?'Nenhum rolê encontrado '+(state.area?'nesta região':'em '+esc(state.city.name)):(scan.label||'Procurando rolês...')):n+(n===1?' rolê encontrado':' rolês encontrados')+(done?'':'...');
   var stack=pics.length?'<div class="stack">'+pics.map(function(e){return '<img src="'+e.img+'" alt="">';}).join('')+'</div>':'<div class="stack"><span class="spin" style="width:40px;height:40px;margin:0;border-width:3px;border-top-color:var(--action)"></span></div>';
   el.innerHTML=stack.replace('<img','<img class="'+(scan.on?'new':'')+'"')+'<p class="h6" aria-hidden="true">'+txt+'</p>';
 }
@@ -984,12 +1072,14 @@ function heroCard(e,pos,total){
 }
 function renderTop(b){
   var el=document.getElementById('top'),sub=document.getElementById('top-sub');
+  document.getElementById('sec-top').hidden=false;
   tasteBar();
   if(!state.profile){sub.textContent='Rolês que você provavelmente vai adorar!';el.innerHTML=onboarding();document.getElementById('connect').onclick=connectSpotify;document.getElementById('pick').onclick=openGenres;return;}
   var deck=b.top.filter(function(e){return !state.dismissed[e.id];});
-  if(!b.top.length&&!state.q){el.innerHTML='<div class="empty"><h3 class="h5">Nada rolando '+(whenText()?whenText()+' ':'')+(state.area?'nesta região':'até '+raioTxt(autoR)+' '+deVoce())+'</h3><p class="desc-lg muted">'+(state.when?'Tenta outra data, afaste o zoom ou arraste o mapa.':'Afaste o zoom ou arraste o mapa pra encontrar mais rolês.')+'</p></div>';return;}
-  if(!b.top.length){el.innerHTML='<div class="empty"><h3 class="h5">Nada rolando por aqui com essa busca</h3><p class="desc-lg muted">Que tal limpar a busca ou procurar outro gênero?</p><button type="button" class="btn secondary md" id="clear2">Limpar busca</button></div>';document.getElementById('clear2').onclick=clearSearch;return;}
-  if(!deck.length){el.innerHTML='<div class="empty"><h3 class="h5">Você viu os 3 mais a sua cara</h3><p class="desc-lg muted">Dá uma olhada nos outros rolês aqui embaixo ou veja o top 3 de novo.</p><button type="button" class="btn secondary md" id="reset-top">'+ic('redo','#D10A87')+'Ver de novo</button></div>';document.getElementById('reset-top').onclick=function(){state.dismissed={};render();};return;}
+  // nenhum rolê com 60% ou mais: a seção some
+  document.getElementById('sec-top').hidden=!b.top.length;
+  if(!b.top.length){el.innerHTML='';return;}
+  if(!deck.length){el.innerHTML='<div class="empty"><h3 class="h5">'+(b.top.length>1?'Você viu os '+b.top.length+' rolês mais a sua cara':'Você viu o rolê mais a sua cara')+'</h3><p class="desc-lg muted">Dá uma olhada nos outros rolês aqui embaixo ou veja de novo.</p><button type="button" class="btn secondary md" id="reset-top">'+ic('redo','#D10A87')+'Ver de novo</button></div>';document.getElementById('reset-top').onclick=function(){state.dismissed={};render();};return;}
   var e=deck[0],pos=b.top.indexOf(e)+1;
   var peeks=deck.slice(1,4).map(function(n,i){return '<div class="peek p'+(i+1)+'" aria-hidden="true"><img src="'+n.img+'" alt=""></div>';}).join('');
   el.innerHTML='<div class="deck">'+peeks+heroCard(e,pos,b.top.length)+'</div>';
@@ -1076,9 +1166,9 @@ function openDates(){
 }
 function renderTotal(b){var n=b.all.length,el=document.getElementById('total');
   var quando=whenText();quando=quando?quando+' ':'';
-  var onde=quando+(state.q?'em '+esc(state.city.name):state.area?(state.area.label?'em '+esc(state.area.label):'nesta região do mapa'):'até '+raioTxt(autoR)+' '+deVoce()+(autoR>AREA_KM&&n?' (não tinha nada até '+raioTxt(AREA_KM)+')':''));
-  el.innerHTML=n?'<b>'+n+(n===1?' rolê encontrado':' rolês encontrados')+'</b> '+(state.q?'pra “'+esc(state.q)+'” ':'')+onde:'Nenhum rolê encontrado'+(state.q?' pra “'+esc(state.q)+'”':'')+' '+onde+(state.q?'':(!state.area&&autoR>=radiusSteps().slice(-1)[0])?(state.when?'. Tenta outra data.':''):state.when?'. Tenta outra data ou afaste o mapa.':'. Afaste o mapa pra ver mais.');}
-function render(){withScores();var b=buckets();renderCityChip();renderMap(b);renderWhen();renderTotal(b);renderItinCTA();renderTop(b);renderRail(b);renderLists(b);renderAgendaFab();}
+  var onde=quando+(state.q?'em '+esc(state.city.name):state.area?(state.area.label?'em '+esc(state.area.label):'nesta região do mapa'):'em '+esc(state.city.name));
+  el.innerHTML=n?'<b>'+n+(n===1?' rolê encontrado':' rolês encontrados')+'</b> '+(state.q?'pra “'+esc(state.q)+'” ':'')+onde:'Nenhum rolê encontrado'+(state.q?' pra “'+esc(state.q)+'”':'')+' '+onde+(state.q?'':!state.area?(state.when?'. Tenta outra data.':''):state.when?'. Tenta outra data ou afaste o mapa.':'. Afaste o mapa pra ver mais.');}
+function render(){withScores();var b=buckets();renderCityChip();renderMap(b);renderWhen();renderTotal(b);renderItinCTA();renderTop(b);renderRail(b);renderLists(b);renderAgendaFab();renderAgenda();}
 
 /* ---------- Agenda: rolês com "Bora", do que acontece antes para o que acontece depois ---------- */
 /* A agenda guarda um retrato de cada rolê, então sobrevive à troca de cidade */
@@ -1096,26 +1186,100 @@ function renderAgendaFab(){
 }
 function diaTitulo(d){var dd=dayDiff(d);if(dd===0) return 'Hoje';if(dd===1) return 'Amanhã';if(dd<7) return (d.getDay()===6||d.getDay()===0?'Neste ':'Nesta ')+SEM_LONGO[d.getDay()];return d.getDate()+' de '+MES[d.getMonth()]+(d.getFullYear()!==NOW.getFullYear()?' de '+d.getFullYear():'');}
 function diaCompleto(d){return SEM_LONGO[d.getDay()]+', '+d.getDate()+' de '+MES_LONGO[d.getMonth()]+(d.getFullYear()!==NOW.getFullYear()?' de '+d.getFullYear():'');}
+// Agenda: tela própria. Semana de dom a sáb; dia com rolê marcado mostra a foto do 1º rolê,
+// dia sem nada marcado mas com rolê 60%+ a sua cara ganha uma estrela; o resto fica no estado padrão
+var agOpen=false,agSelD=null,agWeek=null,agLastFocus=null;
+var agEl=document.getElementById('agenda'),agBody=document.getElementById('ag-body');
+var dkey=function(d){return d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();};
+var capt=function(t){return t.charAt(0).toUpperCase()+t.slice(1);};
 function openAgenda(){
-  var items=agendaItems();
-  if(!items.length){openSheet('<h2 class="h3" id="sheet-title">Sua agenda</h2><p class="desc-lg muted" style="margin-top:8px">Sua agenda tá vazia. Toque em Bora num rolê e ele aparece aqui, na ordem em que vai acontecer.</p>','Sua agenda');return;}
-  var html='<h2 class="h3" id="sheet-title">Sua agenda</h2><p class="desc-lg muted">'+items.length+(items.length===1?' rolê confirmado':' rolês confirmados')+', organizados por mês.</p>';
-  // agrupa por mês; dentro do mês, do que acontece antes para o que acontece depois
-  var months=[],byKey={};
-  items.forEach(function(e){var k=e.date.getFullYear()+'-'+e.date.getMonth();if(!byKey[k]){byKey[k]={d:e.date,list:[]};months.push(byKey[k]);}byKey[k].list.push(e);});
-  months.forEach(function(m){
-    var mes=MES_LONGO[m.d.getMonth()];mes=mes.charAt(0).toUpperCase()+mes.slice(1)+(m.d.getFullYear()!==NOW.getFullYear()?' de '+m.d.getFullYear():'');
-    html+='<div class="day"><div class="day-head"><h3 class="h6">'+mes+'</h3><span class="desc-sm muted">'+m.list.length+(m.list.length===1?' rolê':' rolês')+'</span></div><div class="list">'+
-      m.list.map(function(e){return '<div class="ag">'+evHtml(e,true)+'<button type="button" class="rm" data-rm="'+e.id+'" aria-label="Tirar '+esc(e.name)+' da agenda">'+ic('x','#171717')+'</button></div>';}).join('')+'</div></div>';
-  });
-  openSheet(html,'Sua agenda');
-  body.querySelectorAll('[data-open]').forEach(function(b){b.onclick=function(){openEvent(b.getAttribute('data-open'));};});
-  body.querySelectorAll('[data-rm]').forEach(function(b){b.onclick=function(){var id=b.getAttribute('data-rm'),snap=state.going[id],e=agendaItems().filter(function(x){return x.id===id;})[0];delete state.going[id];persist();render();openAgenda();
-    toast('Tiramos '+e.name+' da sua agenda.',function(){state.going[id]=snap;persist();render();openAgenda();});};});
+  if(sheet.classList.contains('open')) closeSheet();
+  var items=agendaItems(),hoje=dayStart(NOW);
+  var prox=items.filter(function(e){return dayStart(e.date)>=hoje;})[0];
+  agSelD=dayStart(prox?prox.date:NOW);agWeek=addDays(agSelD,-agSelD.getDay());
+  agLastFocus=document.activeElement;agOpen=true;renderAgenda();
+  agEl.scrollTop=0;agEl.classList.add('open');agEl.setAttribute('aria-hidden','false');document.documentElement.classList.add('screen-open');
+  setTimeout(function(){document.getElementById('ag-back').focus({preventScroll:true});},50);
+}
+function closeAgenda(){
+  agOpen=false;agEl.classList.remove('open');agEl.setAttribute('aria-hidden','true');document.documentElement.classList.remove('screen-open');
+  if(agLastFocus&&agLastFocus.focus) agLastFocus.focus({preventScroll:true});
+}
+document.getElementById('ag-back').onclick=closeAgenda;
+document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&agOpen&&!sheet.classList.contains('open')) closeAgenda();});
+function agCard(e,nx,bate){
+  return '<article class="ag-card'+(nx?' next':'')+'">'+(nx?'<span class="tag">Seu próximo rolê</span>':'')+
+    '<div class="top"><img src="'+e.img+'" alt=""><button type="button" class="nm h6" data-open="'+e.id+'">'+esc(e.name)+'</button>'+
+    '<button type="button" class="go" data-open="'+e.id+'" aria-label="Ver detalhes de '+esc(e.name)+'">'+ic('arrow',null,20)+'</button></div>'+
+    (bate&&bate.length?'<p class="ag-conf">'+ic('clock','#E11410')+'<span>Conflita com '+bate.map(function(b){return esc(b.name);}).join(' e ')+'</span></p>':'')+
+    '<div class="bot"><span class="it">'+ic('pin')+'<span>'+esc(e.venue)+'</span></span>'+
+    '<button type="button" class="rm" data-rm="'+e.id+'" aria-label="Tirar '+esc(e.name)+' da agenda">'+ic('x',null,16)+'</button></div></article>';
+}
+// sugestão: rolê do dia que você não marcou; se bate com o horário de um marcado, só entra quando é mais a sua cara que todos com que bate
+var DURACAO=3*36e5; // sem hora de fim no site: cada rolê ocupa ~3h
+function bateHorario(a,b){if(a.date.noTime||b.date.noTime) return false;return a.date<+b.date+DURACAO&&b.date<+a.date+DURACAO;}
+function e_aff(e){return e.aff==null?0:e.aff;}
+function horaCurta(d){return d.noTime?'--':hora(d);}
+function renderAgenda(dir){
+  if(!agOpen) return;
+  var items=agendaItems(),hoje=dayStart(NOW),inicio=addDays(hoje,-hoje.getDay());
+  var marcados={};items.forEach(function(e){var k=dkey(e.date);(marcados[k]=marcados[k]||[]).push(e);});
+  // rolês da cidade em cada dia que você ainda não marcou, do mais a sua cara pro menos
+  var doDia={};events.forEach(function(e){if(state.going[e.id]||e.date<NOW) return;var k=dkey(e.date);(doDia[k]=doDia[k]||[]).push(e);});
+  Object.keys(doDia).forEach(function(k){doDia[k].sort(function(a,b){return ((b.aff||0)-(a.aff||0))||(a.date-b.date);});});
+  var ultimo=hoje;items.concat(events).forEach(function(e){if(e.date>ultimo) ultimo=e.date;});
+  var week=[];for(var w=0;w<7;w++) week.push(addDays(agWeek,w));
+  var selK=dkey(agSelD),next=items.filter(function(e){return dayStart(e.date)>=hoje;})[0];
+  var html='<p class="desc-lg muted ag-sub">'+(items.length?items.length+(items.length===1?' rolê marcado':' rolês marcados'):'Nenhum rolê marcado ainda')+'</p>'+
+    '<div class="ag-when"><div class="hd"><span class="eyebrow" id="ag-mes"></span>'+
+    '<div class="ag-nav"><button type="button" class="prev" id="ag-prev" aria-label="Semana anterior"'+(agWeek<=inicio?' disabled':'')+'>'+ic('chev',null,16)+'</button>'+
+    '<button type="button" id="ag-next" aria-label="Próxima semana"'+(addDays(agWeek,7)>ultimo?' disabled':'')+'>'+ic('chev',null,16)+'</button></div></div>'+
+    '<div class="ag-weekwrap"><div class="ag-week" role="group" aria-label="Dias da semana">'+week.map(function(d){var k=dkey(d),m=marcados[k],sug=!m&&(doDia[k]||[]).some(function(e){return e.aff!=null&&e.aff>=TOP_MIN;});
+      var mk=m?'<img src="'+m[0].img+'" alt="">':sug?ic('star','#D10A87',12):'';
+      var lab=diaCompleto(d)+(m?', '+m.length+(m.length>1?' rolês marcados':' rolê marcado'):sug?', tem rolê a sua cara':'');
+      return '<button type="button" class="ag-day'+(d<hoje?' past':'')+'" data-day="'+d.getTime()+'" aria-pressed="'+(k===selK)+'" aria-label="'+lab+'"><span>'+capt(SEM[d.getDay()])+'</span><b>'+d.getDate()+'</b><span class="mk" aria-hidden="true">'+mk+'</span></button>';}).join('')+'</div></div></div>';
+  var m=marcados[selK]||[],dia=doDia[selK]||[];
+  // sugere só o que é 60%+ a sua cara, sem atropelar o que você já escolheu
+  var sugs=dia.filter(function(e){return e.aff!=null&&e.aff>=TOP_MIN;}).map(function(e){return {e:e,bate:m.filter(function(b){return bateHorario(e,b);})};})
+    .filter(function(x){return x.bate.every(function(b){return e_aff(x.e)>e_aff(b);});});
+  // as sugestões vêm da cidade carregada no app: o nome dela aparece junto
+  var cidade=esc(state.city.name)+(state.city.uf?', '+state.city.uf:''),emCidade='<p class="ag-city">'+ic('pin','#525252')+'<span>Sugestões em <b>'+cidade+'</b></span></p>';
+  if(!m.length&&!sugs.length) html+='<div class="ag-none"><span class="ib">'+ic('cal','#525252',24)+'</span>'+(dia.length
+    ?'<h3 class="h6">Nenhum rolê com a sua cara pra esse dia</h3><p class="desc-lg muted">'+(state.profile?'Tem rolê rolando em '+cidade+', mas nenhum chega a 60% de compatibilidade com o seu gosto. Tenta outro dia da semana.':'Conecte seu Spotify ou escolha seus gêneros pra gente sugerir rolês com a sua cara em '+cidade+'.')+'</p>'
+    :'<h3 class="h6">Nenhum rolê encontrado pra esse dia</h3><p class="desc-lg muted">Não achamos nada rolando em '+cidade+' '+(dayDiff(agSelD)===0?'hoje':'nesse dia')+'. Tenta outro dia da semana.</p>')+'</div>';
+  else{
+    if(!m.length) html+='<div class="ag-msg"><h3 class="h5">Nada marcado pra esse dia</h3><p class="desc-lg muted">Mas tem rolê com a sua cara rolando em '+cidade+'. Se curtir algum, toca nele e dá Bora.</p></div>';
+    // timeline só com o que você marcou; as sugestões vêm depois, numa lista simples (da mais a sua cara pra menos)
+    if(m.length) html+='<div class="ag-tl" role="list">'+m.slice().sort(function(a,b){return (a.date.noTime-b.date.noTime)||(a.date-b.date);}).map(function(e){
+      // rolês marcados que se atropelam: os dois cards avisam e o ponto da timeline fica vermelho
+      var bate=m.filter(function(b){return b!==e&&bateHorario(e,b);});
+      return '<div class="ag-row'+(bate.length?' conf':'')+'" role="listitem"><div class="tl" aria-hidden="true"><b>'+horaCurta(e.date)+'</b><i></i><span class="ln"></span></div>'+
+        '<div><span class="sr">'+(e.date.noTime?'Horário a confirmar':hora(e.date))+'</span>'+agCard(e,next&&e.id===next.id,bate)+'</div></div>';}).join('')+'</div>';
+    if(sugs.length) html+=(m.length?'<h3 class="h6 ag-sugt">Mais rolês com a sua cara nesse dia</h3>'+emCidade:'')+
+      '<div class="list ag-sugs">'+sugs.map(function(x){return '<div class="ag-sug">'+evHtml(x.e)+(x.bate.length?'<p class="ag-bate">'+ic('clock','#E11410')+'<span>Conflita com '+x.bate.map(function(b){return esc(b.name);}).join(' e ')+', mas é mais a sua cara</span></p>':'')+'</div>';}).join('')+'</div>';
+  }
+  // trocou de semana pelas setas: a semana velha sai rolando pro lado e a nova entra
+  var oldWeek=dir?agBody.querySelector('.ag-week'):null;oldWeek=oldWeek&&oldWeek.cloneNode(true);
+  agBody.innerHTML=html;
+  if(oldWeek&&!reduceMotion&&oldWeek.animate){var nw=agBody.querySelector('.ag-week');oldWeek.classList.add('ghost');oldWeek.removeAttribute('role');oldWeek.setAttribute('aria-hidden','true');nw.parentNode.appendChild(oldWeek);
+    var o={duration:320,easing:'cubic-bezier(.2,.7,.2,1)'};
+    nw.animate([{transform:'translateX('+(dir*100)+'%)'},{transform:'none'}],o);
+    oldWeek.animate([{transform:'none'},{transform:'translateX('+(-dir*100)+'%)'}],o).onfinish=function(){oldWeek.remove();};
+    setTimeout(function(){if(oldWeek.parentNode) oldWeek.remove();},o.duration+100);}
+  // mês da semana; se pegar dois meses, "Novembro/Dezembro" ou, se não couber, "Nov/Dez"
+  var mesEl=document.getElementById('ag-mes'),ms=[];week.forEach(function(d){var x=d.getMonth();if(ms.indexOf(x)<0) ms.push(x);});
+  var ano=week[6].getFullYear(),suf=ano!==NOW.getFullYear()?' '+ano:'';
+  mesEl.textContent=ms.map(function(x){return capt(MES_LONGO[x]);}).join('/')+suf;
+  if(ms.length>1&&mesEl.scrollWidth>mesEl.clientWidth) mesEl.textContent=ms.map(function(x){return capt(MES[x]);}).join('/')+suf;
+  agBody.querySelectorAll('[data-day]').forEach(function(b){b.onclick=function(){agSelD=new Date(+b.getAttribute('data-day'));renderAgenda();};});
+  document.getElementById('ag-prev').onclick=function(){agWeek=addDays(agWeek,-7);agSelD=agWeek<hoje&&addDays(agWeek,7)>hoje?hoje:agWeek;renderAgenda(-1);};
+  document.getElementById('ag-next').onclick=function(){agWeek=addDays(agWeek,7);agSelD=agWeek;renderAgenda(1);};
+  agBody.querySelectorAll('[data-rm]').forEach(function(b){b.onclick=function(){var id=b.getAttribute('data-rm'),snap=state.going[id],e=agendaItems().filter(function(x){return x.id===id;})[0];delete state.going[id];persist();render();
+    toast('Tiramos '+e.name+' da sua agenda.',function(){state.going[id]=snap;persist();render();});};});
 }
 function snapshotGoing(e){state.going[e.id]={name:e.name,venue:e.venue,bairro:e.bairro,genre:e.genre,date:e.date.toISOString(),noTime:!!e.date.noTime,dist:e.dist,aff:e.aff,city:state.city.name,img:(e.img&&e.img.indexOf('data:image/svg')===0)?e.img:null};}
 function addToAgenda(e){snapshotGoing(e);persist();toast('Bora! '+e.name+' entrou na sua agenda.',openAgenda,'Ver agenda');}
-document.getElementById('agenda-fab').onclick=openAgenda;
+document.getElementById('agenda-fab').onclick=openAgenda; // abre sempre no dia do próximo rolê
 
 /* ---------- Roteiro de rolês (gerador de itinerário) ----------
    Regras: 1) afinidade com o gosto (corte de 45% quando há perfil); 2) linha do tempo sem sobreposição:
@@ -1258,12 +1422,12 @@ function closeSheet(){var cb=sheetOnClose;sheetOnClose=null;if(cb) setTimeout(cb
 // arrastar o drawer pra baixo fecha — só se a rolagem interna estiver no topo (ou não existir) quando o gesto começa
 var pull={y0:0,dy:0,on:false,can:false},wheelT=null,lastInner=0;
 sheet.addEventListener('scroll',function(){lastInner=Date.now();},{passive:true});
-function pullMove(dy){pull.dy=Math.max(0,dy);sheet.style.transition='none';sheet.style.transform='translate(-50%,'+pull.dy+'px)';scrim.style.opacity=String(Math.max(.15,1-pull.dy/420));}
+function pullMove(dy){pull.dy=Math.max(0,dy);sheet.style.transition='none';sheet.style.transform=wide()?'translate(-50%,calc(-50% + '+pull.dy+'px))':'translate(-50%,'+pull.dy+'px)';scrim.style.opacity=String(Math.max(.15,1-pull.dy/420));}
 function pullEnd(){
   if(!pull.on) return;pull.on=false;
   var close=pull.dy>Math.min(140,sheet.offsetHeight*.3);pull.dy=0;
   sheet.style.transition='';scrim.style.opacity='';
-  if(close){sheet.style.transform='translate(-50%,100%)';closeSheet();setTimeout(function(){sheet.style.transform='';},300);}
+  if(close){sheet.style.transform=wide()?'':'translate(-50%,100%)';closeSheet();setTimeout(function(){sheet.style.transform='';},300);}
   else sheet.style.transform='';
 }
 // toque
@@ -1499,7 +1663,7 @@ function loadCity(c){
         if(!parsed.events.length){ME=old;return cityFail(/n[aã]o encontrad|404/i.test(text)?'notfound':'empty',c,url);}
         VENUES=parsed.venues;events=parsed.events;NOW=new Date();
         resetArea();state.city={name:parsed.name||c.name,uf:c.uf,slug:slug,live:true,center:ctr||ME};state.dismissed={};scan.label=null;
-        cityLoading=false;cityBounds(mcp,state.city);
+        cityLoading=false;
         render();startScan();applyPendingBairro();geocodeVenues(seq,state.city);fetchCovers(seq,url);
       });
     }).then(null,function(err){if(seq===loadSeq) cityFail(err&&err.code,c,url,err);});
