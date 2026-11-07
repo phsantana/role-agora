@@ -102,6 +102,7 @@ p,h1,h2,h3,h4{margin:0}
 @keyframes estrela{0%,100%{transform:scale(1) rotate(0)}40%{transform:scale(1.2) rotate(20deg)}70%{transform:scale(.95) rotate(-6deg)}}
 /* foguinho: rolê que deve lotar (estimativa) */
 .badge.fogo{background:#171717;color:var(--inverse);font-weight:600}
+.lota-t{font-weight:600;color:var(--text)}
 .hero .lota{position:absolute;left:0;background:#171717;color:var(--inverse);font-weight:600;font-size:12px;padding:6px 8px 6px 16px;border-radius:0 var(--r-pill) var(--r-pill) 0;display:flex;gap:var(--s-2xsm);align-items:center}
 .tile .fogo-ic{position:absolute;right:8px;top:40px;width:28px;height:28px;border-radius:50%;background:rgba(23,23,23,.7);display:grid;place-items:center}
 .pin .tag{display:inline-flex;align-items:center;gap:2px}
@@ -1430,10 +1431,10 @@ function evHtml(e,inAgenda){
   var going=state.going[e.id];
   // EventCard vertical do Figma: sobrancelha (gênero · compatibilidade), título, "Hoje • 22h30", "900 m • Bairro"
   var other=e.city&&e.city!==state.city.name;
-  return '<button type="button" class="ev" data-open="'+e.id+'"><span class="thumb"><img src="'+e.img+'" alt="">'+(e.alerta?'<span class="badge risco">'+ic('alerta','#fff',12)+(e.arLivre?'Arriscado':e.clima.tempestade?'Tempestade':'Chuva')+'</span>':going&&!inAgenda?'<span class="badge going">Você vai</span>':e.quente?'<span class="badge fogo">'+fogo(12)+lotaTxt(e)+'</span>':'')+'</span>'+
+  return '<button type="button" class="ev" data-open="'+e.id+'"><span class="thumb"><img src="'+e.img+'" alt="">'+(e.alerta?'<span class="badge risco">'+ic('alerta','#fff',12)+(e.arLivre?'Arriscado':e.clima.tempestade?'Tempestade':'Chuva')+'</span>':going&&!inAgenda?'<span class="badge going">Você vai</span>':'')+'</span>'+
    '<span class="meta"><span class="l">'+ic('note','#A3A3A3')+'<span>'+e.genre+(e.aff!=null?' · '+e.aff+'% compatível':'')+'</span></span>'+
    '<span class="ev-title">'+esc(e.name)+'</span>'+
-   '<span class="l">'+ic('cal','#A3A3A3')+'<span>'+quando(e.date)+'</span></span>'+
+   '<span class="l">'+(e.quente?fogo(14)+'<span>'+quando(e.date)+' • <b class="lota-t">'+lotaTxt(e)+'</b></span>':ic('cal','#A3A3A3')+'<span>'+quando(e.date)+'</span>')+'</span>'+
    '<span class="l">'+ic('pin','#A3A3A3')+'<span>'+(other?esc(e.city):dTxt(e))+' • '+esc(e.bairro)+'</span></span></span></button>';
 }
 function renderRail(b){
@@ -1490,10 +1491,10 @@ function proximoTxt(l){
 }
 function localFogo(l){var q=l.roles.filter(function(e){return e.quente;})[0];return q?lotaTxt(q):'';}
 function localHtml(l){var lf=localFogo(l);
-  return '<button type="button" class="ev" data-venue="'+l.k+'"><span class="thumb local"><img src="'+l.img+'" alt="">'+(lf?'<span class="badge fogo">'+fogo(12)+lf+'</span>':'')+'</span>'+
+  return '<button type="button" class="ev" data-venue="'+l.k+'"><span class="thumb local"><img src="'+l.img+'" alt=""></span>'+
    '<span class="meta"><span class="l">'+ic('note','#A3A3A3')+'<span>'+(l.genre?esc(l.genre):l.tipo?esc(l.tipo):'Gênero a confirmar')+(l.aff!=null?' · '+l.aff+'% compatível':'')+'</span></span>'+
    '<span class="ev-title">'+esc(l.name)+'</span>'+
-   '<span class="l">'+ic('cal','#A3A3A3')+'<span>'+proximoTxt(l)+'</span></span>'+
+   '<span class="l">'+(lf?fogo(14)+'<span>'+proximoTxt(l)+' • <b class="lota-t">'+lf+'</b></span>':ic('cal','#A3A3A3')+'<span>'+proximoTxt(l)+'</span>')+'</span>'+
    '<span class="l">'+ic('pin','#A3A3A3')+'<span>'+dTxt(l)+' • '+esc(l.bairro)+'</span></span></span></button>';
 }
 function localTile(l){
