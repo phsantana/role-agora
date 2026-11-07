@@ -1,5 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<meta charset="utf-8">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Radar de Rolês</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -188,6 +187,14 @@ button.tchip:hover{background:var(--action-subtle)}
 .dates input:focus{outline:2px solid var(--action);outline-offset:1px}
 .dates .acts{display:flex;flex-direction:column;gap:var(--s-xsm);margin-top:var(--s-xsm)}
 .dates .acts .btn{width:100%}
+.modo{display:flex;gap:4px;padding:4px;border-radius:var(--r-pill);background:var(--subtle);margin:var(--s-m) 0 0}
+.modo button{flex:1;height:37px;border:0;border-radius:var(--r-pill);background:transparent;font:inherit;font-size:14px;color:var(--text-2);display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2xsm);cursor:pointer}
+.modo button svg{width:16px;height:16px}
+.modo .n{min-width:22px;height:20px;padding:0 6px;border-radius:var(--r-pill);background:var(--bg-default);color:var(--text);font-size:12px;font-weight:600;line-height:20px;text-align:center}
+.modo button[aria-pressed=true] .n{background:var(--action);color:var(--inverse)}
+.modo button[aria-pressed=true]{background:var(--surface);color:var(--text);font-weight:600;box-shadow:0 1px 4px rgba(23,23,23,.16)}
+.found+.modo,.grab+.modo{margin-top:0}
+.ev .thumb.local img{border-radius:var(--r-xsm)}
 .total{margin:var(--s-m) 0 0;font-size:12px;line-height:1.5;color:var(--text-2)}
 .total b{color:var(--text);font-weight:600}
 .total+.section{margin-top:var(--s-xsm)}
@@ -561,8 +568,12 @@ html.screen-open{overflow:hidden}
     <div id="city-msg" aria-live="polite"></div>
     <div id="geo-msg" aria-live="polite"></div>
 
+    <div class="modo" id="modo" role="group" aria-label="Ver resultados por">
+      <button type="button" data-modo="roles" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Rolês<span class="n" id="n-roles"></span></button>
+      <button type="button" data-modo="locais" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M10 21v-6h4v6"/></svg>Locais<span class="n" id="n-locais"></span></button>
+    </div>
     <div class="when" id="when" role="group" aria-label="Quando"></div>
-    <p class="total" id="total" aria-live="polite"></p>
+    <p class="sr" id="total" aria-live="polite"></p>
     <section class="section" id="sec-top" aria-labelledby="t-top">
       <div class="sec-head"><div><h2 class="h2" id="t-top">São a sua cara</h2><p class="desc-lg muted" id="top-sub">Rolês que você provavelmente vai adorar!</p></div></div>
       <div id="taste"></div>
@@ -680,9 +691,10 @@ var SIM={
 };
 var SPOTIFY_MOCK={name:'Seu Spotify',weights:{Pop:.92,Rock:.85,Soul:.74,Sertanejo:.61}};
 
-var state={profile:null,source:null,q:'',dismissed:{},going:{},topIdx:0,city:{name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false}};
+var state={profile:null,source:null,q:'',dismissed:{},going:{},topIdx:0,modo:'roles',city:{name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false}};
 try{var saved=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(saved&&saved.profile){state.profile=saved.profile;state.source=saved.source;state.going=saved.going||{};state.dismissed=saved.dismissed||{};}}catch(e){}
 try{var savedI=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(savedI&&savedI.going&&!saved.profile) state.going=savedI.going;}catch(e){}
+try{if(localStorage.getItem('radar-modo')==='locais') state.modo='locais';}catch(e){}
 function persist(){try{localStorage.setItem('radar-roles',JSON.stringify({profile:state.profile,source:state.source,going:state.going,dismissed:state.dismissed}));}catch(e){}}
 
 /* ---------- Cálculos ---------- */
@@ -865,6 +877,30 @@ function byTop(a,b){ // 1º afinidade, 2º horário mais próximo, 3º distânci
 function byList(a,b){ // 1º horário, 2º distância, 3º afinidade
   return (a.date-b.date)||(a.dist-b.dist)||((b.aff||0)-(a.aff||0));}
 var TOP_MIN=60,DECK_MIN=80,FOGO_MIN=90; // sugestões e "Rolês que você pode gostar": 60% a 80%; "São a sua cara": mais de 80%; foguinho: mais de 90%
+/* ---------- Locais: estabelecimentos, com a compatibilidade pelo gênero que mais toca lá ---------- */
+function generoDoLocal(k){
+  // por ora, o gênero que mais aparece na agenda do local (contando os rolês que já passaram, quando a gente tem)
+  var src=state.city.live?events:PRUDENTE.all,c={},best=null;
+  src.forEach(function(e){if(e.venueKey===k&&e.genre&&!/^(evento|outros?|show)$/i.test(e.genre)){c[e.genre]=(c[e.genre]||0)+1;}}); // "evento" não é gênero musical
+  Object.keys(c).forEach(function(g){if(!best||c[g]>c[best]) best=g;});
+  return best;
+}
+function locais(){
+  var vis=visible(),porLocal={};vis.forEach(function(e){(porLocal[e.venueKey]=porLocal[e.venueKey]||[]).push(e);});
+  var q=state.q.trim().toLowerCase();
+  return Object.keys(VENUES).map(function(k){
+    var v=VENUES[k];if(v.lat==null||v.lng==null) return null;
+    var g=generoDoLocal(k),a=state.profile&&g?affinity({name:v.name,genre:g},state.profile):null;
+    var roles=(porLocal[k]||[]).slice().sort(byList);
+    return {k:k,name:v.name,venue:v.name,bairro:v.bairro,lat:v.lat,lng:v.lng,approx:!!v.approx,dist:km(ME,v),genre:g,aff:a?a.pct:null,why:a?a.why:null,roles:roles,img:ph(v.name,g)};
+  }).filter(function(l){
+    if(!l) return false;
+    if(!state.city.live&&l.dist>RADIUS_KM) return false;
+    if(state.when&&!l.roles.length) return false; // escolheu uma data: só os locais com rolê nela
+    if(q&&!l.roles.length&&[l.name,l.bairro,l.genre].join(' ').toLowerCase().indexOf(q)<0) return false;
+    return inArea(l);
+  }).sort(function(a,b){return ((b.aff||0)-(a.aff||0))||(a.dist-b.dist);});
+}
 function buckets(){
   var list=visible();
   var top=[],rail=[],rest=[];
@@ -1095,7 +1131,12 @@ function renderMap(b){
   // durante a varredura, só aparecem os locais dos rolês já encontrados; a escala usa todos para os pins não pularem
   var all=scan.on?b.all.filter(function(e){return scan.ids[e.id];}):b.all;
   var byVenue={};all.forEach(function(e){var k=e.venueKey;if(!byVenue[k]) byVenue[k]=[];byVenue[k].push(e);});
-  var maxKm=0;b.all.forEach(function(e){maxKm=Math.max(maxKm,e.dist);});
+  // um marcador por local: no modo Rolês, com a capa do rolê mais compatível; no modo Locais, com o local e a compatibilidade pelo gênero
+  var marks={};
+  if(state.modo==='locais') (b.locais||locais()).forEach(function(l){marks[l.k]={lat:l.lat,lng:l.lng,img:l.img,aff:l.aff,label:dTxt(l)+(l.aff!=null?' • '+l.aff+'%':''),count:0,
+    aria:l.name+(l.genre?', '+l.genre:'')+(l.aff!=null?', '+l.aff+'% compatível':'')+', '+dTxt(l)+' '+deVoce()};});
+  else Object.keys(byVenue).forEach(function(k){var arr=byVenue[k].slice().sort(state.profile?byTop:byList),e=arr[0];
+    marks[k]={lat:e.lat,lng:e.lng,img:e.img,aff:e.aff,label:dTxt(e)+(e.aff!=null?' • '+e.aff+'%':''),count:arr.length,aria:VENUES[k].name+', '+arr.length+(arr.length>1?' rolês':' rolê')+', '+dTxt(e)+' '+deVoce()};});
   var baseKm=state.area?(state.area.baseKm||AREA_KM):autoR;lastBaseKm=baseKm;
   var base=R/baseKm;
   var scale=Math.max(sScale(MIN_Z),Math.min(sScale(14.45),base*view.zoom));view.zoom=scale/base;
@@ -1106,10 +1147,10 @@ function renderMap(b){
   var free=view.zoom>1.05||Math.abs(view.px)>8||Math.abs(view.py)>8; // mexeu no mapa: posição exata, sem prender os pins na borda
   // posição real (escala única a partir do usuário) + afastamento para os pins não se sobreporem
   // cidades grandes: até 12 locais no radar (os de rolê mais compatível, ou mais cedo)
-  var vk=Object.keys(byVenue);
-  if(vk.length>12){var best=function(k){var a=byVenue[k];return state.profile?Math.max.apply(null,a.map(function(e){return e.aff||0;})):-Math.min.apply(null,a.map(function(e){return e.date;}));};vk.sort(function(a,b){return best(b)-best(a);});vk=vk.slice(0,12);}
+  var vk=Object.keys(marks);
+  if(vk.length>12){var best=function(k){if(state.modo==='locais') return state.profile?(marks[k].aff||0):-km(ME,marks[k]);var a=byVenue[k];return state.profile?Math.max.apply(null,a.map(function(e){return e.aff||0;})):-Math.min.apply(null,a.map(function(e){return e.date;}));};vk.sort(function(a,b){return best(b)-best(a);});vk=vk.slice(0,12);}
   var minX=40,maxX=w-40,minY=top+16,maxY=bottom-8,gapPin=72,gapMe=80;
-  var pts=vk.map(function(k){var e=byVenue[k][0];var dx=(e.lng-ME.lng)*111.32*cos,dy=(e.lat-ME.lat)*110.57;var x=cx+dx*scale,y=cy-dy*scale;return {k:k,x:x,y:y,out:x<minX-20||x>maxX+20||y<minY-20||y>maxY+20};});
+  var pts=vk.map(function(k){var e=marks[k];var dx=(e.lng-ME.lng)*111.32*cos,dy=(e.lat-ME.lat)*110.57;var x=cx+dx*scale,y=cy-dy*scale;return {k:k,x:x,y:y,out:x<minX-20||x>maxX+20||y<minY-20||y>maxY+20};});
   for(var it=0;it<80;it++){
     pts.forEach(function(p,i){
       var mx=p.x-cx,my=p.y-cy,md=Math.hypot(mx,my)||1;if(md<gapMe){p.x+=mx/md*(gapMe-md);p.y+=my/md*(gapMe-md);}
@@ -1119,16 +1160,15 @@ function renderMap(b){
   }
   var keep={};
   pts.forEach(function(pt){
-    var k=pt.k,arr=byVenue[k].slice().sort(state.profile?byTop:byList),e=arr[0];
+    var k=pt.k,e=marks[k];
     var tier=e.aff==null?'mid':e.aff>=80?'hi':e.aff>=60?'mid':'low';
     var size=tier==='hi'?56:tier==='mid'?44:34;
-    var label=dTxt(e)+(e.aff!=null?' • '+e.aff+'%':'');
-    var inner='<span class="ring">'+(e.aff>FOGO_MIN?'<span class="pin-fogo">'+fogo(20)+'</span>':'')+'<img src="'+e.img+'" alt="" style="width:'+size+'px;height:'+size+'px"></span><span class="tag">'+label+'</span>'+(arr.length>1?'<span class="count">'+arr.length+'</span>':'');
+    var inner='<span class="ring">'+(e.aff>FOGO_MIN?'<span class="pin-fogo">'+fogo(20)+'</span>':'')+'<img src="'+e.img+'" alt="" style="width:'+size+'px;height:'+size+'px"></span><span class="tag">'+e.label+'</span>'+(e.count>1?'<span class="count">'+e.count+'</span>':'');
     var el=pinEls[k];
     if(!el){el=document.createElement('button');el.type='button';el.setAttribute('data-venue',k);el.className='pin '+tier+(scan.seen[k]?'':' in');pinEls[k]=el;pinsEl.appendChild(el);}
     scan.seen[k]=1;
     if(el._inner!==inner){el.innerHTML=inner;el._inner=inner;el.className='pin '+tier+(el.classList.contains('in')?' in':'');}
-    el.setAttribute('aria-label',VENUES[k].name+', '+arr.length+(arr.length>1?' rolês':' rolê')+', '+dTxt(e)+' '+deVoce());
+    el.setAttribute('aria-label',e.aria);
     el.style.left=pt.x+'px';el.style.top=pt.y+'px';el.hidden=free&&pt.out;keep[k]=1;
   });
   Object.keys(pinEls).forEach(function(k){if(!keep[k]){pinEls[k].remove();delete pinEls[k];}});
@@ -1347,7 +1387,7 @@ function renderLists(b){
     var open=moreOpen[g[0]],shown=open?items:items.slice(0,LIST_PAGE),left=items.length-shown.length;
     inner+='<div class="group"'+(any?'':' style="margin-top:0"')+'><div class="sec-head"><h3 class="h6">'+g[0]+'</h3><span class="desc-sm muted">'+g[1]+'</span></div><div class="list">'+shown.map(function(e){return evHtml(e);}).join('')+'</div>'+
       (left>0?'<button type="button" class="btn secondary md more-btn" data-more="'+esc(g[0])+'">Ver +'+left+'</button>':'')+'</div>';any=true;});
-  if(!any) inner+='<p class="desc-lg muted">'+(state.q?'Nada rolando por aqui com essa busca. Que tal limpar a busca?':'Os outros rolês já estão lá em cima.')+'</p>';
+  if(!any) inner+='<p class="desc-lg muted">'+(state.q?'Nada rolando por aqui com essa busca. Que tal limpar a busca?':!b.all.length?(state.when?'Nenhum rolê nessa data. Tenta outra.':state.area?'Nenhum rolê nesta região. Afaste o mapa pra ver mais.':'Nenhum rolê rolando por aqui agora.'):'Os outros rolês já estão lá em cima.')+'</p>';
   sec.innerHTML=inner;main.appendChild(sec);
   sec.querySelectorAll('[data-more]').forEach(function(btn){btn.onclick=function(){moreOpen[btn.getAttribute('data-more')]=true;renderLists(buckets());};});
   var note=document.createElement('p');note.className='note';note.id='note';
@@ -1355,6 +1395,60 @@ function renderLists(b){
     ?'Agenda pública do Rolê Agora em '+state.city.name+', '+state.city.uf+', lida agora no site. O site não informa coordenadas, então as distâncias são estimadas por bairro. As fotos dos artistas só aparecem no site.'
     :'Agenda pública do Rolê Agora em Presidente Prudente, coletada em 07/11/2026. Distâncias medidas a partir do Centro com as coordenadas dos lugares publicadas no site.';
   main.appendChild(note);
+}
+/* ---------- Rolês × Locais: vale pro mapa e pros resultados ---------- */
+function renderModo(bk){
+  document.querySelectorAll('#modo [data-modo]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-modo')===state.modo));});
+  // o número de rolês e de locais encontrados fica no próprio botão (no lugar da frase "X rolês encontrados")
+  var nr=bk?bk.all.length:0,nl=bk&&bk.locais?bk.locais.length:0;
+  var a=document.getElementById('n-roles'),c=document.getElementById('n-locais');a.textContent=nr;c.textContent=nl;
+  a.parentNode.setAttribute('aria-label','Rolês, '+nr+(nr===1?' encontrado':' encontrados'));c.parentNode.setAttribute('aria-label','Locais, '+nl+(nl===1?' encontrado':' encontrados'));
+}
+document.querySelectorAll('#modo [data-modo]').forEach(function(b){b.onclick=function(){var m=b.getAttribute('data-modo');if(m===state.modo) return;state.modo=m;try{localStorage.setItem('radar-modo',m);}catch(e){}moreOpen={};render();};});
+function renderTotalLocais(b,el){
+  var n=b.locais.length,quando=whenText();
+  var onde=(quando?'com rolê '+quando+' ':'')+(state.q?'em '+esc(state.city.name):state.area?(state.area.label?'em '+esc(state.area.label):'nesta região do mapa'):'em '+esc(state.city.name));
+  el.innerHTML=n?'<b>'+n+(n===1?' local encontrado':' locais encontrados')+'</b> '+(state.q?'pra “'+esc(state.q)+'” ':'')+onde:'Nenhum local encontrado'+(state.q?' pra “'+esc(state.q)+'”':'')+' '+onde+(state.when?'. Tenta outra data.':'');
+}
+function proximoTxt(l){
+  if(!l.roles.length) return 'Sem rolê na agenda por enquanto';
+  var e=l.roles[0],qd=quando(e.date);qd=qd.charAt(0).toLowerCase()+qd.slice(1);return (l.roles.length>1?l.roles.length+' rolês • próximo ':'Próximo rolê ')+qd;
+}
+function localHtml(l){
+  return '<button type="button" class="ev" data-venue="'+l.k+'"><span class="thumb local"><img src="'+l.img+'" alt=""></span>'+
+   '<span class="meta"><span class="l">'+ic('note','#A3A3A3')+'<span>'+(l.genre?esc(l.genre):'Gênero a confirmar')+(l.aff!=null?' · '+l.aff+'% compatível':'')+'</span></span>'+
+   '<span class="ev-title">'+esc(l.name)+'</span>'+
+   '<span class="l">'+ic('cal','#A3A3A3')+'<span>'+proximoTxt(l)+'</span></span>'+
+   '<span class="l">'+ic('pin','#A3A3A3')+'<span>'+dTxt(l)+' • '+esc(l.bairro)+'</span></span></span></button>';
+}
+function localTile(l){
+  return '<button type="button" class="tile" role="listitem" data-venue="'+l.k+'"><img src="'+l.img+'" alt=""><div class="shade"></div>'+
+   '<span class="badge ok b">'+l.aff+'% sua cara</span>'+
+   '<div class="t"><b>'+esc(l.name)+'</b><span class="desc-sm">'+esc(l.genre||'')+'</span><span class="desc-sm">'+dTxt(l)+'</span></div></button>';
+}
+function renderLocais(b){
+  var main=document.querySelector('main'),old=document.getElementById('sec-locais');if(old) old.remove();
+  var on=state.modo==='locais';
+  ['sec-top','sec-rail','sec-more'].forEach(function(id){var el=document.getElementById(id);if(!el) return;if(on){el.dataset.modoHidden=el.hidden?'1':'';el.hidden=true;}});
+  if(!on) return;
+  var sec=document.createElement('section');sec.className='section';sec.id='sec-locais';sec.setAttribute('aria-label','Locais por distância e compatibilidade');
+  // por distância (a pé, de Uber, mais longe) e, dentro de cada faixa, do mais a sua cara pro menos
+  var groups=[['Vale a caminhada','até 1,5 km',-1,1.5],['Vale o Uber','até 3,5 km',1.5,3.5],['Mais longe','acima de 3,5 km',3.5,Infinity]];
+  // destaque: os lugares mais a sua cara (mais de 80%), num carrossel; eles saem das listas por distância
+  var top=state.profile?b.locais.filter(function(l){return l.aff!=null&&l.aff>DECK_MIN;}):[],used={};top.forEach(function(l){used[l.k]=1;});
+  var resto=b.locais.filter(function(l){return !used[l.k];});
+  var inner=state.profile?'':'<p class="desc-lg muted" style="margin:0 0 var(--s-m)">Conecte seu Spotify ou escolha seus gêneros pra ver quais lugares são mais a sua cara.</p>',any=false;
+  if(top.length){inner+='<div class="group" style="margin-top:0"><div class="sec-head"><div><h2 class="h2">Lugares com a sua cara</h2><p class="desc-lg muted">Onde mais toca o que você ouve</p></div></div>'+
+    '<div class="rail" role="list" style="margin-left:calc(-1 * max(16px, env(safe-area-inset-left, 0px)));margin-right:calc(-1 * max(16px, env(safe-area-inset-right, 0px)))">'+top.map(localTile).join('')+'</div></div>';any=true;}
+  groups.forEach(function(g){var items=resto.filter(function(l){return l.dist>g[2]&&l.dist<=g[3];});if(!items.length) return;
+    var key='L:'+g[0],open=moreOpen[key],shown=open?items:items.slice(0,LIST_PAGE),left=items.length-shown.length;
+    inner+='<div class="group"'+(any?'':' style="margin-top:0"')+'><div class="sec-head"><h3 class="h6">'+g[0]+'</h3><span class="desc-sm muted">'+g[1]+'</span></div><div class="list">'+shown.map(localHtml).join('')+'</div>'+
+      (left>0?'<button type="button" class="btn secondary md more-btn" data-more="'+esc(key)+'">Ver +'+left+'</button>':'')+'</div>';any=true;});
+  if(!any) inner+='<p class="desc-lg muted">'+(state.q?'Nenhum lugar por aqui com essa busca. Que tal limpar a busca?':state.when?'Nenhum lugar com rolê nessa data. Tenta outra.':'Nenhum lugar nesta região. Afaste o mapa pra ver mais.')+'</p>';
+  sec.innerHTML=inner;
+  var note=document.getElementById('note');if(note) main.insertBefore(sec,note);else main.appendChild(sec);
+  sec.querySelectorAll('[data-more]').forEach(function(btn){btn.onclick=function(){moreOpen[btn.getAttribute('data-more')]=true;render();};});
+  sec.querySelectorAll('[data-venue]').forEach(function(btn){btn.onclick=function(){openVenue(btn.getAttribute('data-venue'));};});
 }
 // total de rolês encontrados (na cidade, ou pra busca atual)
 function ddmm(d){return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0');}
@@ -1385,10 +1479,11 @@ function openDates(){
   document.getElementById('d-clear').onclick=function(){closeSheet();setWhen(null);};
 }
 function renderTotal(b){var n=b.all.length,el=document.getElementById('total');
+  if(state.modo==='locais') return renderTotalLocais(b,el);
   var quando=whenText();quando=quando?quando+' ':'';
   var onde=quando+(state.q?'em '+esc(state.city.name):state.area?(state.area.label?'em '+esc(state.area.label):'nesta região do mapa'):'em '+esc(state.city.name));
   el.innerHTML=n?'<b>'+n+(n===1?' rolê encontrado':' rolês encontrados')+'</b> '+(state.q?'pra “'+esc(state.q)+'” ':'')+onde:'Nenhum rolê encontrado'+(state.q?' pra “'+esc(state.q)+'”':'')+' '+onde+(state.q?'':!state.area?(state.when?'. Tenta outra data.':''):state.when?'. Tenta outra data ou afaste o mapa.':'. Afaste o mapa pra ver mais.');}
-function render(){withScores();var b=buckets();renderCityChip();renderClimaChip();renderMap(b);renderWhen();renderTotal(b);renderTop(b);renderRail(b);renderLists(b);renderAgendaFab();renderAgenda();checarNovos();}
+function render(){withScores();var b=buckets();b.locais=locais();renderCityChip();renderClimaChip();renderMap(b);renderModo(b);renderWhen();renderTotal(b);renderTop(b);renderRail(b);renderLists(b);renderLocais(b);renderAgendaFab();renderAgenda();checarNovos();}
 
 /* ---------- Agenda: rolês com "Bora", do que acontece antes para o que acontece depois ---------- */
 /* A agenda guarda um retrato de cada rolê, então sobrevive à troca de cidade */
@@ -1796,7 +1891,11 @@ function renderEvScreen(e){
 }
 function openVenue(k){
   var v=VENUES[k],items=visible().filter(function(e){return e.venueKey===k;}).sort(state.profile?byTop:byList);
-  openSheet('<p class="eyebrow">'+esc(v.bairro)+' • '+dTxt(items[0])+'</p><h2 class="h3" id="sheet-title">'+esc(v.name)+'</h2><p class="desc-lg muted">'+items.length+(items.length>1?' rolês':' rolê')+' por aqui</p><div class="ev-list">'+items.map(function(e){return evHtml(e);}).join('')+'</div>',v.name);
+  var g=generoDoLocal(k),a=state.profile&&g?affinity({name:v.name,genre:g},state.profile):null,lv={dist:km(ME,v),approx:!!v.approx};
+  var sobre=g?'<p class="desc-lg muted">Toca mais '+esc(g)+(a?' • '+a.pct+'% compatível com o seu gosto':'')+'</p>':'';
+  openSheet('<p class="eyebrow">'+esc(v.bairro)+' • '+dTxt(lv)+'</p><h2 class="h3" id="sheet-title">'+esc(v.name)+'</h2>'+sobre+
+    (items.length?'<p class="desc-lg muted">'+items.length+(items.length>1?' rolês':' rolê')+' por aqui</p><div class="ev-list">'+items.map(function(e){return evHtml(e);}).join('')+'</div>'
+      :'<p class="desc-lg muted">Nenhum rolê na agenda '+(state.when?whenText():'por enquanto')+'. Quando aparecer, ele entra aqui.</p>'),v.name);
   body.querySelectorAll('[data-open]').forEach(function(b){b.onclick=function(){openEvent(b.getAttribute('data-open'));};});
 }
 function connectSpotify(){
@@ -2155,5 +2254,4 @@ var rt=null;window.addEventListener('resize',function(){clearTimeout(rt);rt=setT
 limparPassados();layout();render();startScan();initLocation();renderBell();setTimeout(checarLembretes,2000);
 })();
 </script>
-
 </body></html>
