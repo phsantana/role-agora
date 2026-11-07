@@ -1,0 +1,714 @@
+{
+ "coletado": "2026-11-07",
+ "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
+ "V": {
+  "varanda_boa_vista": {
+   "name": "Varanda Boa Vista",
+   "bairro": "Jardim Alto da Boa Vista",
+   "lat": -22.1429023,
+   "lng": -51.410229
+  },
+  "agrobar": {
+   "name": "Agrobar",
+   "bairro": "Vila Ocidental",
+   "lat": -22.122218,
+   "lng": -51.3960443,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1779068864643-0rrex7.webp"
+  },
+  "cult_bar": {
+   "name": "Cult Bar",
+   "bairro": "Centro",
+   "lat": -22.1223859,
+   "lng": -51.3869472,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/238a38f1-99a1-4860-a39b-4b7679f39446/1778726927639-puq0uj.webp"
+  },
+  "alphaville_bar_e_petiscaria": {
+   "name": "Alphaville Bar e Petiscaria",
+   "bairro": "Vila Boa Vista",
+   "lat": -22.1119561,
+   "lng": -51.3846322,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/1229b565-fa87-454a-bf1f-23b2690ce36f/1778774657754-6itwy8.webp"
+  },
+  "valete_bar": {
+   "name": "Valete Bar",
+   "bairro": "Jardim Paulista",
+   "lat": -22.1158889,
+   "lng": -51.4007753,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/e43f6d24-cb84-4382-b643-e81a3b052f52/1792537102593-irmlae.webp"
+  },
+  "exquina_bar": {
+   "name": "Exquina Bar",
+   "bairro": "Vila Santa Helena",
+   "lat": -22.1212473,
+   "lng": -51.3974565,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1790912239912-jj2022.webp"
+  },
+  "ibiza_lounge_bar": {
+   "name": "Ibiza Lounge Bar",
+   "bairro": "Vila Santa Helena",
+   "lat": -22.1172046,
+   "lng": -51.3997127,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/337fca73-35bd-4ec1-a39f-5456abcc2c1e/1778774694007-98dpn1.webp"
+  },
+  "villa_18_container_bar": {
+   "name": "Villa 18 Container Bar",
+   "bairro": "Jardim das Rosas",
+   "lat": -22.1136449,
+   "lng": -51.4133731,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/83437154-1c32-49b2-b38e-cdbd1d7a9cad/1779332703186-u81y2e.webp"
+  },
+  "new_york_lounge_nyl": {
+   "name": "New York Lounge - NYL",
+   "bairro": "Jardim dos Pioneiros",
+   "lat": -22.1390956,
+   "lng": -51.406647,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/623d237f-e1ee-42ba-a9db-f51ad57ca913/1778774594985-yz5oog.webp"
+  },
+  "bar_da_onca": {
+   "name": "Bar da Onça",
+   "bairro": "Vila Cláudia Glória",
+   "lat": -22.1216664,
+   "lng": -51.3988011,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/51f600c0-ba94-493c-b779-aa6af9af2c46/1778774702862-zbrlnz.webp"
+  },
+  "jardim_esmeralda": {
+   "name": "Jardim Esmeralda",
+   "bairro": "Jardim Monte Alto",
+   "lat": -22.1246873,
+   "lng": -51.425278
+  },
+  "fabrica_gastrobar": {
+   "name": "Fábrica Gastrobar",
+   "bairro": "Jardim Petrópolis",
+   "lat": -22.1201125,
+   "lng": -51.4173716,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/9e86b85b-a204-4cff-9919-2d97345fe160/1789852541700-jkfkhp.webp"
+  },
+  "seu_bastiao_pub": {
+   "name": "Seu Bastião Pub",
+   "bairro": "UEP1-S.2",
+   "lat": -22.1199927,
+   "lng": -51.4033684,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/9915e8e8-358f-4473-ae8c-d28d57cc4949/1778774604095-tyl1kw.webp"
+  },
+  "tacchino_ristorante": {
+   "name": "Tacchino Ristorante",
+   "bairro": "Centro",
+   "lat": -22.1224642,
+   "lng": -51.3841196,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/89189bb9-eeb9-4d2c-8806-f5bef8dfc0dc/1778461107557-xjybby.webp"
+  },
+  "overdrive_music_bar": {
+   "name": "Overdrive Music Bar",
+   "bairro": "Vila Nova Industrial",
+   "lat": -22.139045,
+   "lng": -51.3916174,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/eb34216a-b369-4606-bb38-c61e06fe65ee/1794065293161-r4x5cy.webp"
+  },
+  "quinta_aula": {
+   "name": "Quinta Aula",
+   "bairro": "Cidade Universitária",
+   "lat": -22.1326042,
+   "lng": -51.4031816,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1781044661352-4em2jp.webp"
+  },
+  "vo_laura_gourmet": {
+   "name": "Vó Laura Gourmet",
+   "bairro": "Cidade Universitária",
+   "lat": -22.1319149,
+   "lng": -51.4022959,
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/22067223-161e-4d2f-bcc7-41b0ac82a2ec/1778774721133-1ulihj.webp"
+  }
+ },
+ "generos": {
+  "exquina_bar": {
+   "antigo0": "Samba",
+   "antigo9": "Sertanejo",
+   "antigo21": "Sertanejo",
+   "rf9239508": "Sertanejo",
+   "raaf70090": "Sertanejo"
+  },
+  "agrobar": {
+   "antigo1": "Sertanejo",
+   "antigo5": "Sertanejo",
+   "rcb08fb70": "Sertanejo"
+  },
+  "varanda_boa_vista": {
+   "antigo2": "Sertanejo",
+   "antigo3": "Sertanejo"
+  },
+  "alphaville_bar_e_petiscaria": {
+   "antigo6": "Pop Rock",
+   "antigo20": "Sertanejo",
+   "r4fa2a5bb": "Pop Rock",
+   "r52b67fe1": "Sertanejo"
+  },
+  "valete_bar": {
+   "antigo7": "Discotecagem",
+   "antigo11": "Rock",
+   "r0d5aa017": "Rock"
+  },
+  "overdrive_music_bar": {
+   "antigo8": "Rock",
+   "r8584d488": "Rock"
+  },
+  "villa_18_container_bar": {
+   "antigo10": "Pagode",
+   "antigo22": "Pagode",
+   "re81ffdfe": "Pagode",
+   "r66f12ecf": "Pagode"
+  },
+  "seu_bastiao_pub": {
+   "antigo12": "Eletrônica",
+   "antigo13": "Sertanejo",
+   "antigo14": "Sertanejo",
+   "r568e2226": "Eletrônica",
+   "rd205fc8b": "Sertanejo",
+   "rd3a56cc8": "Sertanejo"
+  },
+  "fabrica_gastrobar": {
+   "antigo15": "Rock",
+   "antigo31": "MPB",
+   "antigo32": "Pagode",
+   "antigo33": "Rock",
+   "antigo34": "Reggae",
+   "antigo46": "Rock",
+   "antigo47": "Rock",
+   "r28a5bd98": "Rock",
+   "r2d4a5f89": "Rock",
+   "r446a4992": "MPB",
+   "r50084a25": "Pagode",
+   "rc29409b0": "Reggae",
+   "rd44fd1ff": "Pagode",
+   "r52ba18b6": "Rock",
+   "r6364c34a": "Rock"
+  },
+  "new_york_lounge_nyl": {
+   "antigo16": "Discotecagem",
+   "antigo17": "Discotecagem",
+   "antigo18": "Eletrônica",
+   "antigo19": "Discotecagem",
+   "r3358ecf1": "Discotecagem",
+   "r93beca34": "Discotecagem",
+   "ra4a9d32b": "Discotecagem",
+   "rc7e15587": "Eletrônica"
+  },
+  "tacchino_ristorante": {
+   "antigo23": "Pop Rock",
+   "r2739b4c7": "Pop Rock"
+  },
+  "ibiza_lounge_bar": {
+   "antigo24": "Sertanejo",
+   "antigo25": "Eletrônica",
+   "antigo26": "Sertanejo",
+   "antigo27": "Sertanejo",
+   "antigo28": "Pagode",
+   "antigo29": "MPB",
+   "antigo30": "Rock",
+   "re844bf51": "Sertanejo",
+   "r2d25bb0e": "Sertanejo",
+   "r8f0628d1": "Sertanejo",
+   "rf9a43f9b": "Eletrônica",
+   "r0dd9d658": "Pagode",
+   "r2f824b76": "Rock",
+   "r4ae7f278": "MPB"
+  },
+  "bar_da_onca": {
+   "antigo35": "Pagode",
+   "antigo36": "Sertanejo",
+   "antigo37": "Samba",
+   "antigo38": "Sertanejo",
+   "antigo39": "Pagode",
+   "antigo40": "Sertanejo",
+   "antigo41": "Pagode",
+   "antigo42": "Samba",
+   "antigo43": "Samba",
+   "antigo44": "Samba",
+   "antigo45": "Pagode",
+   "r5217ffbb": "Samba",
+   "r70f7be8b": "Pagode",
+   "r73d43592": "Sertanejo",
+   "r78df2e47": "Pagode",
+   "r7e7399ff": "Samba",
+   "r944b32fd": "Samba",
+   "ra2fe530b": "Pagode",
+   "rab6e2a48": "Sertanejo",
+   "readdcf90": "Pagode",
+   "rf0a659ad": "Samba",
+   "rfc885c16": "Sertanejo"
+  },
+  "cult_bar": {
+   "antigo48": "Rock",
+   "rec7fa048": "Rock"
+  },
+  "quinta_aula": {
+   "rb1ca2ffe": "Pop"
+  },
+  "vo_laura_gourmet": {
+   "r56e0e4a0": "Sertanejo"
+  }
+ },
+ "rows": [
+  [
+   "rb1ca2ffe",
+   "Bruno José",
+   "quinta_aula",
+   "Pop",
+   "2026-11-07",
+   "18:30",
+   "bruno-jose"
+  ],
+  [
+   "rcb08fb70",
+   "Twiggy",
+   "agrobar",
+   "Sertanejo",
+   "2026-11-07",
+   "19:30",
+   "twiggy"
+  ],
+  [
+   "r4fa2a5bb",
+   "Acústico Urbano",
+   "alphaville_bar_e_petiscaria",
+   "Pop Rock",
+   "2026-11-07",
+   "20:00",
+   "acustico-urbano"
+  ],
+  [
+   "r8584d488",
+   "Stereonatos",
+   "overdrive_music_bar",
+   "Rock",
+   "2026-11-07",
+   "20:00",
+   "stereonatos"
+  ],
+  [
+   "r56e0e4a0",
+   "Denis Araujo",
+   "vo_laura_gourmet",
+   "Sertanejo",
+   "2026-11-07",
+   "20:30",
+   "denis-araujo"
+  ],
+  [
+   "rf9239508",
+   "Estácio Lima",
+   "exquina_bar",
+   "Sertanejo",
+   "2026-11-07",
+   "20:30",
+   "estacio-lima"
+  ],
+  [
+   "re81ffdfe",
+   "Grupo Batukada Nossa",
+   "villa_18_container_bar",
+   "Pagode",
+   "2026-11-07",
+   "21:30",
+   "grupo-batukada-nossa"
+  ],
+  [
+   "r0d5aa017",
+   "Banda Time Machine",
+   "valete_bar",
+   "Rock",
+   "2026-11-07",
+   "22:00",
+   "banda-time-machine"
+  ],
+  [
+   "r28a5bd98",
+   "Rodox",
+   "fabrica_gastrobar",
+   "Rock",
+   "2026-11-07",
+   "22:00",
+   "rodox"
+  ],
+  [
+   "r568e2226",
+   "DJ Misper",
+   "seu_bastiao_pub",
+   "Eletrônica",
+   "2026-11-07",
+   "22:00",
+   "dj-misper"
+  ],
+  [
+   "rd205fc8b",
+   "Lucas & Kaike",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-07",
+   "22:00",
+   "lucas-kaike"
+  ],
+  [
+   "rd3a56cc8",
+   "Junior Donatto & Rafael",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-07",
+   "22:00",
+   "junior-donatto-rafael"
+  ],
+  [
+   "r3358ecf1",
+   "Mariah Bernardes Maia",
+   "new_york_lounge_nyl",
+   "Discotecagem",
+   "2026-11-07",
+   "23:00",
+   "mariah-bernardes-maia"
+  ],
+  [
+   "r93beca34",
+   "Amanda Diaz",
+   "new_york_lounge_nyl",
+   "Discotecagem",
+   "2026-11-07",
+   "23:00",
+   "amanda-diaz"
+  ],
+  [
+   "ra4a9d32b",
+   "Dj Hope Bunny",
+   "new_york_lounge_nyl",
+   "Discotecagem",
+   "2026-11-07",
+   "23:00",
+   "dj-hope-bunny"
+  ],
+  [
+   "rc7e15587",
+   "Heeyalt",
+   "new_york_lounge_nyl",
+   "Eletrônica",
+   "2026-11-07",
+   "23:00",
+   "heeyalt"
+  ],
+  [
+   "r52b67fe1",
+   "Lucas Purga",
+   "alphaville_bar_e_petiscaria",
+   "Sertanejo",
+   "2026-11-08",
+   "13:30",
+   "lucas-purga"
+  ],
+  [
+   "raaf70090",
+   "Lorena Cristine",
+   "exquina_bar",
+   "Sertanejo",
+   "2026-11-08",
+   "14:00",
+   "lorena-cristine"
+  ],
+  [
+   "r66f12ecf",
+   "Grupo TeDeJota",
+   "villa_18_container_bar",
+   "Pagode",
+   "2026-11-08",
+   "19:30",
+   "grupo-tedejota"
+  ],
+  [
+   "r2739b4c7",
+   "Três Muié",
+   "tacchino_ristorante",
+   "Pop Rock",
+   "2026-11-12",
+   "19:00",
+   "tres-muie"
+  ],
+  [
+   "re844bf51",
+   "Fiduma & Jeca",
+   "ibiza_lounge_bar",
+   "Sertanejo",
+   "2026-11-14",
+   "14:00",
+   "fiduma-jeca"
+  ],
+  [
+   "r2d25bb0e",
+   "Lorena Cristine",
+   "ibiza_lounge_bar",
+   "Sertanejo",
+   "2026-11-14",
+   "",
+   "lorena-cristine"
+  ],
+  [
+   "r8f0628d1",
+   "João Marcelo e Juliano",
+   "ibiza_lounge_bar",
+   "Sertanejo",
+   "2026-11-14",
+   "",
+   "joao-marcelo-e-juliano"
+  ],
+  [
+   "rf9a43f9b",
+   "DJ Fernando Furlan",
+   "ibiza_lounge_bar",
+   "Eletrônica",
+   "2026-11-14",
+   "",
+   "dj-fernando-furlan"
+  ],
+  [
+   "r0dd9d658",
+   "Caso à Parte",
+   "ibiza_lounge_bar",
+   "Pagode",
+   "2026-11-19",
+   "00:30",
+   "caso-a-parte"
+  ],
+  [
+   "r2f824b76",
+   "Mateuzinho Umbigaê",
+   "ibiza_lounge_bar",
+   "Rock",
+   "2026-11-19",
+   "00:30",
+   "mateuzinho-umbigae"
+  ],
+  [
+   "r4ae7f278",
+   "Da Silva",
+   "ibiza_lounge_bar",
+   "MPB",
+   "2026-11-19",
+   "00:30",
+   "da-silva"
+  ],
+  [
+   "r2d4a5f89",
+   "Mateuzinho Umbigaê",
+   "fabrica_gastrobar",
+   "Rock",
+   "2026-11-19",
+   "20:00",
+   "mateuzinho-umbigae"
+  ],
+  [
+   "r446a4992",
+   "Da Silva",
+   "fabrica_gastrobar",
+   "MPB",
+   "2026-11-19",
+   "20:00",
+   "da-silva"
+  ],
+  [
+   "r50084a25",
+   "Kota",
+   "fabrica_gastrobar",
+   "Pagode",
+   "2026-11-19",
+   "20:00",
+   "kota"
+  ],
+  [
+   "rc29409b0",
+   "Zilvan",
+   "fabrica_gastrobar",
+   "Reggae",
+   "2026-11-19",
+   "20:00",
+   "zilvan"
+  ],
+  [
+   "rd44fd1ff",
+   "Caso à Parte",
+   "fabrica_gastrobar",
+   "Pagode",
+   "2026-11-19",
+   "20:00",
+   "caso-a-parte"
+  ],
+  [
+   "r5217ffbb",
+   "Samba E Suor",
+   "bar_da_onca",
+   "Samba",
+   "2026-12-05",
+   "15:00",
+   "samba-e-suor"
+  ],
+  [
+   "r70f7be8b",
+   "Kota",
+   "bar_da_onca",
+   "Pagode",
+   "2026-12-05",
+   "15:00",
+   "kota"
+  ],
+  [
+   "r73d43592",
+   "Felipe Corazza",
+   "bar_da_onca",
+   "Sertanejo",
+   "2026-12-05",
+   "15:00",
+   "felipe-corazza"
+  ],
+  [
+   "r78df2e47",
+   "Caso à Parte",
+   "bar_da_onca",
+   "Pagode",
+   "2026-12-05",
+   "15:00",
+   "caso-a-parte"
+  ],
+  [
+   "r7e7399ff",
+   "Elly Guimaraes",
+   "bar_da_onca",
+   "Samba",
+   "2026-12-05",
+   "15:00",
+   "elly-guimaraes"
+  ],
+  [
+   "r944b32fd",
+   "Soul do Samba",
+   "bar_da_onca",
+   "Samba",
+   "2026-12-05",
+   "15:00",
+   "soul-do-samba"
+  ],
+  [
+   "ra2fe530b",
+   "Tropa do Rafa",
+   "bar_da_onca",
+   "Pagode",
+   "2026-12-05",
+   "15:00",
+   "tropa-do-rafa"
+  ],
+  [
+   "rab6e2a48",
+   "Gustavo Mattos",
+   "bar_da_onca",
+   "Sertanejo",
+   "2026-12-05",
+   "15:00",
+   "gustavo-mattos"
+  ],
+  [
+   "readdcf90",
+   "Grupo TeDeJota",
+   "bar_da_onca",
+   "Pagode",
+   "2026-12-05",
+   "15:00",
+   "grupo-tedejota"
+  ],
+  [
+   "rf0a659ad",
+   "Nós Somos Do Interior",
+   "bar_da_onca",
+   "Samba",
+   "2026-12-05",
+   "15:00",
+   "nos-somos-do-interior"
+  ],
+  [
+   "rfc885c16",
+   "Denise Leal",
+   "bar_da_onca",
+   "Sertanejo",
+   "2026-12-05",
+   "15:00",
+   "denise-leal"
+  ],
+  [
+   "r52ba18b6",
+   "Chico Malakian",
+   "fabrica_gastrobar",
+   "Rock",
+   "2026-12-11",
+   "22:00",
+   "chico-malakian"
+  ],
+  [
+   "r6364c34a",
+   "Linkin Park Cover América",
+   "fabrica_gastrobar",
+   "Rock",
+   "2026-12-11",
+   "22:00",
+   "linkin-park-cover-america"
+  ],
+  [
+   "rec7fa048",
+   "Moments",
+   "cult_bar",
+   "Rock",
+   "2027-06-13",
+   "16:00",
+   "moments"
+  ]
+ ],
+ "imgs": {
+  "marcelo-sa-e-banda": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/068704d3-cdd9-4ee8-b6eb-57ea8b195532/1793633398014-aipkpl.webp",
+  "lucas-renan": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5aa2c75c-3a6a-4efe-a79e-767d64209580/1793633380707-oryv1y.webp",
+  "alan-reis": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/c8aa284b-9f2d-4b94-b3cb-787a2058482c/1779134070201-dzfzaq.webp",
+  "moments": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/47d12237-118f-4b65-8942-5913797785ae/1781046156205-xeceb0.webp",
+  "luis-malamao": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778453814994-hlhj8w.webp",
+  "estacio-lima": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/9eb2f027-b619-479a-ad5e-d1950f7ad4ef/1779292320361-v45dn1.webp",
+  "lorena-cristine": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/aded624e-5879-46dc-aba4-57fa14af0f92/1779134241181-vlu5dk.webp",
+  "fiduma-jeca": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/310360c1-c1c7-47bc-8991-44a1b269bc30/1779132899970-cl3mt4.webp",
+  "joao-marcelo-e-juliano": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/787d2281-e7eb-4305-a9ca-2bc8989e5ab3/1779124891701-fbkd0b.webp",
+  "dj-fernando-furlan": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/genres/22e4b726-a6cb-4280-9d83-629dad9a7cc6/1788741943928-ts4agg.webp",
+  "caso-a-parte": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/a0a21889-5122-4106-a892-e0a315075b6e/1779124802666-scp86b.webp",
+  "mateuzinho-umbigae": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/4159b54d-5a0f-43c5-98b3-7c266f3cbb49/1779652899317-jstv0x.webp",
+  "da-silva": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/390b9a3e-f1e0-4141-a944-745f4245119a/1779124919182-iv5i1m.webp",
+  "grupo-batukada-nossa": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/9867ea6b-d35a-4063-ad13-a821591b2b19/1779124873700-285b6r.webp",
+  "grupo-tedejota": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/b0992859-5e96-4330-8f19-e6b2e759b250/1779124783688-72ivge.webp",
+  "banda-time-machine": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/genres/22e4b726-a6cb-4280-9d83-629dad9a7cc6/1788740634471-41vzbh.webp",
+  "mariah-bernardes-maia": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/4eccfe08-4fbb-4e61-a620-c988161cd382/1789046406001-1u8psb.webp",
+  "amanda-diaz": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/8ab70293-4040-4ebe-adf1-12ac6c295a70/1793759278595-7sorxv.webp",
+  "dj-hope-bunny": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/69ab7e7e-b4d8-421b-a633-fe25e6efee04/1792879802145-lmkw8b.webp",
+  "heeyalt": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/genres/22e4b726-a6cb-4280-9d83-629dad9a7cc6/1788741943928-ts4agg.webp",
+  "samba-e-suor": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/6f930352-2d93-4a92-a863-d40ec90a18da/1783988636355-16wvvu.webp",
+  "kota": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/a745e29f-7482-4e7a-9cea-0f0a253d0f85/1774063450126-dwpfgy.webp",
+  "felipe-corazza": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1774064404896-0hbopi.webp",
+  "elly-guimaraes": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/0f456099-a967-4509-9079-01d37b6f62bf/1779134232426-u7g6jp.webp",
+  "soul-do-samba": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/4ba69e8d-433d-4d98-ba3b-cf79f28bdd88/1779124819615-rmgiv3.webp",
+  "tropa-do-rafa": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/67a4375d-d18e-4d65-9b10-ef8df54b9d87/1779133170189-vwif41.webp",
+  "gustavo-mattos": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5af62a9f-43b8-4470-aed3-79ef1f2c1909/1789590451031-pjui5s.webp",
+  "nos-somos-do-interior": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1774070926612-8l88r4.webp",
+  "denise-leal": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/dd703043-3873-41f9-ac1a-047e4c894f3c/1779124810851-cio4bs.webp",
+  "noite-de-karaoke-karaoke": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/ig-general-events/ac1df365-0089-4332-90eb-91efbf8a6e50/18132189455496484.jpg",
+  "rodox": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778460808361-ug2c3a.webp",
+  "chico-malakian": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/b66b5b12-5bfd-4739-9abb-d8c4009a9ca2/1779132972199-vmas8j.webp",
+  "linkin-park-cover-america": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/f733665e-8837-4f5b-8f21-01569f78cf2c/1779124612782-qa568j.webp",
+  "dj-misper": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/bd884868-74c2-4254-b39b-5cca60d9d8de/1774116571236-amyblz.webp",
+  "lucas-kaike": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5fd5aa2f-562a-46f7-a0c4-32f22351c2e5/1793759649895-ruqk7l.webp",
+  "junior-donatto-rafael": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/efba72f7-472b-4e09-a291-bff1b16f5952/1781046872177-3l2ab9.webp",
+  "acustico-urbano": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/genres/22e4b726-a6cb-4280-9d83-629dad9a7cc6/1788740735823-pvhnu7.webp",
+  "lucas-purga": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/65b9c37d-8034-4fcc-8fb1-99439dee585b/1779313740708-a9h96p.webp",
+  "twiggy": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5787ea0f-10cf-459d-88be-74544956ffa6/1794011904611-2fwe3f.webp",
+  "zezinho": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/7cee5b63-8459-4d1a-ab4e-34ee72521a3a/1794012542414-e24qku.webp",
+  "tres-muie": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/7e882a06-d0ce-459e-ada2-7c7e505565a4/1794012897340-k3h7lq.webp",
+  "zilvan": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/a9c98dd2-e47a-49b4-b6ea-b4a52a1dde27/1785200558802-f6d0ur.webp",
+  "stereonatos": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1794065723681-5n29rt.webp",
+  "bruno-jose": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778459152387-llkhho.webp",
+  "denis-araujo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/6df628a3-e073-4d52-9ef2-00f14f2e4913/1779125675544-2y4nps.webp"
+ }
+}
