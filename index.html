@@ -576,8 +576,7 @@ html.screen-open{overflow:hidden}
 .home-flow .hc.on{width:168px;height:224px;border-radius:var(--r-xsm);opacity:1}
 .home-flow .hc>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .home-flow .hc::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.24),#000)}
-.home-flow .datebadge{position:absolute;z-index:1;left:8px;top:8px;box-sizing:border-box;filter:drop-shadow(0 0 4px rgba(0,0,0,.08))}
-.home-flow .datebadge .m{text-transform:capitalize}
+.home-flow .hc .b{position:absolute;z-index:1;left:8px;top:8px;font-weight:600}
 .home-flow .hc .t{position:absolute;z-index:1;left:16px;right:16px;bottom:16px;display:flex;flex-direction:column;line-height:1.5}
 .home-flow .hc .t b{font-size:16px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .home-flow .hc .t span{display:flex;align-items:center;gap:4px;font-size:12px;min-width:0}
@@ -2064,7 +2063,7 @@ function renderHome(){
   var dd=function(n){return (n<10?'0':'')+n;},meio=Math.min(1,cara.length-1);
   flow.innerHTML=cara.map(function(e,i){var d=e.date;
     return '<button type="button" class="hc'+(i===meio?' on':'')+'" data-open="'+e.id+'" aria-label="'+esc(e.name+', '+quando(e.date)+', '+e.venue+(e.aff!=null?', '+e.aff+'% compatível':''))+'"><img src="'+e.img+'" alt="">'+
-      '<span class="datebadge" aria-hidden="true"><span class="m">'+MES[d.getMonth()]+'</span><b>'+dd(d.getDate())+'</b><span class="m" style="font-weight:400">'+SEM[d.getDay()]+'</span></span>'+
+      (state.going[e.id]?'<span class="badge going b" aria-hidden="true">Você vai</span>':e.aff!=null?'<span class="badge ok b" aria-hidden="true">'+(e.aff>ESTRELA_MIN?estrela(14):'')+e.aff+'% sua cara</span>':'')+
       '<span class="t" aria-hidden="true"><b>'+esc(e.name)+'</b><span>'+ic('cal','#fff')+'<i>'+dd(d.getDate())+'/'+dd(d.getMonth()+1)+(d.noTime?'':' • '+hora(d))+'</i></span><span>'+ic('pin','#fff')+'<i>'+esc(e.venue+(e.bairro?' - '+e.bairro:''))+'</i></span></span></button>';}).join('')||'<p class="home-vazio">Assim que aparecer rolê com a sua cara, ele entra aqui.</p>';
   document.getElementById('home-dots').innerHTML=cara.length>1?cara.map(function(e,i){return '<i'+(i===meio?' class="on"':'')+'></i>';}).join(''):'';
 }
