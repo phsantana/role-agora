@@ -6,118 +6,655 @@
    "name": "Varanda Boa Vista",
    "bairro": "Jardim Alto da Boa Vista",
    "lat": -22.1429023,
-   "lng": -51.410229
+   "lng": -51.410229,
+   "slug": "varanda-boa-vista",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1780681371429-385xlj.webp",
+   "tipo": "Restaurante",
+   "genero": "Eletrônica",
+   "generosTop": [
+    "Eletrônica",
+    "Pagode",
+    "Sertanejo"
+   ]
   },
   "agrobar": {
    "name": "Agrobar",
    "bairro": "Vila Ocidental",
    "lat": -22.122218,
    "lng": -51.3960443,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1779068864643-0rrex7.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1779068864643-0rrex7.webp",
+   "slug": "agrobar-presidente-prudente-sp",
+   "tipo": "Bar",
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo",
+    "Samba"
+   ]
   },
   "cult_bar": {
    "name": "Cult Bar",
    "bairro": "Centro",
    "lat": -22.1223859,
    "lng": -51.3869472,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/238a38f1-99a1-4860-a39b-4b7679f39446/1778726927639-puq0uj.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/238a38f1-99a1-4860-a39b-4b7679f39446/1778726927639-puq0uj.webp",
+   "slug": "cult-bar-pp",
+   "tipo": "Edifício",
+   "genero": "Rock",
+   "generosTop": [
+    "Rock",
+    "Pop Rock",
+    "Discotecagem"
+   ]
   },
   "alphaville_bar_e_petiscaria": {
    "name": "Alphaville Bar e Petiscaria",
    "bairro": "Vila Boa Vista",
    "lat": -22.1119561,
    "lng": -51.3846322,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/1229b565-fa87-454a-bf1f-23b2690ce36f/1778774657754-6itwy8.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/1229b565-fa87-454a-bf1f-23b2690ce36f/1778774657754-6itwy8.webp",
+   "slug": "alphaville-bar-e-petiscaria",
+   "tipo": "Restaurante",
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo",
+    "Pop Rock",
+    "Brasilidades"
+   ],
+   "areaExterna": true
   },
   "valete_bar": {
    "name": "Valete Bar",
    "bairro": "Jardim Paulista",
    "lat": -22.1158889,
    "lng": -51.4007753,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/e43f6d24-cb84-4382-b643-e81a3b052f52/1792537102593-irmlae.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/e43f6d24-cb84-4382-b643-e81a3b052f52/1792537102593-irmlae.webp",
+   "slug": "valete-bar",
+   "tipo": "Bar",
+   "genero": "Rock",
+   "generosTop": [
+    "Rock",
+    "Discotecagem",
+    "Pop Rock"
+   ]
   },
   "exquina_bar": {
    "name": "Exquina Bar",
    "bairro": "Vila Santa Helena",
    "lat": -22.1212473,
    "lng": -51.3974565,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1790912239912-jj2022.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1790912239912-jj2022.webp",
+   "slug": "exquina-bar",
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo",
+    "MPB",
+    "Country"
+   ],
+   "tipo": "Restaurante",
+   "areaExterna": true
   },
   "ibiza_lounge_bar": {
    "name": "Ibiza Lounge Bar",
    "bairro": "Vila Santa Helena",
    "lat": -22.1172046,
    "lng": -51.3997127,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/337fca73-35bd-4ec1-a39f-5456abcc2c1e/1778774694007-98dpn1.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/337fca73-35bd-4ec1-a39f-5456abcc2c1e/1778774694007-98dpn1.webp",
+   "slug": "ibiza-lounge-bar",
+   "tipo": "Bar",
+   "genero": "Pagode",
+   "generosTop": [
+    "Pagode",
+    "Eletrônica",
+    "Sertanejo"
+   ],
+   "areaExterna": true
   },
   "villa_18_container_bar": {
    "name": "Villa 18 Container Bar",
    "bairro": "Jardim das Rosas",
    "lat": -22.1136449,
    "lng": -51.4133731,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/83437154-1c32-49b2-b38e-cdbd1d7a9cad/1779332703186-u81y2e.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/83437154-1c32-49b2-b38e-cdbd1d7a9cad/1779332703186-u81y2e.webp",
+   "slug": "villa-18-container-bar",
+   "tipo": "Bar",
+   "genero": "Pagode",
+   "generosTop": [
+    "Pagode",
+    "Samba",
+    "MPB"
+   ],
+   "areaExterna": true
   },
   "new_york_lounge_nyl": {
    "name": "New York Lounge - NYL",
    "bairro": "Jardim dos Pioneiros",
    "lat": -22.1390956,
    "lng": -51.406647,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/623d237f-e1ee-42ba-a9db-f51ad57ca913/1778774594985-yz5oog.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/623d237f-e1ee-42ba-a9db-f51ad57ca913/1778774594985-yz5oog.webp",
+   "slug": "new-york-lounge-nyl",
+   "tipo": "Casa noturna",
+   "genero": "Eletrônica",
+   "generosTop": [
+    "Eletrônica",
+    "Discotecagem",
+    "Pop"
+   ],
+   "areaExterna": false
   },
   "bar_da_onca": {
    "name": "Bar da Onça",
    "bairro": "Vila Cláudia Glória",
    "lat": -22.1216664,
    "lng": -51.3988011,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/51f600c0-ba94-493c-b779-aa6af9af2c46/1778774702862-zbrlnz.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/51f600c0-ba94-493c-b779-aa6af9af2c46/1778774702862-zbrlnz.webp",
+   "slug": "bar-da-onca",
+   "tipo": "Bares",
+   "genero": "Samba",
+   "generosTop": [
+    "Samba",
+    "Pagode",
+    "Sertanejo"
+   ],
+   "areaExterna": true
   },
   "jardim_esmeralda": {
    "name": "Jardim Esmeralda",
    "bairro": "Jardim Monte Alto",
    "lat": -22.1246873,
-   "lng": -51.425278
+   "lng": -51.425278,
+   "slug": "jardim-esmeralda",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/ac1df365-0089-4332-90eb-91efbf8a6e50/1778774667145-tvi8lw.webp",
+   "tipo": "Bar",
+   "genero": "Karaokê",
+   "generosTop": [
+    "Karaokê",
+    "Rock"
+   ],
+   "areaExterna": true
   },
   "fabrica_gastrobar": {
    "name": "Fábrica Gastrobar",
    "bairro": "Jardim Petrópolis",
    "lat": -22.1201125,
    "lng": -51.4173716,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/9e86b85b-a204-4cff-9919-2d97345fe160/1789852541700-jkfkhp.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/9e86b85b-a204-4cff-9919-2d97345fe160/1789852541700-jkfkhp.webp",
+   "slug": "fabrica-gastrobar",
+   "tipo": "Bar",
+   "genero": "Rock",
+   "generosTop": [
+    "Rock",
+    "Pop Rock",
+    "Pagode"
+   ]
   },
   "seu_bastiao_pub": {
    "name": "Seu Bastião Pub",
    "bairro": "UEP1-S.2",
    "lat": -22.1199927,
    "lng": -51.4033684,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/9915e8e8-358f-4473-ae8c-d28d57cc4949/1778774604095-tyl1kw.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/9915e8e8-358f-4473-ae8c-d28d57cc4949/1778774604095-tyl1kw.webp",
+   "slug": "seu-bastiao-pub",
+   "tipo": "Casa noturna",
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo",
+    "Eletrônica",
+    "Pagode"
+   ]
   },
   "tacchino_ristorante": {
    "name": "Tacchino Ristorante",
    "bairro": "Centro",
    "lat": -22.1224642,
    "lng": -51.3841196,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/89189bb9-eeb9-4d2c-8806-f5bef8dfc0dc/1778461107557-xjybby.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/89189bb9-eeb9-4d2c-8806-f5bef8dfc0dc/1778461107557-xjybby.webp",
+   "slug": "tacchino-ristorante",
+   "tipo": "Restaurante italiano",
+   "genero": "Italiana",
+   "generosTop": [
+    "Italiana",
+    "Bloco de rua",
+    "Latina"
+   ],
+   "areaExterna": true
   },
   "overdrive_music_bar": {
    "name": "Overdrive Music Bar",
    "bairro": "Vila Nova Industrial",
    "lat": -22.139045,
    "lng": -51.3916174,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/eb34216a-b369-4606-bb38-c61e06fe65ee/1794065293161-r4x5cy.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/eb34216a-b369-4606-bb38-c61e06fe65ee/1794065293161-r4x5cy.webp",
+   "slug": "overdrive-music-bar",
+   "tipo": "Bares",
+   "genero": "Rock",
+   "generosTop": [
+    "Rock",
+    "Metal Alternativo"
+   ]
   },
   "quinta_aula": {
    "name": "Quinta Aula",
    "bairro": "Cidade Universitária",
    "lat": -22.1326042,
    "lng": -51.4031816,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1781044661352-4em2jp.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1781044661352-4em2jp.webp",
+   "slug": "quinta-aula",
+   "tipo": "Bar",
+   "genero": "Eletrônica",
+   "generosTop": [
+    "Eletrônica",
+    "Pop",
+    "Discotecagem"
+   ],
+   "areaExterna": true
   },
   "vo_laura_gourmet": {
    "name": "Vó Laura Gourmet",
    "bairro": "Cidade Universitária",
    "lat": -22.1319149,
    "lng": -51.4022959,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/22067223-161e-4d2f-bcc7-41b0ac82a2ec/1778774721133-1ulihj.webp"
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/22067223-161e-4d2f-bcc7-41b0ac82a2ec/1778774721133-1ulihj.webp",
+   "slug": "vo-laura-gourmet",
+   "tipo": "Restaurante",
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo",
+    "Multigênero",
+    "Samba"
+   ]
+  },
+  "pao_nosso": {
+   "name": "Pão Nosso",
+   "bairro": "Bairro do Bosque",
+   "lat": -22.1217585,
+   "lng": -51.3835183,
+   "slug": "pao-nosso",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/1dc3f090-14ed-4c3a-9272-97a05ba57381/1778460898794-gvddew.webp",
+   "tipo": "Padaria",
+   "genero": "Bloco de rua",
+   "generosTop": [
+    "Bloco de rua"
+   ]
+  },
+  "bar_do_joao_porquinho": {
+   "name": "Bar do João Porquinho",
+   "bairro": "Vila Industrial",
+   "lat": -22.1399685,
+   "lng": -51.391707,
+   "slug": "bar-do-joao-porquinho",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1786930015387-weokma.webp",
+   "tipo": "Bar",
+   "areaExterna": true
+  },
+  "teatro_cesar_cava": {
+   "name": "Teatro César Cava",
+   "bairro": "Cidade Universitária",
+   "lat": -22.1330748,
+   "lng": -51.40260809999999,
+   "slug": "teatro-cesar-cava",
+   "tipo": "Teatro",
+   "genero": "Stand Up",
+   "generosTop": [
+    "Stand Up"
+   ]
+  },
+  "arapuca_bar": {
+   "name": "Arapuca bar",
+   "bairro": "Vila Malaman",
+   "lat": -22.1191977,
+   "lng": -51.4033625,
+   "slug": "arapuca-bar",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/09465e69-db89-436f-b988-93f7e16f9358/1778774792647-ao7lrz.webp",
+   "tipo": "Bar",
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo",
+    "Pagode",
+    "Brasilidades"
+   ]
+  },
+  "jardim_suinga": {
+   "name": "Jardim Suinga",
+   "bairro": "Jardim Cambui",
+   "lat": -22.1320497,
+   "lng": -51.4211319,
+   "slug": "jardim-suinga",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/4cab07ce-262c-4db6-917f-15b5cac386f0/1778774783884-whos9h.webp",
+   "tipo": "Bar",
+   "genero": "Samba",
+   "generosTop": [
+    "Samba",
+    "MPB"
+   ],
+   "areaExterna": true
+  },
+  "salao_o_limoeiro": {
+   "name": "Salão O Limoeiro",
+   "bairro": "Residencial Universitario",
+   "lat": -22.1162231,
+   "lng": -51.4473445,
+   "slug": "salao-o-limoeiro",
+   "tipo": "Local para eventos",
+   "genero": "Rock",
+   "generosTop": [
+    "Rock"
+   ]
+  },
+  "sal_grosso_choperia_e_petiscaria": {
+   "name": "Sal Grosso Choperia e Petiscaria",
+   "bairro": "Vila Maristela",
+   "lat": -22.1096837,
+   "lng": -51.3844447,
+   "slug": "sal-grosso-choperia-e-petiscaria",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778462407998-54yctq.webp",
+   "tipo": "Restaurante"
+  },
+  "choperia_cristim": {
+   "name": "Choperia Cristim",
+   "bairro": "Jardim Santa Fe",
+   "lat": -22.1387019,
+   "lng": -51.451314,
+   "slug": "choperia-cristim",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/dc70dab8-d6cc-4a8e-82ba-a5fa90734854/1778774622016-7anx6b.webp",
+   "tipo": "Restaurante",
+   "areaExterna": true
+  },
+  "ume_brasa_e_mar": {
+   "name": "Umê Brasa e Mar",
+   "bairro": "Vila Santa Helena",
+   "lat": -22.1188162,
+   "lng": -51.4168612,
+   "slug": "ume-brasa-e-mar",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/a25d7a7d-36be-4176-b77e-3dc1715a2a3f/1778774586241-7uvhg3.webp",
+   "tipo": "Casa noturna",
+   "genero": "Eletrônica",
+   "generosTop": [
+    "Eletrônica",
+    "Rock",
+    "Sertanejo"
+   ]
+  },
+  "parque_do_povo": {
+   "name": "Parque do Povo",
+   "bairro": "Jardim Marupiara",
+   "lat": -22.1236621,
+   "lng": -51.4024172,
+   "slug": "parque-do-povo",
+   "tipo": "Parque",
+   "genero": "Forró",
+   "generosTop": [
+    "Forró",
+    "Sertanejo",
+    "MPB"
+   ]
+  },
+  "rooftop_bar": {
+   "name": "Rooftop Bar",
+   "bairro": "Vila Tabajara",
+   "lat": -22.1298069,
+   "lng": -51.3985376,
+   "slug": "rooftop-bar-seu-bar-nas-alturas",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/c2d30cdf-a2a4-4ba3-8858-226777155efc/1778727079700-3td179.webp",
+   "tipo": "Bar",
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo"
+   ],
+   "areaExterna": true
+  },
+  "magma_grill": {
+   "name": "Magma - Grill",
+   "bairro": "Residencial Parque dos Girassóis",
+   "lat": -22.1324472,
+   "lng": -51.4331511,
+   "slug": "magma-grill",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/ba3cd5f8-6b2f-4d21-b2ac-1787fd93bba8/1778774729824-ju9erb.webp",
+   "tipo": "Restaurante",
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo",
+    "Pop Rock",
+    "Rock"
+   ],
+   "areaExterna": true
+  },
+  "tenis_clube": {
+   "name": "Tênis Clube",
+   "bairro": "Jardim Paulista",
+   "lat": -22.1166,
+   "lng": -51.3991,
+   "slug": "tenis-clube",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/9477ac66-eb29-4745-905a-bcdb4e7e916c/1778775098849-rvu9ip.webp",
+   "tipo": "Clube",
+   "genero": "Rock",
+   "generosTop": [
+    "Rock"
+   ]
+  },
+  "prudentina_chopperia_e_petiscaria": {
+   "name": "Prudentina Chopperia e Petiscaria",
+   "bairro": "Jardim Bongiovani",
+   "lat": -22.1433946,
+   "lng": -51.4004232,
+   "slug": "prudentina-chopperia-e-petiscaria",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/3acc341d-b868-4f43-ba21-5d917a5bbdcb/1778774613806-6ssfsl.webp",
+   "tipo": "Restaurante",
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo",
+    "Eletrônica",
+    "Pop Rock"
+   ],
+   "areaExterna": true
+  },
+  "floa_cafe_e_flor": {
+   "name": "Floá Café e Flor",
+   "bairro": "Bairro do Bosque",
+   "lat": -22.1191192,
+   "lng": -51.38604309999999,
+   "slug": "floa-cafe-e-flor",
+   "foto": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1773246646418-x1qtjg.webp",
+   "tipo": "Cafeteria"
+  },
+  "fagulha_fire": {
+   "name": "Fagulha Fire",
+   "bairro": "Uep1-S.2",
+   "lat": -22.122365,
+   "lng": -51.402647,
+   "slug": "fagulha-fire-presidente-prudente-sp",
+   "foto": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/venues/d51193aa-f02f-49fa-8c2f-68bc204b60f4/1772937213205-u8jg4v.webp",
+   "tipo": "Bar",
+   "genero": "Discotecagem",
+   "generosTop": [
+    "Discotecagem",
+    "Eletrônica",
+    "Pop"
+   ],
+   "areaExterna": true
+  },
+  "centro_historico_cultural_matarazzo": {
+   "name": "Centro Histórico Cultural Matarazzo",
+   "bairro": "Vila Marcondes",
+   "lat": -22.1208288,
+   "lng": -51.3794625,
+   "slug": "centro-historico-cultural-matarazzo",
+   "tipo": "Local histórico",
+   "genero": "Dança",
+   "generosTop": [
+    "Dança"
+   ]
+  },
+  "eden_beer_choperia": {
+   "name": "Eden Beer Choperia",
+   "bairro": "Jardim Aviação",
+   "lat": -22.1094364,
+   "lng": -51.3851004,
+   "slug": "eden-beer-choperia",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/4404b306-2bad-4cae-90ed-5bf51e6154ce/1778774819836-my5243.webp",
+   "tipo": "Restaurante",
+   "areaExterna": true
+  },
+  "coletivo_cultural_galpao_da_lua": {
+   "name": "Coletivo Cultural Galpão da Lua",
+   "bairro": "Centro",
+   "lat": -22.1225597,
+   "lng": -51.3818734,
+   "slug": "coletivo-cultural-galpao-da-lua",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/86e7713c-e1b0-470a-b136-e68b554eac19/1778774684781-t7dizw.webp",
+   "tipo": "Centro cultural",
+   "genero": "Teatro",
+   "generosTop": [
+    "Teatro",
+    "Bloco de rua"
+   ]
+  },
+  "bar_bq": {
+   "name": "Bar BQ",
+   "bairro": "Jardim Paulistano",
+   "lat": -22.1316829,
+   "lng": -51.3973914,
+   "slug": "bar-bq",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/33b4d666-e380-4a86-86b6-fbd654364cff/1778774766091-ploras.webp",
+   "tipo": "Restaurante",
+   "genero": "Pop Rock",
+   "generosTop": [
+    "Pop Rock",
+    "Rock",
+    "MPB"
+   ]
+  },
+  "sorveteria_conveniencia_e_petiscaria_serenata": {
+   "name": "Sorveteria Conveniência e Petiscaria Serenata",
+   "bairro": "Parque Bandeirantes",
+   "lat": -22.1050574,
+   "lng": -51.4103891,
+   "slug": "sorveteria-conveniencia-e-petiscaria-serenata",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/f40d43b7-0ccd-41de-bfaa-1624d42cd984/1778774640247-wpp1hx.webp",
+   "tipo": "Sorveteria",
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo",
+    "Pop Rock"
+   ]
+  },
+  "gaucho_s_costelaria": {
+   "name": "Gaucho's Costelaria",
+   "bairro": "Residencial Universitario",
+   "lat": -22.1247263,
+   "lng": -51.4470068,
+   "slug": "gaucho-s-costelaria",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1779649594141-33vqwp.webp",
+   "tipo": "Bar",
+   "genero": "Multigênero",
+   "generosTop": [
+    "Multigênero"
+   ],
+   "areaExterna": true
+  },
+  "buteco_raiz": {
+   "name": "BUTECO RAIZ",
+   "bairro": "Centro",
+   "lat": -22.1187698,
+   "lng": -51.3936443,
+   "slug": "buteco-raiz",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/ffaa89c5-8323-44d1-98d1-f05377036fd1/1778461119993-1taqm8.webp",
+   "tipo": "Bar",
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo",
+    "Pagode",
+    "Samba"
+   ]
+  },
+  "brigada_dos_lobos_mc_sub_sede_presidente_prudente": {
+   "name": "Brigada dos Lobos MC Sub-Sede Presidente Prudente",
+   "bairro": "Vila Formosa",
+   "lat": -22.1455921,
+   "lng": -51.3953462,
+   "slug": "brigada-dos-lobos-mc-sub-sede-presidente-prudente",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778461326021-649ous.webp",
+   "genero": "Pop Rock",
+   "generosTop": [
+    "Pop Rock"
+   ],
+   "tipo": null
+  },
+  "deck_bar": {
+   "name": "Deck Bar",
+   "bairro": "Jardim Caiçara",
+   "lat": -22.1293445,
+   "lng": -51.4011588,
+   "slug": "deck-bar",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778462678252-sji93g.webp",
+   "tipo": "Bar",
+   "genero": "Pop Rock",
+   "generosTop": [
+    "Pop Rock",
+    "Rock"
+   ],
+   "areaExterna": true
+  },
+  "sesc_thermas": {
+   "name": "Sesc Thermas",
+   "bairro": "Jardim das Rosas",
+   "lat": -22.120679,
+   "lng": -51.4138809,
+   "slug": "sesc-thermas",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/4d9ff4c4-9f0a-4473-8e07-2ab64b12c4a4/1778774756700-bs0uau.webp",
+   "tipo": "Clube",
+   "genero": "Teatro",
+   "generosTop": [
+    "Teatro",
+    "MPB",
+    "Forró"
+   ]
+  },
+  "cazulo_cultural": {
+   "name": "Cazulo Cultural",
+   "bairro": "Vila Liberdade",
+   "lat": -22.1317584,
+   "lng": -51.3999797,
+   "slug": "cazulo-cultural",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1779068535983-hpogki.webp",
+   "genero": "Rock",
+   "generosTop": [
+    "Rock",
+    "MPB",
+    "Jazz"
+   ],
+   "tipo": null
+  },
+  "chapeu_de_palha_bar": {
+   "name": "Chapéu de Palha Bar",
+   "bairro": "Centro",
+   "lat": -22.1178232,
+   "lng": -51.3942221,
+   "slug": "chapeu-de-palha-bar",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1779068743426-ava044.webp",
+   "tipo": null
+  },
+  "sorveteria_napoles": {
+   "name": "Sorveteria Nápoles",
+   "bairro": "Jardim Tropical",
+   "lat": -22.1325068,
+   "lng": -51.4440343,
+   "slug": "sorveteria-napoles",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1784994210345-zcme4k.webp",
+   "tipo": "Sorveteria",
+   "genero": "Arraiá",
+   "generosTop": [
+    "Arraiá"
+   ]
+  },
+  "o_beco_bar": {
+   "name": "O Beco Bar",
+   "bairro": "Vila Santa Helena",
+   "lat": -22.1216222,
+   "lng": -51.3972741,
+   "slug": "o-beco-bar",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/165863a0-ae8f-48ed-bb28-ec846780ca18/1778774739029-zetw5p.webp",
+   "tipo": "Restaurante",
+   "areaExterna": true
   }
  },
  "generos": {
