@@ -681,9 +681,9 @@ var SIM={
 var SPOTIFY_MOCK={name:'Seu Spotify',weights:{Pop:.92,Rock:.85,Soul:.74,Sertanejo:.61}};
 
 var state={profile:null,source:null,q:'',dismissed:{},going:{},topIdx:0,city:{name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false}};
-try{var saved=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(saved&&saved.profile){state.profile=saved.profile;state.source=saved.source;state.going=saved.going||{};}}catch(e){}
+try{var saved=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(saved&&saved.profile){state.profile=saved.profile;state.source=saved.source;state.going=saved.going||{};state.dismissed=saved.dismissed||{};}}catch(e){}
 try{var savedI=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(savedI&&savedI.going&&!saved.profile) state.going=savedI.going;}catch(e){}
-function persist(){try{localStorage.setItem('radar-roles',JSON.stringify({profile:state.profile,source:state.source,going:state.going}));}catch(e){}}
+function persist(){try{localStorage.setItem('radar-roles',JSON.stringify({profile:state.profile,source:state.source,going:state.going,dismissed:state.dismissed}));}catch(e){}}
 
 /* ---------- Cálculos ---------- */
 function hash(s){var h=0;for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0;}return Math.abs(h);}
@@ -700,7 +700,8 @@ function affinity(ev,profile){
 var events=E.map(function(r){var v=VENUES[r[2]];var p=(r[5]||'23:59').split(':');var d=r[4].split('-');var dt=new Date(+d[0],+d[1]-1,+d[2],+p[0],+p[1]);if(!r[5]) dt.noTime=true;var dist=km(ME,v);
   return {id:r[0],name:r[1],venueKey:r[2],venue:v.name,bairro:v.bairro,genre:r[3],date:dt,img:IMG[r[6]]||ph(r[1],r[3]),dist:dist,lat:v.lat,lng:v.lng};});
 var PRUDENTE={venues:VENUES,all:events,now:NOW};
-events=events.filter(function(e){return +e.date+3*36e5>NOW&&e.dist<=RADIUS_KM;}); // some depois que acaba (~3h)PRUDENTE.events=events;
+events=events.filter(function(e){return +e.date+3*36e5>NOW&&e.dist<=RADIUS_KM;}); // some depois que acaba (~3h)
+PRUDENTE.events=events;
 /* Gêneros do site agrupados nas famílias da tabela de similaridade */
 var FAMILY={'Rock Alternativo':'Rock',Blues:'Rock',Metal:'Rock',Punk:'Rock','Pop Rock':'Rock',Indie:'Rock','Forró':'Sertanejo',Arrocha:'Sertanejo',Brasilidades:'MPB',Jazz:'MPB','Bossa Nova':'MPB','Voz e Violão':'MPB',Choro:'Samba','Samba Rock':'Samba','Eletrônica':'Discotecagem',Funk:'Discotecagem',Flashback:'Discotecagem','Dança':'Discotecagem','Hip Hop':'Discotecagem',Rap:'Discotecagem','R&B':'MPB',Reggae:'MPB',Pop:'Discotecagem'};
 function fam(g){return SIM.Rock[g]!=null?g:(FAMILY[g]||'MPB');}
@@ -869,10 +870,11 @@ function buckets(){
   var top=[],rail=[],rest=[];
   if(state.profile){
     var ranked=list.slice().sort(byTop);
-    // "São a sua cara": todos os rolês com mais de 80% de compatibilidade que você ainda não marcou
-    top=ranked.filter(function(e){return e.aff>DECK_MIN&&!state.going[e.id];});
-    // "Rolês que você pode gostar": de 60% a 80%
-    rail=ranked.filter(function(e){return e.aff>=TOP_MIN&&e.aff<=DECK_MIN;});
+    // "São a sua cara": rolês com mais de 80% de compatibilidade que você ainda não decidiu (nem Bora, nem Vô não)
+    var decidiu=function(e){return !!(state.going[e.id]||state.dismissed[e.id]);};
+    top=ranked.filter(function(e){return e.aff>DECK_MIN&&!decidiu(e);});
+    // "Rolês que você pode gostar": os de mais de 80% que você já decidiu vêm primeiro, depois os de 60% a 80%
+    rail=ranked.filter(function(e){return e.aff>DECK_MIN&&decidiu(e);}).concat(ranked.filter(function(e){return e.aff>=TOP_MIN&&e.aff<=DECK_MIN;}));
   } else {
     rail=list.slice().sort(byList).slice(0,6);
   }
@@ -1294,11 +1296,10 @@ function renderTop(b){
   document.getElementById('sec-top').hidden=false;
   tasteBar();
   if(!state.profile){sub.textContent='Rolês que você provavelmente vai adorar!';el.innerHTML=onboarding();document.getElementById('connect').onclick=connectSpotify;document.getElementById('pick').onclick=openGenres;return;}
-  var deck=b.top.filter(function(e){return !state.dismissed[e.id];});
-  // nenhum rolê com 60% ou mais: a seção some
-  document.getElementById('sec-top').hidden=!b.top.length;
-  if(!b.top.length){el.innerHTML='';return;}
-  if(!deck.length){el.innerHTML='<div class="empty"><h3 class="h5">'+(b.top.length>1?'Você viu os '+b.top.length+' rolês mais a sua cara':'Você viu o rolê mais a sua cara')+'</h3><p class="desc-lg muted">Dá uma olhada nos outros rolês aqui embaixo ou veja de novo.</p><button type="button" class="btn secondary md" id="reset-top">'+ic('redo','#D10A87')+'Ver de novo</button></div>';document.getElementById('reset-top').onclick=function(){state.dismissed={};render();};return;}
+  var deck=b.top;
+  // acabaram os rolês mais a sua cara (ou você já decidiu todos): a seção some até aparecer um rolê novo acima de 80%
+  document.getElementById('sec-top').hidden=!deck.length;
+  if(!deck.length){el.innerHTML='';return;}
   var e=deck[0],pos=b.top.indexOf(e)+1;
   var peeks=deck.slice(1,4).map(function(n,i){return '<div class="peek p'+(i+1)+'" aria-hidden="true"><img src="'+n.img+'" alt=""></div>';}).join('');
   el.innerHTML='<div class="deck">'+peeks+heroCard(e,pos,b.top.length)+'</div>';
@@ -1369,7 +1370,7 @@ function renderWhen(){
   var on=el.querySelector('[aria-pressed=true]');if(on){var r=on.offsetLeft+on.offsetWidth-el.clientWidth+16;el.scrollLeft=on.offsetLeft<el.scrollLeft?on.offsetLeft-16:Math.max(el.scrollLeft,r);}
   el.querySelectorAll('[data-when]').forEach(function(b){b.onclick=function(){var v=b.getAttribute('data-when');if(v==='custom') return openDates();setWhen(v==='all'?null:Object.assign({k:v},whenRange(v)));};});
 }
-function setWhen(w){state.when=w;state.dismissed={};moreOpen={};render();startScan();}
+function setWhen(w){state.when=w;moreOpen={};render();startScan();}
 // data ou período específico
 function isoDay(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function parseDay(v){var p=String(v||'').split('-');return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null;}
@@ -1391,7 +1392,7 @@ function render(){withScores();var b=buckets();renderCityChip();renderClimaChip(
 
 /* ---------- Agenda: rolês com "Bora", do que acontece antes para o que acontece depois ---------- */
 /* A agenda guarda um retrato de cada rolê, então sobrevive à troca de cidade */
-function findEvent(id){return events.filter(function(x){return x.id===id;})[0]||PRUDENTE.events.filter(function(x){return x.id===id;})[0];}
+function findEvent(id){return events.filter(function(x){return x.id===id;})[0]||(PRUDENTE.events||PRUDENTE.all).filter(function(x){return x.id===id;})[0];}
 // rolê que já acabou (começo + ~3h) sai da agenda; com 'todos', volta (pra abrir um rolê antigo, por exemplo)
 function agendaItems(todos){return Object.keys(state.going).map(function(id){var e=findEvent(id),v=state.going[id];if(e) return e;if(v&&typeof v==='object'){var d=new Date(v.date);if(v.noTime) d.noTime=true;return {id:id,name:v.name,venue:v.venue,bairro:v.bairro,genre:v.genre,date:d,dist:v.dist,aff:v.aff,city:v.city,img:v.img||ph(v.name,v.genre)};}return null;}).filter(function(e){return e&&(todos||!jaPassou(e));}).sort(function(a,b){return (a.date-b.date)||a.name.localeCompare(b.name,'pt-BR');});}
 var lastCount=null;
@@ -1690,7 +1691,7 @@ function flyOut(dir,cb){var card=document.getElementById('hero');if(!card){cb();
   card.parentNode.querySelectorAll('.peek').forEach(function(p){var i=+p.className.match(/p(\d)/)[1];p.classList.remove('p'+i);p.classList.add('p'+(i-1));});
   setTimeout(cb,300);}
 function act(a,e,swiped){
-  if(a==='no'){flyOut(-1,function(){state.dismissed[e.id]=1;render();toast('Beleza, tiramos '+e.name+' do topo.',function(){delete state.dismissed[e.id];render();});});}
+  if(a==='no'){flyOut(-1,function(){state.dismissed[e.id]=1;persist();render();toast('Beleza, '+e.name+' foi pra Rolês que você pode gostar.',function(){delete state.dismissed[e.id];persist();render();});});}
   else if(a==='go'){flyOut(1,function(){state.dismissed[e.id]=1;addToAgenda(e);render();});}
   else if(a==='undo-go'){delete state.going[e.id];persist();render();toast('Pode deixar, tiramos da sua agenda.');}
 }
@@ -1950,7 +1951,7 @@ function locItem(){
 }
 function showPopularRoles(){if(!q.value&&!showPopular) renderSuggest(popularSections());}
 // filtra o radar e as listas por um texto (ex.: um gênero escolhido nas sugestões)
-function applyQuery(v){q.value=v;qc.hidden=!v;lastQ=v;state.q=v;state.dismissed={};render();clearTimeout(qt);startScan();}
+function applyQuery(v){q.value=v;qc.hidden=!v;lastQ=v;state.q=v;render();clearTimeout(qt);startScan();}
 function renderCityChip(){document.getElementById('city').innerHTML=ic('pin','#171717')+esc(state.city.name)+', '+state.city.uf+' <span>• Trocar</span>';}
 function cityMsg(html){var el=document.getElementById('city-msg');el.innerHTML=html?'<div class="city-msg">'+html+'</div>':'';}
 function stopLoadingPill(){scan.on=false;scan.order=[];scan.shown=0;var el=document.getElementById('found');el.classList.add('hide');setTimeout(function(){if(el.classList.contains('hide')) el.hidden=true;},400);}
@@ -2142,7 +2143,7 @@ q.addEventListener('input',function(){
   var cbq=q.value&&splitCityBairro(q.value);
   var next=(q.value&&(cityMatches(q.value).length||(cbq&&!isCurrent(cbq.city)))&&!anyHit(q.value))?'':q.value;
   if(next===lastQ) return;
-  lastQ=next;state.q=next;state.dismissed={};render();clearTimeout(qt);qt=setTimeout(startScan,450);
+  lastQ=next;state.q=next;render();clearTimeout(qt);qt=setTimeout(startScan,450);
 });
 function clearSearch(){q.value='';state.q='';lastQ='';qc.hidden=true;renderSuggest([]);render();startScan();q.focus();}
 qc.onclick=clearSearch;
