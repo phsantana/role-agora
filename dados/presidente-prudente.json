@@ -15,7 +15,9 @@
     "Eletrônica",
     "Pagode",
     "Sertanejo"
-   ]
+   ],
+   "avaliacoes": 311,
+   "nota": 4.5
   },
   "agrobar": {
    "name": "Agrobar",
@@ -29,7 +31,9 @@
    "generosTop": [
     "Sertanejo",
     "Samba"
-   ]
+   ],
+   "avaliacoes": 47,
+   "nota": 4.7
   },
   "cult_bar": {
    "name": "Cult Bar",
@@ -60,7 +64,9 @@
     "Pop Rock",
     "Brasilidades"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 1267,
+   "nota": 4.5
   },
   "valete_bar": {
    "name": "Valete Bar",
@@ -75,7 +81,9 @@
     "Rock",
     "Discotecagem",
     "Pop Rock"
-   ]
+   ],
+   "avaliacoes": 296,
+   "nota": 4.5
   },
   "exquina_bar": {
    "name": "Exquina Bar",
@@ -91,7 +99,8 @@
     "Country"
    ],
    "tipo": "Restaurante",
-   "areaExterna": true
+   "areaExterna": true,
+   "nota": 4.7
   },
   "ibiza_lounge_bar": {
    "name": "Ibiza Lounge Bar",
@@ -107,7 +116,9 @@
     "Eletrônica",
     "Sertanejo"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 194,
+   "nota": 4.3
   },
   "villa_18_container_bar": {
    "name": "Villa 18 Container Bar",
@@ -123,7 +134,9 @@
     "Samba",
     "MPB"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 58,
+   "nota": 4.7
   },
   "new_york_lounge_nyl": {
    "name": "New York Lounge - NYL",
@@ -139,7 +152,9 @@
     "Discotecagem",
     "Pop"
    ],
-   "areaExterna": false
+   "areaExterna": false,
+   "avaliacoes": 109,
+   "nota": 4.3
   },
   "bar_da_onca": {
    "name": "Bar da Onça",
@@ -155,7 +170,9 @@
     "Pagode",
     "Sertanejo"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 274,
+   "nota": 4.5
   },
   "jardim_esmeralda": {
    "name": "Jardim Esmeralda",
@@ -170,7 +187,9 @@
     "Karaokê",
     "Rock"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 34,
+   "nota": 4.9
   },
   "fabrica_gastrobar": {
    "name": "Fábrica Gastrobar",
@@ -185,7 +204,9 @@
     "Rock",
     "Pop Rock",
     "Pagode"
-   ]
+   ],
+   "avaliacoes": 236,
+   "nota": 4.7
   },
   "seu_bastiao_pub": {
    "name": "Seu Bastião Pub",
@@ -200,7 +221,9 @@
     "Sertanejo",
     "Eletrônica",
     "Pagode"
-   ]
+   ],
+   "avaliacoes": 54,
+   "nota": 4.2
   },
   "tacchino_ristorante": {
    "name": "Tacchino Ristorante",
@@ -216,7 +239,9 @@
     "Bloco de rua",
     "Latina"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 483,
+   "nota": 4.6
   },
   "overdrive_music_bar": {
    "name": "Overdrive Music Bar",
@@ -230,7 +255,9 @@
    "generosTop": [
     "Rock",
     "Metal Alternativo"
-   ]
+   ],
+   "avaliacoes": 13,
+   "nota": 4.8
   },
   "quinta_aula": {
    "name": "Quinta Aula",
@@ -246,7 +273,9 @@
     "Pop",
     "Discotecagem"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 57,
+   "nota": 4.2
   },
   "vo_laura_gourmet": {
    "name": "Vó Laura Gourmet",
@@ -261,7 +290,9 @@
     "Sertanejo",
     "Multigênero",
     "Samba"
-   ]
+   ],
+   "avaliacoes": 313,
+   "nota": 4.4
   },
   "pao_nosso": {
    "name": "Pão Nosso",
@@ -274,7 +305,9 @@
    "genero": "Bloco de rua",
    "generosTop": [
     "Bloco de rua"
-   ]
+   ],
+   "avaliacoes": 404,
+   "nota": 4.9
   },
   "bar_do_joao_porquinho": {
    "name": "Bar do João Porquinho",
@@ -284,7 +317,9 @@
    "slug": "bar-do-joao-porquinho",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1786930015387-weokma.webp",
    "tipo": "Bar",
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 734,
+   "nota": 4.7
   },
   "teatro_cesar_cava": {
    "name": "Teatro César Cava",
@@ -296,7 +331,9 @@
    "genero": "Stand Up",
    "generosTop": [
     "Stand Up"
-   ]
+   ],
+   "avaliacoes": 620,
+   "nota": 4.8
   },
   "arapuca_bar": {
    "name": "Arapuca bar",
@@ -311,7 +348,9 @@
     "Sertanejo",
     "Pagode",
     "Brasilidades"
-   ]
+   ],
+   "avaliacoes": 54,
+   "nota": 4.5
   },
   "jardim_suinga": {
    "name": "Jardim Suinga",
@@ -326,7 +365,9 @@
     "Samba",
     "MPB"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 243,
+   "nota": 4.7
   },
   "salao_o_limoeiro": {
    "name": "Salão O Limoeiro",
@@ -338,7 +379,9 @@
    "genero": "Rock",
    "generosTop": [
     "Rock"
-   ]
+   ],
+   "avaliacoes": 493,
+   "nota": 4.6
   },
   "sal_grosso_choperia_e_petiscaria": {
    "name": "Sal Grosso Choperia e Petiscaria",
@@ -347,7 +390,9 @@
    "lng": -51.3844447,
    "slug": "sal-grosso-choperia-e-petiscaria",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778462407998-54yctq.webp",
-   "tipo": "Restaurante"
+   "tipo": "Restaurante",
+   "avaliacoes": 28,
+   "nota": 4.6
   },
   "choperia_cristim": {
    "name": "Choperia Cristim",
@@ -357,7 +402,9 @@
    "slug": "choperia-cristim",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/dc70dab8-d6cc-4a8e-82ba-a5fa90734854/1778774622016-7anx6b.webp",
    "tipo": "Restaurante",
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 604,
+   "nota": 4.6
   },
   "ume_brasa_e_mar": {
    "name": "Umê Brasa e Mar",
@@ -372,7 +419,9 @@
     "Eletrônica",
     "Rock",
     "Sertanejo"
-   ]
+   ],
+   "avaliacoes": 58,
+   "nota": 3.6
   },
   "parque_do_povo": {
    "name": "Parque do Povo",
@@ -386,7 +435,9 @@
     "Forró",
     "Sertanejo",
     "MPB"
-   ]
+   ],
+   "avaliacoes": 11013,
+   "nota": 4.6
   },
   "rooftop_bar": {
    "name": "Rooftop Bar",
@@ -400,7 +451,9 @@
    "generosTop": [
     "Sertanejo"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 264,
+   "nota": 4.8
   },
   "magma_grill": {
    "name": "Magma - Grill",
@@ -416,7 +469,9 @@
     "Pop Rock",
     "Rock"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 428,
+   "nota": 4.6
   },
   "tenis_clube": {
    "name": "Tênis Clube",
@@ -429,7 +484,9 @@
    "genero": "Rock",
    "generosTop": [
     "Rock"
-   ]
+   ],
+   "avaliacoes": 870,
+   "nota": 4.6
   },
   "prudentina_chopperia_e_petiscaria": {
    "name": "Prudentina Chopperia e Petiscaria",
@@ -445,7 +502,9 @@
     "Eletrônica",
     "Pop Rock"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 33,
+   "nota": 4.6
   },
   "floa_cafe_e_flor": {
    "name": "Floá Café e Flor",
@@ -454,7 +513,9 @@
    "lng": -51.38604309999999,
    "slug": "floa-cafe-e-flor",
    "foto": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1773246646418-x1qtjg.webp",
-   "tipo": "Cafeteria"
+   "tipo": "Cafeteria",
+   "avaliacoes": 29,
+   "nota": 4.9
   },
   "fagulha_fire": {
    "name": "Fagulha Fire",
@@ -470,7 +531,9 @@
     "Eletrônica",
     "Pop"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 516,
+   "nota": 4.6
   },
   "centro_historico_cultural_matarazzo": {
    "name": "Centro Histórico Cultural Matarazzo",
@@ -482,7 +545,9 @@
    "genero": "Dança",
    "generosTop": [
     "Dança"
-   ]
+   ],
+   "avaliacoes": 3548,
+   "nota": 4.7
   },
   "eden_beer_choperia": {
    "name": "Eden Beer Choperia",
@@ -492,7 +557,9 @@
    "slug": "eden-beer-choperia",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/4404b306-2bad-4cae-90ed-5bf51e6154ce/1778774819836-my5243.webp",
    "tipo": "Restaurante",
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 1306,
+   "nota": 4.7
   },
   "coletivo_cultural_galpao_da_lua": {
    "name": "Coletivo Cultural Galpão da Lua",
@@ -506,7 +573,9 @@
    "generosTop": [
     "Teatro",
     "Bloco de rua"
-   ]
+   ],
+   "avaliacoes": 141,
+   "nota": 4.8
   },
   "bar_bq": {
    "name": "Bar BQ",
@@ -521,7 +590,9 @@
     "Pop Rock",
     "Rock",
     "MPB"
-   ]
+   ],
+   "avaliacoes": 56,
+   "nota": 4.2
   },
   "sorveteria_conveniencia_e_petiscaria_serenata": {
    "name": "Sorveteria Conveniência e Petiscaria Serenata",
@@ -535,7 +606,9 @@
    "generosTop": [
     "Sertanejo",
     "Pop Rock"
-   ]
+   ],
+   "avaliacoes": 424,
+   "nota": 4.5
   },
   "gaucho_s_costelaria": {
    "name": "Gaucho's Costelaria",
@@ -549,7 +622,9 @@
    "generosTop": [
     "Multigênero"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 1165,
+   "nota": 4.6
   },
   "buteco_raiz": {
    "name": "BUTECO RAIZ",
@@ -564,7 +639,9 @@
     "Sertanejo",
     "Pagode",
     "Samba"
-   ]
+   ],
+   "avaliacoes": 4,
+   "nota": 5
   },
   "brigada_dos_lobos_mc_sub_sede_presidente_prudente": {
    "name": "Brigada dos Lobos MC Sub-Sede Presidente Prudente",
@@ -577,7 +654,9 @@
    "generosTop": [
     "Pop Rock"
    ],
-   "tipo": null
+   "tipo": null,
+   "avaliacoes": 52,
+   "nota": 4.9
   },
   "deck_bar": {
    "name": "Deck Bar",
@@ -592,7 +671,9 @@
     "Pop Rock",
     "Rock"
    ],
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 405,
+   "nota": 4.4
   },
   "sesc_thermas": {
    "name": "Sesc Thermas",
@@ -607,7 +688,9 @@
     "Teatro",
     "MPB",
     "Forró"
-   ]
+   ],
+   "avaliacoes": 2284,
+   "nota": 4.8
   },
   "cazulo_cultural": {
    "name": "Cazulo Cultural",
@@ -644,7 +727,9 @@
    "genero": "Arraiá",
    "generosTop": [
     "Arraiá"
-   ]
+   ],
+   "avaliacoes": 940,
+   "nota": 4.7
   },
   "o_beco_bar": {
    "name": "O Beco Bar",
@@ -654,7 +739,9 @@
    "slug": "o-beco-bar",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/165863a0-ae8f-48ed-bb28-ec846780ca18/1778774739029-zetw5p.webp",
    "tipo": "Restaurante",
-   "areaExterna": true
+   "areaExterna": true,
+   "avaliacoes": 444,
+   "nota": 4.7
   }
  },
  "generos": {
@@ -748,7 +835,9 @@
    "rf9a43f9b": "Eletrônica",
    "r0dd9d658": "Pagode",
    "r2f824b76": "Rock",
-   "r4ae7f278": "MPB"
+   "r4ae7f278": "MPB",
+   "r68430631": "Eletrônica",
+   "rddade731": "Rock"
   },
   "bar_da_onca": {
    "antigo35": "Pagode",
@@ -793,7 +882,8 @@
    "Pop",
    "2026-11-07",
    "18:30",
-   "bruno-jose"
+   "bruno-jose",
+   0
   ],
   [
    "rcb08fb70",
@@ -802,7 +892,8 @@
    "Sertanejo",
    "2026-11-07",
    "19:30",
-   "twiggy"
+   "twiggy",
+   11721
   ],
   [
    "r4fa2a5bb",
@@ -811,7 +902,18 @@
    "Pop Rock",
    "2026-11-07",
    "20:00",
-   "acustico-urbano"
+   "acustico-urbano",
+   0
+  ],
+  [
+   "r68430631",
+   "Kenny Carvelli",
+   "ibiza_lounge_bar",
+   "Eletrônica",
+   "2026-11-07",
+   "20:00",
+   "kenny-carvelli",
+   2819
   ],
   [
    "r8584d488",
@@ -820,7 +922,18 @@
    "Rock",
    "2026-11-07",
    "20:00",
-   "stereonatos"
+   "stereonatos",
+   1104
+  ],
+  [
+   "rddade731",
+   "Rpm Cover",
+   "ibiza_lounge_bar",
+   "Rock",
+   "2026-11-07",
+   "20:00",
+   "rpm-cover",
+   4693
   ],
   [
    "r56e0e4a0",
@@ -829,7 +942,8 @@
    "Sertanejo",
    "2026-11-07",
    "20:30",
-   "denis-araujo"
+   "denis-araujo",
+   19284
   ],
   [
    "rf9239508",
@@ -838,7 +952,8 @@
    "Sertanejo",
    "2026-11-07",
    "20:30",
-   "estacio-lima"
+   "estacio-lima",
+   15114
   ],
   [
    "re81ffdfe",
@@ -847,7 +962,8 @@
    "Pagode",
    "2026-11-07",
    "21:30",
-   "grupo-batukada-nossa"
+   "grupo-batukada-nossa",
+   5954
   ],
   [
    "r0d5aa017",
@@ -856,7 +972,8 @@
    "Rock",
    "2026-11-07",
    "22:00",
-   "banda-time-machine"
+   "banda-time-machine",
+   0
   ],
   [
    "r28a5bd98",
@@ -865,7 +982,8 @@
    "Rock",
    "2026-11-07",
    "22:00",
-   "rodox"
+   "rodox",
+   0
   ],
   [
    "r568e2226",
@@ -874,7 +992,8 @@
    "Eletrônica",
    "2026-11-07",
    "22:00",
-   "dj-misper"
+   "dj-misper",
+   1908
   ],
   [
    "rd205fc8b",
@@ -883,7 +1002,8 @@
    "Sertanejo",
    "2026-11-07",
    "22:00",
-   "lucas-kaike"
+   "lucas-kaike",
+   333
   ],
   [
    "rd3a56cc8",
@@ -892,7 +1012,8 @@
    "Sertanejo",
    "2026-11-07",
    "22:00",
-   "junior-donatto-rafael"
+   "junior-donatto-rafael",
+   157
   ],
   [
    "r3358ecf1",
@@ -901,7 +1022,8 @@
    "Discotecagem",
    "2026-11-07",
    "23:00",
-   "mariah-bernardes-maia"
+   "mariah-bernardes-maia",
+   565241
   ],
   [
    "r93beca34",
@@ -910,7 +1032,8 @@
    "Discotecagem",
    "2026-11-07",
    "23:00",
-   "amanda-diaz"
+   "amanda-diaz",
+   1071
   ],
   [
    "ra4a9d32b",
@@ -919,7 +1042,8 @@
    "Discotecagem",
    "2026-11-07",
    "23:00",
-   "dj-hope-bunny"
+   "dj-hope-bunny",
+   112
   ],
   [
    "rc7e15587",
@@ -928,7 +1052,8 @@
    "Eletrônica",
    "2026-11-07",
    "23:00",
-   "heeyalt"
+   "heeyalt",
+   0
   ],
   [
    "r52b67fe1",
@@ -937,7 +1062,8 @@
    "Sertanejo",
    "2026-11-08",
    "13:30",
-   "lucas-purga"
+   "lucas-purga",
+   962
   ],
   [
    "raaf70090",
@@ -946,7 +1072,8 @@
    "Sertanejo",
    "2026-11-08",
    "14:00",
-   "lorena-cristine"
+   "lorena-cristine",
+   252137
   ],
   [
    "r66f12ecf",
@@ -955,7 +1082,8 @@
    "Pagode",
    "2026-11-08",
    "19:30",
-   "grupo-tedejota"
+   "grupo-tedejota",
+   16352
   ],
   [
    "r2739b4c7",
@@ -964,7 +1092,8 @@
    "Pop Rock",
    "2026-11-12",
    "19:00",
-   "tres-muie"
+   "tres-muie",
+   701
   ],
   [
    "re844bf51",
@@ -973,7 +1102,8 @@
    "Sertanejo",
    "2026-11-14",
    "14:00",
-   "fiduma-jeca"
+   "fiduma-jeca",
+   882211
   ],
   [
    "r2d25bb0e",
@@ -982,7 +1112,8 @@
    "Sertanejo",
    "2026-11-14",
    "",
-   "lorena-cristine"
+   "lorena-cristine",
+   252137
   ],
   [
    "r8f0628d1",
@@ -991,7 +1122,8 @@
    "Sertanejo",
    "2026-11-14",
    "",
-   "joao-marcelo-e-juliano"
+   "joao-marcelo-e-juliano",
+   31050
   ],
   [
    "rf9a43f9b",
@@ -1000,7 +1132,8 @@
    "Eletrônica",
    "2026-11-14",
    "",
-   "dj-fernando-furlan"
+   "dj-fernando-furlan",
+   0
   ],
   [
    "r0dd9d658",
@@ -1009,7 +1142,8 @@
    "Pagode",
    "2026-11-19",
    "00:30",
-   "caso-a-parte"
+   "caso-a-parte",
+   26204
   ],
   [
    "r2f824b76",
@@ -1018,7 +1152,8 @@
    "Rock",
    "2026-11-19",
    "00:30",
-   "mateuzinho-umbigae"
+   "mateuzinho-umbigae",
+   2643
   ],
   [
    "r4ae7f278",
@@ -1027,7 +1162,8 @@
    "MPB",
    "2026-11-19",
    "00:30",
-   "da-silva"
+   "da-silva",
+   4085
   ],
   [
    "r2d4a5f89",
@@ -1036,7 +1172,8 @@
    "Rock",
    "2026-11-19",
    "20:00",
-   "mateuzinho-umbigae"
+   "mateuzinho-umbigae",
+   2643
   ],
   [
    "r446a4992",
@@ -1045,7 +1182,8 @@
    "MPB",
    "2026-11-19",
    "20:00",
-   "da-silva"
+   "da-silva",
+   4085
   ],
   [
    "r50084a25",
@@ -1054,7 +1192,8 @@
    "Pagode",
    "2026-11-19",
    "20:00",
-   "kota"
+   "kota",
+   468847
   ],
   [
    "rc29409b0",
@@ -1063,7 +1202,8 @@
    "Reggae",
    "2026-11-19",
    "20:00",
-   "zilvan"
+   "zilvan",
+   2344
   ],
   [
    "rd44fd1ff",
@@ -1072,7 +1212,8 @@
    "Pagode",
    "2026-11-19",
    "20:00",
-   "caso-a-parte"
+   "caso-a-parte",
+   26204
   ],
   [
    "r5217ffbb",
@@ -1081,7 +1222,8 @@
    "Samba",
    "2026-12-05",
    "15:00",
-   "samba-e-suor"
+   "samba-e-suor",
+   2238
   ],
   [
    "r70f7be8b",
@@ -1090,7 +1232,8 @@
    "Pagode",
    "2026-12-05",
    "15:00",
-   "kota"
+   "kota",
+   468847
   ],
   [
    "r73d43592",
@@ -1099,7 +1242,8 @@
    "Sertanejo",
    "2026-12-05",
    "15:00",
-   "felipe-corazza"
+   "felipe-corazza",
+   9058
   ],
   [
    "r78df2e47",
@@ -1108,7 +1252,8 @@
    "Pagode",
    "2026-12-05",
    "15:00",
-   "caso-a-parte"
+   "caso-a-parte",
+   26204
   ],
   [
    "r7e7399ff",
@@ -1117,7 +1262,8 @@
    "Samba",
    "2026-12-05",
    "15:00",
-   "elly-guimaraes"
+   "elly-guimaraes",
+   6324
   ],
   [
    "r944b32fd",
@@ -1126,7 +1272,8 @@
    "Samba",
    "2026-12-05",
    "15:00",
-   "soul-do-samba"
+   "soul-do-samba",
+   6546
   ],
   [
    "ra2fe530b",
@@ -1135,7 +1282,8 @@
    "Pagode",
    "2026-12-05",
    "15:00",
-   "tropa-do-rafa"
+   "tropa-do-rafa",
+   2720
   ],
   [
    "rab6e2a48",
@@ -1144,7 +1292,8 @@
    "Sertanejo",
    "2026-12-05",
    "15:00",
-   "gustavo-mattos"
+   "gustavo-mattos",
+   2781
   ],
   [
    "readdcf90",
@@ -1153,7 +1302,8 @@
    "Pagode",
    "2026-12-05",
    "15:00",
-   "grupo-tedejota"
+   "grupo-tedejota",
+   16352
   ],
   [
    "rf0a659ad",
@@ -1162,7 +1312,8 @@
    "Samba",
    "2026-12-05",
    "15:00",
-   "nos-somos-do-interior"
+   "nos-somos-do-interior",
+   0
   ],
   [
    "rfc885c16",
@@ -1171,7 +1322,8 @@
    "Sertanejo",
    "2026-12-05",
    "15:00",
-   "denise-leal"
+   "denise-leal",
+   5918
   ],
   [
    "r52ba18b6",
@@ -1180,7 +1332,8 @@
    "Rock",
    "2026-12-11",
    "22:00",
-   "chico-malakian"
+   "chico-malakian",
+   136434
   ],
   [
    "r6364c34a",
@@ -1189,7 +1342,8 @@
    "Rock",
    "2026-12-11",
    "22:00",
-   "linkin-park-cover-america"
+   "linkin-park-cover-america",
+   42203
   ],
   [
    "rec7fa048",
@@ -1198,7 +1352,8 @@
    "Rock",
    "2027-06-13",
    "16:00",
-   "moments"
+   "moments",
+   475
   ]
  ],
  "imgs": {
@@ -1246,6 +1401,8 @@
   "zilvan": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/a9c98dd2-e47a-49b4-b6ea-b4a52a1dde27/1785200558802-f6d0ur.webp",
   "stereonatos": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1794065723681-5n29rt.webp",
   "bruno-jose": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778459152387-llkhho.webp",
-  "denis-araujo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/6df628a3-e073-4d52-9ef2-00f14f2e4913/1779125675544-2y4nps.webp"
+  "denis-araujo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/6df628a3-e073-4d52-9ef2-00f14f2e4913/1779125675544-2y4nps.webp",
+  "kenny-carvelli": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/82ae0196-2c7d-46f7-b13d-4f332785adda/1790024795012-zrhq9j.webp",
+  "rpm-cover": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/a2988a83-f887-494a-8d14-1dfd50dd80dc/1792881344094-ync2zn.webp"
  }
 }
