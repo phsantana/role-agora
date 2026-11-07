@@ -620,6 +620,8 @@ var IMG={"black7":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBARXhpZg
 /* Relógio da demonstração: os rolês marcados como "Hoje" no site são de 25/10/2026 */
 var NOW=new Date(2026,9,25,18,50),BOOT=Date.now();
 function agora(){return new Date(+NOW+(Date.now()-BOOT));} // NOW + o tempo que o app está aberto
+// rolê que já aconteceu: acabou (~3h depois de começar; sem horário, no fim do dia)
+function jaPassou(e){var fim=e.date.noTime?addDays(dayStart(e.date),1):new Date(+e.date+DURACAO);return fim<=agora();}
 var DEMO_ME={lat:-22.1205939,lng:-51.3874076};
 var ME={lat:DEMO_ME.lat,lng:DEMO_ME.lng,you:true};
 var loc={src:'demo',acc:0};
@@ -816,7 +818,7 @@ function whenRange(k){var t=dayStart(NOW),wd=t.getDay();
   if(k==='fds'){if(wd===0) return {from:t,to:addDays(t,1)};if(wd===6) return {from:t,to:addDays(t,2)};var fri=addDays(t,5-wd);return {from:new Date(fri.getFullYear(),fri.getMonth(),fri.getDate(),18),to:addDays(fri,3)};}
   return null;}
 function inWhen(e){var w=state.when;if(!w) return true;return e.date>=w.from&&e.date<w.to;}
-function visible(){computeAutoR();return events.filter(function(e){return matchesQuery(e)&&inArea(e)&&inWhen(e);});}
+function visible(){computeAutoR();return events.filter(function(e){return !jaPassou(e)&&matchesQuery(e)&&inArea(e)&&inWhen(e);});}
 function byTop(a,b){ // 1º afinidade, 2º horário mais próximo, 3º distância
   return ((b.aff||0)-(a.aff||0))||(a.date-b.date)||(a.dist-b.dist);}
 function byList(a,b){ // 1º horário, 2º distância, 3º afinidade
@@ -1351,7 +1353,7 @@ function render(){withScores();var b=buckets();renderCityChip();renderClimaChip(
 /* A agenda guarda um retrato de cada rolê, então sobrevive à troca de cidade */
 function findEvent(id){return events.filter(function(x){return x.id===id;})[0]||PRUDENTE.events.filter(function(x){return x.id===id;})[0];}
 // rolê que já acabou (começo + ~3h) sai da agenda; com 'todos', volta (pra abrir um rolê antigo, por exemplo)
-function agendaItems(todos){return Object.keys(state.going).map(function(id){var e=findEvent(id),v=state.going[id];if(e) return e;if(v&&typeof v==='object'){var d=new Date(v.date);if(v.noTime) d.noTime=true;return {id:id,name:v.name,venue:v.venue,bairro:v.bairro,genre:v.genre,date:d,dist:v.dist,aff:v.aff,city:v.city,img:v.img||ph(v.name,v.genre)};}return null;}).filter(function(e){return e&&(todos||+e.date+DURACAO>NOW);}).sort(function(a,b){return (a.date-b.date)||a.name.localeCompare(b.name,'pt-BR');});}
+function agendaItems(todos){return Object.keys(state.going).map(function(id){var e=findEvent(id),v=state.going[id];if(e) return e;if(v&&typeof v==='object'){var d=new Date(v.date);if(v.noTime) d.noTime=true;return {id:id,name:v.name,venue:v.venue,bairro:v.bairro,genre:v.genre,date:d,dist:v.dist,aff:v.aff,city:v.city,img:v.img||ph(v.name,v.genre)};}return null;}).filter(function(e){return e&&(todos||!jaPassou(e));}).sort(function(a,b){return (a.date-b.date)||a.name.localeCompare(b.name,'pt-BR');});}
 var lastCount=null;
 function renderAgendaFab(){
   var n=agendaItems().length,fab=document.getElementById('agenda-fab');
@@ -1408,7 +1410,7 @@ function renderAgenda(dir){
   var items=agendaItems(),hoje=dayStart(NOW),inicio=addDays(hoje,-hoje.getDay());
   var marcados={};items.forEach(function(e){var k=dkey(e.date);(marcados[k]=marcados[k]||[]).push(e);});
   // rolês da cidade em cada dia que você ainda não marcou, do mais a sua cara pro menos
-  var doDia={};events.forEach(function(e){if(state.going[e.id]||e.date<NOW) return;var k=dkey(e.date);(doDia[k]=doDia[k]||[]).push(e);});
+  var doDia={};events.forEach(function(e){if(state.going[e.id]||e.date<agora()) return;var k=dkey(e.date);(doDia[k]=doDia[k]||[]).push(e);});
   Object.keys(doDia).forEach(function(k){doDia[k].sort(function(a,b){return ((b.aff||0)-(a.aff||0))||(a.date-b.date);});});
   var ultimo=hoje;items.concat(events).forEach(function(e){if(e.date>ultimo) ultimo=e.date;});
   var week=[];for(var w=0;w<7;w++) week.push(addDays(agWeek,w));
@@ -1504,6 +1506,13 @@ function checarLembretes(){
     if(min>0&&min<=60){AV.lembrados[e.id]=1;avisar({id:'lembrete:'+e.id,tipo:'lembrete',ev:e.id,titulo:min>=55?'Seu rolê começa em 1 hora':'Seu rolê começa em '+min+' min',texto:e.name+' às '+hora(e.date)+' • '+e.venue+(e.clima&&e.clima.chuva?' • leva guarda-chuva: '+climaCurto(e.clima).toLowerCase()+' na previsão':'')});}});
 }
 setInterval(checarLembretes,30000);
+// rolês que já aconteceram saem da agenda (de vez) e do radar, mesmo com o app aberto
+var nPassados=-1;
+function limparPassados(){
+  var tirou=agendaItems(true).filter(jaPassou);tirou.forEach(function(e){delete state.going[e.id];});if(tirou.length) persist();
+  var n=events.filter(jaPassou).length;if(tirou.length||n!==nPassados){var primeira=nPassados<0;nPassados=n;if(!primeira||tirou.length) render();}
+}
+setInterval(limparPassados,60000);
 function quandoAviso(t){var m=Math.round((Date.now()-t)/6e4);return m<1?'agora':m<60?'há '+m+' min':m<1440?'há '+Math.round(m/60)+' h':'há '+Math.round(m/1440)+(Math.round(m/1440)>1?' dias':' dia');}
 function openAvisos(){
   var sis=typeof Notification==='undefined'?'sem':Notification.permission;
@@ -1558,7 +1567,7 @@ var agGen=null,agGenPick=0,agGenT=null;
 function gerarAgendas(){
   var hoje=dayStart(NOW),fim=addDays(hoje,GEN_DIAS),marcados=agendaItems();
   var livre=function(e){return !marcados.some(function(b){return bateHorario(e,b)||(dkey(b.date)===dkey(e.date)&&!(cabe(b,e)||cabe(e,b)));});};
-  var pool=events.filter(function(e){return e.date>=NOW&&e.date<fim&&!e.date.noTime&&!state.going[e.id]&&e.aff!=null&&e.aff>=TOP_MIN&&!e.risco&&livre(e);});
+  var pool=events.filter(function(e){return e.date>=agora()&&e.date<fim&&!e.date.noTime&&!state.going[e.id]&&e.aff!=null&&e.aff>=TOP_MIN&&!e.risco&&livre(e);});
   var porDia={};pool.forEach(function(e){(porDia[dkey(e.date)]=porDia[dkey(e.date)]||[]).push(e);});
   var dias=Object.keys(porDia);
   function montar(score,max,limiteDias,filtro){
@@ -1709,7 +1718,7 @@ function renderEvScreen(e){
   var going=!!state.going[e.id],d=e.date,dd=dayDiff(d);
   var dia=dd===0?'Hoje':dd===1?'Amanhã':capt(SEM_LONGO[d.getDay()]);
   var longe=e.city&&e.city!==state.city.name?esc(e.city):dTxt(e)+' de você';
-  var outros=events.filter(function(x){return x.venueKey&&x.venueKey===e.venueKey&&x.id!==e.id&&x.date>=NOW;}).sort(function(a,b){return a.date-b.date;}).slice(0,3);
+  var outros=events.filter(function(x){return x.venueKey&&x.venueKey===e.venueKey&&x.id!==e.id&&x.date>=agora();}).sort(function(a,b){return a.date-b.date;}).slice(0,3);
   var site='https://www.roleagora.com.br/city/'+(state.city.slug||'presidente-prudente-sp');
   evsEl.innerHTML='<div class="photo" style="background-image:url(\''+e.img+'\')"></div><div class="in">'+
     '<div class="top"><button type="button" class="glass" id="evs-back" aria-label="Voltar"><svg class="ico ico-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>'+
@@ -2094,7 +2103,7 @@ q.addEventListener('focus',function(){toMap();showPopularRoles();});
 q.addEventListener('click',function(){if(sugEl.hidden) showPopularRoles();});
 document.addEventListener('click',function(ev){var o=ev.target.closest('[data-open]');if(o&&!sheet.contains(o)&&!evsEl.contains(o)){openEvent(o.getAttribute('data-open'));return;}var p=ev.target.closest('.pin');if(p){openVenue(p.getAttribute('data-venue'));}});
 var rt=null;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){layout();renderMap(buckets());},120);});
-layout();render();startScan();initLocation();renderBell();setTimeout(checarLembretes,2000);
+limparPassados();layout();render();startScan();initLocation();renderBell();setTimeout(checarLembretes,2000);
 })();
 </script>
 
