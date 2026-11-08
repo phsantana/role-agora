@@ -1,5 +1,5 @@
 {
- "coletado": "2026-11-07",
+ "coletado": "2026-11-08",
  "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
  "V": {
   "varanda_boa_vista": {
@@ -254,7 +254,8 @@
    "genero": "Rock",
    "generosTop": [
     "Rock",
-    "Metal Alternativo"
+    "Metal Alternativo",
+    "Pop Rock"
    ],
    "avaliacoes": 13,
    "nota": 4.8
@@ -875,186 +876,6 @@
   }
  },
  "rows": [
-  [
-   "rb1ca2ffe",
-   "Bruno José",
-   "quinta_aula",
-   "Pop",
-   "2026-11-07",
-   "18:30",
-   "bruno-jose",
-   0
-  ],
-  [
-   "rcb08fb70",
-   "Twiggy",
-   "agrobar",
-   "Sertanejo",
-   "2026-11-07",
-   "19:30",
-   "twiggy",
-   11721
-  ],
-  [
-   "r4fa2a5bb",
-   "Acústico Urbano",
-   "alphaville_bar_e_petiscaria",
-   "Pop Rock",
-   "2026-11-07",
-   "20:00",
-   "acustico-urbano",
-   0
-  ],
-  [
-   "r68430631",
-   "Kenny Carvelli",
-   "ibiza_lounge_bar",
-   "Eletrônica",
-   "2026-11-07",
-   "20:00",
-   "kenny-carvelli",
-   2819
-  ],
-  [
-   "r8584d488",
-   "Stereonatos",
-   "overdrive_music_bar",
-   "Rock",
-   "2026-11-07",
-   "20:00",
-   "stereonatos",
-   1104
-  ],
-  [
-   "rddade731",
-   "Rpm Cover",
-   "ibiza_lounge_bar",
-   "Rock",
-   "2026-11-07",
-   "20:00",
-   "rpm-cover",
-   4693
-  ],
-  [
-   "r56e0e4a0",
-   "Denis Araujo",
-   "vo_laura_gourmet",
-   "Sertanejo",
-   "2026-11-07",
-   "20:30",
-   "denis-araujo",
-   19284
-  ],
-  [
-   "rf9239508",
-   "Estácio Lima",
-   "exquina_bar",
-   "Sertanejo",
-   "2026-11-07",
-   "20:30",
-   "estacio-lima",
-   15114
-  ],
-  [
-   "re81ffdfe",
-   "Grupo Batukada Nossa",
-   "villa_18_container_bar",
-   "Pagode",
-   "2026-11-07",
-   "21:30",
-   "grupo-batukada-nossa",
-   5954
-  ],
-  [
-   "r0d5aa017",
-   "Banda Time Machine",
-   "valete_bar",
-   "Rock",
-   "2026-11-07",
-   "22:00",
-   "banda-time-machine",
-   0
-  ],
-  [
-   "r28a5bd98",
-   "Rodox",
-   "fabrica_gastrobar",
-   "Rock",
-   "2026-11-07",
-   "22:00",
-   "rodox",
-   0
-  ],
-  [
-   "r568e2226",
-   "DJ Misper",
-   "seu_bastiao_pub",
-   "Eletrônica",
-   "2026-11-07",
-   "22:00",
-   "dj-misper",
-   1908
-  ],
-  [
-   "rd205fc8b",
-   "Lucas & Kaike",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-07",
-   "22:00",
-   "lucas-kaike",
-   333
-  ],
-  [
-   "rd3a56cc8",
-   "Junior Donatto & Rafael",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-07",
-   "22:00",
-   "junior-donatto-rafael",
-   157
-  ],
-  [
-   "r3358ecf1",
-   "Mariah Bernardes Maia",
-   "new_york_lounge_nyl",
-   "Discotecagem",
-   "2026-11-07",
-   "23:00",
-   "mariah-bernardes-maia",
-   565241
-  ],
-  [
-   "r93beca34",
-   "Amanda Diaz",
-   "new_york_lounge_nyl",
-   "Discotecagem",
-   "2026-11-07",
-   "23:00",
-   "amanda-diaz",
-   1071
-  ],
-  [
-   "ra4a9d32b",
-   "Dj Hope Bunny",
-   "new_york_lounge_nyl",
-   "Discotecagem",
-   "2026-11-07",
-   "23:00",
-   "dj-hope-bunny",
-   112
-  ],
-  [
-   "rc7e15587",
-   "Heeyalt",
-   "new_york_lounge_nyl",
-   "Eletrônica",
-   "2026-11-07",
-   "23:00",
-   "heeyalt",
-   0
-  ],
   [
    "r52b67fe1",
    "Lucas Purga",
