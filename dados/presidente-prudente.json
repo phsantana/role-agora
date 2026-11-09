@@ -1,5 +1,5 @@
 {
- "coletado": "2026-11-08",
+ "coletado": "2026-11-09",
  "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
  "V": {
   "varanda_boa_vista": {
@@ -862,7 +862,9 @@
    "rab6e2a48": "Sertanejo",
    "readdcf90": "Pagode",
    "rf0a659ad": "Samba",
-   "rfc885c16": "Sertanejo"
+   "rfc885c16": "Sertanejo",
+   "re2f9db1d": "Samba",
+   "r09c5999b": "Samba"
   },
   "cult_bar": {
    "antigo48": "Rock",
@@ -873,38 +875,41 @@
   },
   "vo_laura_gourmet": {
    "r56e0e4a0": "Sertanejo"
+  },
+  "sesc_thermas": {
+   "r620d9408": "Teatro",
+   "r88f8cf92": "Jazz",
+   "r4f19a6bf": "Teatro",
+   "re5e04fc7": "MPB",
+   "r2468ea9a": "Teatro",
+   "rbcbfcac8": "Soul",
+   "r004b45b1": "Teatro",
+   "r09abd8eb": "Rock",
+   "ra4ad9a0c": "Infantil",
+   "r22fee87c": "Teatro",
+   "r880ac75a": "Performance"
   }
  },
  "rows": [
   [
-   "r52b67fe1",
-   "Lucas Purga",
-   "alphaville_bar_e_petiscaria",
-   "Sertanejo",
-   "2026-11-08",
-   "13:30",
-   "lucas-purga",
-   962
+   "re2f9db1d",
+   "Soul do Samba",
+   "bar_da_onca",
+   "Samba",
+   "2026-11-09",
+   "20:00",
+   "soul-do-samba",
+   6546
   ],
   [
-   "raaf70090",
-   "Lorena Cristine",
-   "exquina_bar",
-   "Sertanejo",
-   "2026-11-08",
-   "14:00",
-   "lorena-cristine",
-   252137
-  ],
-  [
-   "r66f12ecf",
-   "Grupo TeDeJota",
-   "villa_18_container_bar",
-   "Pagode",
-   "2026-11-08",
-   "19:30",
-   "grupo-tedejota",
-   16352
+   "r620d9408",
+   "Cia Kazabaka",
+   "sesc_thermas",
+   "Teatro",
+   "2026-11-11",
+   "19:00",
+   "cia-kazabaka",
+   0
   ],
   [
    "r2739b4c7",
@@ -917,6 +922,16 @@
    701
   ],
   [
+   "r09c5999b",
+   "Samba E Suor",
+   "bar_da_onca",
+   "Samba",
+   "2026-11-12",
+   "20:00",
+   "samba-e-suor",
+   2238
+  ],
+  [
    "re844bf51",
    "Fiduma & Jeca",
    "ibiza_lounge_bar",
@@ -925,6 +940,16 @@
    "14:00",
    "fiduma-jeca",
    882211
+  ],
+  [
+   "r88f8cf92",
+   "Tempo bom",
+   "sesc_thermas",
+   "Jazz",
+   "2026-11-14",
+   "19:00",
+   "tempo-bom",
+   0
   ],
   [
    "r2d25bb0e",
@@ -957,6 +982,16 @@
    0
   ],
   [
+   "r4f19a6bf",
+   "O Mundo Na Cabeça",
+   "sesc_thermas",
+   "Teatro",
+   "2026-11-15",
+   "19:00",
+   "o-mundo-na-cabeca",
+   0
+  ],
+  [
    "r0dd9d658",
    "Caso à Parte",
    "ibiza_lounge_bar",
@@ -985,6 +1020,16 @@
    "00:30",
    "da-silva",
    4085
+  ],
+  [
+   "re5e04fc7",
+   "Chico César",
+   "sesc_thermas",
+   "MPB",
+   "2026-11-19",
+   "19:00",
+   "chico-cesar",
+   0
   ],
   [
    "r2d4a5f89",
@@ -1035,6 +1080,76 @@
    "20:00",
    "caso-a-parte",
    26204
+  ],
+  [
+   "r2468ea9a",
+   "Obompó-Ropongá",
+   "sesc_thermas",
+   "Teatro",
+   "2026-11-22",
+   "19:00",
+   "obompo-roponga",
+   0
+  ],
+  [
+   "rbcbfcac8",
+   "Os Gregórios",
+   "sesc_thermas",
+   "Soul",
+   "2026-11-25",
+   "19:00",
+   "os-gregorios",
+   0
+  ],
+  [
+   "r004b45b1",
+   "Ebun Cia de Teatro Negro",
+   "sesc_thermas",
+   "Teatro",
+   "2026-11-26",
+   "19:00",
+   "ebun-cia-de-teatro-negro",
+   0
+  ],
+  [
+   "r09abd8eb",
+   "Ginger And The Peppers",
+   "sesc_thermas",
+   "Rock",
+   "2026-11-28",
+   "19:00",
+   "ginger-and-the-peppers",
+   356226
+  ],
+  [
+   "ra4ad9a0c",
+   "Cia Pé de Ciranda",
+   "sesc_thermas",
+   "Infantil",
+   "2026-11-28",
+   "19:00",
+   "cia-pe-de-ciranda",
+   0
+  ],
+  [
+   "r22fee87c",
+   "Cia Tempos Juncos",
+   "sesc_thermas",
+   "Teatro",
+   "2026-11-29",
+   "19:00",
+   "cia-tempos-juncos",
+   0
+  ],
+  [
+   "r880ac75a",
+   "Circo Imaginário",
+   "sesc_thermas",
+   "Performance",
+   "2026-11-29",
+   "19:00",
+   "circo-imaginario",
+   0
   ],
   [
    "r5217ffbb",
@@ -1224,6 +1339,7 @@
   "bruno-jose": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778459152387-llkhho.webp",
   "denis-araujo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/6df628a3-e073-4d52-9ef2-00f14f2e4913/1779125675544-2y4nps.webp",
   "kenny-carvelli": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/82ae0196-2c7d-46f7-b13d-4f332785adda/1790024795012-zrhq9j.webp",
-  "rpm-cover": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/a2988a83-f887-494a-8d14-1dfd50dd80dc/1792881344094-ync2zn.webp"
+  "rpm-cover": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/a2988a83-f887-494a-8d14-1dfd50dd80dc/1792881344094-ync2zn.webp",
+  "ginger-and-the-peppers": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/9b505f4d-2d86-437d-b907-b09e863600bd/1786049577144-jpiui3.webp"
  }
 }
