@@ -1,5 +1,5 @@
 {
- "coletado": "2026-11-09",
+ "coletado": "2026-11-10",
  "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
  "V": {
   "varanda_boa_vista": {
@@ -766,7 +766,9 @@
    "antigo6": "Pop Rock",
    "antigo20": "Sertanejo",
    "r4fa2a5bb": "Pop Rock",
-   "r52b67fe1": "Sertanejo"
+   "r52b67fe1": "Sertanejo",
+   "r3d857f2f": "Brasilidades",
+   "r377198dc": "Sertanejo"
   },
   "valete_bar": {
    "antigo7": "Discotecagem",
@@ -781,7 +783,12 @@
    "antigo10": "Pagode",
    "antigo22": "Pagode",
    "re81ffdfe": "Pagode",
-   "r66f12ecf": "Pagode"
+   "r66f12ecf": "Pagode",
+   "rd2d2ff48": "Samba",
+   "rdb4068e4": "Pagode",
+   "rd42a7a37": "Samba",
+   "r5c6cefc8": "Samba",
+   "rb9584e45": "Pagode"
   },
   "seu_bastiao_pub": {
    "antigo12": "Eletrônica",
@@ -789,7 +796,12 @@
    "antigo14": "Sertanejo",
    "r568e2226": "Eletrônica",
    "rd205fc8b": "Sertanejo",
-   "rd3a56cc8": "Sertanejo"
+   "rd3a56cc8": "Sertanejo",
+   "r39031249": "Sertanejo",
+   "r68c4b3bc": "Pagode",
+   "rd05cb223": "Eletrônica",
+   "re8264d52": "Sertanejo",
+   "rac80bb9a": "Sertanejo"
   },
   "fabrica_gastrobar": {
    "antigo15": "Rock",
@@ -816,7 +828,10 @@
    "r3358ecf1": "Discotecagem",
    "r93beca34": "Discotecagem",
    "ra4a9d32b": "Discotecagem",
-   "rc7e15587": "Eletrônica"
+   "rc7e15587": "Eletrônica",
+   "r0c0a5228": "Eletrônica",
+   "rd9fde840": "Eletrônica",
+   "rdb1c904c": "Eletrônica"
   },
   "tacchino_ristorante": {
    "antigo23": "Pop Rock",
@@ -868,7 +883,12 @@
   },
   "cult_bar": {
    "antigo48": "Rock",
-   "rec7fa048": "Rock"
+   "rec7fa048": "Rock",
+   "rf27b144f": "Rock",
+   "r08670074": "Pop Rock",
+   "r81697eef": "Pop Rock",
+   "r40f62d5d": "Rock",
+   "ra96a717a": "Pop Rock"
   },
   "quinta_aula": {
    "rb1ca2ffe": "Pop"
@@ -892,16 +912,6 @@
  },
  "rows": [
   [
-   "re2f9db1d",
-   "Soul do Samba",
-   "bar_da_onca",
-   "Samba",
-   "2026-11-09",
-   "20:00",
-   "soul-do-samba",
-   6546
-  ],
-  [
    "r620d9408",
    "Cia Kazabaka",
    "sesc_thermas",
@@ -910,6 +920,16 @@
    "19:00",
    "cia-kazabaka",
    0
+  ],
+  [
+   "rf27b144f",
+   "Miriam Samorano",
+   "cult_bar",
+   "Rock",
+   "2026-11-11",
+   "20:00",
+   "miriam-samorano",
+   856
   ],
   [
    "r2739b4c7",
@@ -922,6 +942,16 @@
    701
   ],
   [
+   "r08670074",
+   "Victor Oliveira",
+   "cult_bar",
+   "Pop Rock",
+   "2026-11-12",
+   "20:00",
+   "victor-oliveira",
+   0
+  ],
+  [
    "r09c5999b",
    "Samba E Suor",
    "bar_da_onca",
@@ -930,6 +960,116 @@
    "20:00",
    "samba-e-suor",
    2238
+  ],
+  [
+   "r81697eef",
+   "Camila Ribeiro",
+   "cult_bar",
+   "Pop Rock",
+   "2026-11-12",
+   "20:00",
+   "camila-ribeiro",
+   277
+  ],
+  [
+   "r40f62d5d",
+   "Fernanda Lessa",
+   "cult_bar",
+   "Rock",
+   "2026-11-13",
+   "20:00",
+   "fernanda-lessa",
+   3475
+  ],
+  [
+   "rd2d2ff48",
+   "Nós Somos Do Interior",
+   "villa_18_container_bar",
+   "Samba",
+   "2026-11-13",
+   "21:30",
+   "nos-somos-do-interior",
+   0
+  ],
+  [
+   "rdb4068e4",
+   "Grupo 100 Malícia",
+   "villa_18_container_bar",
+   "Pagode",
+   "2026-11-13",
+   "21:30",
+   "grupo-100-malicia",
+   8486
+  ],
+  [
+   "r39031249",
+   "Alan Reis",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-13",
+   "22:00",
+   "alan-reis",
+   17685
+  ],
+  [
+   "r68c4b3bc",
+   "Ulisses Pai Galo",
+   "seu_bastiao_pub",
+   "Pagode",
+   "2026-11-13",
+   "22:00",
+   "ulisses-pai-galo",
+   0
+  ],
+  [
+   "rd05cb223",
+   "DJ Misper",
+   "seu_bastiao_pub",
+   "Eletrônica",
+   "2026-11-13",
+   "22:00",
+   "dj-misper",
+   1908
+  ],
+  [
+   "re8264d52",
+   "Felipe Corazza",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-13",
+   "22:00",
+   "felipe-corazza",
+   9058
+  ],
+  [
+   "r0c0a5228",
+   "Felpz",
+   "new_york_lounge_nyl",
+   "Eletrônica",
+   "2026-11-13",
+   "23:00",
+   "felpz",
+   2178
+  ],
+  [
+   "rd9fde840",
+   "Noronha",
+   "new_york_lounge_nyl",
+   "Eletrônica",
+   "2026-11-13",
+   "23:00",
+   "noronha",
+   15702
+  ],
+  [
+   "rdb1c904c",
+   "Maysa Napoleao",
+   "new_york_lounge_nyl",
+   "Eletrônica",
+   "2026-11-13",
+   "23:00",
+   "maysa-napoleao",
+   15385
   ],
   [
    "re844bf51",
@@ -942,6 +1082,16 @@
    882211
   ],
   [
+   "ra96a717a",
+   "Gui Serinoli",
+   "cult_bar",
+   "Pop Rock",
+   "2026-11-14",
+   "17:00",
+   "gui-serinoli",
+   0
+  ],
+  [
    "r88f8cf92",
    "Tempo bom",
    "sesc_thermas",
@@ -950,6 +1100,16 @@
    "19:00",
    "tempo-bom",
    0
+  ],
+  [
+   "r3d857f2f",
+   "Somzera",
+   "alphaville_bar_e_petiscaria",
+   "Brasilidades",
+   "2026-11-14",
+   "20:00",
+   "somzera",
+   706
   ],
   [
    "r2d25bb0e",
@@ -982,6 +1142,36 @@
    0
   ],
   [
+   "rd42a7a37",
+   "Nosso Samba",
+   "villa_18_container_bar",
+   "Samba",
+   "2026-11-14",
+   "21:30",
+   "nosso-samba",
+   0
+  ],
+  [
+   "rac80bb9a",
+   "Bruna Michelle",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-14",
+   "22:00",
+   "bruna-michelle",
+   7755
+  ],
+  [
+   "r377198dc",
+   "Robson Lemos",
+   "alphaville_bar_e_petiscaria",
+   "Sertanejo",
+   "2026-11-15",
+   "13:30",
+   "robson-lemos",
+   1763
+  ],
+  [
    "r4f19a6bf",
    "O Mundo Na Cabeça",
    "sesc_thermas",
@@ -990,6 +1180,26 @@
    "19:00",
    "o-mundo-na-cabeca",
    0
+  ],
+  [
+   "r5c6cefc8",
+   "Soul do Samba",
+   "villa_18_container_bar",
+   "Samba",
+   "2026-11-15",
+   "19:30",
+   "soul-do-samba",
+   6546
+  ],
+  [
+   "rb9584e45",
+   "Grupo Classe A",
+   "villa_18_container_bar",
+   "Pagode",
+   "2026-11-15",
+   "19:30",
+   "grupo-classe-a",
+   9741
   ],
   [
    "r0dd9d658",
@@ -1340,6 +1550,20 @@
   "denis-araujo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/6df628a3-e073-4d52-9ef2-00f14f2e4913/1779125675544-2y4nps.webp",
   "kenny-carvelli": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/82ae0196-2c7d-46f7-b13d-4f332785adda/1790024795012-zrhq9j.webp",
   "rpm-cover": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/a2988a83-f887-494a-8d14-1dfd50dd80dc/1792881344094-ync2zn.webp",
-  "ginger-and-the-peppers": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/9b505f4d-2d86-437d-b907-b09e863600bd/1786049577144-jpiui3.webp"
+  "ginger-and-the-peppers": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/9b505f4d-2d86-437d-b907-b09e863600bd/1786049577144-jpiui3.webp",
+  "miriam-samorano": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/ae07bedf-8504-4490-8f69-6b605caaee9e/1779652888981-tgtqin.webp",
+  "camila-ribeiro": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/79f87636-ce2c-421a-8560-edc245540f28/1794267353753-asfunk.webp",
+  "fernanda-lessa": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/3ab0d381-babe-48b8-bddb-abe082ab5472/1779124370051-p8wu5h.webp",
+  "grupo-100-malicia": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5a62a10a-a330-460a-a588-49e633689485/1779133116661-unv8yp.webp",
+  "ulisses-pai-galo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778458498242-jd6ckq.webp",
+  "felpz": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/896a6612-dc40-4cee-9578-9f38c6be85dd/1781747782911-7ftsa0.webp",
+  "noronha": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/cd96ee59-3705-4cb6-8f57-3db681fb1f8f/1785501313088-47urtj.webp",
+  "maysa-napoleao": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/c25c2933-95be-4fe1-bff1-556b22858455/1781747778418-n0kx0m.webp",
+  "gui-serinoli": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1773446882527-bb5ls3.webp",
+  "somzera": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/cf0287cb-3412-46c2-8a35-e00c78e1dc29/1789045610055-55qukj.webp",
+  "nosso-samba": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778460436344-6rnqk5.webp",
+  "bruna-michelle": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/c087d9c5-2bdf-4a19-89e7-8d11cbf7287e/1776699678221-2ns8us.webp",
+  "robson-lemos": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5483eb71-30d6-45c0-95f8-0c2c08240294/1779314310759-v0dsrc.webp",
+  "grupo-classe-a": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5c071876-7cb1-4e0d-aa8c-6c43b57a60b2/1779124900838-dumjak.webp"
  }
 }
