@@ -1,5 +1,5 @@
 {
- "coletado": "2026-11-10",
+ "coletado": "2026-11-11",
  "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
  "V": {
   "varanda_boa_vista": {
@@ -10,11 +10,11 @@
    "slug": "varanda-boa-vista",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1780681371429-385xlj.webp",
    "tipo": "Restaurante",
-   "genero": "Eletrônica",
+   "genero": "Sertanejo",
    "generosTop": [
+    "Sertanejo",
     "Eletrônica",
-    "Pagode",
-    "Sertanejo"
+    "Pagode"
    ],
    "avaliacoes": 311,
    "nota": 4.5
@@ -760,7 +760,9 @@
   },
   "varanda_boa_vista": {
    "antigo2": "Sertanejo",
-   "antigo3": "Sertanejo"
+   "antigo3": "Sertanejo",
+   "rd084bc73": "Sertanejo",
+   "r592e4da9": "Sertanejo"
   },
   "alphaville_bar_e_petiscaria": {
    "antigo6": "Pop Rock",
@@ -801,7 +803,9 @@
    "r68c4b3bc": "Pagode",
    "rd05cb223": "Eletrônica",
    "re8264d52": "Sertanejo",
-   "rac80bb9a": "Sertanejo"
+   "rac80bb9a": "Sertanejo",
+   "r2698340e": "Sertanejo",
+   "rd3995eca": "Eletrônica"
   },
   "fabrica_gastrobar": {
    "antigo15": "Rock",
@@ -831,7 +835,10 @@
    "rc7e15587": "Eletrônica",
    "r0c0a5228": "Eletrônica",
    "rd9fde840": "Eletrônica",
-   "rdb1c904c": "Eletrônica"
+   "rdb1c904c": "Eletrônica",
+   "rb35a5d19": "Eletrônica",
+   "rcb7cad3e": "MPB",
+   "rd6b9c65f": "Eletrônica"
   },
   "tacchino_ristorante": {
    "antigo23": "Pop Rock",
@@ -891,7 +898,9 @@
    "ra96a717a": "Pop Rock"
   },
   "quinta_aula": {
-   "rb1ca2ffe": "Pop"
+   "rb1ca2ffe": "Pop",
+   "r4d4eac21": "Eletrônica",
+   "rc5ea2f64": "Pop"
   },
   "vo_laura_gourmet": {
    "r56e0e4a0": "Sertanejo"
@@ -920,6 +929,16 @@
    "19:00",
    "cia-kazabaka",
    0
+  ],
+  [
+   "rd084bc73",
+   "Lucas & Renan",
+   "varanda_boa_vista",
+   "Sertanejo",
+   "2026-11-11",
+   "19:00",
+   "lucas-renan",
+   4884
   ],
   [
    "rf27b144f",
@@ -1000,6 +1019,16 @@
    "21:30",
    "grupo-100-malicia",
    8486
+  ],
+  [
+   "r2698340e",
+   "João Markos",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-13",
+   "22:00",
+   "joao-markos",
+   8916
   ],
   [
    "r39031249",
@@ -1092,6 +1121,26 @@
    0
   ],
   [
+   "r4d4eac21",
+   "Dj Noronha",
+   "quinta_aula",
+   "Eletrônica",
+   "2026-11-14",
+   "18:30",
+   "dj-noronha",
+   0
+  ],
+  [
+   "rc5ea2f64",
+   "Dj Barakaty",
+   "quinta_aula",
+   "Pop",
+   "2026-11-14",
+   "18:30",
+   "dj-barakaty",
+   1566
+  ],
+  [
    "r88f8cf92",
    "Tempo bom",
    "sesc_thermas",
@@ -1162,6 +1211,46 @@
    7755
   ],
   [
+   "rd3995eca",
+   "DJ Misper",
+   "seu_bastiao_pub",
+   "Eletrônica",
+   "2026-11-14",
+   "22:00",
+   "dj-misper",
+   1908
+  ],
+  [
+   "rb35a5d19",
+   "Queiroz",
+   "new_york_lounge_nyl",
+   "Eletrônica",
+   "2026-11-14",
+   "23:00",
+   "queiroz",
+   211409
+  ],
+  [
+   "rcb7cad3e",
+   "Saintbru",
+   "new_york_lounge_nyl",
+   "MPB",
+   "2026-11-14",
+   "23:00",
+   "saintbru",
+   1769
+  ],
+  [
+   "rd6b9c65f",
+   "Dj Zampieri",
+   "new_york_lounge_nyl",
+   "Eletrônica",
+   "2026-11-14",
+   "23:00",
+   "dj-zampieri",
+   7071
+  ],
+  [
    "r377198dc",
    "Robson Lemos",
    "alphaville_bar_e_petiscaria",
@@ -1200,6 +1289,16 @@
    "19:30",
    "grupo-classe-a",
    9741
+  ],
+  [
+   "r592e4da9",
+   "Lucas & Renan",
+   "varanda_boa_vista",
+   "Sertanejo",
+   "2026-11-18",
+   "19:00",
+   "lucas-renan",
+   4884
   ],
   [
    "r0dd9d658",
@@ -1564,6 +1663,11 @@
   "nosso-samba": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778460436344-6rnqk5.webp",
   "bruna-michelle": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/c087d9c5-2bdf-4a19-89e7-8d11cbf7287e/1776699678221-2ns8us.webp",
   "robson-lemos": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5483eb71-30d6-45c0-95f8-0c2c08240294/1779314310759-v0dsrc.webp",
-  "grupo-classe-a": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5c071876-7cb1-4e0d-aa8c-6c43b57a60b2/1779124900838-dumjak.webp"
+  "grupo-classe-a": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5c071876-7cb1-4e0d-aa8c-6c43b57a60b2/1779124900838-dumjak.webp",
+  "joao-markos": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5aab716e-1110-48d7-989b-a7a28f887f39/1779124360998-xiqgt8.webp",
+  "dj-barakaty": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/8a5153ee-f4e4-436d-97e6-323286fdfc47/1784589635368-e5u5ka.webp",
+  "queiroz": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/f9dee91d-5415-4e70-8831-94b453d0a485/1788289258329-qnqtm5.webp",
+  "saintbru": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/11735eb8-197f-44da-808d-2ca9525a2af2/1781747785639-ub6dme.webp",
+  "dj-zampieri": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/34d054e1-faab-4b72-a877-94dae4d8a47f/1782774261819-g8xs2k.webp"
  }
 }
