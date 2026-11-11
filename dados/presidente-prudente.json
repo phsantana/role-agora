@@ -903,7 +903,8 @@
    "rc5ea2f64": "Pop"
   },
   "vo_laura_gourmet": {
-   "r56e0e4a0": "Sertanejo"
+   "r56e0e4a0": "Sertanejo",
+   "r298c1fb7": "Sertanejo"
   },
   "sesc_thermas": {
    "r620d9408": "Teatro",
@@ -949,6 +950,16 @@
    "20:00",
    "miriam-samorano",
    856
+  ],
+  [
+   "r298c1fb7",
+   "Vinicius Saval",
+   "vo_laura_gourmet",
+   "Sertanejo",
+   "2026-11-11",
+   "20:30",
+   "vinicius-saval",
+   6261
   ],
   [
    "r2739b4c7",
@@ -1668,6 +1679,7 @@
   "dj-barakaty": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/8a5153ee-f4e4-436d-97e6-323286fdfc47/1784589635368-e5u5ka.webp",
   "queiroz": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/f9dee91d-5415-4e70-8831-94b453d0a485/1788289258329-qnqtm5.webp",
   "saintbru": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/11735eb8-197f-44da-808d-2ca9525a2af2/1781747785639-ub6dme.webp",
-  "dj-zampieri": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/34d054e1-faab-4b72-a877-94dae4d8a47f/1782774261819-g8xs2k.webp"
+  "dj-zampieri": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/34d054e1-faab-4b72-a877-94dae4d8a47f/1782774261819-g8xs2k.webp",
+  "vinicius-saval": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/c7bfeccd-9eb0-43b0-acf5-3a7d4f3546fb/1779133224218-4cfwfa.webp"
  }
 }
