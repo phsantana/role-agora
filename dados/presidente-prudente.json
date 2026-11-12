@@ -751,7 +751,8 @@
    "antigo9": "Sertanejo",
    "antigo21": "Sertanejo",
    "rf9239508": "Sertanejo",
-   "raaf70090": "Sertanejo"
+   "raaf70090": "Sertanejo",
+   "r3f12811c": "Sertanejo"
   },
   "agrobar": {
    "antigo1": "Sertanejo",
@@ -775,7 +776,8 @@
   "valete_bar": {
    "antigo7": "Discotecagem",
    "antigo11": "Rock",
-   "r0d5aa017": "Rock"
+   "r0d5aa017": "Rock",
+   "r3e586b00": "Blues"
   },
   "overdrive_music_bar": {
    "antigo8": "Rock",
@@ -922,46 +924,6 @@
  },
  "rows": [
   [
-   "r620d9408",
-   "Cia Kazabaka",
-   "sesc_thermas",
-   "Teatro",
-   "2026-11-11",
-   "19:00",
-   "cia-kazabaka",
-   0
-  ],
-  [
-   "rd084bc73",
-   "Lucas & Renan",
-   "varanda_boa_vista",
-   "Sertanejo",
-   "2026-11-11",
-   "19:00",
-   "lucas-renan",
-   4884
-  ],
-  [
-   "rf27b144f",
-   "Miriam Samorano",
-   "cult_bar",
-   "Rock",
-   "2026-11-11",
-   "20:00",
-   "miriam-samorano",
-   856
-  ],
-  [
-   "r298c1fb7",
-   "Vinicius Saval",
-   "vo_laura_gourmet",
-   "Sertanejo",
-   "2026-11-11",
-   "20:30",
-   "vinicius-saval",
-   6261
-  ],
-  [
    "r2739b4c7",
    "Três Muié",
    "tacchino_ristorante",
@@ -1000,6 +962,16 @@
    "20:00",
    "camila-ribeiro",
    277
+  ],
+  [
+   "r3e586b00",
+   "Matheus Gonçalves",
+   "valete_bar",
+   "Blues",
+   "2026-11-13",
+   "20:00",
+   "matheus-goncalves",
+   0
   ],
   [
    "r40f62d5d",
@@ -1272,6 +1244,16 @@
    1763
   ],
   [
+   "r3f12811c",
+   "Germano E Guilherme",
+   "exquina_bar",
+   "Sertanejo",
+   "2026-11-15",
+   "14:00",
+   "germano-e-guilherme",
+   837
+  ],
+  [
    "r4f19a6bf",
    "O Mundo Na Cabeça",
    "sesc_thermas",
@@ -1349,7 +1331,7 @@
    "2026-11-19",
    "19:00",
    "chico-cesar",
-   0
+   916105
   ],
   [
    "r2d4a5f89",
@@ -1680,6 +1662,8 @@
   "queiroz": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/f9dee91d-5415-4e70-8831-94b453d0a485/1788289258329-qnqtm5.webp",
   "saintbru": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/11735eb8-197f-44da-808d-2ca9525a2af2/1781747785639-ub6dme.webp",
   "dj-zampieri": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/34d054e1-faab-4b72-a877-94dae4d8a47f/1782774261819-g8xs2k.webp",
-  "vinicius-saval": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/c7bfeccd-9eb0-43b0-acf5-3a7d4f3546fb/1779133224218-4cfwfa.webp"
+  "vinicius-saval": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/c7bfeccd-9eb0-43b0-acf5-3a7d4f3546fb/1779133224218-4cfwfa.webp",
+  "germano-e-guilherme": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/f2299666-5f6e-43ea-a1f3-1f7c6568c735/1786132968782-28p0tf.webp",
+  "chico-cesar": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/6685318d-2009-4a89-8e25-7aec38341a80/1794413705994-3phznz.webp"
  }
 }
