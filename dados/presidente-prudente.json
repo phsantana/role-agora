@@ -752,12 +752,18 @@
    "antigo21": "Sertanejo",
    "rf9239508": "Sertanejo",
    "raaf70090": "Sertanejo",
-   "r3f12811c": "Sertanejo"
+   "r3f12811c": "Sertanejo",
+   "r26d75d12": "Country",
+   "r5138fec6": "Pop Rock",
+   "rb5fb6bc5": "MPB",
+   "rc95518ed": "Sertanejo"
   },
   "agrobar": {
    "antigo1": "Sertanejo",
    "antigo5": "Sertanejo",
-   "rcb08fb70": "Sertanejo"
+   "rcb08fb70": "Sertanejo",
+   "rdad4d7ac": "Sertanejo",
+   "r3375f3c5": "Stand Up"
   },
   "varanda_boa_vista": {
    "antigo2": "Sertanejo",
@@ -771,7 +777,8 @@
    "r4fa2a5bb": "Pop Rock",
    "r52b67fe1": "Sertanejo",
    "r3d857f2f": "Brasilidades",
-   "r377198dc": "Sertanejo"
+   "r377198dc": "Sertanejo",
+   "r63329ddb": "Pagode"
   },
   "valete_bar": {
    "antigo7": "Discotecagem",
@@ -807,7 +814,8 @@
    "re8264d52": "Sertanejo",
    "rac80bb9a": "Sertanejo",
    "r2698340e": "Sertanejo",
-   "rd3995eca": "Eletrônica"
+   "rd3995eca": "Eletrônica",
+   "rcbd67722": "Sertanejo"
   },
   "fabrica_gastrobar": {
    "antigo15": "Rock",
@@ -888,7 +896,9 @@
    "rf0a659ad": "Samba",
    "rfc885c16": "Sertanejo",
    "re2f9db1d": "Samba",
-   "r09c5999b": "Samba"
+   "r09c5999b": "Samba",
+   "r413b2eb6": "Pagode",
+   "r41f5090e": "Brasilidades"
   },
   "cult_bar": {
    "antigo48": "Rock",
@@ -924,6 +934,16 @@
  },
  "rows": [
   [
+   "rdad4d7ac",
+   "Lucas & Kaike",
+   "agrobar",
+   "Sertanejo",
+   "2026-11-12",
+   "18:00",
+   "lucas-kaike",
+   432
+  ],
+  [
    "r2739b4c7",
    "Três Muié",
    "tacchino_ristorante",
@@ -954,6 +974,16 @@
    2238
   ],
   [
+   "r26d75d12",
+   "Suy Correia",
+   "exquina_bar",
+   "Country",
+   "2026-11-12",
+   "20:00",
+   "suy-correia",
+   10081
+  ],
+  [
    "r81697eef",
    "Camila Ribeiro",
    "cult_bar",
@@ -982,6 +1012,36 @@
    "20:00",
    "fernanda-lessa",
    3475
+  ],
+  [
+   "r413b2eb6",
+   "Grupo Batukada Nossa",
+   "bar_da_onca",
+   "Pagode",
+   "2026-11-13",
+   "20:00",
+   "grupo-batukada-nossa",
+   6182
+  ],
+  [
+   "r5138fec6",
+   "Binho",
+   "exquina_bar",
+   "Pop Rock",
+   "2026-11-13",
+   "20:00",
+   "binho",
+   107241
+  ],
+  [
+   "r63329ddb",
+   "Ulisses Pai Galo",
+   "alphaville_bar_e_petiscaria",
+   "Pagode",
+   "2026-11-13",
+   "20:00",
+   "ulisses-pai-galo",
+   0
   ],
   [
    "rd2d2ff48",
@@ -1041,7 +1101,7 @@
    "2026-11-13",
    "22:00",
    "dj-misper",
-   1908
+   1918
   ],
   [
    "re8264d52",
@@ -1082,6 +1142,16 @@
    "23:00",
    "maysa-napoleao",
    15385
+  ],
+  [
+   "rb5fb6bc5",
+   "Bruna Cabriotti",
+   "exquina_bar",
+   "MPB",
+   "2026-11-14",
+   "14:00",
+   "bruna-cabriotti",
+   0
   ],
   [
    "re844bf51",
@@ -1144,6 +1214,26 @@
    706
   ],
   [
+   "r41f5090e",
+   "Acústico Dos Meninos",
+   "bar_da_onca",
+   "Brasilidades",
+   "2026-11-14",
+   "20:00",
+   "acustico-dos-meninos",
+   951
+  ],
+  [
+   "rc95518ed",
+   "Victor & Gabriel",
+   "exquina_bar",
+   "Sertanejo",
+   "2026-11-14",
+   "20:00",
+   "victor-gabriel",
+   4713
+  ],
+  [
    "r2d25bb0e",
    "Lorena Cristine",
    "ibiza_lounge_bar",
@@ -1152,6 +1242,16 @@
    "",
    "lorena-cristine",
    252137
+  ],
+  [
+   "r33f860e8",
+   "Noite de karaokê — Karaokê",
+   "valete_bar",
+   "evento",
+   "2026-11-14",
+   "",
+   "noite-de-karaoke-karaoke",
+   0
   ],
   [
    "r8f0628d1",
@@ -1194,6 +1294,16 @@
    7755
   ],
   [
+   "rcbd67722",
+   "Luka Samper & Raul",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-14",
+   "22:00",
+   "luka-samper-raul",
+   26418
+  ],
+  [
    "rd3995eca",
    "DJ Misper",
    "seu_bastiao_pub",
@@ -1201,7 +1311,7 @@
    "2026-11-14",
    "22:00",
    "dj-misper",
-   1908
+   1918
   ],
   [
    "rb35a5d19",
@@ -1412,6 +1522,16 @@
    "19:00",
    "ebun-cia-de-teatro-negro",
    0
+  ],
+  [
+   "r3375f3c5",
+   "Marcus Cirillo",
+   "agrobar",
+   "Stand Up",
+   "2026-11-26",
+   "20:00",
+   "marcus-cirillo",
+   1610814
   ],
   [
    "r09abd8eb",
@@ -1664,6 +1784,12 @@
   "dj-zampieri": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/34d054e1-faab-4b72-a877-94dae4d8a47f/1782774261819-g8xs2k.webp",
   "vinicius-saval": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/c7bfeccd-9eb0-43b0-acf5-3a7d4f3546fb/1779133224218-4cfwfa.webp",
   "germano-e-guilherme": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/f2299666-5f6e-43ea-a1f3-1f7c6568c735/1786132968782-28p0tf.webp",
-  "chico-cesar": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/6685318d-2009-4a89-8e25-7aec38341a80/1794413705994-3phznz.webp"
+  "chico-cesar": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/6685318d-2009-4a89-8e25-7aec38341a80/1794413705994-3phznz.webp",
+  "suy-correia": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/eabd06d5-b68d-4def-94e2-656090d5a239/1794444705291-25bu95.webp",
+  "binho": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/4da02436-4afe-4a5f-bb32-c20e1184f5fd/1779124505065-rb9qbw.webp",
+  "acustico-dos-meninos": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/0e0d8d79-ea07-4743-8c1a-dfcd7c6bda39/1794444494391-io8m7c.webp",
+  "victor-gabriel": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/92736d73-1bc2-4746-9702-edf566847604/1783986876140-7vo8rb.webp",
+  "luka-samper-raul": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/36545dab-1e63-4ffc-acc7-37965be00cc4/1774063423447-gtnhuj.webp",
+  "marcus-cirillo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/2eb38609-cb0e-48b9-be10-5c0584ffc38b/1794444034151-x73o87.webp"
  }
 }
