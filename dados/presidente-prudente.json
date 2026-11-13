@@ -1,5 +1,5 @@
 {
- "coletado": "2026-11-11",
+ "coletado": "2026-11-13",
  "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
  "V": {
   "varanda_boa_vista": {
@@ -742,7 +742,110 @@
    "tipo": "Restaurante",
    "areaExterna": true,
    "avaliacoes": 444,
-   "nota": 4.7
+   "nota": 4.7,
+   "genero": "Pop Rock",
+   "generosTop": [
+    "Pop Rock",
+    "Sertanejo",
+    "Samba"
+   ]
+  },
+  "bar_do_pisca": {
+   "name": "Bar do Pisca",
+   "bairro": "Núcleo Bartholomeu Bueno de Miranda",
+   "lat": -22.1082108,
+   "lng": -51.427301,
+   "slug": "bar-do-pisca",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794510174649-a0bnju.webp",
+   "nota": 4.6,
+   "tipo": null
+  },
+  "boteco_do_ana": {
+   "name": "Boteco do Ana",
+   "bairro": "Conjunto Habitacional Ana Jacinta",
+   "lat": -22.1577958,
+   "lng": -51.4515403,
+   "slug": "boteco-do-ana",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794510370026-0ub7nr.webp",
+   "nota": 4.7,
+   "tipo": null
+  },
+  "dona_maria_espetaria": {
+   "name": "Dona Maria Espetaria",
+   "bairro": "Jardim Maracanã",
+   "lat": -22.0989002,
+   "lng": -51.423997,
+   "slug": "dona-maria-espetaria",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794510750937-qlmos4.webp",
+   "nota": 4.7,
+   "tipo": null
+  },
+  "dg_espetaria": {
+   "name": "DG Espetaria",
+   "bairro": "Vila Machadinho",
+   "lat": -22.1137388,
+   "lng": -51.39297,
+   "slug": "dg-espetaria",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794510816475-f310s5.webp",
+   "genero": "Rock",
+   "generosTop": [
+    "Rock"
+   ],
+   "nota": 4.8,
+   "tipo": null
+  },
+  "choperia_colina_bancarios": {
+   "name": "Choperia Colina Bancários",
+   "bairro": "Parque Residencial Caranda",
+   "lat": -22.0963509,
+   "lng": -51.4279806,
+   "slug": "choperia-colina-bancarios",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794511151223-mgwn9a.webp",
+   "genero": "Samba",
+   "generosTop": [
+    "Samba",
+    "Sertanejo"
+   ],
+   "nota": 4.6,
+   "tipo": null
+  },
+  "bar_da_12": {
+   "name": "Bar da 12",
+   "bairro": "Vila do Estadio",
+   "lat": -22.1161608,
+   "lng": -51.392872,
+   "slug": "bar-da-12",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794511679368-cc5bed.webp",
+   "genero": "Forró",
+   "generosTop": [
+    "Forró"
+   ],
+   "nota": 4.4,
+   "tipo": null
+  },
+  "estacao_foodpark": {
+   "name": "ESTAÇÃO FOODPARK",
+   "bairro": "Centro",
+   "lat": -22.1210676,
+   "lng": -51.3811818,
+   "slug": "estacao-foodpark",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794511901520-i2tw27.webp",
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo"
+   ],
+   "nota": 4.9,
+   "tipo": null
+  },
+  "o_noobre_club": {
+   "name": "O Noobre Club",
+   "bairro": "Centro",
+   "lat": -22.1217024,
+   "lng": -51.39243870000001,
+   "slug": "o-noobre-club",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794512226277-9unoc9.webp",
+   "nota": 4.2,
+   "tipo": null
   }
  },
  "generos": {
@@ -763,7 +866,8 @@
    "antigo5": "Sertanejo",
    "rcb08fb70": "Sertanejo",
    "rdad4d7ac": "Sertanejo",
-   "r3375f3c5": "Stand Up"
+   "r3375f3c5": "Stand Up",
+   "rbcd3f89b": "Sertanejo"
   },
   "varanda_boa_vista": {
    "antigo2": "Sertanejo",
@@ -916,7 +1020,8 @@
   },
   "vo_laura_gourmet": {
    "r56e0e4a0": "Sertanejo",
-   "r298c1fb7": "Sertanejo"
+   "r298c1fb7": "Sertanejo",
+   "r5b80dc70": "Sertanejo"
   },
   "sesc_thermas": {
    "r620d9408": "Teatro",
@@ -930,68 +1035,40 @@
    "ra4ad9a0c": "Infantil",
    "r22fee87c": "Teatro",
    "r880ac75a": "Performance"
+  },
+  "estacao_foodpark": {
+   "rf72d1b9d": "Sertanejo",
+   "r6e9f4c69": "Sertanejo"
+  },
+  "bar_da_12": {
+   "rc898dd65": "Forró"
+  },
+  "arapuca_bar": {
+   "re234f584": "Sertanejo"
+  },
+  "dg_espetaria": {
+   "r2a432d92": "Rock"
+  },
+  "choperia_colina_bancarios": {
+   "rba2b6a9b": "Samba",
+   "r1e0f8d93": "Sertanejo"
+  },
+  "o_beco_bar": {
+   "r1bc80066": "Pop Rock",
+   "r3e9bc3c2": "Sertanejo",
+   "r7204c401": "Samba"
   }
  },
  "rows": [
   [
-   "rdad4d7ac",
-   "Lucas & Kaike",
-   "agrobar",
+   "rf72d1b9d",
+   "Vinicius Saval",
+   "estacao_foodpark",
    "Sertanejo",
-   "2026-11-12",
+   "2026-11-13",
    "18:00",
-   "lucas-kaike",
-   432
-  ],
-  [
-   "r2739b4c7",
-   "Três Muié",
-   "tacchino_ristorante",
-   "Pop Rock",
-   "2026-11-12",
-   "19:00",
-   "tres-muie",
-   701
-  ],
-  [
-   "r08670074",
-   "Victor Oliveira",
-   "cult_bar",
-   "Pop Rock",
-   "2026-11-12",
-   "20:00",
-   "victor-oliveira",
-   0
-  ],
-  [
-   "r09c5999b",
-   "Samba E Suor",
-   "bar_da_onca",
-   "Samba",
-   "2026-11-12",
-   "20:00",
-   "samba-e-suor",
-   2238
-  ],
-  [
-   "r26d75d12",
-   "Suy Correia",
-   "exquina_bar",
-   "Country",
-   "2026-11-12",
-   "20:00",
-   "suy-correia",
-   10081
-  ],
-  [
-   "r81697eef",
-   "Camila Ribeiro",
-   "cult_bar",
-   "Pop Rock",
-   "2026-11-12",
-   "20:00",
-   "camila-ribeiro",
-   277
+   "vinicius-saval",
+   6261
   ],
   [
    "r3e586b00",
@@ -1042,6 +1119,36 @@
    "20:00",
    "ulisses-pai-galo",
    0
+  ],
+  [
+   "rc898dd65",
+   "Edu Santos",
+   "bar_da_12",
+   "Forró",
+   "2026-11-13",
+   "20:00",
+   "edu-santos",
+   1350
+  ],
+  [
+   "r5b80dc70",
+   "Bia Marks",
+   "vo_laura_gourmet",
+   "Sertanejo",
+   "2026-11-13",
+   "20:30",
+   "bia-marks",
+   7372
+  ],
+  [
+   "re234f584",
+   "Tofano",
+   "arapuca_bar",
+   "Sertanejo",
+   "2026-11-13",
+   "20:30",
+   "tofano",
+   6293
   ],
   [
    "rd2d2ff48",
@@ -1174,6 +1281,16 @@
    0
   ],
   [
+   "r6e9f4c69",
+   "Gabriel Afonso",
+   "estacao_foodpark",
+   "Sertanejo",
+   "2026-11-14",
+   "18:00",
+   "gabriel-afonso",
+   2427
+  ],
+  [
    "r4d4eac21",
    "Dj Noronha",
    "quinta_aula",
@@ -1204,6 +1321,16 @@
    0
   ],
   [
+   "rbcd3f89b",
+   "Twiggy",
+   "agrobar",
+   "Sertanejo",
+   "2026-11-14",
+   "19:30",
+   "twiggy",
+   11721
+  ],
+  [
    "r3d857f2f",
    "Somzera",
    "alphaville_bar_e_petiscaria",
@@ -1232,6 +1359,26 @@
    "20:00",
    "victor-gabriel",
    4713
+  ],
+  [
+   "r2a432d92",
+   "Vini & D’erva",
+   "dg_espetaria",
+   "Rock",
+   "2026-11-14",
+   "20:30",
+   "vini-derva",
+   0
+  ],
+  [
+   "rba2b6a9b",
+   "Elly Guimaraes",
+   "choperia_colina_bancarios",
+   "Samba",
+   "2026-11-14",
+   "20:30",
+   "elly-guimaraes",
+   6324
   ],
   [
    "r2d25bb0e",
@@ -1344,6 +1491,16 @@
    7071
   ],
   [
+   "r1e0f8d93",
+   "Robson Reis",
+   "choperia_colina_bancarios",
+   "Sertanejo",
+   "2026-11-15",
+   "12:30",
+   "robson-reis",
+   11172
+  ],
+  [
    "r377198dc",
    "Robson Lemos",
    "alphaville_bar_e_petiscaria",
@@ -1392,6 +1549,16 @@
    "19:30",
    "grupo-classe-a",
    9741
+  ],
+  [
+   "r1bc80066",
+   "Binho",
+   "o_beco_bar",
+   "Pop Rock",
+   "2026-11-18",
+   "19:00",
+   "binho",
+   107241
   ],
   [
    "r592e4da9",
@@ -1492,6 +1659,26 @@
    "20:00",
    "caso-a-parte",
    26204
+  ],
+  [
+   "r3e9bc3c2",
+   "Victor & Gabriel",
+   "o_beco_bar",
+   "Sertanejo",
+   "2026-11-20",
+   "19:00",
+   "victor-gabriel",
+   4713
+  ],
+  [
+   "r7204c401",
+   "Grupo Fina Estampa",
+   "o_beco_bar",
+   "Samba",
+   "2026-11-21",
+   "19:00",
+   "grupo-fina-estampa",
+   237
   ],
   [
    "r2468ea9a",
@@ -1790,6 +1977,13 @@
   "acustico-dos-meninos": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/0e0d8d79-ea07-4743-8c1a-dfcd7c6bda39/1794444494391-io8m7c.webp",
   "victor-gabriel": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/92736d73-1bc2-4746-9702-edf566847604/1783986876140-7vo8rb.webp",
   "luka-samper-raul": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/36545dab-1e63-4ffc-acc7-37965be00cc4/1774063423447-gtnhuj.webp",
-  "marcus-cirillo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/2eb38609-cb0e-48b9-be10-5c0584ffc38b/1794444034151-x73o87.webp"
+  "marcus-cirillo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/2eb38609-cb0e-48b9-be10-5c0584ffc38b/1794444034151-x73o87.webp",
+  "edu-santos": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/501b7dbf-854d-4cd4-8dc0-61f71373f556/1784586528014-elt6bv.webp",
+  "bia-marks": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/9e43837e-c27a-4081-b5e7-a51fe3c19658/1779134097109-0yqwtp.webp",
+  "tofano": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/443d78ac-ca0a-4a75-b559-1285f803572b/1779124793245-5zo7pr.webp",
+  "gabriel-afonso": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/6527666a-0c96-4b04-a4a0-03124e041846/1784332166389-5lodf4.webp",
+  "vini-derva": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778458306687-pkidwi.webp",
+  "robson-reis": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/8986aaca-a1af-4bc2-af8f-b7ae7685e260/1779124775035-dbuzhj.webp",
+  "grupo-fina-estampa": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1774056538050-7wqrdf.webp"
  }
 }
