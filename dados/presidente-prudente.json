@@ -1,5 +1,5 @@
 {
- "coletado": "2026-11-13",
+ "coletado": "2026-11-14",
  "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
  "V": {
   "varanda_boa_vista": {
@@ -73,7 +73,7 @@
    "bairro": "Jardim Paulista",
    "lat": -22.1158889,
    "lng": -51.4007753,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/e43f6d24-cb84-4382-b643-e81a3b052f52/1792537102593-irmlae.webp",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/e43f6d24-cb84-4382-b643-e81a3b052f52/1794624933696-51x28d.webp",
    "slug": "valete-bar",
    "tipo": "Bar",
    "genero": "Rock",
@@ -846,6 +846,26 @@
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794512226277-9unoc9.webp",
    "nota": 4.2,
    "tipo": null
+  },
+  "espetinho_do_japones": {
+   "name": "Espetinho do Japonês",
+   "bairro": "Núcleo Bartholomeu Bueno de Miranda",
+   "lat": -22.1094107,
+   "lng": -51.4301702,
+   "slug": "espetinho-do-japones",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794618657175-7f7hrb.webp",
+   "nota": 4.5,
+   "tipo": null
+  },
+  "restaurante_estrela_gourmet": {
+   "name": "Restaurante Estrela Gourmet",
+   "bairro": "Jardim Novo Bongiovani",
+   "lat": -22.0990839,
+   "lng": -51.42351499999999,
+   "slug": "restaurante-estrela-gourmet",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794619038033-6iashy.webp",
+   "nota": 4.2,
+   "tipo": null
   }
  },
  "generos": {
@@ -1038,7 +1058,8 @@
   },
   "estacao_foodpark": {
    "rf72d1b9d": "Sertanejo",
-   "r6e9f4c69": "Sertanejo"
+   "r6e9f4c69": "Sertanejo",
+   "r947a9b8a": "Reggae"
   },
   "bar_da_12": {
    "rc898dd65": "Forró"
@@ -1060,196 +1081,6 @@
   }
  },
  "rows": [
-  [
-   "rf72d1b9d",
-   "Vinicius Saval",
-   "estacao_foodpark",
-   "Sertanejo",
-   "2026-11-13",
-   "18:00",
-   "vinicius-saval",
-   6261
-  ],
-  [
-   "r3e586b00",
-   "Matheus Gonçalves",
-   "valete_bar",
-   "Blues",
-   "2026-11-13",
-   "20:00",
-   "matheus-goncalves",
-   0
-  ],
-  [
-   "r40f62d5d",
-   "Fernanda Lessa",
-   "cult_bar",
-   "Rock",
-   "2026-11-13",
-   "20:00",
-   "fernanda-lessa",
-   3475
-  ],
-  [
-   "r413b2eb6",
-   "Grupo Batukada Nossa",
-   "bar_da_onca",
-   "Pagode",
-   "2026-11-13",
-   "20:00",
-   "grupo-batukada-nossa",
-   6182
-  ],
-  [
-   "r5138fec6",
-   "Binho",
-   "exquina_bar",
-   "Pop Rock",
-   "2026-11-13",
-   "20:00",
-   "binho",
-   107241
-  ],
-  [
-   "r63329ddb",
-   "Ulisses Pai Galo",
-   "alphaville_bar_e_petiscaria",
-   "Pagode",
-   "2026-11-13",
-   "20:00",
-   "ulisses-pai-galo",
-   0
-  ],
-  [
-   "rc898dd65",
-   "Edu Santos",
-   "bar_da_12",
-   "Forró",
-   "2026-11-13",
-   "20:00",
-   "edu-santos",
-   1350
-  ],
-  [
-   "r5b80dc70",
-   "Bia Marks",
-   "vo_laura_gourmet",
-   "Sertanejo",
-   "2026-11-13",
-   "20:30",
-   "bia-marks",
-   7372
-  ],
-  [
-   "re234f584",
-   "Tofano",
-   "arapuca_bar",
-   "Sertanejo",
-   "2026-11-13",
-   "20:30",
-   "tofano",
-   6293
-  ],
-  [
-   "rd2d2ff48",
-   "Nós Somos Do Interior",
-   "villa_18_container_bar",
-   "Samba",
-   "2026-11-13",
-   "21:30",
-   "nos-somos-do-interior",
-   0
-  ],
-  [
-   "rdb4068e4",
-   "Grupo 100 Malícia",
-   "villa_18_container_bar",
-   "Pagode",
-   "2026-11-13",
-   "21:30",
-   "grupo-100-malicia",
-   8486
-  ],
-  [
-   "r2698340e",
-   "João Markos",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-13",
-   "22:00",
-   "joao-markos",
-   8916
-  ],
-  [
-   "r39031249",
-   "Alan Reis",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-13",
-   "22:00",
-   "alan-reis",
-   17685
-  ],
-  [
-   "r68c4b3bc",
-   "Ulisses Pai Galo",
-   "seu_bastiao_pub",
-   "Pagode",
-   "2026-11-13",
-   "22:00",
-   "ulisses-pai-galo",
-   0
-  ],
-  [
-   "rd05cb223",
-   "DJ Misper",
-   "seu_bastiao_pub",
-   "Eletrônica",
-   "2026-11-13",
-   "22:00",
-   "dj-misper",
-   1918
-  ],
-  [
-   "re8264d52",
-   "Felipe Corazza",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-13",
-   "22:00",
-   "felipe-corazza",
-   9058
-  ],
-  [
-   "r0c0a5228",
-   "Felpz",
-   "new_york_lounge_nyl",
-   "Eletrônica",
-   "2026-11-13",
-   "23:00",
-   "felpz",
-   2178
-  ],
-  [
-   "rd9fde840",
-   "Noronha",
-   "new_york_lounge_nyl",
-   "Eletrônica",
-   "2026-11-13",
-   "23:00",
-   "noronha",
-   15702
-  ],
-  [
-   "rdb1c904c",
-   "Maysa Napoleao",
-   "new_york_lounge_nyl",
-   "Eletrônica",
-   "2026-11-13",
-   "23:00",
-   "maysa-napoleao",
-   15385
-  ],
   [
    "rb5fb6bc5",
    "Bruna Cabriotti",
@@ -1669,6 +1500,16 @@
    "19:00",
    "victor-gabriel",
    4713
+  ],
+  [
+   "r947a9b8a",
+   "Zilvan",
+   "estacao_foodpark",
+   "Reggae",
+   "2026-11-21",
+   "18:00",
+   "zilvan",
+   2344
   ],
   [
    "r7204c401",
