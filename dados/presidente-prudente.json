@@ -832,7 +832,8 @@
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794511901520-i2tw27.webp",
    "genero": "Sertanejo",
    "generosTop": [
-    "Sertanejo"
+    "Sertanejo",
+    "Reggae"
    ],
    "nota": 4.9,
    "tipo": null
@@ -1036,12 +1037,15 @@
   "quinta_aula": {
    "rb1ca2ffe": "Pop",
    "r4d4eac21": "Eletrônica",
-   "rc5ea2f64": "Pop"
+   "rc5ea2f64": "Pop",
+   "r09a849a9": "Pop",
+   "ra5cd4d71": "Eletrônica"
   },
   "vo_laura_gourmet": {
    "r56e0e4a0": "Sertanejo",
    "r298c1fb7": "Sertanejo",
-   "r5b80dc70": "Sertanejo"
+   "r5b80dc70": "Sertanejo",
+   "r0fdd8ae0": "Sertanejo"
   },
   "sesc_thermas": {
    "r620d9408": "Teatro",
@@ -1082,36 +1086,6 @@
  },
  "rows": [
   [
-   "rb5fb6bc5",
-   "Bruna Cabriotti",
-   "exquina_bar",
-   "MPB",
-   "2026-11-14",
-   "14:00",
-   "bruna-cabriotti",
-   0
-  ],
-  [
-   "re844bf51",
-   "Fiduma & Jeca",
-   "ibiza_lounge_bar",
-   "Sertanejo",
-   "2026-11-14",
-   "14:00",
-   "fiduma-jeca",
-   882211
-  ],
-  [
-   "ra96a717a",
-   "Gui Serinoli",
-   "cult_bar",
-   "Pop Rock",
-   "2026-11-14",
-   "17:00",
-   "gui-serinoli",
-   0
-  ],
-  [
    "r6e9f4c69",
    "Gabriel Afonso",
    "estacao_foodpark",
@@ -1140,16 +1114,6 @@
    "18:30",
    "dj-barakaty",
    1566
-  ],
-  [
-   "r88f8cf92",
-   "Tempo bom",
-   "sesc_thermas",
-   "Jazz",
-   "2026-11-14",
-   "19:00",
-   "tempo-bom",
-   0
   ],
   [
    "rbcd3f89b",
@@ -1190,6 +1154,16 @@
    "20:00",
    "victor-gabriel",
    4713
+  ],
+  [
+   "r0fdd8ae0",
+   "Alexandre Marruni",
+   "vo_laura_gourmet",
+   "Sertanejo",
+   "2026-11-14",
+   "20:30",
+   "alexandre-marruni",
+   1258
   ],
   [
    "r2a432d92",
@@ -1430,6 +1404,26 @@
    "00:30",
    "da-silva",
    4085
+  ],
+  [
+   "r09a849a9",
+   "Dj Barakaty",
+   "quinta_aula",
+   "Pop",
+   "2026-11-19",
+   "18:30",
+   "dj-barakaty",
+   1566
+  ],
+  [
+   "ra5cd4d71",
+   "Dj Noronha",
+   "quinta_aula",
+   "Eletrônica",
+   "2026-11-19",
+   "18:30",
+   "dj-noronha",
+   0
   ],
   [
    "re5e04fc7",
@@ -1825,6 +1819,7 @@
   "gabriel-afonso": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/6527666a-0c96-4b04-a4a0-03124e041846/1784332166389-5lodf4.webp",
   "vini-derva": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778458306687-pkidwi.webp",
   "robson-reis": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/8986aaca-a1af-4bc2-af8f-b7ae7685e260/1779124775035-dbuzhj.webp",
-  "grupo-fina-estampa": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1774056538050-7wqrdf.webp"
+  "grupo-fina-estampa": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1774056538050-7wqrdf.webp",
+  "alexandre-marruni": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/1c59527d-4e27-4bfb-b1a4-ffc4d7505eef/1782177421245-o5q9mw.webp"
  }
 }
