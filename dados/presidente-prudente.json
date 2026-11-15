@@ -1,5 +1,5 @@
 {
- "coletado": "2026-11-14",
+ "coletado": "2026-11-15",
  "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
  "V": {
   "varanda_boa_vista": {
@@ -390,7 +390,7 @@
    "lat": -22.1096837,
    "lng": -51.3844447,
    "slug": "sal-grosso-choperia-e-petiscaria",
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778462407998-54yctq.webp",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/fffffea3-19a2-433c-a27e-d13b372d3b08/1794693917725-1z1x3j.webp",
    "tipo": "Restaurante",
    "avaliacoes": 28,
    "nota": 4.6
@@ -511,7 +511,7 @@
    "name": "Floá Café e Flor",
    "bairro": "Bairro do Bosque",
    "lat": -22.1191192,
-   "lng": -51.38604309999999,
+   "lng": -51.3860431,
    "slug": "floa-cafe-e-flor",
    "foto": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1773246646418-x1qtjg.webp",
    "tipo": "Cafeteria",
@@ -665,7 +665,7 @@
    "lat": -22.1293445,
    "lng": -51.4011588,
    "slug": "deck-bar",
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778462678252-sji93g.webp",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/fcbaec4f-ee62-4217-bbdf-8fb0d07a2b71/1794693816001-vpl919.webp",
    "tipo": "Bar",
    "genero": "Pop Rock",
    "generosTop": [
@@ -842,7 +842,7 @@
    "name": "O Noobre Club",
    "bairro": "Centro",
    "lat": -22.1217024,
-   "lng": -51.39243870000001,
+   "lng": -51.3924387,
    "slug": "o-noobre-club",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794512226277-9unoc9.webp",
    "nota": 4.2,
@@ -862,7 +862,7 @@
    "name": "Restaurante Estrela Gourmet",
    "bairro": "Jardim Novo Bongiovani",
    "lat": -22.0990839,
-   "lng": -51.42351499999999,
+   "lng": -51.423515,
    "slug": "restaurante-estrela-gourmet",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794619038033-6iashy.webp",
    "nota": 4.2,
@@ -1085,216 +1085,6 @@
   }
  },
  "rows": [
-  [
-   "r6e9f4c69",
-   "Gabriel Afonso",
-   "estacao_foodpark",
-   "Sertanejo",
-   "2026-11-14",
-   "18:00",
-   "gabriel-afonso",
-   2427
-  ],
-  [
-   "r4d4eac21",
-   "Dj Noronha",
-   "quinta_aula",
-   "Eletrônica",
-   "2026-11-14",
-   "18:30",
-   "dj-noronha",
-   0
-  ],
-  [
-   "rc5ea2f64",
-   "Dj Barakaty",
-   "quinta_aula",
-   "Pop",
-   "2026-11-14",
-   "18:30",
-   "dj-barakaty",
-   1566
-  ],
-  [
-   "rbcd3f89b",
-   "Twiggy",
-   "agrobar",
-   "Sertanejo",
-   "2026-11-14",
-   "19:30",
-   "twiggy",
-   11721
-  ],
-  [
-   "r3d857f2f",
-   "Somzera",
-   "alphaville_bar_e_petiscaria",
-   "Brasilidades",
-   "2026-11-14",
-   "20:00",
-   "somzera",
-   706
-  ],
-  [
-   "r41f5090e",
-   "Acústico Dos Meninos",
-   "bar_da_onca",
-   "Brasilidades",
-   "2026-11-14",
-   "20:00",
-   "acustico-dos-meninos",
-   951
-  ],
-  [
-   "rc95518ed",
-   "Victor & Gabriel",
-   "exquina_bar",
-   "Sertanejo",
-   "2026-11-14",
-   "20:00",
-   "victor-gabriel",
-   4713
-  ],
-  [
-   "r0fdd8ae0",
-   "Alexandre Marruni",
-   "vo_laura_gourmet",
-   "Sertanejo",
-   "2026-11-14",
-   "20:30",
-   "alexandre-marruni",
-   1258
-  ],
-  [
-   "r2a432d92",
-   "Vini & D’erva",
-   "dg_espetaria",
-   "Rock",
-   "2026-11-14",
-   "20:30",
-   "vini-derva",
-   0
-  ],
-  [
-   "rba2b6a9b",
-   "Elly Guimaraes",
-   "choperia_colina_bancarios",
-   "Samba",
-   "2026-11-14",
-   "20:30",
-   "elly-guimaraes",
-   6324
-  ],
-  [
-   "r2d25bb0e",
-   "Lorena Cristine",
-   "ibiza_lounge_bar",
-   "Sertanejo",
-   "2026-11-14",
-   "",
-   "lorena-cristine",
-   252137
-  ],
-  [
-   "r33f860e8",
-   "Noite de karaokê — Karaokê",
-   "valete_bar",
-   "evento",
-   "2026-11-14",
-   "",
-   "noite-de-karaoke-karaoke",
-   0
-  ],
-  [
-   "r8f0628d1",
-   "João Marcelo e Juliano",
-   "ibiza_lounge_bar",
-   "Sertanejo",
-   "2026-11-14",
-   "",
-   "joao-marcelo-e-juliano",
-   31050
-  ],
-  [
-   "rf9a43f9b",
-   "DJ Fernando Furlan",
-   "ibiza_lounge_bar",
-   "Eletrônica",
-   "2026-11-14",
-   "",
-   "dj-fernando-furlan",
-   0
-  ],
-  [
-   "rd42a7a37",
-   "Nosso Samba",
-   "villa_18_container_bar",
-   "Samba",
-   "2026-11-14",
-   "21:30",
-   "nosso-samba",
-   0
-  ],
-  [
-   "rac80bb9a",
-   "Bruna Michelle",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-14",
-   "22:00",
-   "bruna-michelle",
-   7755
-  ],
-  [
-   "rcbd67722",
-   "Luka Samper & Raul",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-14",
-   "22:00",
-   "luka-samper-raul",
-   26418
-  ],
-  [
-   "rd3995eca",
-   "DJ Misper",
-   "seu_bastiao_pub",
-   "Eletrônica",
-   "2026-11-14",
-   "22:00",
-   "dj-misper",
-   1918
-  ],
-  [
-   "rb35a5d19",
-   "Queiroz",
-   "new_york_lounge_nyl",
-   "Eletrônica",
-   "2026-11-14",
-   "23:00",
-   "queiroz",
-   211409
-  ],
-  [
-   "rcb7cad3e",
-   "Saintbru",
-   "new_york_lounge_nyl",
-   "MPB",
-   "2026-11-14",
-   "23:00",
-   "saintbru",
-   1769
-  ],
-  [
-   "rd6b9c65f",
-   "Dj Zampieri",
-   "new_york_lounge_nyl",
-   "Eletrônica",
-   "2026-11-14",
-   "23:00",
-   "dj-zampieri",
-   7071
-  ],
   [
    "r1e0f8d93",
    "Robson Reis",
