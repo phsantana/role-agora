@@ -1,5 +1,5 @@
 {
- "coletado": "2026-11-15",
+ "coletado": "2026-11-16",
  "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
  "V": {
   "varanda_boa_vista": {
@@ -516,7 +516,11 @@
    "foto": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1773246646418-x1qtjg.webp",
    "tipo": "Cafeteria",
    "avaliacoes": 29,
-   "nota": 4.9
+   "nota": 4.9,
+   "genero": "Pop Rock",
+   "generosTop": [
+    "Pop Rock"
+   ]
   },
   "fagulha_fire": {
    "name": "Fagulha Fire",
@@ -1023,7 +1027,10 @@
    "re2f9db1d": "Samba",
    "r09c5999b": "Samba",
    "r413b2eb6": "Pagode",
-   "r41f5090e": "Brasilidades"
+   "r41f5090e": "Brasilidades",
+   "r84a8feb7": "Samba",
+   "rf49cb3f4": "Samba",
+   "rdc4bc0a1": "Pagode"
   },
   "cult_bar": {
    "antigo48": "Rock",
@@ -1082,68 +1089,21 @@
    "r1bc80066": "Pop Rock",
    "r3e9bc3c2": "Sertanejo",
    "r7204c401": "Samba"
+  },
+  "floa_cafe_e_flor": {
+   "r0f32fa7d": "Pop Rock"
   }
  },
  "rows": [
   [
-   "r1e0f8d93",
-   "Robson Reis",
-   "choperia_colina_bancarios",
-   "Sertanejo",
-   "2026-11-15",
-   "12:30",
-   "robson-reis",
-   11172
-  ],
-  [
-   "r377198dc",
-   "Robson Lemos",
-   "alphaville_bar_e_petiscaria",
-   "Sertanejo",
-   "2026-11-15",
-   "13:30",
-   "robson-lemos",
-   1763
-  ],
-  [
-   "r3f12811c",
-   "Germano E Guilherme",
-   "exquina_bar",
-   "Sertanejo",
-   "2026-11-15",
-   "14:00",
-   "germano-e-guilherme",
-   837
-  ],
-  [
-   "r4f19a6bf",
-   "O Mundo Na Cabeça",
-   "sesc_thermas",
-   "Teatro",
-   "2026-11-15",
-   "19:00",
-   "o-mundo-na-cabeca",
-   0
-  ],
-  [
-   "r5c6cefc8",
+   "r84a8feb7",
    "Soul do Samba",
-   "villa_18_container_bar",
+   "bar_da_onca",
    "Samba",
-   "2026-11-15",
-   "19:30",
+   "2026-11-16",
+   "20:00",
    "soul-do-samba",
    6546
-  ],
-  [
-   "rb9584e45",
-   "Grupo Classe A",
-   "villa_18_container_bar",
-   "Pagode",
-   "2026-11-15",
-   "19:30",
-   "grupo-classe-a",
-   9741
   ],
   [
    "r1bc80066",
@@ -1194,6 +1154,16 @@
    "00:30",
    "da-silva",
    4085
+  ],
+  [
+   "r0f32fa7d",
+   "Liviah Coelho",
+   "floa_cafe_e_flor",
+   "Pop Rock",
+   "2026-11-19",
+   "16:00",
+   "liviah-coelho",
+   1426
   ],
   [
    "r09a849a9",
@@ -1276,6 +1246,16 @@
    26204
   ],
   [
+   "rf49cb3f4",
+   "Samba E Suor",
+   "bar_da_onca",
+   "Samba",
+   "2026-11-19",
+   "20:00",
+   "samba-e-suor",
+   2238
+  ],
+  [
    "r3e9bc3c2",
    "Victor & Gabriel",
    "o_beco_bar",
@@ -1284,6 +1264,16 @@
    "19:00",
    "victor-gabriel",
    4713
+  ],
+  [
+   "rdc4bc0a1",
+   "Caso à Parte",
+   "bar_da_onca",
+   "Pagode",
+   "2026-11-20",
+   "20:00",
+   "caso-a-parte",
+   26204
   ],
   [
    "r947a9b8a",
@@ -1610,6 +1600,7 @@
   "vini-derva": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778458306687-pkidwi.webp",
   "robson-reis": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/8986aaca-a1af-4bc2-af8f-b7ae7685e260/1779124775035-dbuzhj.webp",
   "grupo-fina-estampa": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1774056538050-7wqrdf.webp",
-  "alexandre-marruni": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/1c59527d-4e27-4bfb-b1a4-ffc4d7505eef/1782177421245-o5q9mw.webp"
+  "alexandre-marruni": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/1c59527d-4e27-4bfb-b1a4-ffc4d7505eef/1782177421245-o5q9mw.webp",
+  "liviah-coelho": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/a885d786-b295-4448-8b1f-d81b605a9a17/1779124838193-atrbaz.webp"
  }
 }
