@@ -494,6 +494,20 @@ html.screen-open{overflow:hidden}
 .ag-md[aria-pressed=true]{background:var(--action);color:var(--inverse);font-weight:700;box-shadow:none}
 .ag-md[aria-pressed=true] i svg path{fill:var(--inverse)}
 .ag-md:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+/* agenda em duas camadas (referência de 17/11): topo branco com os dias, arredondado embaixo; rolês do dia num fundo cinza */
+#agenda{background:var(--subtle)}
+#agenda .screen-bar{margin:0 calc(-1 * max(24px,env(safe-area-inset-right,0px)));padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));background:var(--surface)}
+#agenda .screen-bar .back{background:var(--subtle)}
+.ag-head{margin:0 calc(-1 * max(24px,env(safe-area-inset-right,0px)));padding:0 max(24px,env(safe-area-inset-right,0px)) var(--s-m);background:var(--surface);border-radius:0 0 var(--r-xlg) var(--r-xlg);box-shadow:0 16px 24px -20px rgba(23,23,23,.18)}
+.ag-head .ag-modo{background:var(--subtle)}
+#agenda .ag-card{background:var(--surface);box-shadow:0 4px 16px rgba(23,23,23,.04)}
+#agenda .ag-card.next{background:var(--action)}
+#agenda .ag-none{background:var(--surface)}
+#agenda .ag-none .ib{background:var(--subtle)}
+#agenda .ag-sug{padding:12px;border-radius:var(--r-xsm);background:var(--surface)}
+#agenda .ag-mes-b{background:var(--surface);border-color:transparent}
+#agenda .ag-meses{margin-top:var(--s-m)}
+#agenda .ag-gen-bar{background:linear-gradient(0deg,var(--subtle) 75%,rgba(245,245,245,0))}
 .ag-tl{margin-top:var(--s-m);display:flex;flex-direction:column}
 /* timeline do dia: hora à esquerda, linha ligando os rolês, card à direita */
 .ag-row{display:grid;grid-template-columns:48px minmax(0,1fr);gap:var(--s-xsm)}
@@ -2114,13 +2128,13 @@ function renderAgenda(dir){
           (mk&&!past?'<img src="'+mk[0].img+'" alt="">':'')+'<b>'+dn+'</b>'+(sug&&!past?'<i aria-hidden="true">'+ic('star','#D10A87',10)+'</i>':'')+'</button>';}
       mh+='<section class="ag-mes-b" aria-label="'+capt(MES_LONGO[mm.getMonth()])+' de '+mm.getFullYear()+'"><h3 class="h6">'+capt(MES_LONGO[mm.getMonth()])+(mm.getFullYear()!==NOW.getFullYear()?' de '+mm.getFullYear():'')+'</h3>'+
         '<div class="ag-mgrid" aria-hidden="true">'+['D','S','T','Q','Q','S','S'].map(function(x){return '<span class="wd">'+x+'</span>';}).join('')+'</div><div class="ag-mgrid">'+cel+'</div></section>';}
-    agBody.innerHTML=sub+tog+'<div class="ag-meses">'+mh+'</div>';
+    agBody.innerHTML='<div class="ag-head">'+sub+tog+'</div><div class="ag-meses">'+mh+'</div>';
     ligaModo();
     // tocar num dia volta pra semana daquele dia, com os rolês dele embaixo
     agBody.querySelectorAll('[data-mday]').forEach(function(b){b.onclick=function(){var d=new Date(+b.getAttribute('data-mday'));agSelD=d;agWeek=addDays(d,-d.getDay());agModo='semana';if(agGen&&agGen!=='loading') agGen=null;agBody.innerHTML='';renderAgenda();agEl.scrollTop=0;};});
     return;
   }
-  var html=sub+tog+
+  var html='<div class="ag-head">'+sub+tog+
     '<div class="ag-when"><div class="hd"><span class="eyebrow" id="ag-mes"></span>'+
     '<div class="ag-nav"><button type="button" class="prev" id="ag-prev" aria-label="Semana anterior"'+(agIdx<=0?' disabled':'')+'>'+ic('chev',null,16)+'</button>'+
     '<button type="button" id="ag-next" aria-label="Próxima semana"'+(agIdx+7>=dias.length?' disabled':'')+'>'+ic('chev',null,16)+'</button></div></div>'+
@@ -2128,7 +2142,7 @@ function renderAgenda(dir){
       var mk=m?'<img src="'+m[0].img+'" alt="">':sug?ic('star','#D10A87',12):'';
       var lab=diaCompleto(d)+(m?', '+m.length+(m.length>1?' rolês marcados':' rolê marcado'):sug?', tem rolê a sua cara':'');
       if(d<hoje){mk='';lab=diaCompleto(d)+', já passou';}
-      return '<button type="button" class="ag-day'+(d<hoje?' past':'')+'" data-day="'+d.getTime()+'" aria-pressed="'+(k===selK)+'" aria-label="'+lab+'"'+(d<hoje?' disabled':'')+'><span>'+capt(SEM[d.getDay()])+'</span><b>'+d.getDate()+'</b><span class="mk" aria-hidden="true">'+mk+'</span></button>';}).join('')+'</div></div></div>';
+      return '<button type="button" class="ag-day'+(d<hoje?' past':'')+'" data-day="'+d.getTime()+'" aria-pressed="'+(k===selK)+'" aria-label="'+lab+'"'+(d<hoje?' disabled':'')+'><span>'+capt(SEM[d.getDay()])+'</span><b>'+d.getDate()+'</b><span class="mk" aria-hidden="true">'+mk+'</span></button>';}).join('')+'</div></div></div></div>';
   html+='<button type="button" class="ag-auto" id="ag-auto"'+(agGen?' hidden':'')+'><span class="art" aria-hidden="true">'+ic('star','#fff',28)+'</span><span class="tx"><b class="h6">Monte sua agenda com a gente</b><span>Juntamos seu gosto, os horários e o caminho entre os bares</span></span>'+ic('chev','#fff',20)+'</button>';
   var m=marcados[selK]||[],dia=doDia[selK]||[];
   // sugere só o que é 60%+ a sua cara, sem atropelar o que você já escolheu
