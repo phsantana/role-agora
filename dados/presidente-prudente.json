@@ -1,5 +1,5 @@
 {
- "coletado": "2026-11-16",
+ "coletado": "2026-11-17",
  "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
  "V": {
   "varanda_boa_vista": {
@@ -907,7 +907,11 @@
    "r52b67fe1": "Sertanejo",
    "r3d857f2f": "Brasilidades",
    "r377198dc": "Sertanejo",
-   "r63329ddb": "Pagode"
+   "r63329ddb": "Pagode",
+   "r74e163c4": "Sertanejo",
+   "reea5c617": "Sertanejo",
+   "r0d96ce3e": "Sertanejo",
+   "r6293b9e6": "Sertanejo"
   },
   "valete_bar": {
    "antigo7": "Discotecagem",
@@ -944,7 +948,15 @@
    "rac80bb9a": "Sertanejo",
    "r2698340e": "Sertanejo",
    "rd3995eca": "Eletrônica",
-   "rcbd67722": "Sertanejo"
+   "rcbd67722": "Sertanejo",
+   "r55b19e88": "Eletrônica",
+   "r55d29758": "Pagode",
+   "rd761229c": "Sertanejo",
+   "r67e203a3": "Sertanejo",
+   "r73173881": "Sertanejo",
+   "r98945cd3": "Sertanejo",
+   "rb5d9845b": "Eletrônica",
+   "rd66f7154": "Rock"
   },
   "fabrica_gastrobar": {
    "antigo15": "Rock",
@@ -961,7 +973,8 @@
    "rc29409b0": "Reggae",
    "rd44fd1ff": "Pagode",
    "r52ba18b6": "Rock",
-   "r6364c34a": "Rock"
+   "r6364c34a": "Rock",
+   "r890ef37e": "Axé"
   },
   "new_york_lounge_nyl": {
    "antigo16": "Discotecagem",
@@ -1096,16 +1109,6 @@
  },
  "rows": [
   [
-   "r84a8feb7",
-   "Soul do Samba",
-   "bar_da_onca",
-   "Samba",
-   "2026-11-16",
-   "20:00",
-   "soul-do-samba",
-   6546
-  ],
-  [
    "r1bc80066",
    "Binho",
    "o_beco_bar",
@@ -1226,6 +1229,16 @@
    468847
   ],
   [
+   "r74e163c4",
+   "Bia Marks",
+   "alphaville_bar_e_petiscaria",
+   "Sertanejo",
+   "2026-11-19",
+   "20:00",
+   "bia-marks",
+   7372
+  ],
+  [
    "rc29409b0",
    "Zilvan",
    "fabrica_gastrobar",
@@ -1256,6 +1269,36 @@
    2238
   ],
   [
+   "r55b19e88",
+   "DJ Misper",
+   "seu_bastiao_pub",
+   "Eletrônica",
+   "2026-11-19",
+   "22:00",
+   "dj-misper",
+   1918
+  ],
+  [
+   "r55d29758",
+   "Grupo TeDeJota",
+   "seu_bastiao_pub",
+   "Pagode",
+   "2026-11-19",
+   "22:00",
+   "grupo-tedejota",
+   16352
+  ],
+  [
+   "rd761229c",
+   "Diego Costta",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-19",
+   "22:00",
+   "diego-costta",
+   11744
+  ],
+  [
    "r3e9bc3c2",
    "Victor & Gabriel",
    "o_beco_bar",
@@ -1276,6 +1319,16 @@
    26204
   ],
   [
+   "reea5c617",
+   "Lucas Purga",
+   "alphaville_bar_e_petiscaria",
+   "Sertanejo",
+   "2026-11-20",
+   "20:00",
+   "lucas-purga",
+   962
+  ],
+  [
    "r947a9b8a",
    "Zilvan",
    "estacao_foodpark",
@@ -1294,6 +1347,76 @@
    "19:00",
    "grupo-fina-estampa",
    237
+  ],
+  [
+   "r0d96ce3e",
+   "Caco & Davi",
+   "alphaville_bar_e_petiscaria",
+   "Sertanejo",
+   "2026-11-21",
+   "20:00",
+   "caco-davi",
+   160
+  ],
+  [
+   "r67e203a3",
+   "João Marcelo e Juliano",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-21",
+   "21:30",
+   "joao-marcelo-e-juliano",
+   31050
+  ],
+  [
+   "r73173881",
+   "Felipe Corazza",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-21",
+   "21:30",
+   "felipe-corazza",
+   9058
+  ],
+  [
+   "r98945cd3",
+   "João Markos",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-21",
+   "21:30",
+   "joao-markos",
+   8916
+  ],
+  [
+   "rb5d9845b",
+   "DJ Misper",
+   "seu_bastiao_pub",
+   "Eletrônica",
+   "2026-11-21",
+   "21:30",
+   "dj-misper",
+   1918
+  ],
+  [
+   "rd66f7154",
+   "Cocktail Jam",
+   "seu_bastiao_pub",
+   "Rock",
+   "2026-11-21",
+   "21:30",
+   "cocktail-jam",
+   3359
+  ],
+  [
+   "r6293b9e6",
+   "Germano E Guilherme",
+   "alphaville_bar_e_petiscaria",
+   "Sertanejo",
+   "2026-11-22",
+   "13:30",
+   "germano-e-guilherme",
+   837
   ],
   [
    "r2468ea9a",
@@ -1506,6 +1629,16 @@
    42203
   ],
   [
+   "r890ef37e",
+   "É o Tchan",
+   "fabrica_gastrobar",
+   "Axé",
+   "2027-01-30",
+   "22:00",
+   "e-o-tchan",
+   661425
+  ],
+  [
    "rec7fa048",
    "Moments",
    "cult_bar",
@@ -1601,6 +1734,10 @@
   "robson-reis": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/8986aaca-a1af-4bc2-af8f-b7ae7685e260/1779124775035-dbuzhj.webp",
   "grupo-fina-estampa": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1774056538050-7wqrdf.webp",
   "alexandre-marruni": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/1c59527d-4e27-4bfb-b1a4-ffc4d7505eef/1782177421245-o5q9mw.webp",
-  "liviah-coelho": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/a885d786-b295-4448-8b1f-d81b605a9a17/1779124838193-atrbaz.webp"
+  "liviah-coelho": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/a885d786-b295-4448-8b1f-d81b605a9a17/1779124838193-atrbaz.webp",
+  "diego-costta": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/ed133d07-2444-4fec-84f4-0f4407e1d39e/1779227484557-iwoqgd.webp",
+  "caco-davi": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/09410a94-6c56-4f35-a410-74eeb734a147/1784586537176-t9g8j0.webp",
+  "cocktail-jam": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/3887d423-238f-4577-9e2d-b27c4b5fa6e3/1779155484564-dsix49.webp",
+  "e-o-tchan": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/feb161f9-b157-49be-bbe8-cdc5acd61702/1779124315992-8k3aox.webp"
  }
 }
