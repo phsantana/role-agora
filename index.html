@@ -390,16 +390,16 @@ button.tchip:hover{background:var(--action-subtle)}
 .ag-gen-bar{position:sticky;bottom:0;z-index:3;margin:0 calc(-1 * max(24px,env(safe-area-inset-right,0px)));padding:var(--s-sm) max(24px,env(safe-area-inset-right,0px)) calc(var(--s-sm) + env(safe-area-inset-bottom,0px));background:linear-gradient(0deg,var(--page) 75%,rgba(255,255,255,0));display:flex;flex-direction:column;gap:var(--s-2xsm)}
 .btn.success:disabled{opacity:1}
 /* Agenda */
-/* navbar (Figma Área logada 1474:16203): pílula escura fixa embaixo, Radar em destaque no meio */
-.navbar{position:fixed;z-index:15;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:calc(100% - 32px);max-width:398px;box-sizing:border-box;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;background:var(--text);border-radius:var(--r-pill);box-shadow:0 8px 24px rgba(23,23,23,.28)}
-.nav-i{display:flex;flex-direction:column;align-items:center;gap:4px;border:0;background:none;padding:0;color:var(--inverse);font:400 12px/1.5 var(--body);cursor:pointer;-webkit-tap-highlight-color:transparent}
-.nav-i .ic{position:relative;width:40px;height:40px;border-radius:var(--r-pill);display:grid;place-items:center;transition:background .15s}
+/* navbar (Figma Área logada 1484:18512): pílula escura compacta fixa embaixo; o item da tela atual vira um círculo rosa */
+.navbar{position:fixed;z-index:15;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:328px;max-width:calc(100% - 32px);box-sizing:border-box;padding:var(--s-2xsm,4px);display:flex;align-items:center;justify-content:space-between;background:#171717;border-radius:var(--r-pill);box-shadow:0 8px 24px rgba(23,23,23,.28)}
+.nav-i{position:relative;flex:none;width:56px;height:56px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:4px 0;border:0;border-radius:var(--r-pill);background:none;color:var(--inverse);font:400 12px/1 var(--body);white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s}
+.nav-i .ic{position:relative;width:24px;height:24px;display:grid;place-items:center}
 .nav-i .ic>img,.nav-i .ic>svg{width:24px;height:24px;display:block}
-.nav-i .ic>img.av{width:32px;height:32px;border-radius:50%;object-fit:cover}
-.nav-i:hover .ic{background:rgba(255,255,255,.12)}
-.nav-i:focus-visible{outline:none}.nav-i:focus-visible .ic{box-shadow:0 0 0 2px var(--inverse)}
-.nav-i[aria-current="page"]{font-weight:700}
-.nav-i .n{position:absolute;top:-2px;right:-4px;min-width:20px;height:20px;box-sizing:border-box;padding:0 5px;border-radius:var(--r-pill);border:2px solid var(--text);background:var(--action);color:var(--inverse);font-size:11px;font-weight:700;line-height:16px;text-align:center}
+.nav-i .ic>img.av{width:24px;height:24px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px #E5E5E5}
+.nav-i:hover{background:rgba(255,255,255,.12)}
+.nav-i:focus-visible{outline:none;box-shadow:0 0 0 2px var(--inverse)}
+.nav-i[aria-current="page"]{background:var(--action);font-weight:700}
+.nav-i .n{position:absolute;top:-8px;right:-12px;min-width:20px;height:20px;box-sizing:border-box;padding:0 5px;border-radius:var(--r-pill);border:2px solid var(--text);background:var(--action);color:var(--inverse);font-size:11px;font-weight:700;line-height:16px;text-align:center}
 .nav-i.bump .ic{animation:bump .4s ease}
 @keyframes bump{40%{transform:translateY(-6px) scale(1.08)}}
 .content{padding-bottom:calc(140px + env(safe-area-inset-bottom,0px))}
@@ -641,8 +641,6 @@ html.screen-open{overflow:hidden}
 .home-vazio{color:var(--text-2);font-size:14px}
 html.home-on .navbar{z-index:20}
 html.home-on .toast{bottom:calc(124px + env(safe-area-inset-bottom,0px))}
-.nav-i[aria-current="page"] .ic{background:var(--surface)}
-.nav-i[aria-current="page"] .ic svg{color:var(--action)}
 /* ---------- Telas maiores ---------- */
 /* tablet: o app ocupa a largura toda; listas em duas colunas */
 @media (min-width:640px){
@@ -668,7 +666,6 @@ html.home-on .toast{bottom:calc(124px + env(safe-area-inset-bottom,0px))}
   .list{grid-template-columns:minmax(0,1fr)}
   .deck,.found{max-width:none}
   .navbar,.toast{left:calc(var(--col) / 2)}
-  .navbar{width:calc(var(--col) - 64px)}
   /* drawers viram uma janela no meio da tela */
   .sheet{max-width:520px;top:50%;bottom:auto;max-height:min(86vh,800px);border-radius:var(--r-xlg);transform:translate(-50%,-46%);opacity:0;visibility:hidden;transition:transform .2s ease,opacity .2s ease,visibility 0s linear .2s;box-shadow:var(--shadow)}
   .sheet.open{transform:translate(-50%,-50%);opacity:1;visibility:visible;transition:transform .2s ease,opacity .2s ease}
