@@ -453,10 +453,11 @@ html.screen-open{overflow:hidden}
 .ag-nav button{width:32px;height:32px;border-radius:50%;border:0;background:var(--subtle);display:grid;place-items:center;color:var(--brand-text)}
 .ag-nav button:disabled{color:var(--bg-strong);background:transparent;cursor:default}
 .ag-nav .prev svg{transform:rotate(180deg)}
-.ag-weekwrap{position:relative;overflow:hidden}
-.ag-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
-.ag-week.ghost{position:absolute;inset:0;pointer-events:none}
-.ag-day{min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 4px 12px;border:0;border-radius:var(--r-pill);background:transparent;font-size:12px;line-height:1.5}
+.ag-weekwrap{position:relative}
+/* faixa de dias: 7 por tela, rola na horizontal e encaixa no início de cada dia */
+.ag-week{display:flex;gap:4px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
+.ag-week::-webkit-scrollbar{display:none}
+.ag-day{flex:0 0 calc((100% - 24px) / 7);scroll-snap-align:start;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 4px 12px;border:0;border-radius:var(--r-pill);background:transparent;font-size:12px;line-height:1.5}
 .ag-day span{color:var(--text-2)}
 .ag-day b{font-weight:700;color:var(--text)}
 /* marcador: foto do 1º rolê marcado, estrela de sugestão ou nada (mesma altura nos três) */
@@ -1985,7 +1986,7 @@ function openAgenda(){
   // abre sempre no dia de hoje, na semana atual, sem o gerador aberto
   clearTimeout(agGenT);agGen=null;
   agSelD=dayStart(NOW);agWeek=addDays(agSelD,-agSelD.getDay());
-  agLastFocus=document.activeElement;agOpen=true;renderAgenda();
+  agLastFocus=document.activeElement;agOpen=true;agBody.innerHTML='';renderAgenda();
   agEl.scrollTop=0;agEl.classList.add('open');agEl.setAttribute('aria-hidden','false');document.documentElement.classList.add('screen-open');
   setTimeout(function(){document.getElementById('ag-back').focus({preventScroll:true});},50);
 }
@@ -2025,14 +2026,17 @@ function renderAgenda(dir){
   var doDia={};events.forEach(function(e){if(state.going[e.id]||e.date<agora()) return;var k=dkey(e.date);(doDia[k]=doDia[k]||[]).push(e);});
   Object.keys(doDia).forEach(function(k){doDia[k].sort(function(a,b){return ((b.aff||0)-(a.aff||0))||(a.date-b.date);});});
   var ultimo=hoje;items.concat(events).forEach(function(e){if(e.date>ultimo) ultimo=e.date;});
-  var week=[];for(var w=0;w<7;w++) week.push(addDays(agWeek,w));
+  var fimFaixa=addDays(dayStart(ultimo),6-dayStart(ultimo).getDay());if(fimFaixa<addDays(agWeek,6)) fimFaixa=addDays(agWeek,6);
+  var dias=[];for(var d0=inicio;d0<=fimFaixa;d0=addDays(d0,1)) dias.push(d0);
+  var agIdx=Math.max(0,Math.min(dias.length-7,dayDiff(agWeek)-dayDiff(inicio)));
+  var week=dias.slice(agIdx,agIdx+7);
   var selK=dkey(agSelD),next=items.filter(function(e){return dayStart(e.date)>=hoje;})[0];
   var nRoles=agruparRoles(items).length;
   var html='<p class="desc-lg muted ag-sub">'+(nRoles?nRoles+(nRoles===1?' rolê marcado':' rolês marcados'):'Nenhum rolê marcado ainda')+'</p>'+
     '<div class="ag-when"><div class="hd"><span class="eyebrow" id="ag-mes"></span>'+
-    '<div class="ag-nav"><button type="button" class="prev" id="ag-prev" aria-label="Semana anterior"'+(agWeek<=inicio?' disabled':'')+'>'+ic('chev',null,16)+'</button>'+
-    '<button type="button" id="ag-next" aria-label="Próxima semana"'+(addDays(agWeek,7)>ultimo?' disabled':'')+'>'+ic('chev',null,16)+'</button></div></div>'+
-    '<div class="ag-weekwrap"><div class="ag-week" role="group" aria-label="Dias da semana">'+week.map(function(d){var k=dkey(d),m=marcados[k],sug=!m&&(doDia[k]||[]).some(function(e){return e.aff!=null&&e.aff>=TOP_MIN;});
+    '<div class="ag-nav"><button type="button" class="prev" id="ag-prev" aria-label="Semana anterior"'+(agIdx<=0?' disabled':'')+'>'+ic('chev',null,16)+'</button>'+
+    '<button type="button" id="ag-next" aria-label="Próxima semana"'+(agIdx+7>=dias.length?' disabled':'')+'>'+ic('chev',null,16)+'</button></div></div>'+
+    '<div class="ag-weekwrap"><div class="ag-week" role="group" aria-label="Dias, role para o lado para ver mais" tabindex="-1">'+dias.map(function(d){var k=dkey(d),m=marcados[k],sug=!m&&(doDia[k]||[]).some(function(e){return e.aff!=null&&e.aff>=TOP_MIN;});
       var mk=m?'<img src="'+m[0].img+'" alt="">':sug?ic('star','#D10A87',12):'';
       var lab=diaCompleto(d)+(m?', '+m.length+(m.length>1?' rolês marcados':' rolê marcado'):sug?', tem rolê a sua cara':'');
       if(d<hoje){mk='';lab=diaCompleto(d)+', já passou';}
@@ -2061,27 +2065,31 @@ function renderAgenda(dir){
     if(sugs.length) html+=(m.length?'<h3 class="h6 ag-sugt">Mais rolês com a sua cara nesse dia</h3>'+emCidade:'')+
       '<div class="list ag-sugs">'+sugs.map(function(x){return '<div class="ag-sug">'+evHtml(x.e)+(x.bate.length?'<p class="ag-bate">'+ic('clock','#E11410')+'<span>Conflita com '+x.bate.map(function(b){return esc(b.name);}).join(' e ')+', mas é mais a sua cara</span></p>':'')+'</div>';}).join('')+'</div>';
   }
-  // trocou de semana pelas setas: a semana velha sai rolando pro lado e a nova entra
-  var oldWeek=dir?agBody.querySelector('.ag-week'):null;oldWeek=oldWeek&&oldWeek.cloneNode(true);
+  // a faixa mantém a posição entre renders (tocar num dia não pula a rolagem); setas rolam 7 dias com animação
+  var oldStrip=agBody.querySelector('.ag-week'),oldX=oldStrip?oldStrip.scrollLeft:null;
   agBody.innerHTML=html;
-  if(oldWeek&&!reduceMotion&&oldWeek.animate){var nw=agBody.querySelector('.ag-week');oldWeek.classList.add('ghost');oldWeek.removeAttribute('role');oldWeek.setAttribute('aria-hidden','true');nw.parentNode.appendChild(oldWeek);
-    var o={duration:320,easing:'cubic-bezier(.2,.7,.2,1)'};
-    nw.animate([{transform:'translateX('+(dir*100)+'%)'},{transform:'none'}],o);
-    oldWeek.animate([{transform:'none'},{transform:'translateX('+(-dir*100)+'%)'}],o).onfinish=function(){oldWeek.remove();};
-    setTimeout(function(){if(oldWeek.parentNode) oldWeek.remove();},o.duration+100);}
-  // mês da semana; se pegar dois meses, "Novembro/Dezembro" ou, se não couber, "Nov/Dez"
-  var mesEl=document.getElementById('ag-mes'),ms=[];week.forEach(function(d){var x=d.getMonth();if(ms.indexOf(x)<0) ms.push(x);});
-  var ano=week[6].getFullYear(),suf=ano!==NOW.getFullYear()?' '+ano:'';
-  mesEl.textContent=ms.map(function(x){return capt(MES_LONGO[x]);}).join('/')+suf;
-  if(ms.length>1&&mesEl.scrollWidth>mesEl.clientWidth) mesEl.textContent=ms.map(function(x){return capt(MES[x]);}).join('/')+suf;
+  var strip=agBody.querySelector('.ag-week'),passo=function(){var c=strip.children;return c.length>1?c[1].offsetLeft-c[0].offsetLeft:1;};
+  var prevB=document.getElementById('ag-prev'),nextB=document.getElementById('ag-next');
+  // mês dos 7 dias à vista; se pegar dois meses, "Novembro/Dezembro" ou, se não couber, "Nov/Dez"
+  function agMes(){var vis=dias.slice(agIdx,agIdx+7),mesEl=document.getElementById('ag-mes'),ms=[];vis.forEach(function(d){var x=d.getMonth();if(ms.indexOf(x)<0) ms.push(x);});
+    var ano=vis[vis.length-1].getFullYear(),suf=ano!==NOW.getFullYear()?' '+ano:'';
+    mesEl.textContent=ms.map(function(x){return capt(MES_LONGO[x]);}).join('/')+suf;
+    if(ms.length>1&&mesEl.scrollWidth>mesEl.clientWidth) mesEl.textContent=ms.map(function(x){return capt(MES[x]);}).join('/')+suf;
+    prevB.disabled=agIdx<=0;nextB.disabled=agIdx+7>=dias.length;}
+  var alvo=agIdx*passo();
+  if(dir&&oldX!=null&&!reduceMotion){strip.scrollLeft=oldX;strip.scrollTo({left:alvo,behavior:'smooth'});}
+  else strip.scrollLeft=(!dir&&oldX!=null)?oldX:alvo;
+  if(!dir&&oldX!=null){agIdx=Math.max(0,Math.min(dias.length-7,Math.round(strip.scrollLeft/passo())));agWeek=dias[agIdx];}
+  agMes();
+  strip.addEventListener('scroll',function(){var i=Math.max(0,Math.min(dias.length-7,Math.round(strip.scrollLeft/passo())));if(i!==agIdx){agIdx=i;agWeek=dias[i];agMes();}},{passive:true});
   agBody.querySelectorAll('[data-day]').forEach(function(b){b.onclick=function(){agSelD=new Date(+b.getAttribute('data-day'));if(agGen&&agGen!=='loading') agGen=null;renderAgenda();};});
   document.getElementById('ag-auto').onclick=startGen;
   var gx=document.getElementById('ag-gen-x');if(gx) gx.onclick=function(){agGen=null;renderAgenda();};
   var gt=document.getElementById('ag-gen-taste');if(gt) gt.onclick=function(){agGen=null;closeAgenda();openGenres();};
   var gu=document.getElementById('ag-gen-use');if(gu) gu.onclick=function(){usarAgenda(agGen.ops[agGenPick]);};
   agBody.querySelectorAll('[data-pick]').forEach(function(o){var pick=function(){agGenPick=+o.getAttribute('data-pick');var y=agEl.scrollTop;renderAgenda();agEl.scrollTop=y;};o.onclick=pick;o.onkeydown=function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();pick();}};});
-  document.getElementById('ag-prev').onclick=function(){agWeek=addDays(agWeek,-7);agSelD=agWeek<hoje&&addDays(agWeek,7)>hoje?hoje:agWeek;renderAgenda(-1);};
-  document.getElementById('ag-next').onclick=function(){agWeek=addDays(agWeek,7);agSelD=agWeek;renderAgenda(1);};
+  prevB.onclick=function(){agWeek=dias[Math.max(0,agIdx-7)];agSelD=agWeek<hoje&&addDays(agWeek,7)>hoje?hoje:agWeek;renderAgenda(-1);};
+  nextB.onclick=function(){agWeek=dias[Math.min(dias.length-7,agIdx+7)];agSelD=agWeek;renderAgenda(1);};
   agBody.querySelectorAll('[data-rm]').forEach(function(b){b.onclick=function(){var ids=b.getAttribute('data-rm').split(','),snaps={},nomes=agendaItems(true).filter(function(x){return ids.indexOf(x.id)>=0;}).map(function(x){return x.name;});
     ids.forEach(function(id){snaps[id]=state.going[id];delete state.going[id];});persist();render();
     toast('Tiramos '+nomes.join(' + ')+' da sua agenda.',function(){ids.forEach(function(id){state.going[id]=snaps[id];});persist();render();});};});
@@ -2237,7 +2245,7 @@ function startGen(){
 }
 function usarAgenda(o){
   var all=[].concat.apply([],o.dias);all.forEach(function(e){snapshotGoing(e);});persist();
-  agGen=null;var d=dayStart(o.dias[0][0].date);agSelD=d;agWeek=addDays(d,-d.getDay());render();
+  agGen=null;var d=dayStart(o.dias[0][0].date);agSelD=d;agWeek=addDays(d,-d.getDay());agBody.innerHTML='';render();
   agEl.scrollTop=0;toast('Pronto! '+all.length+(all.length>1?' rolês entraram':' rolê entrou')+' na sua agenda.');
 }
 
