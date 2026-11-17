@@ -871,6 +871,31 @@
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794619038033-6iashy.webp",
    "nota": 4.2,
    "tipo": null
+  },
+  "cat_sesi_de_presidente_prudente": {
+   "name": "CAT Sesi de Presidente Prudente",
+   "bairro": "Parque Furquim",
+   "lat": -22.1132333,
+   "lng": -51.3745876,
+   "slug": "cat-sesi-de-presidente-prudente",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1794670775471-1dzlav.webp",
+   "tipo": "Clube",
+   "avaliacoes": 758,
+   "nota": 4.7
+  },
+  "toledo_prudente_centro_universitario": {
+   "name": "Toledo Prudente - Centro Universitário",
+   "bairro": "Vila Furquim",
+   "lat": -22.1120551,
+   "lng": -51.3770367,
+   "slug": "toledo-prudente-centro-universitario",
+   "tipo": "Universidade",
+   "genero": "Stand Up",
+   "generosTop": [
+    "Stand Up"
+   ],
+   "avaliacoes": 117,
+   "nota": 4.7
   }
  },
  "generos": {
@@ -892,7 +917,8 @@
    "rcb08fb70": "Sertanejo",
    "rdad4d7ac": "Sertanejo",
    "r3375f3c5": "Stand Up",
-   "rbcd3f89b": "Sertanejo"
+   "rbcd3f89b": "Sertanejo",
+   "r06b0a9ff": "Sertanejo"
   },
   "varanda_boa_vista": {
    "antigo2": "Sertanejo",
@@ -932,7 +958,10 @@
    "rdb4068e4": "Pagode",
    "rd42a7a37": "Samba",
    "r5c6cefc8": "Samba",
-   "rb9584e45": "Pagode"
+   "rb9584e45": "Pagode",
+   "r8aceb79d": "Pagode",
+   "re7fe522e": "Pagode",
+   "rda734941": "Pagode"
   },
   "seu_bastiao_pub": {
    "antigo12": "Eletrônica",
@@ -990,7 +1019,10 @@
    "rdb1c904c": "Eletrônica",
    "rb35a5d19": "Eletrônica",
    "rcb7cad3e": "MPB",
-   "rd6b9c65f": "Eletrônica"
+   "rd6b9c65f": "Eletrônica",
+   "r295be1a0": "Eletrônica",
+   "r6a6fc34f": "Eletrônica",
+   "rcb9902e8": "Brasilidades"
   },
   "tacchino_ristorante": {
    "antigo23": "Pop Rock",
@@ -1065,7 +1097,8 @@
    "r56e0e4a0": "Sertanejo",
    "r298c1fb7": "Sertanejo",
    "r5b80dc70": "Sertanejo",
-   "r0fdd8ae0": "Sertanejo"
+   "r0fdd8ae0": "Sertanejo",
+   "rc9ccd037": "Sertanejo"
   },
   "sesc_thermas": {
    "r620d9408": "Teatro",
@@ -1105,9 +1138,22 @@
   },
   "floa_cafe_e_flor": {
    "r0f32fa7d": "Pop Rock"
+  },
+  "toledo_prudente_centro_universitario": {
+   "r6efd56f6": "Stand Up"
   }
  },
  "rows": [
+  [
+   "rc9ccd037",
+   "Diego Costta",
+   "vo_laura_gourmet",
+   "Sertanejo",
+   "2026-11-17",
+   "20:30",
+   "diego-costta",
+   11744
+  ],
   [
    "r1bc80066",
    "Binho",
@@ -1167,6 +1213,16 @@
    "16:00",
    "liviah-coelho",
    1426
+  ],
+  [
+   "r06b0a9ff",
+   "Amanda Maranho",
+   "agrobar",
+   "Sertanejo",
+   "2026-11-19",
+   "18:00",
+   "amanda-maranho",
+   5890
   ],
   [
    "r09a849a9",
@@ -1269,6 +1325,16 @@
    2238
   ],
   [
+   "r8aceb79d",
+   "Pagode Do Nova",
+   "villa_18_container_bar",
+   "Pagode",
+   "2026-11-19",
+   "21:30",
+   "pagode-do-nova",
+   5367
+  ],
+  [
    "r55b19e88",
    "DJ Misper",
    "seu_bastiao_pub",
@@ -1327,6 +1393,46 @@
    "20:00",
    "lucas-purga",
    962
+  ],
+  [
+   "re7fe522e",
+   "Grupo 100 Malícia",
+   "villa_18_container_bar",
+   "Pagode",
+   "2026-11-20",
+   "21:30",
+   "grupo-100-malicia",
+   8486
+  ],
+  [
+   "r295be1a0",
+   "Heeyalt",
+   "new_york_lounge_nyl",
+   "Eletrônica",
+   "2026-11-20",
+   "23:00",
+   "heeyalt",
+   0
+  ],
+  [
+   "r6a6fc34f",
+   "João Victor De Souza",
+   "new_york_lounge_nyl",
+   "Eletrônica",
+   "2026-11-20",
+   "23:00",
+   "joao-victor-de-souza",
+   1863
+  ],
+  [
+   "rcb9902e8",
+   "Indio",
+   "new_york_lounge_nyl",
+   "Brasilidades",
+   "2026-11-20",
+   "23:00",
+   "indio",
+   6168
   ],
   [
    "r947a9b8a",
@@ -1429,6 +1535,16 @@
    0
   ],
   [
+   "rda734941",
+   "Caso à Parte",
+   "villa_18_container_bar",
+   "Pagode",
+   "2026-11-22",
+   "20:00",
+   "caso-a-parte",
+   26204
+  ],
+  [
    "rbcbfcac8",
    "Os Gregórios",
    "sesc_thermas",
@@ -1477,6 +1593,16 @@
    "19:00",
    "cia-pe-de-ciranda",
    0
+  ],
+  [
+   "r6efd56f6",
+   "Matheus Ceará",
+   "toledo_prudente_centro_universitario",
+   "Stand Up",
+   "2026-11-28",
+   "20:00",
+   "matheus-ceara",
+   6818873
   ],
   [
    "r22fee87c",
@@ -1738,6 +1864,11 @@
   "diego-costta": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/ed133d07-2444-4fec-84f4-0f4407e1d39e/1779227484557-iwoqgd.webp",
   "caco-davi": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/09410a94-6c56-4f35-a410-74eeb734a147/1784586537176-t9g8j0.webp",
   "cocktail-jam": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/3887d423-238f-4577-9e2d-b27c4b5fa6e3/1779155484564-dsix49.webp",
-  "e-o-tchan": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/feb161f9-b157-49be-bbe8-cdc5acd61702/1779124315992-8k3aox.webp"
+  "e-o-tchan": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/feb161f9-b157-49be-bbe8-cdc5acd61702/1779124315992-8k3aox.webp",
+  "amanda-maranho": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/cb729291-59f1-43ce-b41e-d290a27172ed/1791316571560-0uoydx.webp",
+  "pagode-do-nova": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/d4594cf3-c543-4474-8f6a-95fb004516c3/1791762478867-l0uluv.webp",
+  "joao-victor-de-souza": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/039cb40d-753c-461c-8a9b-4ac0bb6cddc2/1789046258659-q7q66u.webp",
+  "indio": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/aa4130b4-4a09-46ab-9a4f-a85aaca6a78e/1794256621378-buzodr.webp",
+  "matheus-ceara": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/0c0f0e44-b989-49fa-9a7b-4773079e17a2/1779125107856-f7kp3y.webp"
  }
 }
