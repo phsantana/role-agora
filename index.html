@@ -468,6 +468,32 @@ html.screen-open{overflow:hidden}
 .ag-day[aria-pressed=true] .mk svg path{fill:var(--inverse)}
 .ag-day:disabled{cursor:default}
 .ag-day:disabled b,.ag-day:disabled span{color:var(--bg-strong)}
+/* agenda por mês: alternância Semana/Mês e meses empilhados */
+.ag-modo{display:flex;gap:4px;margin-top:var(--s-m);padding:4px;border-radius:var(--r-pill);background:var(--subtle)}
+.ag-modo button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:40px;border:0;border-radius:var(--r-pill);background:transparent;color:var(--text-2);font:400 14px/1.5 var(--body);cursor:pointer;transition:background .15s,color .15s}
+.ag-modo button svg{width:18px;height:18px}
+.ag-modo button[aria-pressed=true]{background:var(--surface);color:var(--action);font-weight:600;box-shadow:0 2px 8px rgba(23,23,23,.08)}
+.ag-modo button:focus-visible{outline:2px solid var(--text);outline-offset:1px}
+.ag-leg{display:flex;flex-wrap:wrap;gap:var(--s-sm);margin:var(--s-sm) 0 0;font-size:12px;line-height:1.5;color:var(--text-2)}
+.ag-leg span{display:inline-flex;align-items:center;gap:6px}
+.ag-leg .ph{width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,#690646,#D10A87);box-shadow:0 0 0 2px var(--action-subtle)}
+.ag-meses{display:flex;flex-direction:column;gap:var(--s-sm);margin-top:var(--s-sm)}
+.ag-mes-b{padding:var(--s-sm);border:1px solid var(--border);border-radius:var(--r-xsm)}
+.ag-mes-b .h6{text-align:center;margin-bottom:var(--s-xsm)}
+.ag-mgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));row-gap:6px;justify-items:center}
+.ag-mgrid .wd{font-size:12px;line-height:2;color:var(--text-2)}
+.ag-md{position:relative;width:40px;height:40px;max-width:100%;padding:0;border:0;border-radius:50%;background:transparent;display:grid;place-items:center;font:400 14px/1 var(--body);color:var(--text);cursor:pointer;transition:background .15s}
+.ag-md:hover{background:var(--subtle)}
+.ag-md b{position:relative;z-index:1;font-weight:inherit}
+.ag-md:disabled{color:var(--bg-strong);cursor:default;background:transparent}
+.ag-md.hoje{box-shadow:inset 0 0 0 1.5px var(--action);color:var(--action);font-weight:700}
+.ag-md.foto{color:var(--inverse);font-weight:700;box-shadow:0 0 0 2px var(--action)}
+.ag-md.foto img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover}
+.ag-md.foto::after{content:'';position:absolute;inset:0;border-radius:50%;background:rgba(23,23,23,.4)}
+.ag-md i{position:absolute;bottom:1px;left:50%;transform:translateX(-50%);line-height:0}
+.ag-md[aria-pressed=true]{background:var(--action);color:var(--inverse);font-weight:700;box-shadow:none}
+.ag-md[aria-pressed=true] i svg path{fill:var(--inverse)}
+.ag-md:focus-visible{outline:2px solid var(--text);outline-offset:2px}
 .ag-tl{margin-top:var(--s-m);display:flex;flex-direction:column}
 /* timeline do dia: hora à esquerda, linha ligando os rolês, card à direita */
 .ag-row{display:grid;grid-template-columns:48px minmax(0,1fr);gap:var(--s-xsm)}
@@ -1994,7 +2020,7 @@ function diaTitulo(d){var dd=dayDiff(d);if(dd===0) return 'Hoje';if(dd===1) retu
 function diaCompleto(d){return SEM_LONGO[d.getDay()]+', '+d.getDate()+' de '+MES_LONGO[d.getMonth()]+(d.getFullYear()!==NOW.getFullYear()?' de '+d.getFullYear():'');}
 // Agenda: tela própria. Semana de dom a sáb; dia com rolê marcado mostra a foto do 1º rolê,
 // dia sem nada marcado mas com rolê 60%+ a sua cara ganha uma estrela; o resto fica no estado padrão
-var agOpen=false,agSelD=null,agWeek=null,agLastFocus=null;
+var agOpen=false,agSelD=null,agWeek=null,agLastFocus=null,agModo='semana';
 var agEl=document.getElementById('agenda'),agBody=document.getElementById('ag-body');
 var dkey=function(d){return d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();};
 var capt=function(t){return t.charAt(0).toUpperCase()+t.slice(1);};
@@ -2049,7 +2075,29 @@ function renderAgenda(dir){
   var week=dias.slice(agIdx,agIdx+7);
   var selK=dkey(agSelD),next=items.filter(function(e){return dayStart(e.date)>=hoje;})[0];
   var nRoles=agruparRoles(items).length;
-  var html='<p class="desc-lg muted ag-sub">'+(nRoles?nRoles+(nRoles===1?' rolê marcado':' rolês marcados'):'Nenhum rolê marcado ainda')+'</p>'+
+  var sub='<p class="desc-lg muted ag-sub">'+(nRoles?nRoles+(nRoles===1?' rolê marcado':' rolês marcados'):'Nenhum rolê marcado ainda')+'</p>';
+  // alternância Semana / Mês (referência de calendário mensal enviada em 16/11)
+  var tog='<div class="ag-modo" role="group" aria-label="Ver agenda por"><button type="button" data-modo="semana" aria-pressed="'+(agModo==='semana')+'">'+CAL_IC+'Semana</button><button type="button" data-modo="mes" aria-pressed="'+(agModo==='mes')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Mês</button></div>';
+  var ligaModo=function(){agBody.querySelectorAll('[data-modo]').forEach(function(b){b.onclick=function(){var m=b.getAttribute('data-modo');if(m===agModo) return;agModo=m;agBody.innerHTML='';renderAgenda();};});};
+  if(agModo==='mes'){
+    // meses empilhados, de hoje até o último rolê: foto no dia com rolê marcado, estrela no dia com rolê a sua cara
+    var mh='<p class="ag-leg"><span><i class="ph"></i>Rolê marcado</span><span>'+ic('star','#D10A87',12)+'Rolê a sua cara</span></p>';
+    for(var mm=new Date(hoje.getFullYear(),hoje.getMonth(),1);mm<=ultimo;mm=new Date(mm.getFullYear(),mm.getMonth()+1,1)){
+      var nd=new Date(mm.getFullYear(),mm.getMonth()+1,0).getDate(),cel='';
+      for(var b0=0;b0<mm.getDay();b0++) cel+='<span></span>';
+      for(var dn=1;dn<=nd;dn++){var d=new Date(mm.getFullYear(),mm.getMonth(),dn),k=dkey(d),mk=marcados[k],past=d<hoje,sug=!mk&&(doDia[k]||[]).some(function(e){return e.aff!=null&&e.aff>=TOP_MIN;});
+        var lab=diaCompleto(d)+(past?', já passou':mk?', '+mk.length+(mk.length>1?' rolês marcados':' rolê marcado'):sug?', tem rolê a sua cara':(doDia[k]||[]).length?', '+doDia[k].length+((doDia[k].length>1)?' rolês na cidade':' rolê na cidade'):'');
+        cel+='<button type="button" class="ag-md'+(mk&&!past?' foto':'')+(dayDiff(d)===0?' hoje':'')+'" data-mday="'+d.getTime()+'" aria-pressed="'+(k===selK)+'" aria-label="'+lab+'"'+(past?' disabled':'')+'>'+
+          (mk&&!past?'<img src="'+mk[0].img+'" alt="">':'')+'<b>'+dn+'</b>'+(sug&&!past?'<i aria-hidden="true">'+ic('star','#D10A87',10)+'</i>':'')+'</button>';}
+      mh+='<section class="ag-mes-b" aria-label="'+capt(MES_LONGO[mm.getMonth()])+' de '+mm.getFullYear()+'"><h3 class="h6">'+capt(MES_LONGO[mm.getMonth()])+(mm.getFullYear()!==NOW.getFullYear()?' de '+mm.getFullYear():'')+'</h3>'+
+        '<div class="ag-mgrid" aria-hidden="true">'+['D','S','T','Q','Q','S','S'].map(function(x){return '<span class="wd">'+x+'</span>';}).join('')+'</div><div class="ag-mgrid">'+cel+'</div></section>';}
+    agBody.innerHTML=sub+tog+'<div class="ag-meses">'+mh+'</div>';
+    ligaModo();
+    // tocar num dia volta pra semana daquele dia, com os rolês dele embaixo
+    agBody.querySelectorAll('[data-mday]').forEach(function(b){b.onclick=function(){var d=new Date(+b.getAttribute('data-mday'));agSelD=d;agWeek=addDays(d,-d.getDay());agModo='semana';if(agGen&&agGen!=='loading') agGen=null;agBody.innerHTML='';renderAgenda();agEl.scrollTop=0;};});
+    return;
+  }
+  var html=sub+tog+
     '<div class="ag-when"><div class="hd"><span class="eyebrow" id="ag-mes"></span>'+
     '<div class="ag-nav"><button type="button" class="prev" id="ag-prev" aria-label="Semana anterior"'+(agIdx<=0?' disabled':'')+'>'+ic('chev',null,16)+'</button>'+
     '<button type="button" id="ag-next" aria-label="Próxima semana"'+(agIdx+7>=dias.length?' disabled':'')+'>'+ic('chev',null,16)+'</button></div></div>'+
@@ -2084,7 +2132,7 @@ function renderAgenda(dir){
   }
   // a faixa mantém a posição entre renders (tocar num dia não pula a rolagem); setas rolam 7 dias com animação
   var oldStrip=agBody.querySelector('.ag-week'),oldX=oldStrip?oldStrip.scrollLeft:null;
-  agBody.innerHTML=html;
+  agBody.innerHTML=html;ligaModo();
   var strip=agBody.querySelector('.ag-week'),passo=function(){var c=strip.children;return c.length>1?c[1].offsetLeft-c[0].offsetLeft:1;};
   var prevB=document.getElementById('ag-prev'),nextB=document.getElementById('ag-next');
   // mês dos 7 dias à vista; se pegar dois meses, "Novembro/Dezembro" ou, se não couber, "Nov/Dez"
