@@ -457,12 +457,15 @@ html.screen-open{overflow:hidden}
 /* faixa de dias: 7 por tela, rola na horizontal e encaixa no início de cada dia */
 .ag-week{display:flex;gap:4px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
 .ag-week::-webkit-scrollbar{display:none}
-.ag-day{flex:0 0 calc((100% - 24px) / 7);scroll-snap-align:start;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 4px 12px;border:0;border-radius:var(--r-pill);background:transparent;font-size:12px;line-height:1.5}
+.ag-dw{flex:0 0 calc((100% - 24px) / 7);scroll-snap-align:start;min-width:0;display:flex;flex-direction:column;align-items:center;gap:var(--s-2xsm)}
+/* clima do dia (Figma Radar de Rolês 3027:4227): emoji 16px acima de cada dia; sem previsão, o espaço fica vazio */
+.ag-dw .wx{height:21px;font:700 16px/1.3 var(--display);color:var(--text-2);text-align:center}
+.ag-day{width:44px;max-width:100%;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border:0;border-radius:var(--r-pill);background:transparent;font-size:12px;line-height:1.5}
 .ag-day span{color:var(--text-2)}
-.ag-day b{font-weight:700;color:var(--text)}
+.ag-day b{font-size:14px;font-weight:600;line-height:1.5;color:var(--text)}
 /* marcador: foto do 1º rolê marcado, estrela de sugestão ou nada (mesma altura nos três) */
-.ag-day .mk{height:20px;display:grid;place-items:center}
-.ag-day .mk img{width:20px;height:20px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--surface)}
+.ag-day .mk{height:24px;display:grid;place-items:center}
+.ag-day .mk img{width:24px;height:24px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--surface)}
 .ag-day[aria-pressed=true]{background:var(--action)}
 .ag-day[aria-pressed=true] span,.ag-day[aria-pressed=true] b{color:var(--inverse)}
 .ag-day[aria-pressed=true] .mk svg path{fill:var(--inverse)}
@@ -1288,6 +1291,7 @@ function climaDe(d){
 // sem previsão pro rolê: explica o porquê em vez de esconder
 function semClimaTxt(e){if(+e.date+DURACAO<NOW) return 'Esse rolê já passou';if(CLIMA.dias&&CLIMA.slug===state.city.slug) return 'A previsão do tempo sai até 5 dias antes do rolê';return 'Previsão do tempo indisponível agora';}
 function alertaCurto(e){var t=e.clima.tempestade?'tempestade':'chuva';return e.arLivre?'Arriscado: '+t+' ao ar livre':'Atenção: previsão de '+t;}
+function climaEmoji(c){var r=c.resumo;return c.tempestade?'⛈️':c.chuva?'🌧️':/encoberto|muitas nuvens|nublado/i.test(r)?'☁️':/nuvens/i.test(r)?'⛅':'☀️';}
 function climaCurto(c){var r=c.resumo;return c.tempestade?'Trovoadas':/chuvisco|garoa/i.test(r)?'Chuvisco':c.chuva?'Chuva':/encoberto/i.test(r)?'Encoberto':/muitas nuvens|nublado/i.test(r)?'Nublado':/nuvens/i.test(r)?'Poucas nuvens':'Tempo firme';}
 function climaIc(c,cor,t){return ic(c.tempestade?'raio':c.chuva?'chuva':/nuvens|encoberto|nublado/i.test(c.resumo)?'nuvem':'sol',cor,t||16);}
 // lugar ao ar livre: o site não informa. Primeiro a lista conferida dos lugares conhecidos; se o lugar não está nela, vem do nome do lugar ou do rolê
@@ -2100,7 +2104,7 @@ function e_aff(e){return e.aff==null?0:e.aff;}
 function horaCurta(d){return d.noTime?'--':hora(d);}
 function renderAgenda(dir){
   if(!agOpen) return;
-  var items=agendaItems(),hoje=dayStart(NOW),inicio=addDays(hoje,-hoje.getDay());
+  var items=agendaItems(),hoje=dayStart(NOW),inicio=addDays(hoje,-hoje.getDay());if(!CLIMA.dias&&state.city.slug) loadClima();
   var marcados={};items.forEach(function(e){var k=dkey(e.date);(marcados[k]=marcados[k]||[]).push(e);});
   // rolês da cidade em cada dia que você ainda não marcou, do mais a sua cara pro menos
   var doDia={};events.forEach(function(e){if(state.going[e.id]||e.date<agora()) return;var k=dkey(e.date);(doDia[k]=doDia[k]||[]).push(e);});
@@ -2141,8 +2145,9 @@ function renderAgenda(dir){
     '<div class="ag-weekwrap"><div class="ag-week" role="group" aria-label="Dias, role para o lado para ver mais" tabindex="-1">'+dias.map(function(d){var k=dkey(d),m=marcados[k],sug=!m&&(doDia[k]||[]).some(function(e){return e.aff!=null&&e.aff>=TOP_MIN;});
       var mk=m?'<img src="'+m[0].img+'" alt="">':sug?ic('star','#D10A87',12):'';
       var lab=diaCompleto(d)+(m?', '+m.length+(m.length>1?' rolês marcados':' rolê marcado'):sug?', tem rolê a sua cara':'');
+      var cw=d<hoje?null:climaDe(new Date(d.getFullYear(),d.getMonth(),d.getDate(),20));if(cw) lab+=', previsão: '+climaCurto(cw).toLowerCase()+', '+cw.min+'° a '+cw.max+'°';
       if(d<hoje){mk='';lab=diaCompleto(d)+', já passou';}
-      return '<button type="button" class="ag-day'+(d<hoje?' past':'')+'" data-day="'+d.getTime()+'" aria-pressed="'+(k===selK)+'" aria-label="'+lab+'"'+(d<hoje?' disabled':'')+'><span>'+capt(SEM[d.getDay()])+'</span><b>'+d.getDate()+'</b><span class="mk" aria-hidden="true">'+mk+'</span></button>';}).join('')+'</div></div></div></div>';
+      return '<div class="ag-dw"><span class="wx" aria-hidden="true">'+(cw?climaEmoji(cw):'')+'</span><button type="button" class="ag-day'+(d<hoje?' past':'')+'" data-day="'+d.getTime()+'" aria-pressed="'+(k===selK)+'" aria-label="'+lab+'"'+(d<hoje?' disabled':'')+'><span>'+capt(SEM[d.getDay()])+'</span><b>'+d.getDate()+'</b><span class="mk" aria-hidden="true">'+mk+'</span></button></div>';}).join('')+'</div></div></div></div>';
   html+='<button type="button" class="ag-auto" id="ag-auto"'+(agGen?' hidden':'')+'><span class="art" aria-hidden="true">'+ic('star','#fff',28)+'</span><span class="tx"><b class="h6">Monte sua agenda com a gente</b><span>Juntamos seu gosto, os horários e o caminho entre os bares</span></span>'+ic('chev','#fff',20)+'</button>';
   var m=marcados[selK]||[],dia=doDia[selK]||[];
   // sugere só o que é 60%+ a sua cara, sem atropelar o que você já escolheu
