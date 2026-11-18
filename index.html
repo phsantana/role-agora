@@ -438,9 +438,10 @@ html.screen-open{overflow:hidden}
 .evs .motivos{display:flex;flex-direction:column;gap:var(--s-xsm)}
 .evs .motivos .row{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;margin:0 calc(-1 * max(24px,env(safe-area-inset-right,0px))) 0 0;padding-right:max(24px,env(safe-area-inset-right,0px))}
 .evs .motivos .row::-webkit-scrollbar{display:none}
-.evs .motivo{flex:none;width:144px;min-height:122px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:space-between;gap:var(--s-xsm);padding:var(--s-m);border-radius:var(--r-xsm);background:var(--e-surface);font-size:14px;line-height:1.5}
+.evs .motivo{flex:none;width:144px;min-height:122px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:space-between;gap:var(--s-xsm);padding:var(--s-m);border-radius:var(--r-xsm);border:1px solid rgba(255,255,255,.12);background:transparent;font-size:14px;line-height:1.5}
 .evs .motivo .ico,.evs .motivo .fogo svg{width:24px;height:24px}
-.evs .lugar{display:flex;align-items:center;gap:var(--s-sm);width:100%;padding:var(--s-m);border:0;border-radius:var(--r-xsm);background:var(--e-surface);color:var(--e-text);text-align:left;font:inherit}
+.evs .lugar{display:flex;align-items:center;gap:var(--s-sm);width:100%;padding:var(--s-m);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-xsm);background:transparent;color:var(--e-text);text-align:left;font:inherit;cursor:pointer}
+.evs .lugar:hover{background:rgba(255,255,255,.04)}
 .evs .lugar>img{flex:none;width:48px;height:48px;border-radius:50%;object-fit:cover}
 .evs .lugar .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--s-2xsm)}
 .evs .lugar .tx .h6{overflow-wrap:anywhere}
