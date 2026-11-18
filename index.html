@@ -438,7 +438,8 @@ html.screen-open{overflow:hidden}
 .evs .motivos{display:flex;flex-direction:column;gap:var(--s-xsm)}
 .evs .motivos .row{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;margin:0 calc(-1 * max(24px,env(safe-area-inset-right,0px))) 0 0;padding-right:max(24px,env(safe-area-inset-right,0px))}
 .evs .motivos .row::-webkit-scrollbar{display:none}
-.evs .motivo{flex:none;width:144px;height:122px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:space-between;gap:var(--s-xsm);padding:var(--s-m);border-radius:var(--r-xsm);background:var(--e-surface);font-size:12px;line-height:1.5}
+.evs .motivo{flex:none;width:144px;min-height:122px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:space-between;gap:var(--s-xsm);padding:var(--s-m);border-radius:var(--r-xsm);background:var(--e-surface);font-size:14px;line-height:1.5}
+.evs .motivo .ico,.evs .motivo .fogo svg{width:24px;height:24px}
 .evs .lugar{display:flex;align-items:center;gap:var(--s-sm);width:100%;padding:var(--s-m);border:0;border-radius:var(--r-xsm);background:var(--e-surface);color:var(--e-text);text-align:left;font:inherit}
 .evs .lugar>img{flex:none;width:48px;height:48px;border-radius:50%;object-fit:cover}
 .evs .lugar .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--s-2xsm)}
@@ -2681,8 +2682,8 @@ function renderEvScreen(e){
       '<h1 class="h1" id="evs-title">'+esc(e.name)+'</h1><p class="lin">'+ic('pin',C2,16)+'<span>'+esc(e.venue)+(e.arLivre?' • Ao ar livre':'')+'</span></p></div>'+cara+'</div>'+
     '<div class="dados"><div><p class="h5">'+ic('cal','#fff',20)+(String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0'))+'</p><p class="desc-sm soft">'+dia+'</p></div>'+
       '<div><p class="h5">'+ic('clock','#fff',20)+(d.noTime?'A confirmar':hora(d))+'</p><p class="desc-sm soft">'+longe+'</p></div>'+tempo+'</div>'+
-    (e.alerta?'<div class="alerta-risco" role="alert">'+ic('alerta','#fff',20)+'<span><b>'+(e.arLivre?'Esse rolê é muito arriscado':'Atenção: '+(e.clima.tempestade?'tempestade':'chuva')+' na previsão')+'</b>Previsão de '+(e.clima.tempestade?'tempestade com trovoadas':'chuva')+' '+(e.clima.periodo==='dia'?'no dia':'na hora do rolê')+
-      (e.arLivre?', e o lugar é ao ar livre. Confere com o lugar antes de sair.':'. O lugar é fechado, mas o caminho pode complicar: vai de Uber e fica de olho no tempo.')+'</span></div>':'')+
+    (e.alerta?'<div class="alerta-risco" role="alert">'+ic('alerta','#fff',20)+'<span><b>'+(e.arLivre?'Esse rolê é muito arriscado':'Previsão de '+(e.clima.tempestade?'tempestade':'chuva'))+'</b>'+
+      (e.arLivre?'Previsão de '+(e.clima.tempestade?'tempestade':'chuva')+' e o lugar é ao ar livre. Confere com o lugar antes de sair.':'Parece que vai chover bastante, então leva blusa e guarda-chuva.')+'</span></div>':'')+
     (mot.length?'<div class="motivos"><h3 class="h6">'+(e.aff!=null&&e.aff>=TOP_MIN?'Por que é a sua cara':'Por que ir')+'</h3><div class="row">'+mot.map(function(m){return '<div class="motivo">'+m[0]+'<p>'+m[1]+'</p></div>';}).join('')+'</div></div>':'')+
     (e.venueKey&&VENUES[e.venueKey]?'<button type="button" class="lugar" id="evs-lugar"><img src="'+(vimg||ph(e.venue,generoDoLocal(e.venueKey)))+'" alt=""><span class="tx"><span class="desc-lg soft">Sobre o lugar</span><span class="h6">'+esc(e.venue)+'</span></span><span class="go">'+ic('arrow','#D10A87',24)+'</span></button>':'')+
     (outros.length?'<div class="more"><h3 class="h6">Também no '+esc(e.venue)+'</h3>'+outros.map(function(x){return '<button type="button" class="mini" data-evs="'+x.id+'"><img src="'+x.img+'" alt=""><span><b>'+esc(x.name)+'</b><span class="desc-sm soft">'+capt(SEM[x.date.getDay()])+', '+x.date.getDate()+' '+MES[x.date.getMonth()]+(x.date.noTime?'':' • '+hora(x.date))+'</span></span></button>';}).join('')+'</div>':'')+
