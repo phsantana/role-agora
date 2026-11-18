@@ -10,10 +10,10 @@
    "slug": "varanda-boa-vista",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1780681371429-385xlj.webp",
    "tipo": "Restaurante",
-   "genero": "Sertanejo",
+   "genero": "Eletrônica",
    "generosTop": [
-    "Sertanejo",
     "Eletrônica",
+    "Sertanejo",
     "Pagode"
    ],
    "avaliacoes": 311,
@@ -957,7 +957,8 @@
   },
   "overdrive_music_bar": {
    "antigo8": "Rock",
-   "r8584d488": "Rock"
+   "r8584d488": "Rock",
+   "rb012a99d": "Pop Rock"
   },
   "villa_18_container_bar": {
    "antigo10": "Pagode",
@@ -1172,6 +1173,10 @@
    "r10ec85e3": "Sertanejo",
    "r7792cc2c": "Samba",
    "rdaea61fb": "Pagode"
+  },
+  "deck_bar": {
+   "rafee94b7": "Pop Rock",
+   "rd88b9e8f": "Pop Rock"
   }
  },
  "rows": [
@@ -1496,6 +1501,16 @@
    962
   ],
   [
+   "rafee94b7",
+   "Trix",
+   "deck_bar",
+   "Pop Rock",
+   "2026-11-20",
+   "",
+   "trix",
+   1449
+  ],
+  [
    "re7fe522e",
    "Grupo 100 Malícia",
    "villa_18_container_bar",
@@ -1576,6 +1591,16 @@
    160
   ],
   [
+   "rb012a99d",
+   "Trix",
+   "overdrive_music_bar",
+   "Pop Rock",
+   "2026-11-21",
+   "20:00",
+   "trix",
+   1449
+  ],
+  [
    "r83573e25",
    "Sofia Moreno",
    "choperia_colina_bancarios",
@@ -1584,6 +1609,16 @@
    "20:30",
    "sofia-moreno",
    13938
+  ],
+  [
+   "rd88b9e8f",
+   "Vertex",
+   "deck_bar",
+   "Pop Rock",
+   "2026-11-21",
+   "",
+   "vertex",
+   348
   ],
   [
    "r4b71cfdf",
@@ -2066,6 +2101,8 @@
   "gustavo-galindo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/265d0385-7c53-4da4-97e6-6084092fcd83/1779125666223-rdsaze.webp",
   "sofia-moreno": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/fc41fd01-c1e0-44e3-9cb8-fae8b155c497/1789045942017-lt8or2.webp",
   "andre-felix": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/b6ae5341-8c45-45dd-bdbd-3ea132311c3d/1779125162011-fgd30m.webp",
-  "ari": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/f07782de-aa6b-4af1-83e7-f40e5383197c/1779652400648-pmxwk5.webp"
+  "ari": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/f07782de-aa6b-4af1-83e7-f40e5383197c/1779652400648-pmxwk5.webp",
+  "trix": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/3b192c3f-aa87-4977-9678-888b9b4ea5a5/1779134205427-ojr8w2.webp",
+  "vertex": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/56e51bcb-f4a2-4d9e-a37c-597fb23323d9/1779125683655-t6wcsr.webp"
  }
 }
