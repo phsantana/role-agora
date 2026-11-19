@@ -1126,7 +1126,8 @@
    "r298c1fb7": "Sertanejo",
    "r5b80dc70": "Sertanejo",
    "r0fdd8ae0": "Sertanejo",
-   "rc9ccd037": "Sertanejo"
+   "rc9ccd037": "Sertanejo",
+   "r3c8c50ed": "Sertanejo"
   },
   "sesc_thermas": {
    "r620d9408": "Teatro",
@@ -1152,7 +1153,8 @@
    "r59af6dab": "Brasilidades"
   },
   "arapuca_bar": {
-   "re234f584": "Sertanejo"
+   "re234f584": "Sertanejo",
+   "r38962096": "Sertanejo"
   },
   "dg_espetaria": {
    "r2a432d92": "Rock"
@@ -1192,16 +1194,6 @@
   }
  },
  "rows": [
-  [
-   "r0f32fa7d",
-   "Liviah Coelho",
-   "floa_cafe_e_flor",
-   "Pop Rock",
-   "2026-11-19",
-   "16:00",
-   "liviah-coelho",
-   1426
-  ],
   [
    "r06b0a9ff",
    "Amanda Maranho",
@@ -1361,6 +1353,26 @@
    "20:00",
    "samba-e-suor",
    2238
+  ],
+  [
+   "r38962096",
+   "Tofano",
+   "arapuca_bar",
+   "Sertanejo",
+   "2026-11-19",
+   "20:30",
+   "tofano",
+   6293
+  ],
+  [
+   "r3c8c50ed",
+   "Estácio Lima",
+   "vo_laura_gourmet",
+   "Sertanejo",
+   "2026-11-19",
+   "20:30",
+   "estacio-lima",
+   15114
   ],
   [
    "r9ba3c4ef",
