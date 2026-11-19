@@ -1,5 +1,5 @@
 {
- "coletado": "2026-11-18",
+ "coletado": "2026-11-19",
  "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
  "V": {
   "varanda_boa_vista": {
@@ -254,8 +254,8 @@
    "genero": "Rock",
    "generosTop": [
     "Rock",
-    "Metal Alternativo",
-    "Pop Rock"
+    "Pop Rock",
+    "Metal Alternativo"
    ],
    "avaliacoes": 13,
    "nota": 4.8
@@ -829,7 +829,8 @@
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794511679368-cc5bed.webp",
    "genero": "Forró",
    "generosTop": [
-    "Forró"
+    "Forró",
+    "Brasilidades"
    ],
    "nota": 4.4,
    "tipo": null
@@ -844,7 +845,8 @@
    "genero": "Sertanejo",
    "generosTop": [
     "Sertanejo",
-    "Reggae"
+    "Reggae",
+    "Rock"
    ],
    "nota": 4.9,
    "tipo": null
@@ -916,7 +918,11 @@
    "r26d75d12": "Country",
    "r5138fec6": "Pop Rock",
    "rb5fb6bc5": "MPB",
-   "rc95518ed": "Sertanejo"
+   "rc95518ed": "Sertanejo",
+   "r47da8ddd": "Sertanejo",
+   "r79628beb": "Sertanejo",
+   "r5610fb3a": "Samba",
+   "r92536511": "Sertanejo"
   },
   "agrobar": {
    "antigo1": "Sertanejo",
@@ -953,7 +959,8 @@
    "antigo7": "Discotecagem",
    "antigo11": "Rock",
    "r0d5aa017": "Rock",
-   "r3e586b00": "Blues"
+   "r3e586b00": "Blues",
+   "r506fb753": "Rock"
   },
   "overdrive_music_bar": {
    "antigo8": "Rock",
@@ -1001,7 +1008,10 @@
    "r55398851": "Pagode",
    "r6c544aea": "Sertanejo",
    "rb246422c": "Pagode",
-   "rb8c1599a": "Sertanejo"
+   "rb8c1599a": "Sertanejo",
+   "r51a810c0": "Sertanejo",
+   "r734ee31e": "Sertanejo",
+   "rb3c8a0b1": "Sertanejo"
   },
   "fabrica_gastrobar": {
    "antigo15": "Rock",
@@ -1134,10 +1144,12 @@
   "estacao_foodpark": {
    "rf72d1b9d": "Sertanejo",
    "r6e9f4c69": "Sertanejo",
-   "r947a9b8a": "Reggae"
+   "r947a9b8a": "Reggae",
+   "r42df5e59": "Rock"
   },
   "bar_da_12": {
-   "rc898dd65": "Forró"
+   "rc898dd65": "Forró",
+   "r59af6dab": "Brasilidades"
   },
   "arapuca_bar": {
    "re234f584": "Sertanejo"
@@ -1180,66 +1192,6 @@
   }
  },
  "rows": [
-  [
-   "r1ce66177",
-   "Da Silva",
-   "jardim_suinga",
-   "MPB",
-   "2026-11-18",
-   "18:00",
-   "da-silva",
-   4085
-  ],
-  [
-   "r1bc80066",
-   "Binho",
-   "o_beco_bar",
-   "Pop Rock",
-   "2026-11-18",
-   "19:00",
-   "binho",
-   107241
-  ],
-  [
-   "r592e4da9",
-   "Lucas & Renan",
-   "varanda_boa_vista",
-   "Sertanejo",
-   "2026-11-18",
-   "19:00",
-   "lucas-renan",
-   4884
-  ],
-  [
-   "r0dd9d658",
-   "Caso à Parte",
-   "ibiza_lounge_bar",
-   "Pagode",
-   "2026-11-19",
-   "00:30",
-   "caso-a-parte",
-   26204
-  ],
-  [
-   "r2f824b76",
-   "Mateuzinho Umbigaê",
-   "ibiza_lounge_bar",
-   "Rock",
-   "2026-11-19",
-   "00:30",
-   "mateuzinho-umbigae",
-   2643
-  ],
-  [
-   "r4ae7f278",
-   "Da Silva",
-   "ibiza_lounge_bar",
-   "MPB",
-   "2026-11-19",
-   "00:30",
-   "da-silva",
-   4085
-  ],
   [
    "r0f32fa7d",
    "Liviah Coelho",
@@ -1361,6 +1313,16 @@
    468847
   ],
   [
+   "r59af6dab",
+   "Giovani",
+   "bar_da_12",
+   "Brasilidades",
+   "2026-11-19",
+   "20:00",
+   "giovani",
+   517
+  ],
+  [
    "r74e163c4",
    "Bia Marks",
    "alphaville_bar_e_petiscaria",
@@ -1451,6 +1413,16 @@
    11744
   ],
   [
+   "r47da8ddd",
+   "Denis Araujo",
+   "exquina_bar",
+   "Sertanejo",
+   "2026-11-20",
+   "13:30",
+   "denis-araujo",
+   19284
+  ],
+  [
    "r10ec85e3",
    "Gustavo Galindo",
    "rooftop_bar",
@@ -1469,6 +1441,16 @@
    "17:00",
    "elly-guimaraes",
    6324
+  ],
+  [
+   "r42df5e59",
+   "Fator 90",
+   "estacao_foodpark",
+   "Rock",
+   "2026-11-20",
+   "18:00",
+   "fator-90",
+   0
   ],
   [
    "r3e9bc3c2",
@@ -1499,6 +1481,16 @@
    "20:00",
    "lucas-purga",
    962
+  ],
+  [
+   "r79628beb",
+   "João Markos",
+   "exquina_bar",
+   "Sertanejo",
+   "2026-11-20",
+   "20:30",
+   "joao-markos",
+   8916
   ],
   [
    "rafee94b7",
@@ -1561,6 +1553,16 @@
    6168
   ],
   [
+   "r5610fb3a",
+   "Samba E Suor",
+   "exquina_bar",
+   "Samba",
+   "2026-11-21",
+   "14:00",
+   "samba-e-suor",
+   2238
+  ],
+  [
    "r947a9b8a",
    "Zilvan",
    "estacao_foodpark",
@@ -1611,6 +1613,16 @@
    13938
   ],
   [
+   "r92536511",
+   "Gustavo Galindo",
+   "exquina_bar",
+   "Sertanejo",
+   "2026-11-21",
+   "20:30",
+   "gustavo-galindo",
+   3620
+  ],
+  [
    "rd88b9e8f",
    "Vertex",
    "deck_bar",
@@ -1629,6 +1641,16 @@
    "21:30",
    "bruna-michelle",
    7755
+  ],
+  [
+   "r51a810c0",
+   "Alessandro Broz",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-21",
+   "21:30",
+   "alessandro-broz",
+   0
   ],
   [
    "r55398851",
@@ -1671,6 +1693,16 @@
    9058
   ],
   [
+   "r734ee31e",
+   "Diego Costa",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-21",
+   "21:30",
+   "diego-costa",
+   11990
+  ],
+  [
    "r98945cd3",
    "João Markos",
    "seu_bastiao_pub",
@@ -1689,6 +1721,16 @@
    "21:30",
    "kota",
    468847
+  ],
+  [
+   "rb3c8a0b1",
+   "Pedro Henrique e Trevisan",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-21",
+   "21:30",
+   "pedro-henrique-e-trevisan",
+   15054
   ],
   [
    "rb5d9845b",
@@ -1759,6 +1801,16 @@
    "16:00",
    "obompo-roponga",
    0
+  ],
+  [
+   "r506fb753",
+   "Dissonância",
+   "valete_bar",
+   "Rock",
+   "2026-11-22",
+   "17:00",
+   "dissonancia",
+   610
   ],
   [
    "rdaea61fb",
@@ -2103,6 +2155,11 @@
   "andre-felix": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/b6ae5341-8c45-45dd-bdbd-3ea132311c3d/1779125162011-fgd30m.webp",
   "ari": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/f07782de-aa6b-4af1-83e7-f40e5383197c/1779652400648-pmxwk5.webp",
   "trix": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/3b192c3f-aa87-4977-9678-888b9b4ea5a5/1779134205427-ojr8w2.webp",
-  "vertex": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/56e51bcb-f4a2-4d9e-a37c-597fb23323d9/1779125683655-t6wcsr.webp"
+  "vertex": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/56e51bcb-f4a2-4d9e-a37c-597fb23323d9/1779125683655-t6wcsr.webp",
+  "giovani": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/11423774-9b65-4f72-b362-575376a4f00f/1784588630356-jk5eef.webp",
+  "alessandro-broz": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778458288503-h1cygz.webp",
+  "diego-costa": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5872cf1c-2c51-4b7b-b18d-0a40a0de06fa/1788733875128-619esn.webp",
+  "pedro-henrique-e-trevisan": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/be80dae8-eb7f-4fbb-b127-7e4e37c28cc9/1774063414180-obuegw.webp",
+  "dissonancia": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/e1040619-81ec-4538-914c-1c3b061504d6/1779125450739-tp0tnh.webp"
  }
 }
