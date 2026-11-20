@@ -1104,7 +1104,8 @@
    "r41f5090e": "Brasilidades",
    "r84a8feb7": "Samba",
    "rf49cb3f4": "Samba",
-   "rdc4bc0a1": "Pagode"
+   "rdc4bc0a1": "Pagode",
+   "r3addf2ab": "Samba"
   },
   "cult_bar": {
    "antigo48": "Rock",
@@ -1120,7 +1121,9 @@
    "r4d4eac21": "Eletrônica",
    "rc5ea2f64": "Pop",
    "r09a849a9": "Pop",
-   "ra5cd4d71": "Eletrônica"
+   "ra5cd4d71": "Eletrônica",
+   "rf531f167": "Pop",
+   "r7187c6d2": "Pop"
   },
   "vo_laura_gourmet": {
    "r56e0e4a0": "Sertanejo",
@@ -1128,7 +1131,8 @@
    "r5b80dc70": "Sertanejo",
    "r0fdd8ae0": "Sertanejo",
    "rc9ccd037": "Sertanejo",
-   "r3c8c50ed": "Sertanejo"
+   "r3c8c50ed": "Sertanejo",
+   "ra2227a74": "Sertanejo"
   },
   "sesc_thermas": {
    "r620d9408": "Teatro",
@@ -1184,7 +1188,8 @@
    "r1ce66177": "MPB"
   },
   "sal_grosso_choperia_e_petiscaria": {
-   "r4f2ca1c5": "Brasilidades"
+   "r4f2ca1c5": "Brasilidades",
+   "rce43905c": "Rock"
   },
   "rooftop_bar": {
    "r10ec85e3": "Sertanejo",
@@ -1197,16 +1202,6 @@
   }
  },
  "rows": [
-  [
-   "r47da8ddd",
-   "Denis Araujo",
-   "exquina_bar",
-   "Sertanejo",
-   "2026-11-20",
-   "13:30",
-   "denis-araujo",
-   19284
-  ],
   [
    "r10ec85e3",
    "Gustavo Galindo",
@@ -1236,6 +1231,16 @@
    "18:00",
    "fator-90",
    0
+  ],
+  [
+   "rce43905c",
+   "Krivos",
+   "sal_grosso_choperia_e_petiscaria",
+   "Rock",
+   "2026-11-20",
+   "18:00",
+   "krivos",
+   2007
   ],
   [
    "r3e9bc3c2",
@@ -1306,6 +1311,16 @@
    "20:30",
    "joao-markos",
    8916
+  ],
+  [
+   "ra2227a74",
+   "Pamela Maria",
+   "vo_laura_gourmet",
+   "Sertanejo",
+   "2026-11-20",
+   "20:30",
+   "pamela-maria",
+   7721
   ],
   [
    "rafee94b7",
@@ -1406,6 +1421,16 @@
    "20:00",
    "caco-davi",
    160
+  ],
+  [
+   "r3addf2ab",
+   "Patota do Samba",
+   "bar_da_onca",
+   "Samba",
+   "2026-11-21",
+   "20:00",
+   "patota-do-samba",
+   1094
   ],
   [
    "rb012a99d",
@@ -1658,6 +1683,16 @@
    0
   ],
   [
+   "rf531f167",
+   "Ari",
+   "quinta_aula",
+   "Pop",
+   "2026-11-26",
+   "18:30",
+   "ari",
+   1272
+  ],
+  [
    "r3375f3c5",
    "Marcus Cirillo",
    "agrobar",
@@ -1838,6 +1873,16 @@
    5918
   ],
   [
+   "r7187c6d2",
+   "Ari",
+   "quinta_aula",
+   "Pop",
+   "2026-12-11",
+   "18:30",
+   "ari",
+   1272
+  ],
+  [
    "r52ba18b6",
    "Chico Malakian",
    "fabrica_gastrobar",
@@ -1976,6 +2021,9 @@
   "diego-costa": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5872cf1c-2c51-4b7b-b18d-0a40a0de06fa/1788733875128-619esn.webp",
   "pedro-henrique-e-trevisan": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/be80dae8-eb7f-4fbb-b127-7e4e37c28cc9/1774063414180-obuegw.webp",
   "dissonancia": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/e1040619-81ec-4538-914c-1c3b061504d6/1779125450739-tp0tnh.webp",
-  "oscaraveio-rock-cover": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/3bf0c916-fd21-4b6f-bbd1-264bc3c9d026/1779292284788-vsug0x.webp"
+  "oscaraveio-rock-cover": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/3bf0c916-fd21-4b6f-bbd1-264bc3c9d026/1779292284788-vsug0x.webp",
+  "krivos": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/27a4b8e0-7c4c-453d-84b6-1cc8fd73c706/1779125459414-bmyf4f.webp",
+  "pamela-maria": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/58dab8da-5cab-4249-a686-2189841575df/1779124756983-g72fth.webp",
+  "patota-do-samba": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1774056579908-yrt44u.webp"
  }
 }
