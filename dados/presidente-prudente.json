@@ -1,5 +1,5 @@
 {
- "coletado": "2026-11-19",
+ "coletado": "2026-11-20",
  "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
  "V": {
   "varanda_boa_vista": {
@@ -932,7 +932,8 @@
    "r3375f3c5": "Stand Up",
    "rbcd3f89b": "Sertanejo",
    "r06b0a9ff": "Sertanejo",
-   "r9f8be50a": "Sertanejo"
+   "r9f8be50a": "Sertanejo",
+   "rc73569ad": "Sertanejo"
   },
   "varanda_boa_vista": {
    "antigo2": "Sertanejo",
@@ -1140,7 +1141,8 @@
    "r09abd8eb": "Rock",
    "ra4ad9a0c": "Infantil",
    "r22fee87c": "Teatro",
-   "r880ac75a": "Performance"
+   "r880ac75a": "Performance",
+   "r4b0453cf": "MPB"
   },
   "estacao_foodpark": {
    "rf72d1b9d": "Sertanejo",
@@ -1157,7 +1159,8 @@
    "r38962096": "Sertanejo"
   },
   "dg_espetaria": {
-   "r2a432d92": "Rock"
+   "r2a432d92": "Rock",
+   "r1819c1c4": "Rock"
   },
   "choperia_colina_bancarios": {
    "rba2b6a9b": "Samba",
@@ -1194,236 +1197,6 @@
   }
  },
  "rows": [
-  [
-   "r06b0a9ff",
-   "Amanda Maranho",
-   "agrobar",
-   "Sertanejo",
-   "2026-11-19",
-   "18:00",
-   "amanda-maranho",
-   5890
-  ],
-  [
-   "r4f2ca1c5",
-   "Berta Tofanelli",
-   "sal_grosso_choperia_e_petiscaria",
-   "Brasilidades",
-   "2026-11-19",
-   "18:00",
-   "berta-tofanelli",
-   2330
-  ],
-  [
-   "r9f8be50a",
-   "Twiggy",
-   "agrobar",
-   "Sertanejo",
-   "2026-11-19",
-   "18:00",
-   "twiggy",
-   11721
-  ],
-  [
-   "r09a849a9",
-   "Dj Barakaty",
-   "quinta_aula",
-   "Pop",
-   "2026-11-19",
-   "18:30",
-   "dj-barakaty",
-   1566
-  ],
-  [
-   "ra5cd4d71",
-   "Dj Noronha",
-   "quinta_aula",
-   "Eletrônica",
-   "2026-11-19",
-   "18:30",
-   "dj-noronha",
-   0
-  ],
-  [
-   "r3dcf5726",
-   "Fernanda Lessa",
-   "varanda_boa_vista",
-   "Rock",
-   "2026-11-19",
-   "19:00",
-   "fernanda-lessa",
-   3475
-  ],
-  [
-   "rd5ac5fe5",
-   "Dj Ricardo Faita",
-   "varanda_boa_vista",
-   "Eletrônica",
-   "2026-11-19",
-   "19:00",
-   "dj-ricardo-faita",
-   0
-  ],
-  [
-   "re5e04fc7",
-   "Chico César",
-   "sesc_thermas",
-   "MPB",
-   "2026-11-19",
-   "19:00",
-   "chico-cesar",
-   916105
-  ],
-  [
-   "r2d4a5f89",
-   "Mateuzinho Umbigaê",
-   "fabrica_gastrobar",
-   "Rock",
-   "2026-11-19",
-   "20:00",
-   "mateuzinho-umbigae",
-   2643
-  ],
-  [
-   "r446a4992",
-   "Da Silva",
-   "fabrica_gastrobar",
-   "MPB",
-   "2026-11-19",
-   "20:00",
-   "da-silva",
-   4085
-  ],
-  [
-   "r50084a25",
-   "Kota",
-   "fabrica_gastrobar",
-   "Pagode",
-   "2026-11-19",
-   "20:00",
-   "kota",
-   468847
-  ],
-  [
-   "r59af6dab",
-   "Giovani",
-   "bar_da_12",
-   "Brasilidades",
-   "2026-11-19",
-   "20:00",
-   "giovani",
-   517
-  ],
-  [
-   "r74e163c4",
-   "Bia Marks",
-   "alphaville_bar_e_petiscaria",
-   "Sertanejo",
-   "2026-11-19",
-   "20:00",
-   "bia-marks",
-   7372
-  ],
-  [
-   "rc29409b0",
-   "Zilvan",
-   "fabrica_gastrobar",
-   "Reggae",
-   "2026-11-19",
-   "20:00",
-   "zilvan",
-   2344
-  ],
-  [
-   "rd44fd1ff",
-   "Caso à Parte",
-   "fabrica_gastrobar",
-   "Pagode",
-   "2026-11-19",
-   "20:00",
-   "caso-a-parte",
-   26204
-  ],
-  [
-   "rf49cb3f4",
-   "Samba E Suor",
-   "bar_da_onca",
-   "Samba",
-   "2026-11-19",
-   "20:00",
-   "samba-e-suor",
-   2238
-  ],
-  [
-   "r38962096",
-   "Tofano",
-   "arapuca_bar",
-   "Sertanejo",
-   "2026-11-19",
-   "20:30",
-   "tofano",
-   6293
-  ],
-  [
-   "r3c8c50ed",
-   "Estácio Lima",
-   "vo_laura_gourmet",
-   "Sertanejo",
-   "2026-11-19",
-   "20:30",
-   "estacio-lima",
-   15114
-  ],
-  [
-   "r9ba3c4ef",
-   "Fabio Medeiros",
-   "choperia_colina_bancarios",
-   "Sertanejo",
-   "2026-11-19",
-   "20:30",
-   "fabio-medeiros",
-   4135
-  ],
-  [
-   "r8aceb79d",
-   "Pagode Do Nova",
-   "villa_18_container_bar",
-   "Pagode",
-   "2026-11-19",
-   "21:30",
-   "pagode-do-nova",
-   5367
-  ],
-  [
-   "r55b19e88",
-   "DJ Misper",
-   "seu_bastiao_pub",
-   "Eletrônica",
-   "2026-11-19",
-   "22:00",
-   "dj-misper",
-   1918
-  ],
-  [
-   "r55d29758",
-   "Grupo TeDeJota",
-   "seu_bastiao_pub",
-   "Pagode",
-   "2026-11-19",
-   "22:00",
-   "grupo-tedejota",
-   16352
-  ],
-  [
-   "rd761229c",
-   "Diego Costta",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-19",
-   "22:00",
-   "diego-costta",
-   11744
-  ],
   [
    "r47da8ddd",
    "Denis Araujo",
@@ -1475,6 +1248,26 @@
    4713
   ],
   [
+   "r1819c1c4",
+   "Oscaraveio Rock Cover",
+   "dg_espetaria",
+   "Rock",
+   "2026-11-20",
+   "20:00",
+   "oscaraveio-rock-cover",
+   2203
+  ],
+  [
+   "rc73569ad",
+   "Amanda Maranho",
+   "agrobar",
+   "Sertanejo",
+   "2026-11-20",
+   "20:00",
+   "amanda-maranho",
+   5890
+  ],
+  [
    "rdc4bc0a1",
    "Caso à Parte",
    "bar_da_onca",
@@ -1493,6 +1286,16 @@
    "20:00",
    "lucas-purga",
    962
+  ],
+  [
+   "r4b0453cf",
+   "Chico César",
+   "sesc_thermas",
+   "MPB",
+   "2026-11-20",
+   "20:30",
+   "chico-cesar",
+   916105
   ],
   [
    "r79628beb",
@@ -2172,6 +1975,7 @@
   "alessandro-broz": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1778458288503-h1cygz.webp",
   "diego-costa": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/5872cf1c-2c51-4b7b-b18d-0a40a0de06fa/1788733875128-619esn.webp",
   "pedro-henrique-e-trevisan": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/be80dae8-eb7f-4fbb-b127-7e4e37c28cc9/1774063414180-obuegw.webp",
-  "dissonancia": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/e1040619-81ec-4538-914c-1c3b061504d6/1779125450739-tp0tnh.webp"
+  "dissonancia": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/e1040619-81ec-4538-914c-1c3b061504d6/1779125450739-tp0tnh.webp",
+  "oscaraveio-rock-cover": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/3bf0c916-fd21-4b6f-bbd1-264bc3c9d026/1779292284788-vsug0x.webp"
  }
 }
