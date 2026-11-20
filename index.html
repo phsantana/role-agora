@@ -202,7 +202,23 @@ button.tchip:hover{background:var(--action-subtle)}
 .modo .n{min-width:22px;height:20px;padding:0 6px;border-radius:var(--r-pill);background:var(--bg-default);color:var(--text);font-size:12px;font-weight:600;line-height:20px;text-align:center}
 .modo button[aria-pressed=true] .n{background:var(--action);color:var(--inverse)}
 .modo button[aria-pressed=true]{background:var(--surface);color:var(--text);font-weight:600;box-shadow:0 1px 4px rgba(23,23,23,.16)}
-.found+.modo,.grab+.modo{margin-top:0}
+/* filtros com seta (Rolê ou Local, Data): abrem um drawer com as opções */
+.filtros{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;margin:var(--s-m) calc(-1 * max(16px,env(safe-area-inset-right,0px))) 0;padding:2px max(16px,env(safe-area-inset-right,0px))}
+.filtros::-webkit-scrollbar{display:none}
+.found+.filtros,.grab+.filtros{margin-top:0}
+.fbtn{flex:none;display:inline-flex;align-items:center;gap:var(--s-2xsm);height:45px;padding:0 12px 0 16px;border:1px solid var(--border-strong);border-radius:var(--r-2xsm);background:var(--surface);font:inherit;font-size:16px;color:var(--text);white-space:nowrap;cursor:pointer;transition:background .15s,box-shadow .15s,border-color .15s}
+.fbtn svg{width:20px;height:20px;flex:none}
+.fbtn:hover{background:var(--subtle)}
+.fbtn[data-on],.fbtn[aria-expanded=true]{border-color:var(--text);box-shadow:inset 0 0 0 1px var(--text);background:var(--subtle)}
+.fbtn:focus-visible{outline:2px solid var(--action);outline-offset:2px}
+.fopts{display:flex;flex-direction:column;margin-top:var(--s-sm)}
+.fopts button{display:flex;align-items:center;gap:var(--s-xsm);min-height:56px;padding:0 var(--s-xsm);border:0;border-bottom:1px solid var(--border);background:transparent;font:inherit;font-size:16px;color:var(--text);text-align:left;cursor:pointer}
+.fopts button:last-child{border-bottom:0}
+.fopts button>span{flex:1}
+.fopts small{display:block;font-size:12px;font-weight:400;color:var(--text-2)}
+.fopts .ok{width:24px;height:24px;flex:none;color:var(--action);visibility:hidden}
+.fopts button[aria-checked=true]{font-weight:600}
+.fopts button[aria-checked=true] .ok{visibility:visible}
 .ev .thumb.local img{border-radius:var(--r-xsm)}
 .total{margin:var(--s-m) 0 0;font-size:12px;line-height:1.5;color:var(--text-2)}
 .total b{color:var(--text);font-weight:600}
@@ -752,7 +768,7 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
   .suggest{right:auto;width:min(560px,calc(100% - 48px))}
   .content{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}
   .rail{padding-left:32px;padding-right:32px;scroll-padding-left:32px;margin-left:-32px!important;margin-right:-32px!important}
-  .when{margin-left:-32px;margin-right:-32px;padding-left:32px;padding-right:32px}
+  .filtros{margin-left:-32px;margin-right:-32px;padding-left:32px;padding-right:32px}
   .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-sm)}
   .deck{max-width:480px}
   .found{max-width:560px}
@@ -812,11 +828,10 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
     <div id="city-msg" aria-live="polite"></div>
     <div id="geo-msg" aria-live="polite"></div>
 
-    <div class="modo" id="modo" role="group" aria-label="Ver resultados por">
-      <button type="button" data-modo="roles" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Rolês<span class="n" id="n-roles"></span></button>
-      <button type="button" data-modo="locais" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M10 21v-6h4v6"/></svg>Locais<span class="n" id="n-locais"></span></button>
+    <div class="filtros" id="filtros" role="group" aria-label="Filtros">
+      <button type="button" class="fbtn" id="f-modo" aria-haspopup="dialog" aria-expanded="false"></button>
+      <button type="button" class="fbtn" id="f-when" aria-haspopup="dialog" aria-expanded="false"></button>
     </div>
-    <div class="when" id="when" role="group" aria-label="Quando"></div>
     <p class="sr" id="total" aria-live="polite"></p>
     <section class="section" id="sec-top" aria-labelledby="t-top">
       <div class="sec-head"><div><h2 class="h2" id="t-top">São a sua cara</h2><p class="desc-lg muted" id="top-sub">Rolês que você provavelmente vai adorar!</p></div></div>
@@ -1039,7 +1054,7 @@ var SIM={
 };
 var SPOTIFY_MOCK={name:'Seu Spotify',weights:{Pop:.92,Rock:.85,Soul:.74,Sertanejo:.61}};
 
-var state={profile:null,source:null,q:'',dismissed:{},going:{},topIdx:0,modo:'roles',city:{name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false}};
+var state={profile:null,source:null,q:'',dismissed:{},going:{},topIdx:0,modo:'roles',whenAuto:true,city:{name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false}};
 try{var saved=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(saved&&saved.profile){state.profile=saved.profile;state.source=saved.source;state.going=saved.going||{};state.dismissed=saved.dismissed||{};}}catch(e){}
 try{var savedI=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(savedI&&savedI.going&&!saved.profile) state.going=savedI.going;}catch(e){}
 try{if(localStorage.getItem('radar-modo')==='locais') state.modo='locais';}catch(e){}
@@ -1643,6 +1658,7 @@ function useDemo(){
   PRUDENTE.all.forEach(function(e){e.dist=km(ME,e);});
   events=PRUDENTE.all.filter(function(e){return +e.date+3*36e5>NOW&&e.dist<=(inP?8:RADIUS_KM);});PRUDENTE.events=events;
   state.city={name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false,center:DEMO_ME};state.dismissed={};
+  autoWhen();
 }
 // antes de carregar os rolês do Rolê Agora: pergunta se pode usar a localização em tempo real
 function askLocation(){
@@ -2010,14 +2026,31 @@ function renderLists(b){
   main.appendChild(note);
 }
 /* ---------- Rolês × Locais: vale pro mapa e pros resultados ---------- */
-function renderModo(bk){
-  document.querySelectorAll('#modo [data-modo]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-modo')===state.modo));});
-  // o número de rolês e de locais encontrados fica no próprio botão (no lugar da frase "X rolês encontrados")
-  var nr=bk?bk.all.length:0,nl=bk&&bk.locais?bk.locais.length:0;
-  var a=document.getElementById('n-roles'),c=document.getElementById('n-locais');a.textContent=nr;c.textContent=nl;
-  a.parentNode.setAttribute('aria-label','Rolês, '+nr+(nr===1?' encontrado':' encontrados'));c.parentNode.setAttribute('aria-label','Locais, '+nl+(nl===1?' encontrado':' encontrados'));
+var SETA='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+var OK_IC='<svg class="ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+var lastCounts={nr:0,nl:0};
+function plural(n,um,varios){return n+' '+(n===1?um:varios);}
+// o botão do filtro mostra o que está valendo e fica marcado quando ele restringe algo (ou está aberto)
+function fbtn(el,label,on,aria){el.innerHTML='<span>'+esc(label)+'</span>'+SETA;if(on) el.setAttribute('data-on','');else el.removeAttribute('data-on');el.setAttribute('aria-label',aria);}
+// drawer de opções: uma escolha por vez; o botão fica "aberto" enquanto o drawer está na tela
+function openFiltro(btn,title,opts,cur,pick){
+  openSheet('<h2 class="h4" id="sheet-title">'+title+'</h2><div class="fopts" role="radiogroup" aria-labelledby="sheet-title">'+
+    opts.map(function(o){return '<button type="button" role="radio" data-v="'+o.v+'" aria-checked="'+(o.v===cur)+'"><span>'+esc(o.t)+(o.d?'<small>'+esc(o.d)+'</small>':'')+'</span>'+OK_IC+'</button>';}).join('')+'</div>',title);
+  btn.setAttribute('aria-expanded','true');
+  sheetOnClose=function(){btn.setAttribute('aria-expanded','false');};
+  document.querySelectorAll('.fopts [data-v]').forEach(function(b){b.onclick=function(){var v=b.getAttribute('data-v');closeSheet();if(v!==cur||v==='custom') pick(v);};});
 }
-document.querySelectorAll('#modo [data-modo]').forEach(function(b){b.onclick=function(){var m=b.getAttribute('data-modo');if(m===state.modo) return;state.modo=m;try{localStorage.setItem('radar-modo',m);}catch(e){}moreOpen={};render();};});
+/* ---------- Rolê ou Local: vale pro mapa e pros resultados ---------- */
+function renderModo(bk){
+  // o número de rolês e de locais encontrados fica no próprio botão (no lugar da frase "X rolês encontrados")
+  var nr=bk?bk.all.length:0,nl=bk&&bk.locais?bk.locais.length:0;lastCounts={nr:nr,nl:nl};
+  var loc=state.modo==='locais',t=loc?plural(nl,'local','locais'):plural(nr,'rolê','rolês');
+  fbtn(document.getElementById('f-modo'),t,loc,'Mostrando '+t+'. Trocar entre rolês e locais');
+}
+document.getElementById('f-modo').onclick=function(){
+  openFiltro(this,'O que você quer ver?',[{v:'roles',t:'Rolês',d:plural(lastCounts.nr,'rolê encontrado','rolês encontrados')},{v:'locais',t:'Locais',d:plural(lastCounts.nl,'local encontrado','locais encontrados')}],state.modo,
+    function(m){state.modo=m;try{localStorage.setItem('radar-modo',m);}catch(e){}moreOpen={};render();});
+};
 function renderTotalLocais(b,el){
   var n=b.locais.length,quando=whenText();
   var onde=(quando?'com rolê '+quando+' ':'')+(state.q?'em '+esc(state.city.name):state.area?(state.area.label?'em '+esc(state.area.label):'nesta região do mapa'):'em '+esc(state.city.name));
@@ -2068,17 +2101,22 @@ function renderLocais(b){
 function ddmm(d){return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0');}
 function whenText(){var w=state.when;if(!w) return '';if(w.k==='hoje') return 'hoje';if(w.k==='amanha') return 'amanhã';if(w.k==='fds') return 'no fim de semana';var last=addDays(w.to,-1);return dayStart(w.from).getTime()===dayStart(last).getTime()?'em '+ddmm(w.from):'de '+ddmm(w.from)+' a '+ddmm(last);}
 var CAL_IC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>';
-function renderWhen(){
-  var w=state.when,k=w?w.k:'all',opts=[['all','Qualquer data'],['hoje','Hoje'],['amanha','Amanhã'],['fds','Fim de semana']];
-  var custom=k==='custom'?whenText().replace(/^em /,'').replace(/^de /,''):'Escolher data';
-  var el=document.getElementById('when');
-  el.innerHTML=opts.map(function(o){return '<button type="button" class="chip" data-when="'+o[0]+'" aria-pressed="'+(k===o[0])+'">'+o[1]+'</button>';}).join('')+
-    '<button type="button" class="chip" data-when="custom" aria-pressed="'+(k==='custom')+'">'+CAL_IC+custom+'</button>';
-  // o chip escolhido fica inteiro à vista na fileira
-  var on=el.querySelector('[aria-pressed=true]');if(on){var r=on.offsetLeft+on.offsetWidth-el.clientWidth+16;el.scrollLeft=on.offsetLeft<el.scrollLeft?on.offsetLeft-16:Math.max(el.scrollLeft,r);}
-  el.querySelectorAll('[data-when]').forEach(function(b){b.onclick=function(){var v=b.getAttribute('data-when');if(v==='custom') return openDates();setWhen(v==='all'?null:Object.assign({k:v},whenRange(v)));};});
+var WHEN_OPTS=[['all','Qualquer data'],['hoje','Hoje'],['amanha','Amanhã'],['fds','Fim de semana']];
+function whenKey(){return state.when?state.when.k:'all';}
+function whenLabel(){var k=whenKey();if(k==='custom') return capt(whenText().replace(/^em /,'').replace(/^de /,''));for(var i=0;i<WHEN_OPTS.length;i++) if(WHEN_OPTS[i][0]===k) return WHEN_OPTS[i][1];return 'Qualquer data';}
+function renderWhen(){var t=whenLabel();fbtn(document.getElementById('f-when'),t,!!state.when,'Data: '+t+'. Trocar a data');}
+document.getElementById('f-when').onclick=function(){
+  var k=whenKey(),opts=WHEN_OPTS.map(function(o){return {v:o[0],t:o[1]};});
+  opts.push({v:'custom',t:'Escolher data',d:k==='custom'?whenLabel():'Um dia ou um período'});
+  openFiltro(this,'Quando você quer sair?',opts,k,function(v){if(v==='custom') return setTimeout(openDates,320);setWhen(v==='all'?null:Object.assign({k:v},whenRange(v)));});
+};
+// data padrão: "Hoje" se tem rolê hoje; senão "Qualquer data". Vale até a pessoa escolher outra data
+function autoWhen(){
+  if(!state.whenAuto) return;
+  var r=whenRange('hoje'),tem=events.some(function(e){return e.date>=r.from&&e.date<r.to&&+e.date+3*36e5>NOW;});
+  state.when=tem?Object.assign({k:'hoje'},r):null;
 }
-function setWhen(w){state.when=w;moreOpen={};render();startScan();}
+function setWhen(w){state.whenAuto=false;state.when=w;moreOpen={};render();startScan();}
 // data ou período específico
 function isoDay(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function parseDay(v){var p=String(v||'').split('-');return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null;}
@@ -2620,7 +2658,7 @@ function homeTiles(w,h,scale){
   var irSec=function(id){var el=document.getElementById(id);homeEl.scrollTo({top:el.offsetTop-16,behavior:reduceMotion?'auto':'smooth'});};
   homeEl.querySelector('.home-tabs').addEventListener('click',function(ev){var c=ev.target.closest('[data-tab]');if(!c) return;homeTab=c.getAttribute('data-tab');renderHomeHeros();});
   document.getElementById('home-city2').onclick=function(){useSearch(homeBuscaTopo);openCityPicker();};
-  document.getElementById('home-filtro').onclick=function(){closeHome();setTimeout(function(){var w=document.getElementById('when');window.scrollTo({top:0});if(w){var b=w.querySelector('[aria-pressed=true]')||w.firstChild;if(b) b.focus({preventScroll:true});}},60);};
+  document.getElementById('home-filtro').onclick=function(){closeHome();setTimeout(function(){var b=document.getElementById('f-when');window.scrollTo({top:0});if(b) b.focus({preventScroll:true});},60);};
   homeEl.querySelector('.home-tiles').addEventListener('click',function(ev){var b=ev.target.closest('[data-tile]');if(!b) return;var k=b.getAttribute('data-tile');
     if(k==='perto'){closeHome();window.scrollTo({top:0});}
     else if(k==='agenda') openAgenda();
@@ -2909,7 +2947,7 @@ function loadCity(c){
         var parsed=parseCity(text,c,slug);
         if(!parsed.events.length){ME=old;return cityFail(/n[aã]o encontrad|404/i.test(text)?'notfound':'empty',c,url);}
         VENUES=parsed.venues;events=parsed.events;NOW=new Date();
-        resetArea();state.city={name:parsed.name||c.name,uf:c.uf,slug:slug,live:true,center:ctr||ME};state.dismissed={};scan.label=null;
+        resetArea();state.city={name:parsed.name||c.name,uf:c.uf,slug:slug,live:true,center:ctr||ME};state.dismissed={};scan.label=null;autoWhen();
         cityLoading=false;
         render();startScan();applyPendingBairro();geocodeVenues(seq,state.city);fetchCovers(seq,url);
       });
@@ -3097,7 +3135,7 @@ var rt=null;window.addEventListener('resize',function(){clearTimeout(rt);rt=setT
   if(n&&!state.going[n.id]){state.going[n.id]=v;delete state.going[id];mudou=true;}});
   Object.keys(state.dismissed).forEach(function(id){if(!findEvent(id)){delete state.dismissed[id];mudou=true;}});
   if(mudou) persist();})();
-limparPassados();layout();render();startScan();initLocation();renderBell();setTimeout(checarLembretes,2000);
+limparPassados();autoWhen();layout();render();startScan();initLocation();renderBell();setTimeout(checarLembretes,2000);
 })();
 </script>
 </body></html>
