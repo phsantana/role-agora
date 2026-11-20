@@ -206,13 +206,7 @@ button.tchip:hover{background:var(--action-subtle)}
 .filtros{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;margin:var(--s-m) calc(-1 * max(16px,env(safe-area-inset-right,0px))) 0;padding:2px max(16px,env(safe-area-inset-right,0px))}
 .filtros::-webkit-scrollbar{display:none}
 .found+.filtros,.grab+.filtros{margin-top:0}
-.fsep{flex:none;width:1px;align-self:stretch;margin:6px 0;background:var(--border)}
-.fgostos,.fgostos-l{display:contents}
-.filtros .tchip{height:45px;padding:0 18px;font-size:16px;border-color:var(--border-strong);background:var(--surface);color:var(--text)}
-.filtros button.tchip:hover{background:var(--subtle)}
-.filtros button.tchip:focus-visible{outline:2px solid var(--action);outline-offset:2px}
-.filtros .tchip .ico{width:20px;height:20px}
-.filtros .sp{flex:none;display:grid;place-items:center;padding-right:4px}
+.fopts-extra{margin-top:var(--s-sm);width:100%}
 .fbtn{flex:none;display:inline-flex;align-items:center;gap:var(--s-2xsm);height:45px;padding:0 14px 0 18px;border:1px solid var(--border-strong);border-radius:var(--r-pill);background:var(--surface);font:inherit;font-size:16px;color:var(--text);white-space:nowrap;cursor:pointer;transition:background .15s,box-shadow .15s,border-color .15s}
 .fbtn svg{width:20px;height:20px;flex:none}
 .fbadge{min-width:20px;height:20px;padding:0 6px;border-radius:var(--r-pill);background:var(--action);color:var(--inverse);font-size:12px;font-weight:600;line-height:20px;text-align:center;font-variant-numeric:tabular-nums}
@@ -839,8 +833,7 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
     <div class="filtros" id="filtros" role="group" aria-label="Filtros">
       <button type="button" class="fbtn" id="f-modo" aria-haspopup="dialog" aria-expanded="false"></button>
       <button type="button" class="fbtn" id="f-when" aria-haspopup="dialog" aria-expanded="false"></button>
-      <span class="fsep" id="f-sep" aria-hidden="true" hidden></span>
-      <div class="fgostos" id="f-gostos"></div>
+      <button type="button" class="fbtn" id="f-genre" aria-haspopup="dialog" aria-expanded="false"></button>
     </div>
     <p class="sr" id="total" aria-live="polite"></p>
     <section class="section" id="sec-top" aria-labelledby="t-top">
@@ -1064,7 +1057,7 @@ var SIM={
 };
 var SPOTIFY_MOCK={name:'Seu Spotify',weights:{Pop:.92,Rock:.85,Soul:.74,Sertanejo:.61}};
 
-var state={profile:null,source:null,q:'',dismissed:{},going:{},topIdx:0,modo:'roles',whenAuto:true,city:{name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false}};
+var state={profile:null,source:null,q:'',dismissed:{},going:{},topIdx:0,modo:'roles',whenAuto:true,genre:null,city:{name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false}};
 try{var saved=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(saved&&saved.profile){state.profile=saved.profile;state.source=saved.source;state.going=saved.going||{};state.dismissed=saved.dismissed||{};}}catch(e){}
 try{var savedI=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(savedI&&savedI.going&&!saved.profile) state.going=savedI.going;}catch(e){}
 try{if(localStorage.getItem('radar-modo')==='locais') state.modo='locais';}catch(e){}
@@ -1501,7 +1494,8 @@ function whenRange(k){var t=dayStart(NOW),wd=t.getDay();
   if(k==='fds'){if(wd===0) return {from:t,to:addDays(t,1)};if(wd===6) return {from:t,to:addDays(t,2)};var fri=addDays(t,5-wd);return {from:new Date(fri.getFullYear(),fri.getMonth(),fri.getDate(),18),to:addDays(fri,3)};}
   return null;}
 function inWhen(e){var w=state.when;if(!w) return true;return e.date>=w.from&&e.date<w.to;}
-function visible(){computeAutoR();return events.filter(function(e){return !jaPassou(e)&&matchesQuery(e)&&inArea(e)&&inWhen(e);});}
+function inGenre(e){return !state.genre||e.genre===state.genre;}
+function visible(){computeAutoR();return events.filter(function(e){return !jaPassou(e)&&matchesQuery(e)&&inArea(e)&&inWhen(e)&&inGenre(e);});}
 function byTop(a,b){ // 1º afinidade, 2º horário mais próximo, 3º distância
   return ((b.aff||0)-(a.aff||0))||(a.date-b.date)||(a.dist-b.dist);}
 function byList(a,b){ // 1º horário, 2º distância, 3º afinidade
@@ -1528,6 +1522,7 @@ function locais(){
     if(!l) return false;
     if(!state.city.live&&l.dist>RADIUS_KM) return false;
     if(state.when&&!l.roles.length) return false; // escolheu uma data: só os locais com rolê nela
+    if(state.genre&&!l.roles.length&&l.genre!==state.genre) return false; // escolheu um gênero: locais com rolê dele ou que mais tocam ele
     if(q&&!l.roles.length&&[l.name,l.bairro,l.genre].join(' ').toLowerCase().indexOf(q)<0) return false;
     return inArea(l);
   }).sort(function(a,b){return ((b.aff||0)-(a.aff||0))||(a.dist-b.dist);});
@@ -1932,19 +1927,7 @@ function renderFound(){
   var stack=pics.length?'<div class="stack">'+pics.map(function(e){return '<img src="'+e.img+'" alt="">';}).join('')+'</div>':'<div class="stack"><span class="spin" style="width:40px;height:40px;margin:0;border-width:3px;border-top-color:var(--action)"></span></div>';
   el.innerHTML=stack.replace('<img','<img class="'+(scan.on?'new':'')+'"')+'<p class="h6" aria-hidden="true">'+txt+'</p>';
 }
-function tasteBar(){
-  // os gêneros do seu gosto ficam na mesma fileira dos filtros (Rolês e Data)
-  var el=document.getElementById('f-gostos'),sep=document.getElementById('f-sep');
-  document.getElementById('taste').innerHTML='';
-  if(!state.profile){el.innerHTML='';sep.hidden=true;return;}
-  sep.hidden=false;
-  var gs=Object.keys(state.profile).sort(function(a,b){return state.profile[b]-state.profile[a];});
-  // o primeiro chip (ajustes) edita o gosto; os gêneros vêm em ordem de peso
-  el.innerHTML='<button type="button" class="tchip" id="edit-taste" aria-label="Editar seu gosto musical"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 7h10M19 7h2M3 17h2M11 17h10"/><circle cx="16" cy="7" r="2.5"/><circle cx="8" cy="17" r="2.5"/></svg></button>'+
-    '<div class="fgostos-l" role="list" aria-label="Seu gosto musical">'+gs.map(function(g){return '<span class="tchip" role="listitem">'+g+'</span>';}).join('')+'</div>'+
-    (state.source==='spotify'?'<span class="sp" title="Gosto vindo do seu Spotify" aria-label="Gosto vindo do seu Spotify" role="img"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1DB954" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 9.4c3.3-1 7.2-.7 10 1M7.6 12.6c2.8-.8 5.8-.5 8.2.9M8.2 15.5c2.2-.6 4.5-.4 6.4.7"/></svg></span>':'');
-  document.getElementById('edit-taste').onclick=openGenres;
-}
+function tasteBar(){document.getElementById('taste').innerHTML='';renderGenre();}
 function onboarding(){
   return '<div class="empty"><div class="art" aria-hidden="true"><span class="note" style="left:20%;top:22%">'+ic('note','#D10A87',24)+'</span><span class="note" style="right:22%;top:58%">'+ic('note','#D10A87',20)+'</span><div class="disc">'+ic('spotify',null,56)+'</div></div>'+
   '<h3 class="h5">Bora achar os rolês com a sua cara?</h3>'+
@@ -2045,9 +2028,9 @@ function plural(n,um,varios){return n+' '+(n===1?um:varios);}
 // o botão do filtro mostra o que está valendo e fica marcado quando ele restringe algo (ou está aberto)
 function fbtn(el,label,on,aria,n){el.innerHTML='<span>'+esc(label)+'</span>'+(n!=null?'<b class="fbadge" aria-hidden="true">'+n+'</b>':'')+SETA;if(on) el.setAttribute('data-on','');else el.removeAttribute('data-on');el.setAttribute('aria-label',aria);}
 // drawer de opções: uma escolha por vez; o botão fica "aberto" enquanto o drawer está na tela
-function openFiltro(btn,title,opts,cur,pick){
+function openFiltro(btn,title,opts,cur,pick,extra){
   openSheet('<h2 class="h4" id="sheet-title">'+title+'</h2><div class="fopts" role="radiogroup" aria-labelledby="sheet-title">'+
-    opts.map(function(o){return '<button type="button" role="radio" data-v="'+o.v+'" aria-checked="'+(o.v===cur)+'"><span>'+esc(o.t)+(o.d?'<small>'+esc(o.d)+'</small>':'')+'</span>'+OK_IC+'</button>';}).join('')+'</div>',title);
+    opts.map(function(o){return '<button type="button" role="radio" data-v="'+esc(o.v)+'" aria-checked="'+(o.v===cur)+'"><span>'+esc(o.t)+(o.d?'<small>'+esc(o.d)+'</small>':'')+'</span>'+OK_IC+'</button>';}).join('')+'</div>'+(extra||''),title);
   btn.setAttribute('aria-expanded','true');
   sheetOnClose=function(){btn.setAttribute('aria-expanded','false');};
   document.querySelectorAll('.fopts [data-v]').forEach(function(b){b.onclick=function(){var v=b.getAttribute('data-v');closeSheet();if(v!==cur||v==='custom') pick(v);};});
@@ -2123,8 +2106,28 @@ document.getElementById('f-when').onclick=function(){
   opts.push({v:'custom',t:'Escolher data',d:k==='custom'?whenLabel():'Um dia ou um período'});
   openFiltro(this,'Quando você quer sair?',opts,k,function(v){if(v==='custom') return setTimeout(openDates,320);setWhen(v==='all'?null:Object.assign({k:v},whenRange(v)));});
 };
+/* ---------- Gênero musical: filtro com seta, como Rolê ou Local e Data ---------- */
+function generoMusical(g){return g&&!NAO_MUSICAL[g]&&!/^(evento|outros?|show)$/i.test(g);}
+// gêneros com rolê nos outros filtros (data, busca, região), com a contagem de cada um
+function generosDisponiveis(){
+  var g0=state.genre;state.genre=null;var vis=visible();state.genre=g0;
+  var c={};vis.forEach(function(e){if(generoMusical(e.genre)) c[e.genre]=(c[e.genre]||0)+1;});
+  var p=state.profile||{};
+  // primeiro os do seu gosto (pelo peso), depois os com mais rolês
+  return Object.keys(c).sort(function(a,b){return ((p[b]||0)-(p[a]||0))||(c[b]-c[a])||a.localeCompare(b);}).map(function(g){return {g:g,n:c[g],seu:!!p[g]};});
+}
+function renderGenre(){var g=state.genre;fbtn(document.getElementById('f-genre'),g||'Gênero',!!g,g?'Gênero: '+g+'. Trocar o gênero':'Todos os gêneros. Escolher um gênero');}
+document.getElementById('f-genre').onclick=function(){
+  var gs=generosDisponiveis(),cur=state.genre||'all';
+  if(state.genre&&!gs.some(function(x){return x.g===state.genre;})) gs.unshift({g:state.genre,n:0,seu:!!(state.profile&&state.profile[state.genre])});
+  var opts=[{v:'all',t:'Todos os gêneros'}].concat(gs.map(function(x){return {v:x.g,t:x.g,d:plural(x.n,'rolê','rolês')+(x.seu?' • Seu gosto':'')};}));
+  var extra='<button type="button" class="btn secondary md fopts-extra" id="g-edit">'+(state.profile?'Editar meu gosto':'Escolher meu gosto')+'</button>';
+  openFiltro(this,'Qual som você quer ouvir?',opts,cur,function(v){state.genre=v==='all'?null:v;moreOpen={};render();startScan();},extra);
+  document.getElementById('g-edit').onclick=function(){closeSheet();setTimeout(openGenres,320);};
+};
 // data padrão: "Hoje" se tem rolê hoje; senão "Qualquer data". Vale até a pessoa escolher outra data
 function autoWhen(){
+  if(state.genre&&!events.some(function(e){return e.genre===state.genre;})) state.genre=null;
   if(!state.whenAuto) return;
   var r=whenRange('hoje'),tem=events.some(function(e){return e.date>=r.from&&e.date<r.to&&+e.date+3*36e5>NOW;});
   state.when=tem?Object.assign({k:'hoje'},r):null;
@@ -2148,7 +2151,7 @@ function renderTotal(b){var n=b.all.length,el=document.getElementById('total');
   var quando=whenText();quando=quando?quando+' ':'';
   var onde=quando+(state.q?'em '+esc(state.city.name):state.area?(state.area.label?'em '+esc(state.area.label):'nesta região do mapa'):'em '+esc(state.city.name));
   el.innerHTML=n?'<b>'+n+(n===1?' rolê encontrado':' rolês encontrados')+'</b> '+(state.q?'pra “'+esc(state.q)+'” ':'')+onde:'Nenhum rolê encontrado'+(state.q?' pra “'+esc(state.q)+'”':'')+' '+onde+(state.q?'':!state.area?(state.when?'. Tenta outra data.':''):state.when?'. Tenta outra data ou afaste o mapa.':'. Afaste o mapa pra ver mais.');}
-function render(){if(typeof syncBuscas==='function') syncBuscas();if(typeof homeOpen!=='undefined'&&homeOpen) setTimeout(renderHome,0);withScores();var b=buckets();b.locais=locais();renderCityChip();renderClimaChip();renderMap(b);renderModo(b);renderWhen();renderTotal(b);renderTop(b);renderRail(b);renderLists(b);renderLocais(b);renderAgendaFab();renderAgenda();checarNovos();}
+function render(){if(typeof syncBuscas==='function') syncBuscas();if(typeof homeOpen!=='undefined'&&homeOpen) setTimeout(renderHome,0);withScores();var b=buckets();b.locais=locais();renderCityChip();renderClimaChip();renderMap(b);renderModo(b);renderWhen();renderGenre();renderTotal(b);renderTop(b);renderRail(b);renderLists(b);renderLocais(b);renderAgendaFab();renderAgenda();checarNovos();}
 
 /* ---------- Agenda: rolês com "Bora", do que acontece antes para o que acontece depois ---------- */
 /* A agenda guarda um retrato de cada rolê, então sobrevive à troca de cidade */
