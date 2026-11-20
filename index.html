@@ -208,7 +208,9 @@ button.tchip:hover{background:var(--action-subtle)}
 .found+.filtros,.grab+.filtros{margin-top:0}
 .fsep{flex:none;width:1px;align-self:stretch;margin:6px 0;background:var(--border)}
 .fgostos,.fgostos-l{display:contents}
-.filtros .tchip{height:45px;padding:0 18px;font-size:16px}
+.filtros .tchip{height:45px;padding:0 18px;font-size:16px;border-color:var(--border-strong);background:var(--surface);color:var(--text)}
+.filtros button.tchip:hover{background:var(--subtle)}
+.filtros button.tchip:focus-visible{outline:2px solid var(--action);outline-offset:2px}
 .filtros .tchip .ico{width:20px;height:20px}
 .filtros .sp{flex:none;display:grid;place-items:center;padding-right:4px}
 .fbtn{flex:none;display:inline-flex;align-items:center;gap:var(--s-2xsm);height:45px;padding:0 14px 0 18px;border:1px solid var(--border-strong);border-radius:var(--r-pill);background:var(--surface);font:inherit;font-size:16px;color:var(--text);white-space:nowrap;cursor:pointer;transition:background .15s,box-shadow .15s,border-color .15s}
