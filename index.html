@@ -208,6 +208,7 @@ button.tchip:hover{background:var(--action-subtle)}
 .found+.filtros,.grab+.filtros{margin-top:0}
 .fbtn{flex:none;display:inline-flex;align-items:center;gap:var(--s-2xsm);height:45px;padding:0 12px 0 16px;border:1px solid var(--border-strong);border-radius:var(--r-2xsm);background:var(--surface);font:inherit;font-size:16px;color:var(--text);white-space:nowrap;cursor:pointer;transition:background .15s,box-shadow .15s,border-color .15s}
 .fbtn svg{width:20px;height:20px;flex:none}
+.fbadge{min-width:20px;height:20px;padding:0 6px;border-radius:var(--r-pill);background:var(--action);color:var(--inverse);font-size:12px;font-weight:600;line-height:20px;text-align:center;font-variant-numeric:tabular-nums}
 .fbtn:hover{background:var(--subtle)}
 .fbtn[data-on],.fbtn[aria-expanded=true]{border-color:var(--text);box-shadow:inset 0 0 0 1px var(--text);background:var(--subtle)}
 .fbtn:focus-visible{outline:2px solid var(--action);outline-offset:2px}
@@ -2031,7 +2032,7 @@ var OK_IC='<svg class="ok" viewBox="0 0 24 24" fill="none" stroke="currentColor"
 var lastCounts={nr:0,nl:0};
 function plural(n,um,varios){return n+' '+(n===1?um:varios);}
 // o botão do filtro mostra o que está valendo e fica marcado quando ele restringe algo (ou está aberto)
-function fbtn(el,label,on,aria){el.innerHTML='<span>'+esc(label)+'</span>'+SETA;if(on) el.setAttribute('data-on','');else el.removeAttribute('data-on');el.setAttribute('aria-label',aria);}
+function fbtn(el,label,on,aria,n){el.innerHTML='<span>'+esc(label)+'</span>'+(n!=null?'<b class="fbadge" aria-hidden="true">'+n+'</b>':'')+SETA;if(on) el.setAttribute('data-on','');else el.removeAttribute('data-on');el.setAttribute('aria-label',aria);}
 // drawer de opções: uma escolha por vez; o botão fica "aberto" enquanto o drawer está na tela
 function openFiltro(btn,title,opts,cur,pick){
   openSheet('<h2 class="h4" id="sheet-title">'+title+'</h2><div class="fopts" role="radiogroup" aria-labelledby="sheet-title">'+
@@ -2045,7 +2046,8 @@ function renderModo(bk){
   // o número de rolês e de locais encontrados fica no próprio botão (no lugar da frase "X rolês encontrados")
   var nr=bk?bk.all.length:0,nl=bk&&bk.locais?bk.locais.length:0;lastCounts={nr:nr,nl:nl};
   var loc=state.modo==='locais',t=loc?plural(nl,'local','locais'):plural(nr,'rolê','rolês');
-  fbtn(document.getElementById('f-modo'),t,loc,'Mostrando '+t+'. Trocar entre rolês e locais');
+  // a contagem vai numa badge pequena ao lado do nome
+  fbtn(document.getElementById('f-modo'),loc?'Locais':'Rolês',loc,'Mostrando '+t+'. Trocar entre rolês e locais',loc?nl:nr);
 }
 document.getElementById('f-modo').onclick=function(){
   openFiltro(this,'O que você quer ver?',[{v:'roles',t:'Rolês',d:plural(lastCounts.nr,'rolê encontrado','rolês encontrados')},{v:'locais',t:'Locais',d:plural(lastCounts.nl,'local encontrado','locais encontrados')}],state.modo,
