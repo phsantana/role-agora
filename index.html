@@ -1799,7 +1799,8 @@ function layout(){var H=vh();mapEl.style.height=H+'px';contentEl.style.marginTop
 function openY(){return Math.round(vh()*(PEEK-OPEN));}
 function smooth(y){window.scrollTo({top:y,behavior:reduceMotion?'auto':'smooth'});}
 function toMap(){if(!wide()&&window.scrollY>2) smooth(0);}
-function toResults(){if(!wide()&&window.scrollY<openY()-4) smooth(openY());}
+// durante a busca o mapa fica em destaque: nada puxa os resultados para cima até ela terminar
+function toResults(){if(scan.on) return;if(!wide()&&window.scrollY<openY()-4) smooth(openY());}
 var rafM=0,lastY=0,dirY=0,snapT=null;
 window.addEventListener('scroll',function(){
   var y=window.scrollY;if(y!==lastY){dirY=y>lastY?1:-1;lastY=y;}
@@ -1868,11 +1869,11 @@ mapEl.addEventListener('click',function(ev){if(mapMoved&&Date.now()-dragEndAt<30
 
 /* ---------- Render: conteúdo ---------- */
 /* ---------- Varredura: o contador só existe enquanto a busca roda ---------- */
-var scan={on:false,order:[],shown:0,ids:{},seen:{},t:null,hideT:null};
+var scan={on:false,order:[],shown:0,ids:{},seen:{},t:null,hideT:null,upT:null};
 var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function startScan(){
   toMap();
-  clearTimeout(scan.t);clearTimeout(scan.hideT);
+  clearTimeout(scan.t);clearTimeout(scan.hideT);clearTimeout(scan.upT);scan.upPending=false;
   computeAutoR();
   withScores();
   scan.order=visible().slice().sort(function(a,b){return a.dist-b.dist;}); // encontra do mais perto para o mais longe
@@ -1892,8 +1893,12 @@ function finishScan(){
   scan.on=false;renderMap(buckets());renderFound();
   var n=scan.order.length;
   document.getElementById('found-sr').textContent=n?n+(n===1?' rolê encontrado':' rolês encontrados'):'Nenhum rolê encontrado';
+  // terminou: depois de mostrar a contagem, os resultados sobem e ficam em destaque (dá pra rolar de volta pro mapa)
+  scan.upPending=true;scan.upT=setTimeout(raiseResults,reduceMotion?0:900);
   scan.hideT=setTimeout(function(){if(cityLoading) return;var el=document.getElementById('found');el.classList.add('hide');setTimeout(function(){if(el.classList.contains('hide')) el.hidden=true;},600);},1600);
 }
+// sobe os resultados assim que der: se um drawer estiver aberto, espera ele fechar
+function raiseResults(){if(!scan.upPending||scan.on||cityLoading||document.getElementById('sheet').classList.contains('open')) return;scan.upPending=false;toResults();}
 function renderFound(){
   var el=document.getElementById('found'),n=scan.shown,done=!scan.on;
   var found=scan.order.slice(0,n),pics=found.slice(-3).reverse();
@@ -2434,7 +2439,7 @@ function act(a,e,swiped){
 var sheet=document.getElementById('sheet'),scrim=document.getElementById('scrim'),body=document.getElementById('sheet-body'),lastFocus=null;
 var sheetOnClose=null;
 function openSheet(html,label){sheetOnClose=null;lastFocus=document.activeElement;body.innerHTML=html;sheet.scrollTop=0;sheet.setAttribute('aria-label',label||'');sheet.classList.add('open');scrim.classList.add('open');document.documentElement.classList.add('locked');setTimeout(function(){var f=sheet.querySelector('button,input');if(f) f.focus();},60);}
-function closeSheet(){var cb=sheetOnClose;sheetOnClose=null;if(cb) setTimeout(cb,0);sheet.classList.remove('open');scrim.classList.remove('open');document.documentElement.classList.remove('locked');if(lastFocus&&lastFocus.focus) lastFocus.focus({preventScroll:true});}
+function closeSheet(){var cb=sheetOnClose;sheetOnClose=null;if(cb) setTimeout(cb,0);sheet.classList.remove('open');scrim.classList.remove('open');document.documentElement.classList.remove('locked');if(lastFocus&&lastFocus.focus) lastFocus.focus({preventScroll:true});clearTimeout(scan.upT);scan.upT=setTimeout(raiseResults,350);}
 // gestos fora do drawer (no fundo escurecido) não rolam a página
 ['wheel','touchmove'].forEach(function(t){scrim.addEventListener(t,function(ev){ev.preventDefault();},{passive:false});});
 // arrastar o drawer pra baixo fecha — só se a rolagem interna estiver no topo (ou não existir) quando o gesto começa
@@ -2885,7 +2890,7 @@ var cityLoading=false;
 function loadCity(c){
   cityLoading=true;
   var seq=++loadSeq,slug=citySlug(c),url='https://www.roleagora.com.br/city/'+slug;
-  cityMsg('');clearTimeout(scan.t);clearTimeout(scan.hideT);
+  cityMsg('');clearTimeout(scan.t);clearTimeout(scan.hideT);clearTimeout(scan.upT);scan.upPending=false;toMap();
   scan.on=true;scan.order=[];scan.shown=0;scan.ids={};scan.label='Procurando rolês em '+c.name+'...';
   var el=document.getElementById('found');el.hidden=false;void el.offsetWidth;el.classList.remove('hide');renderFound();
   document.getElementById('found-sr').textContent='Procurando rolês em '+c.name;
@@ -3018,6 +3023,8 @@ function parseCity(text,c,slug){
 function cityFail(code,c,url,err){
   cityLoading=false;
   stopLoadingPill();scan.label=null;
+  // a busca terminou (mesmo sem dados novos): os resultados sobem
+  clearTimeout(scan.upT);scan.upPending=true;scan.upT=setTimeout(raiseResults,reduceMotion?0:400);
   if(c.fromLoc){if(loc.slug==='presidente-prudente-sp'||km(loc,DEMO_ME)<30) useDemo();else ME.you=false;}
   if(c.sync){ // sem aviso: segue com a agenda salva
     if(state.city.live||state.city.slug!=='presidente-prudente-sp'){useDemo();startScan();}
