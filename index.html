@@ -206,6 +206,11 @@ button.tchip:hover{background:var(--action-subtle)}
 .filtros{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;margin:var(--s-m) calc(-1 * max(16px,env(safe-area-inset-right,0px))) 0;padding:2px max(16px,env(safe-area-inset-right,0px))}
 .filtros::-webkit-scrollbar{display:none}
 .found+.filtros,.grab+.filtros{margin-top:0}
+.fsep{flex:none;width:1px;align-self:stretch;margin:6px 0;background:var(--border)}
+.fgostos,.fgostos-l{display:contents}
+.filtros .tchip{height:45px;padding:0 18px;font-size:16px}
+.filtros .tchip .ico{width:20px;height:20px}
+.filtros .sp{flex:none;display:grid;place-items:center;padding-right:4px}
 .fbtn{flex:none;display:inline-flex;align-items:center;gap:var(--s-2xsm);height:45px;padding:0 14px 0 18px;border:1px solid var(--border-strong);border-radius:var(--r-pill);background:var(--surface);font:inherit;font-size:16px;color:var(--text);white-space:nowrap;cursor:pointer;transition:background .15s,box-shadow .15s,border-color .15s}
 .fbtn svg{width:20px;height:20px;flex:none}
 .fbadge{min-width:20px;height:20px;padding:0 6px;border-radius:var(--r-pill);background:var(--action);color:var(--inverse);font-size:12px;font-weight:600;line-height:20px;text-align:center;font-variant-numeric:tabular-nums}
@@ -832,6 +837,8 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
     <div class="filtros" id="filtros" role="group" aria-label="Filtros">
       <button type="button" class="fbtn" id="f-modo" aria-haspopup="dialog" aria-expanded="false"></button>
       <button type="button" class="fbtn" id="f-when" aria-haspopup="dialog" aria-expanded="false"></button>
+      <span class="fsep" id="f-sep" aria-hidden="true" hidden></span>
+      <div class="fgostos" id="f-gostos"></div>
     </div>
     <p class="sr" id="total" aria-live="polite"></p>
     <section class="section" id="sec-top" aria-labelledby="t-top">
@@ -1924,14 +1931,16 @@ function renderFound(){
   el.innerHTML=stack.replace('<img','<img class="'+(scan.on?'new':'')+'"')+'<p class="h6" aria-hidden="true">'+txt+'</p>';
 }
 function tasteBar(){
-  var el=document.getElementById('taste');
-  if(!state.profile){el.innerHTML='';return;}
+  // os gêneros do seu gosto ficam na mesma fileira dos filtros (Rolês e Data)
+  var el=document.getElementById('f-gostos'),sep=document.getElementById('f-sep');
+  document.getElementById('taste').innerHTML='';
+  if(!state.profile){el.innerHTML='';sep.hidden=true;return;}
+  sep.hidden=false;
   var gs=Object.keys(state.profile).sort(function(a,b){return state.profile[b]-state.profile[a];});
   // o primeiro chip (ajustes) edita o gosto; os gêneros vêm em ordem de peso
-  el.innerHTML='<div class="taste"><div class="taste-chips"><div class="row" role="list" aria-label="Seu gosto musical">'+
-    '<button type="button" class="tchip" id="edit-taste" aria-label="Editar seu gosto musical"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 7h10M19 7h2M3 17h2M11 17h10"/><circle cx="16" cy="7" r="2.5"/><circle cx="8" cy="17" r="2.5"/></svg></button>'+
-    gs.map(function(g){return '<span class="tchip" role="listitem">'+g+'</span>';}).join('')+'</div></div>'+
-    (state.source==='spotify'?'<span class="sp" title="Gosto vindo do seu Spotify" aria-label="Gosto vindo do seu Spotify" role="img"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1DB954" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 9.4c3.3-1 7.2-.7 10 1M7.6 12.6c2.8-.8 5.8-.5 8.2.9M8.2 15.5c2.2-.6 4.5-.4 6.4.7"/></svg></span>':'')+'</div>';
+  el.innerHTML='<button type="button" class="tchip" id="edit-taste" aria-label="Editar seu gosto musical"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 7h10M19 7h2M3 17h2M11 17h10"/><circle cx="16" cy="7" r="2.5"/><circle cx="8" cy="17" r="2.5"/></svg></button>'+
+    '<div class="fgostos-l" role="list" aria-label="Seu gosto musical">'+gs.map(function(g){return '<span class="tchip" role="listitem">'+g+'</span>';}).join('')+'</div>'+
+    (state.source==='spotify'?'<span class="sp" title="Gosto vindo do seu Spotify" aria-label="Gosto vindo do seu Spotify" role="img"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1DB954" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 9.4c3.3-1 7.2-.7 10 1M7.6 12.6c2.8-.8 5.8-.5 8.2.9M8.2 15.5c2.2-.6 4.5-.4 6.4.7"/></svg></span>':'');
   document.getElementById('edit-taste').onclick=openGenres;
 }
 function onboarding(){
