@@ -203,9 +203,9 @@ button.tchip:hover{background:var(--action-subtle)}
 .modo button[aria-pressed=true] .n{background:var(--action);color:var(--inverse)}
 .modo button[aria-pressed=true]{background:var(--surface);color:var(--text);font-weight:600;box-shadow:0 1px 4px rgba(23,23,23,.16)}
 /* filtros com seta (Rolê ou Local, Data): abrem um drawer com as opções */
-.filtros{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;margin:var(--s-m) calc(-1 * max(16px,env(safe-area-inset-right,0px))) 0;padding:2px max(16px,env(safe-area-inset-right,0px))}
+.filtros{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;margin:calc(var(--s-m) - 6px) calc(-1 * max(16px,env(safe-area-inset-right,0px))) -6px;padding:6px max(16px,env(safe-area-inset-right,0px))}
 .filtros::-webkit-scrollbar{display:none}
-.found+.filtros,.grab+.filtros{margin-top:0}
+.found+.filtros,.grab+.filtros{margin-top:-6px}
 .gpick{margin:var(--s-m) 0}
 .gpick .chip{cursor:pointer;height:40px;padding:0 14px 0 16px;font-size:16px}
 .gpick .gn{font-size:12px;font-weight:400;opacity:.72}
@@ -834,8 +834,8 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
     <div id="geo-msg" aria-live="polite"></div>
 
     <div class="filtros" id="filtros" role="group" aria-label="Filtros">
-      <button type="button" class="fbtn" id="f-modo" aria-haspopup="dialog" aria-expanded="false"></button>
       <button type="button" class="fbtn" id="f-when" aria-haspopup="dialog" aria-expanded="false"></button>
+      <button type="button" class="fbtn" id="f-modo" aria-haspopup="dialog" aria-expanded="false"></button>
       <button type="button" class="fbtn" id="f-genre" aria-haspopup="dialog" aria-expanded="false"></button>
     </div>
     <p class="sr" id="total" aria-live="polite"></p>
