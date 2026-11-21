@@ -3270,7 +3270,10 @@ var rt=null;window.addEventListener('resize',function(){clearTimeout(rt);rt=setT
   if(n&&!state.going[n.id]){state.going[n.id]=v;delete state.going[id];mudou=true;}});
   Object.keys(state.dismissed).forEach(function(id){if(!findEvent(id)){delete state.dismissed[id];mudou=true;}});
   if(mudou) persist();})();
-limparPassados();autoWhen();layout();render();startScan();initLocation();renderBell();setTimeout(checarLembretes,2000);
+limparPassados();autoWhen();layout();render();startScan();
+// o app abre sempre na Home (sem a animação de entrada)
+homeEl.style.transition='none';openHome();requestAnimationFrame(function(){requestAnimationFrame(function(){homeEl.style.transition='';});});
+initLocation();renderBell();setTimeout(checarLembretes,2000);
 })();
 </script>
 </body></html>
