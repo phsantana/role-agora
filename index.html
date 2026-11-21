@@ -2852,9 +2852,9 @@ function renderVenuePage(k){
   var roles=events.filter(function(e){return e.venueKey===k&&!jaPassou(e);}).sort(function(x,y){return x.date-y.date;});
   var gts=(v.gt||[g]).filter(function(x){return x&&!NAO_MUSICAL[x];});
   var nota=v.nota?String(v.nota.toFixed?v.nota.toFixed(1):v.nota).replace('.',','):null;
-  var tipo=v.tipo&&v.tipo!=='Edifício'?v.tipo:'Lugar';
+  var tipo=v.tipo&&v.tipo!=='Edifício'?v.tipo:null; // "Edifício" é o tipo genérico do site: não diz nada
   var lista=function(xs){return xs.length<2?xs.join(''):xs.slice(0,-1).join(', ')+' e '+xs[xs.length-1];};
-  var sobre=tipo+(v.bairro?' no '+v.bairro:'')+(gts.length?' que toca mais '+lista(gts.map(function(x){return x.toLowerCase();})):'')+'.'+
+  var sobre=(tipo?tipo+(v.bairro?' no '+v.bairro:''):'Fica '+(v.bairro?'no '+v.bairro:'em '+state.city.name)+(gts.length?' e':''))+(gts.length?(tipo?' que':'')+' toca mais '+lista(gts.map(function(x){return x.toLowerCase();})):'')+'.'+
     (v.arLivre?' Tem área ao ar livre.':'')+(roles.length?' '+(roles.length===1?'Tem 1 rolê':'Tem '+roles.length+' rolês')+' na agenda.':' Sem rolê na agenda por enquanto.');
   var andar=lv.dist<=1.5?Math.max(1,Math.ceil(lv.dist*1000/80))+' min a pé':Math.ceil(lv.dist*2.4+3)+' min de carro';
   // destaques: só o que o site informa de verdade
@@ -2875,7 +2875,7 @@ function renderVenuePage(k){
     '<div class="vs-body"><div class="vs-in">'+
       '<h1 class="h3" id="vs-title">'+esc(v.name)+'</h1>'+
       '<p class="vs-lin">'+ic('pin','#525252',16)+'<span>'+esc(v.bairro||state.city.name)+' • '+dTxt(lv)+'</span>'+(nota?'<span class="vs-sep" aria-hidden="true"></span>'+ic('star','#FFC21A',16)+'<span><b>'+nota+'</b>'+(v.av?' ('+v.av+')':'')+'</span>':'')+'</p>'+
-      '<p class="vs-dest">'+(a?'<b>'+a.pct+'% compatível</b> com o seu gosto':'<b>'+esc(tipo)+'</b>'+(g?' • '+esc(g):''))+'</p>'+
+      '<p class="vs-dest">'+(a?'<b>'+a.pct+'% compatível</b> com o seu gosto':(tipo?'<b>'+esc(tipo)+'</b>'+(g?' • '+esc(g):''):g?'Toca mais <b>'+esc(g)+'</b>':''))+'</p>'+
       '<hr class="vs-hr">'+
       '<section aria-labelledby="vs-sobre"><h2 class="h6" id="vs-sobre">Sobre o lugar</h2><p class="body-sm muted vs-p">'+esc(sobre)+'</p></section>'+
       (gts.length?'<div class="vs-gts" role="list" aria-label="O que toca">'+gts.map(function(x){return '<span class="chip static" role="listitem">'+esc(x)+'</span>';}).join('')+'</div>':'')+
