@@ -487,7 +487,7 @@ html.screen-open{overflow:hidden}
 .screen-bar{position:sticky;top:0;z-index:2;background:var(--page);display:grid;grid-template-columns:48px 1fr 48px;align-items:center;gap:var(--s-xsm);padding:max(16px,env(safe-area-inset-top,0px)) 0 var(--s-xsm)}
 .screen-bar h2{text-align:center}
 .screen-bar .back{width:48px;height:48px;border-radius:50%;border:0;background:var(--subtle);display:grid;place-items:center;color:var(--text)}
-.ag-sub{text-align:center;margin-top:-4px}
+.ag-sub{text-align:left;margin-top:-4px;padding-left:56px} /* alinhado com o título "Sua agenda", ao lado do voltar */
 .ag-when{margin-top:var(--s-m);display:flex;flex-direction:column;gap:var(--s-xsm)}
 .ag-when .hd{display:flex;align-items:center;justify-content:space-between;gap:var(--s-xsm)}
 .ag-when .hd .eyebrow{letter-spacing:0;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -543,6 +543,10 @@ html.screen-open{overflow:hidden}
 #agenda{background:var(--subtle)}
 #agenda .screen-bar{margin:0 calc(-1 * max(24px,env(safe-area-inset-right,0px)));padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));background:var(--surface)}
 #agenda .screen-bar .back{background:var(--subtle)}
+/* header da agenda: voltar | título | chip Semana/Mês. Com o chip, o título centralizado não cabe no celular: vai pra esquerda */
+#agenda .screen-bar{grid-template-columns:48px minmax(0,1fr) auto}
+#agenda .screen-bar h2{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#agenda .ag-modo-btn{justify-self:end;height:40px;padding:0 12px 0 16px}
 .ag-head{margin:0 calc(-1 * max(24px,env(safe-area-inset-right,0px)));padding:0 max(24px,env(safe-area-inset-right,0px)) var(--s-m);background:var(--surface);border-radius:0 0 var(--r-xlg) var(--r-xlg);box-shadow:0 16px 24px -20px rgba(23,23,23,.18)}
 .ag-head .ag-modo{background:var(--subtle)}
 #agenda .ag-card{background:var(--surface);box-shadow:0 4px 16px rgba(23,23,23,.04)}
@@ -883,7 +887,7 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
     <section class="home-sec" id="home-sec-secreto" aria-labelledby="home-sec-t"><div class="home-cara-h"><div><h2 class="h3" id="home-sec-t">Rolês secretos</h2><p>O local só aparece 2h antes. Vagas limitadas.</p></div></div><div class="home-rail" id="home-secretos"></div></section>
   </div></div>
 </section>
-<section class="screen" id="agenda" role="dialog" aria-modal="true" aria-labelledby="ag-title" aria-hidden="true"><div class="screen-in"><header class="screen-bar"><button type="button" class="back" id="ag-back" aria-label="Voltar"><svg class="ico ico-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button><h2 class="h5" id="ag-title">Sua agenda</h2><span></span></header><div id="ag-body"></div></div></section>
+<section class="screen" id="agenda" role="dialog" aria-modal="true" aria-labelledby="ag-title" aria-hidden="true"><div class="screen-in"><header class="screen-bar"><button type="button" class="back" id="ag-back" aria-label="Voltar"><svg class="ico ico-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button><h2 class="h5" id="ag-title">Sua agenda</h2><button type="button" class="fbtn ag-modo-btn" id="ag-modo-btn" aria-haspopup="dialog" aria-expanded="false"></button></header><div id="ag-body"></div></div></section>
 <section class="screen evs" id="evs" role="dialog" aria-modal="true" aria-labelledby="evs-title" aria-hidden="true"></section>
 <div class="scrim" id="scrim"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title"><div class="handle"></div><button class="close" id="sheet-close" type="button" aria-label="Fechar"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button><div id="sheet-body"></div></div>
@@ -2256,8 +2260,10 @@ function renderAgenda(dir){
   var nRoles=agruparRoles(items).length;
   var sub='<p class="desc-lg muted ag-sub">'+(nRoles?nRoles+(nRoles===1?' rolê marcado':' rolês marcados'):'Nenhum rolê marcado ainda')+'</p>';
   // alternância Semana / Mês (referência de calendário mensal enviada em 16/11)
-  var tog='<div class="ag-modo" role="group" aria-label="Ver agenda por"><button type="button" data-modo="semana" aria-pressed="'+(agModo==='semana')+'">'+CAL_IC+'Semana</button><button type="button" data-modo="mes" aria-pressed="'+(agModo==='mes')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Mês</button></div>';
-  var ligaModo=function(){agBody.querySelectorAll('[data-modo]').forEach(function(b){b.onclick=function(){var m=b.getAttribute('data-modo');if(m===agModo) return;agModo=m;agBody.innerHTML='';renderAgenda();};});};
+  // Semana / Mês: chip com seta no canto direito do header, como os filtros do radar
+  var ligaModo=function(){var b=document.getElementById('ag-modo-btn'),t=agModo==='mes'?'Mês':'Semana';
+    fbtn(b,t,false,'Ver agenda por '+t.toLowerCase()+'. Trocar');
+    b.onclick=function(){openFiltro(b,'Ver agenda por',[{v:'semana',t:'Semana'},{v:'mes',t:'Mês'}],agModo,function(m){agModo=m;agBody.innerHTML='';renderAgenda();agEl.scrollTop=0;});};};
   if(agModo==='mes'){
     // meses empilhados, de hoje até o último rolê: foto no dia com rolê marcado, estrela no dia com rolê a sua cara
     var mh='<p class="ag-leg"><span><i class="ph"></i>Rolê marcado</span><span>'+ic('star','#D10A87',12)+'Rolê a sua cara</span></p>';
@@ -2270,13 +2276,13 @@ function renderAgenda(dir){
           (mk&&!past?'<img src="'+mk[0].img+'" alt="">':'')+'<b>'+dn+'</b>'+(sug&&!past?'<i aria-hidden="true">'+ic('star','#D10A87',10)+'</i>':'')+'</button>';}
       mh+='<section class="ag-mes-b" aria-label="'+capt(MES_LONGO[mm.getMonth()])+' de '+mm.getFullYear()+'"><h3 class="h6">'+capt(MES_LONGO[mm.getMonth()])+(mm.getFullYear()!==NOW.getFullYear()?' de '+mm.getFullYear():'')+'</h3>'+
         '<div class="ag-mgrid" aria-hidden="true">'+['D','S','T','Q','Q','S','S'].map(function(x){return '<span class="wd">'+x+'</span>';}).join('')+'</div><div class="ag-mgrid">'+cel+'</div></section>';}
-    agBody.innerHTML='<div class="ag-head">'+sub+tog+'</div><div class="ag-meses">'+mh+'</div>';
+    agBody.innerHTML='<div class="ag-head">'+sub+'</div><div class="ag-meses">'+mh+'</div>';
     ligaModo();
     // tocar num dia volta pra semana daquele dia, com os rolês dele embaixo
     agBody.querySelectorAll('[data-mday]').forEach(function(b){b.onclick=function(){var d=new Date(+b.getAttribute('data-mday'));agSelD=d;agWeek=addDays(d,-d.getDay());agModo='semana';if(agGen&&agGen!=='loading') agGen=null;agBody.innerHTML='';renderAgenda();agEl.scrollTop=0;};});
     return;
   }
-  var html='<div class="ag-head">'+sub+tog+
+  var html='<div class="ag-head">'+sub+
     '<div class="ag-when"><div class="hd"><span class="eyebrow" id="ag-mes"></span>'+
     '<div class="ag-nav"><button type="button" class="prev" id="ag-prev" aria-label="Semana anterior"'+(agIdx<=0?' disabled':'')+'>'+ic('chev',null,16)+'</button>'+
     '<button type="button" id="ag-next" aria-label="Próxima semana"'+(agIdx+7>=dias.length?' disabled':'')+'>'+ic('chev',null,16)+'</button></div></div>'+
