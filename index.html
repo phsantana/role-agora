@@ -750,15 +750,15 @@ html.screen-open{overflow:hidden}
 .ceu{--ceu-a:#2F7FD8;--ceu-b:#69A9EE;position:relative;border-radius:var(--r-m);background:linear-gradient(160deg,var(--ceu-a),var(--ceu-b));color:#fff;transition:background .6s}
 .hc-stack:has(.ceu)::before{background:var(--hc-folha,#9CC6F2)}
 .ceu-in{position:relative;z-index:1;padding:var(--s-m)}
-.ceu-hd{display:flex;align-items:center;justify-content:space-between;gap:var(--s-xsm)}
+.ceu-hd{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s-xsm)}
 .ceu-oi{font-size:14px;line-height:1.5;opacity:.92;margin:0;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
 .ceu-tempo{display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 12px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.18);color:#fff;font:inherit;font-size:12px;white-space:nowrap;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .ceu-tempo b{font-weight:700}
 .ceu-tempo .pv{width:6px;height:6px;border-radius:50%;background:#FFC21A;margin-right:2px} /* bolinha amarela: prévia, não é a previsão de verdade */
 .ceu-tempo:hover{background:rgba(0,0,0,.28)}
 .ceu-tempo:focus-visible{outline:2px solid #fff;outline-offset:2px}
-.ceu-hl{padding-right:44px;margin:var(--s-2xsm) 0 0;font-family:var(--display);font-weight:700;font-size:16px;line-height:1.3;color:#fff;text-wrap:balance;text-shadow:0 1px 12px rgba(0,0,0,.12)}
-.hc-srow{margin-top:var(--s-m)}
+.ceu-hl{padding-right:44px;margin:var(--s-xsm) 0 0;font-family:var(--display);font-weight:700;font-size:16px;line-height:1.3;color:#fff;text-wrap:balance;text-shadow:0 1px 12px rgba(0,0,0,.12)}
+.hc-srow{margin-top:var(--s-xsm)} /* mesmo espaço da saudação até o título */
 html.home-on.busca-home .navbar{z-index:15} /* a Home (z 19) cobre a navbar enquanto as sugestões estão abertas */
 .hc-srow .home-sbox{width:100%}
 .hc-srow .home-busca{background:var(--surface);border-color:var(--surface);box-shadow:0 6px 18px rgba(0,0,0,.12)}
