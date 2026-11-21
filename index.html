@@ -744,11 +744,8 @@ html.screen-open{overflow:hidden}
 .hc-loc>span>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .hc-loc:hover{background:var(--subtle)}
 .hc-top #home-bell{justify-self:end;background:var(--surface);border:1px solid var(--border)}
-/* cartão empilhado: uma "folha" mais clara aparece por trás, no topo */
-.hc-stack{position:relative;margin-top:var(--s-m);padding-top:12px}
-.hc-stack::before{content:'';position:absolute;left:16px;right:16px;top:0;height:40px;border-radius:var(--r-m) var(--r-m) 0 0;background:var(--ceu-b,#7FB2EA);opacity:.55}
+.hc-stack{position:relative;margin-top:var(--s-m)}
 .ceu{--ceu-a:#2F7FD8;--ceu-b:#69A9EE;position:relative;border-radius:var(--r-m);background:linear-gradient(160deg,var(--ceu-a),var(--ceu-b));color:#fff;transition:background .6s}
-.hc-stack:has(.ceu)::before{background:var(--hc-folha,#9CC6F2)}
 .ceu-in{position:relative;z-index:1;padding:var(--s-m)}
 .ceu-hd{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s-xsm)}
 .ceu-oi{font-size:14px;line-height:1.5;opacity:.92;margin:0;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
@@ -776,10 +773,6 @@ html.home-on.busca-home .navbar{z-index:15} /* a Home (z 19) cobre a navbar enqu
 .ceu.manha.frio{--ceu-a:#3F6C99;--ceu-b:#7FA9CF;--hc-folha:#B5CFE6}
 .ceu.tarde.frio{--ceu-a:#4B6A96;--ceu-b:#8C93BE;--hc-folha:#B6BAD8}
 .ceu.noite.frio{--ceu-a:#13233F;--ceu-b:#2F4A72;--hc-folha:#5A7398}
-.hc-stack:has(.ceu.manha.sol)::before{background:#A9CFF5}.hc-stack:has(.ceu.tarde.sol)::before{background:#F3A27F}.hc-stack:has(.ceu.noite.sol)::before{background:#6C5AA8}
-.hc-stack:has(.ceu.manha.chuva)::before{background:#A9B6C7}.hc-stack:has(.ceu.tarde.chuva)::before{background:#9A93AA}.hc-stack:has(.ceu.noite.chuva)::before{background:#5E6B82}
-.hc-stack:has(.ceu.manha.tempestade)::before{background:#8A8DA6}.hc-stack:has(.ceu.tarde.tempestade)::before{background:#7D7194}.hc-stack:has(.ceu.noite.tempestade)::before{background:#4D4466}
-.hc-stack:has(.ceu.manha.frio)::before{background:#B5CFE6}.hc-stack:has(.ceu.tarde.frio)::before{background:#B6BAD8}.hc-stack:has(.ceu.noite.frio)::before{background:#5A7398}
 /* efeitos: sol/lua, nuvens, gotas, raio, estrelas e geada (só os que combinam aparecem) */
 .ceu-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:inherit} /* só os efeitos ficam recortados: as sugestões da busca podem sair do cartão */
 .ceu-fx i{position:absolute;display:block;opacity:0;transition:opacity .6s}
