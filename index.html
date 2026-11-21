@@ -446,7 +446,15 @@ html.screen-open{overflow:hidden}
 .evs .glass{width:48px;height:48px;border-radius:50%;border:0;display:grid;place-items:center;background:var(--e-subtle);color:var(--e-text);text-decoration:none;flex:none}
 .evs .glass:hover{background:#333}
 .evs .spacer{height:186px} /* corpo começa em 250 px, como no Figma */
-.evs .corpo{display:flex;flex-direction:column;gap:var(--s-m)}
+.evs .corpo{display:flex;flex-direction:column;gap:var(--s-lg)}
+.evs .artista{display:flex;flex-direction:column;gap:var(--s-xsm)}
+.evs .vids{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;margin-right:calc(-1 * max(24px,env(safe-area-inset-right,0px)));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.evs .vids::-webkit-scrollbar{display:none}
+.evs .vid{flex:none;width:144px;height:200px;border-radius:var(--r-xsm);background:var(--e-subtle) center/cover no-repeat;display:grid;place-items:center;scroll-snap-align:start;position:relative;overflow:hidden}
+.evs .vid::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.18)}
+.evs .vid.pb{filter:grayscale(1)}
+.evs .vid svg{position:relative;width:40px;height:40px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
+.evs .vid:hover::before{background:rgba(0,0,0,.05)}
 .evs .soft{color:var(--e-text-2)}
 .evs .head{display:flex;align-items:center;gap:var(--s-sm)}
 .evs .head .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--s-2xsm)}
@@ -3321,6 +3329,7 @@ function renderEvScreen(e){
       '<div><p class="h5">'+ic('clock','#fff',20)+(d.noTime?'A confirmar':hora(d))+'</p><p class="desc-sm soft">'+longe+'</p></div>'+tempo+'</div>'+
     (e.alerta?'<div class="alerta-risco" role="alert">'+ic('alerta','#fff',20)+'<span><b>'+(e.arLivre?'Esse rolê é muito arriscado':'Previsão de '+(e.clima.tempestade?'tempestade':'chuva'))+'</b>'+
       (e.arLivre?'Previsão de '+(e.clima.tempestade?'tempestade':'chuva')+' e o lugar é ao ar livre. Confere com o lugar antes de sair.':'Parece que vai chover bastante, então leva blusa e guarda-chuva.')+'</span></div>':'')+
+    (musical?'<div class="artista"><h3 class="h6">Um pouco sobre o artista</h3><div class="vids">'+['22% 50%','50% 30%','80% 50%'].map(function(pos,i){return '<a class="vid'+(i===1?' pb':'')+'" href="https://www.youtube.com/results?search_query='+encodeURIComponent(e.name+(i===0?' ao vivo':i===1?' show':' clipe'))+'" target="_blank" rel="noopener" aria-label="Ver vídeos de '+esc(e.name)+' no YouTube" style="background-image:url(\''+e.img+'\');background-position:'+pos+'"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#fff"/><path d="M16 12.5v15l12-7.5z" fill="#03030F"/></svg></a>';}).join('')+'</div></div>':'')+
     (mot.length?'<div class="motivos"><h3 class="h6">'+(e.aff!=null&&e.aff>=TOP_MIN?'Por que é a sua cara':'Por que ir')+'</h3><div class="row">'+mot.map(function(m){return '<div class="motivo">'+m[0]+'<p>'+m[1]+'</p></div>';}).join('')+'</div></div>':'')+
     (e.venueKey&&VENUES[e.venueKey]?'<button type="button" class="lugar" id="evs-lugar"><img src="'+(vimg||ph(e.venue,generoDoLocal(e.venueKey)))+'" alt=""><span class="tx"><span class="desc-lg soft">Sobre o lugar</span><span class="h6">'+esc(e.venue)+'</span></span><span class="go">'+ic('arrow','#D10A87',24)+'</span></button>':'')+
     (outros.length?'<div class="more"><h3 class="h6">Também no '+esc(e.venue)+'</h3>'+outros.map(function(x){return '<button type="button" class="mini" data-evs="'+x.id+'"><img src="'+x.img+'" alt=""><span><b>'+esc(x.name)+'</b><span class="desc-sm soft">'+capt(SEM[x.date.getDay()])+', '+x.date.getDate()+' '+MES[x.date.getMonth()]+(x.date.noTime?'':' • '+hora(x.date))+'</span></span></button>';}).join('')+'</div>':'')+
