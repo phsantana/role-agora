@@ -2114,15 +2114,24 @@ document.getElementById('f-when').onclick=function(){
   openFiltro(this,'Quando você quer sair?',opts,k,function(v){if(v==='custom') return setTimeout(openDates,320);setWhen(v==='all'?null:Object.assign({k:v},whenRange(v)));});
 };
 /* ---------- Gênero musical: filtro com seta, como Rolê ou Local e Data ---------- */
+// gênero parecido com o seu gosto: da mesma família de um gênero que você curte (Pop Rock → Rock, Brasilidades → MPB)
+// ou muito próximo dele na tabela de compatibilidade (Samba ↔ Pagode). Devolve o gênero do gosto que puxou
+function parecido(g){
+  var p=state.profile;if(!p||p[g]||!generoMusical(g)) return null;
+  var f=SIM.Rock[g]!=null?g:FAMILY[g];if(!f) return null; // sem família conhecida (Axé, Infantil...): não chuta
+  var best=null,bv=0;Object.keys(p).forEach(function(k){var v=(SIM[k]&&SIM[k][f])||0;if(v>=.85&&(v>bv||(v===bv&&p[k]>p[best]))){bv=v;best=k;}});
+  return best;
+}
 function generoMusical(g){return g&&!NAO_MUSICAL[g]&&!/^(evento|outros?|show)$/i.test(g);}
 // gêneros com rolê nos outros filtros (data, busca, região), com a contagem de cada um
 function comGeneros(gs,fn){var g0=state.genres;state.genres=gs;try{return fn();}finally{state.genres=g0;}}
 function generosDisponiveis(){
   var vis=comGeneros([],visible);
   var c={};vis.forEach(function(e){if(generoMusical(e.genre)) c[e.genre]=(c[e.genre]||0)+1;});
-  var p=state.profile||{};
-  // primeiro os do seu gosto (pelo peso), depois os com mais rolês
-  return Object.keys(c).sort(function(a,b){return ((p[b]||0)-(p[a]||0))||(c[b]-c[a])||a.localeCompare(b);}).map(function(g){return {g:g,n:c[g],seu:!!p[g]};});
+  var p=state.profile||{},rel={};Object.keys(c).forEach(function(g){rel[g]=parecido(g);});
+  // primeiro os do seu gosto (pelo peso), depois os parecidos com ele, depois os com mais rolês
+  var nivel=function(g){return p[g]?2+p[g]:rel[g]?1:0;};
+  return Object.keys(c).sort(function(a,b){return (nivel(b)-nivel(a))||(c[b]-c[a])||a.localeCompare(b);}).map(function(g){return {g:g,n:c[g],seu:!!p[g]||!!rel[g],como:p[g]?null:rel[g]};});
 }
 // um gênero: o nome no botão; vários: "Gêneros" com a quantidade na badge
 function renderGenre(){var gs=state.genres,n=gs.length;
@@ -2131,8 +2140,8 @@ document.getElementById('f-genre').onclick=function(){
   var btn=this,gs=generosDisponiveis(),sel=state.genres.slice();
   sel.forEach(function(g){if(!gs.some(function(x){return x.g===g;})) gs.unshift({g:g,n:0,seu:!!(state.profile&&state.profile[g])});});
   var locs=state.modo==='locais';
-  openSheet('<h2 class="h4" id="sheet-title">Qual som você quer ouvir?</h2><p class="body-sm muted">Escolha um ou mais.'+(state.profile?' Os do seu gosto vêm primeiro, com estrela.':'')+'</p>'+
-    '<div class="genres gpick" role="group" aria-label="Gêneros">'+gs.map(function(x){return '<button type="button" class="chip'+(x.seu?' seu':'')+'" data-g="'+esc(x.g)+'" aria-pressed="'+(sel.indexOf(x.g)>=0)+'"'+(x.seu?' aria-description="Do seu gosto"':'')+'>'+(x.seu?'<svg class="gs" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.4 6.1 6.6.5-5 4.3 1.6 6.4L12 16.3l-5.6 3.5L8 13.4 3 9.1l6.6-.5z"/></svg>':'')+esc(x.g)+'<span class="gn" aria-label="'+plural(x.n,'rolê','rolês')+'">'+x.n+'</span></button>';}).join('')+'</div>'+
+  openSheet('<h2 class="h4" id="sheet-title">Qual som você quer ouvir?</h2><p class="body-sm muted">Escolha um ou mais.'+(state.profile?' Os do seu gosto e os parecidos vêm primeiro, com estrela.':'')+'</p>'+
+    '<div class="genres gpick" role="group" aria-label="Gêneros">'+gs.map(function(x){return '<button type="button" class="chip'+(x.seu?' seu':'')+'" data-g="'+esc(x.g)+'" aria-pressed="'+(sel.indexOf(x.g)>=0)+'"'+(x.seu?' aria-description="'+(x.como?'Parecido com '+esc(x.como)+', do seu gosto':'Do seu gosto')+'"':'')+'>'+(x.seu?'<svg class="gs" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.4 6.1 6.6.5-5 4.3 1.6 6.4L12 16.3l-5.6 3.5L8 13.4 3 9.1l6.6-.5z"/></svg>':'')+esc(x.g)+'<span class="gn" aria-label="'+plural(x.n,'rolê','rolês')+'">'+x.n+'</span></button>';}).join('')+'</div>'+
     '<div class="gacts"><button type="button" class="btn secondary md" id="g-clear">Limpar</button><button type="button" class="btn primary md" id="g-ok"></button></div>','Escolher gêneros');
   btn.setAttribute('aria-expanded','true');
   sheetOnClose=function(){btn.setAttribute('aria-expanded','false');};
