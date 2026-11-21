@@ -816,7 +816,9 @@ html.home-on.busca-home .navbar{z-index:15} /* a Home (z 19) cobre a navbar enqu
 .hc-bairro .tx b{font-family:var(--display);font-size:20px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .hc-bairro .tx span{font-size:12px;opacity:.9}
 .hc-bairro:focus-visible{outline:2px solid var(--action);outline-offset:2px}
-.hc-h2{align-items:flex-start}.hc-h2 p{margin:2px 0 0}
+.hc-h2{align-items:flex-start}.hc-h2>div{min-width:0;width:100%}
+/* descrição das seções: 14px e nunca mais de 1 linha (diretriz de 21/11) */
+.hc-h2 p{margin:2px 0 0;font-size:14px;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hc-mom{position:relative;flex:none;width:232px;height:208px;border:0;padding:0;border-radius:var(--r-xsm);overflow:hidden;scroll-snap-align:start;cursor:pointer;background:var(--subtle);text-align:left;color:#fff;font:inherit}
 .hc-mom img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hc-mom::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 25%,rgba(0,0,0,.72))}
@@ -2834,14 +2836,14 @@ function tituloMomento(){
   var a=ceuAgora(),now=state.when&&state.when.from>new Date()?state.when.from:new Date(),p=CEU_FORCADO?CEU_FORCADO.p:a.p,t=CEU_FORCADO?CEU_FORCADO.t:a.t,dow=now.getDay(),masc=dow===0||dow===6;
   var quente=CEU_FORCADO?t==='sol':(a.cl&&a.cl.max>=30),fds=dow===6||dow===0||(dow===5&&now.getHours()>=17);
   var essa=(masc?'esse ':'essa ')+DIA_CURTO[dow],pro=masc?'Pro ':'Pra ',per={manha:'manhã',tarde:'tarde',noite:'noite'}[p];
-  if(t==='tempestade') return ['Pra fugir da tempestade','Lugares cobertos com a sua vibe. Se sair, vai de carro.'];
-  if(t==='chuva') return ['Pra '+essa+' chuvosa'.replace('chuvosa',masc?'chuvoso':'chuvosa'),'Lugares cobertos e som que combina com chuva.'];
-  if(t==='frio') return ['Pra esquentar a '+per+' fria','Lugares fechados, aconchegantes e com a sua vibe.'];
-  if(quente&&fds) return [pro+DIA_CURTO[dow]+' de sol','Ao ar livre com som animado, ou no fresquinho com a sua vibe.'];
-  if(quente) return ['Pra esse calorão de '+DIA_CURTO[dow],'Rolê ao ar livre no fim do dia e happy hour com a sua cara.'];
-  if(p==='tarde') return ['Pra fechar '+(masc?'o ':'a ')+DIA_CURTO[dow],'Fim de tarde e happy hour com a sua vibe.'];
+  if(t==='tempestade') return ['Pra fugir da tempestade','Lugares cobertos com a sua vibe.'];
+  if(t==='chuva') return ['Pra '+essa+' chuvosa'.replace('chuvosa',masc?'chuvoso':'chuvosa'),'Lugares cobertos e som pra chuva.'];
+  if(t==='frio') return ['Pra esquentar a '+per+' fria','Lugares fechados com a sua vibe.'];
+  if(quente&&fds) return [pro+DIA_CURTO[dow]+' de sol','Ao ar livre ou no fresquinho.'];
+  if(quente) return ['Pra esse calorão de '+DIA_CURTO[dow],'Ar livre no fim do dia e happy hour.'];
+  if(p==='tarde') return ['Pra fechar '+(masc?'o ':'a ')+DIA_CURTO[dow],'Fim de tarde e happy hour.'];
   if(p==='noite') return ['Pra noite de '+DIA_CURTO[dow],fds?'Som animado e lugares com a sua cara.':'Rolês tranquilos pra hoje à noite.'];
-  return ['Pra planejar '+(masc?'o ':'a ')+DIA_CURTO[dow],'Os rolês de hoje que mais combinam com você e com o tempo.'];
+  return ['Pra planejar '+(masc?'o ':'a ')+DIA_CURTO[dow],'Mais combinam com você e com o tempo.'];
 }
 function renderMomento(vis){
   var tt=tituloMomento();document.getElementById('hc-momento-t').textContent=tt[0];document.getElementById('hc-momento-sub').textContent=tt[1];
