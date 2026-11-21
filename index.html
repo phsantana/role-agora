@@ -208,6 +208,10 @@ button.tchip:hover{background:var(--action-subtle)}
 .found+.filtros,.grab+.filtros{margin-top:-6px}
 .gpick{margin:var(--s-m) 0}
 .gpick .chip{cursor:pointer;height:40px;padding:0 14px 0 16px;font-size:16px}
+/* gêneros do seu gosto: destaque sutil (contorno e fundo rosados, estrelinha) */
+.gpick .chip.seu:not([aria-pressed=true]){border-color:var(--action);background:var(--action-subtle)}
+.gpick .chip .gs{width:14px;height:14px;flex:none;color:var(--action)}
+.gpick .chip[aria-pressed=true] .gs{color:currentColor}
 .gpick .gn{font-size:12px;font-weight:400;opacity:.72}
 .gacts{display:grid;grid-template-columns:1fr 2fr;gap:var(--s-xsm)}
 .gacts .btn:disabled{opacity:.4;cursor:default}
@@ -2127,8 +2131,8 @@ document.getElementById('f-genre').onclick=function(){
   var btn=this,gs=generosDisponiveis(),sel=state.genres.slice();
   sel.forEach(function(g){if(!gs.some(function(x){return x.g===g;})) gs.unshift({g:g,n:0,seu:!!(state.profile&&state.profile[g])});});
   var locs=state.modo==='locais';
-  openSheet('<h2 class="h4" id="sheet-title">Qual som você quer ouvir?</h2><p class="body-sm muted">Escolha um ou mais.'+(state.profile?' Os do seu gosto vêm primeiro.':'')+'</p>'+
-    '<div class="genres gpick" role="group" aria-label="Gêneros">'+gs.map(function(x){return '<button type="button" class="chip" data-g="'+esc(x.g)+'" aria-pressed="'+(sel.indexOf(x.g)>=0)+'">'+esc(x.g)+'<span class="gn" aria-label="'+plural(x.n,'rolê','rolês')+'">'+x.n+'</span></button>';}).join('')+'</div>'+
+  openSheet('<h2 class="h4" id="sheet-title">Qual som você quer ouvir?</h2><p class="body-sm muted">Escolha um ou mais.'+(state.profile?' Os do seu gosto vêm primeiro, com estrela.':'')+'</p>'+
+    '<div class="genres gpick" role="group" aria-label="Gêneros">'+gs.map(function(x){return '<button type="button" class="chip'+(x.seu?' seu':'')+'" data-g="'+esc(x.g)+'" aria-pressed="'+(sel.indexOf(x.g)>=0)+'"'+(x.seu?' aria-description="Do seu gosto"':'')+'>'+(x.seu?'<svg class="gs" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.4 6.1 6.6.5-5 4.3 1.6 6.4L12 16.3l-5.6 3.5L8 13.4 3 9.1l6.6-.5z"/></svg>':'')+esc(x.g)+'<span class="gn" aria-label="'+plural(x.n,'rolê','rolês')+'">'+x.n+'</span></button>';}).join('')+'</div>'+
     '<div class="gacts"><button type="button" class="btn secondary md" id="g-clear">Limpar</button><button type="button" class="btn primary md" id="g-ok"></button></div>','Escolher gêneros');
   btn.setAttribute('aria-expanded','true');
   sheetOnClose=function(){btn.setAttribute('aria-expanded','false');};
