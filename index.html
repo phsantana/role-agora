@@ -2143,7 +2143,7 @@ document.getElementById('f-genre').onclick=function(){
   var chip=function(x){return '<button type="button" class="chip" data-g="'+esc(x.g)+'" aria-pressed="'+(sel.indexOf(x.g)>=0)+'">'+esc(x.g)+'<span class="gn" aria-label="'+plural(x.n,'rolê','rolês')+'">'+x.n+'</span></button>';};
   var vibe=gs.filter(function(x){return x.seu;}),outros=gs.filter(function(x){return !x.seu;});
   var secao=function(id,titulo,lista){return lista.length?'<section class="gsec" aria-labelledby="'+id+'">'+(titulo?'<h3 class="eyebrow" id="'+id+'">'+titulo+'</h3>':'')+'<div class="genres gpick" role="group"'+(titulo?' aria-labelledby="'+id+'"':' aria-label="Gêneros"')+'>'+lista.map(chip).join('')+'</div></section>':'';};
-  openSheet('<h2 class="h4" id="sheet-title">Qual som você quer ouvir?</h2><p class="body-sm muted">Escolha um ou mais.</p>'+
+  openSheet('<h2 class="h4" id="sheet-title">Qual som você quer ouvir?</h2>'+
     '<div class="gsecs">'+(vibe.length?secao('gs-vibe','Tem mais a sua vibe',vibe)+secao('gs-outros','Outros gêneros',outros):secao('gs-todos','',outros))+'</div>'+
     '<div class="gacts"><button type="button" class="btn secondary md" id="g-clear">Limpar</button><button type="button" class="btn primary md" id="g-ok"></button></div>','Escolher gêneros');
   btn.setAttribute('aria-expanded','true');
