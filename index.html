@@ -209,7 +209,7 @@ button.tchip:hover{background:var(--action-subtle)}
 .gpick{margin:var(--s-m) 0}
 .gpick .chip{cursor:pointer;height:40px;padding:0 14px 0 16px;font-size:16px}
 .gpick .gn{font-size:12px;font-weight:400;opacity:.72}
-.gacts{display:grid;grid-template-columns:1fr 2fr;gap:var(--s-xsm);margin-bottom:var(--s-xsm)}
+.gacts{display:grid;grid-template-columns:1fr 2fr;gap:var(--s-xsm)}
 .gacts .btn:disabled{opacity:.4;cursor:default}
 .fbtn{flex:none;display:inline-flex;align-items:center;gap:var(--s-2xsm);height:45px;padding:0 14px 0 18px;border:1px solid var(--border-strong);border-radius:var(--r-pill);background:var(--surface);font:inherit;font-size:14px;color:var(--text);white-space:nowrap;cursor:pointer;transition:background .15s,box-shadow .15s,border-color .15s}
 .fbtn svg{width:20px;height:20px;flex:none}
@@ -2129,8 +2129,7 @@ document.getElementById('f-genre').onclick=function(){
   var locs=state.modo==='locais';
   openSheet('<h2 class="h4" id="sheet-title">Qual som você quer ouvir?</h2><p class="body-sm muted">Escolha um ou mais.'+(state.profile?' Os do seu gosto vêm primeiro.':'')+'</p>'+
     '<div class="genres gpick" role="group" aria-label="Gêneros">'+gs.map(function(x){return '<button type="button" class="chip" data-g="'+esc(x.g)+'" aria-pressed="'+(sel.indexOf(x.g)>=0)+'">'+esc(x.g)+'<span class="gn" aria-label="'+plural(x.n,'rolê','rolês')+'">'+x.n+'</span></button>';}).join('')+'</div>'+
-    '<div class="gacts"><button type="button" class="btn secondary md" id="g-clear">Limpar</button><button type="button" class="btn primary md" id="g-ok"></button></div>'+
-    '<button type="button" class="btn ghost md block" id="g-edit">'+(state.profile?'Editar meu gosto':'Escolher meu gosto')+'</button>','Escolher gêneros');
+    '<div class="gacts"><button type="button" class="btn secondary md" id="g-clear">Limpar</button><button type="button" class="btn primary md" id="g-ok"></button></div>','Escolher gêneros');
   btn.setAttribute('aria-expanded','true');
   sheetOnClose=function(){btn.setAttribute('aria-expanded','false');};
   // o botão principal mostra quantos rolês (ou locais) aparecem com a escolha
@@ -2143,7 +2142,6 @@ document.getElementById('f-genre').onclick=function(){
   document.getElementById('g-clear').onclick=function(){sel=[];document.querySelectorAll('.gpick [data-g]').forEach(function(c){c.setAttribute('aria-pressed','false');});conta();};
   document.getElementById('g-ok').onclick=function(){var mudou=sel.slice().sort().join('|')!==state.genres.slice().sort().join('|');closeSheet();
     if(mudou){state.genres=sel;moreOpen={};render();startScan();}};
-  document.getElementById('g-edit').onclick=function(){closeSheet();setTimeout(openGenres,320);};
 };
 // data padrão: "Hoje" se tem rolê hoje; senão "Qualquer data". Vale até a pessoa escolher outra data
 function autoWhen(){
