@@ -1,5 +1,5 @@
 {
- "coletado": "2026-11-20",
+ "coletado": "2026-11-21",
  "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
  "V": {
   "varanda_boa_vista": {
@@ -396,7 +396,8 @@
    "nota": 4.6,
    "genero": "Brasilidades",
    "generosTop": [
-    "Brasilidades"
+    "Brasilidades",
+    "Rock"
    ]
   },
   "choperia_cristim": {
@@ -933,7 +934,8 @@
    "rbcd3f89b": "Sertanejo",
    "r06b0a9ff": "Sertanejo",
    "r9f8be50a": "Sertanejo",
-   "rc73569ad": "Sertanejo"
+   "rc73569ad": "Sertanejo",
+   "r400ffa53": "Encontros e Palestras"
   },
   "varanda_boa_vista": {
    "antigo2": "Sertanejo",
@@ -1160,7 +1162,9 @@
   },
   "arapuca_bar": {
    "re234f584": "Sertanejo",
-   "r38962096": "Sertanejo"
+   "r38962096": "Sertanejo",
+   "r3fb9374d": "Sertanejo",
+   "rc5c7a9ef": "Sertanejo"
   },
   "dg_espetaria": {
    "r2a432d92": "Rock",
@@ -1171,7 +1175,8 @@
    "r1e0f8d93": "Sertanejo",
    "r9ba3c4ef": "Sertanejo",
    "r68307672": "Sertanejo",
-   "r83573e25": "Brasilidades"
+   "r83573e25": "Brasilidades",
+   "r2a38ec99": "Sertanejo"
   },
   "o_beco_bar": {
    "r1bc80066": "Pop Rock",
@@ -1202,196 +1207,6 @@
   }
  },
  "rows": [
-  [
-   "r10ec85e3",
-   "Gustavo Galindo",
-   "rooftop_bar",
-   "Sertanejo",
-   "2026-11-20",
-   "17:00",
-   "gustavo-galindo",
-   3620
-  ],
-  [
-   "r7792cc2c",
-   "Elly Guimaraes",
-   "rooftop_bar",
-   "Samba",
-   "2026-11-20",
-   "17:00",
-   "elly-guimaraes",
-   6324
-  ],
-  [
-   "r42df5e59",
-   "Fator 90",
-   "estacao_foodpark",
-   "Rock",
-   "2026-11-20",
-   "18:00",
-   "fator-90",
-   0
-  ],
-  [
-   "rce43905c",
-   "Krivos",
-   "sal_grosso_choperia_e_petiscaria",
-   "Rock",
-   "2026-11-20",
-   "18:00",
-   "krivos",
-   2007
-  ],
-  [
-   "r3e9bc3c2",
-   "Victor & Gabriel",
-   "o_beco_bar",
-   "Sertanejo",
-   "2026-11-20",
-   "19:00",
-   "victor-gabriel",
-   4713
-  ],
-  [
-   "r1819c1c4",
-   "Oscaraveio Rock Cover",
-   "dg_espetaria",
-   "Rock",
-   "2026-11-20",
-   "20:00",
-   "oscaraveio-rock-cover",
-   2203
-  ],
-  [
-   "rc73569ad",
-   "Amanda Maranho",
-   "agrobar",
-   "Sertanejo",
-   "2026-11-20",
-   "20:00",
-   "amanda-maranho",
-   5890
-  ],
-  [
-   "rdc4bc0a1",
-   "Caso à Parte",
-   "bar_da_onca",
-   "Pagode",
-   "2026-11-20",
-   "20:00",
-   "caso-a-parte",
-   26204
-  ],
-  [
-   "reea5c617",
-   "Lucas Purga",
-   "alphaville_bar_e_petiscaria",
-   "Sertanejo",
-   "2026-11-20",
-   "20:00",
-   "lucas-purga",
-   962
-  ],
-  [
-   "r4b0453cf",
-   "Chico César",
-   "sesc_thermas",
-   "MPB",
-   "2026-11-20",
-   "20:30",
-   "chico-cesar",
-   916105
-  ],
-  [
-   "r79628beb",
-   "João Markos",
-   "exquina_bar",
-   "Sertanejo",
-   "2026-11-20",
-   "20:30",
-   "joao-markos",
-   8916
-  ],
-  [
-   "ra2227a74",
-   "Pamela Maria",
-   "vo_laura_gourmet",
-   "Sertanejo",
-   "2026-11-20",
-   "20:30",
-   "pamela-maria",
-   7721
-  ],
-  [
-   "rafee94b7",
-   "Trix",
-   "deck_bar",
-   "Pop Rock",
-   "2026-11-20",
-   "",
-   "trix",
-   1449
-  ],
-  [
-   "re7fe522e",
-   "Grupo 100 Malícia",
-   "villa_18_container_bar",
-   "Pagode",
-   "2026-11-20",
-   "21:30",
-   "grupo-100-malicia",
-   8486
-  ],
-  [
-   "r68307672",
-   "Bia Marks",
-   "choperia_colina_bancarios",
-   "Sertanejo",
-   "2026-11-20",
-   "21:45",
-   "bia-marks",
-   7372
-  ],
-  [
-   "r295be1a0",
-   "Heeyalt",
-   "new_york_lounge_nyl",
-   "Eletrônica",
-   "2026-11-20",
-   "23:00",
-   "heeyalt",
-   0
-  ],
-  [
-   "r6a6fc34f",
-   "João Victor De Souza",
-   "new_york_lounge_nyl",
-   "Eletrônica",
-   "2026-11-20",
-   "23:00",
-   "joao-victor-de-souza",
-   1863
-  ],
-  [
-   "rcb9902e8",
-   "Indio",
-   "new_york_lounge_nyl",
-   "Brasilidades",
-   "2026-11-20",
-   "23:00",
-   "indio",
-   6168
-  ],
-  [
-   "r5610fb3a",
-   "Samba E Suor",
-   "exquina_bar",
-   "Samba",
-   "2026-11-21",
-   "14:00",
-   "samba-e-suor",
-   2238
-  ],
   [
    "r947a9b8a",
    "Zilvan",
@@ -1433,6 +1248,16 @@
    1094
   ],
   [
+   "r400ffa53",
+   "Zé Pedro",
+   "agrobar",
+   "Encontros e Palestras",
+   "2026-11-21",
+   "20:00",
+   "ze-pedro",
+   0
+  ],
+  [
    "rb012a99d",
    "Trix",
    "overdrive_music_bar",
@@ -1461,6 +1286,26 @@
    "20:30",
    "gustavo-galindo",
    3620
+  ],
+  [
+   "r3fb9374d",
+   "Hendy Viale",
+   "arapuca_bar",
+   "Sertanejo",
+   "2026-11-21",
+   "",
+   "hendy-viale",
+   6913
+  ],
+  [
+   "rc5c7a9ef",
+   "Bugão",
+   "arapuca_bar",
+   "Sertanejo",
+   "2026-11-21",
+   "",
+   "bugao",
+   1072
   ],
   [
    "rd88b9e8f",
@@ -1903,6 +1748,16 @@
    42203
   ],
   [
+   "r2a38ec99",
+   "Robson Reis",
+   "choperia_colina_bancarios",
+   "Sertanejo",
+   "2026-12-20",
+   "14:00",
+   "robson-reis",
+   11172
+  ],
+  [
    "r890ef37e",
    "É o Tchan",
    "fabrica_gastrobar",
@@ -2024,6 +1879,8 @@
   "oscaraveio-rock-cover": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/3bf0c916-fd21-4b6f-bbd1-264bc3c9d026/1779292284788-vsug0x.webp",
   "krivos": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/27a4b8e0-7c4c-453d-84b6-1cc8fd73c706/1779125459414-bmyf4f.webp",
   "pamela-maria": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/58dab8da-5cab-4249-a686-2189841575df/1779124756983-g72fth.webp",
-  "patota-do-samba": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1774056579908-yrt44u.webp"
+  "patota-do-samba": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1774056579908-yrt44u.webp",
+  "hendy-viale": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/99f519e4-d19e-4635-8fcb-104cff19c048/1782778241693-u60y6q.webp",
+  "bugao": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/698c6fca-50e7-4ace-84bc-5321b83bb0d7/1788732886038-i0bpzf.webp"
  }
 }
