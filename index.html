@@ -2020,11 +2020,6 @@ function renderLists(b){
   if(!any) inner+='<p class="desc-lg muted">'+(state.q?'Nada rolando por aqui com essa busca. Que tal limpar a busca?':!b.all.length?(state.when?'Nenhum rolê nessa data. Tenta outra.':state.area?'Nenhum rolê nesta região. Afaste o mapa pra ver mais.':'Nenhum rolê rolando por aqui agora.'):'Os outros rolês já estão lá em cima.')+'</p>';
   sec.innerHTML=inner;main.appendChild(sec);
   sec.querySelectorAll('[data-more]').forEach(function(btn){btn.onclick=function(){moreOpen[btn.getAttribute('data-more')]=true;renderLists(buckets());};});
-  var note=document.createElement('p');note.className='note';note.id='note';
-  note.textContent=state.city.live
-    ?'Agenda pública do Rolê Agora em '+state.city.name+', '+state.city.uf+', lida agora no site. O site não informa coordenadas, então as distâncias são estimadas por bairro. As fotos dos artistas só aparecem no site.'
-    :'Agenda pública do Rolê Agora em Presidente Prudente, atualizada em '+COLETADO.split('-').reverse().join('/')+'. Distâncias medidas a partir do Centro com as coordenadas dos lugares publicadas no site.';
-  main.appendChild(note);
 }
 /* ---------- Rolês × Locais: vale pro mapa e pros resultados ---------- */
 var SETA='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
