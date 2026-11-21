@@ -1134,7 +1134,8 @@
    "r0fdd8ae0": "Sertanejo",
    "rc9ccd037": "Sertanejo",
    "r3c8c50ed": "Sertanejo",
-   "ra2227a74": "Sertanejo"
+   "ra2227a74": "Sertanejo",
+   "r26d6d1e5": "Sertanejo"
   },
   "sesc_thermas": {
    "r620d9408": "Teatro",
@@ -1208,16 +1209,6 @@
  },
  "rows": [
   [
-   "r947a9b8a",
-   "Zilvan",
-   "estacao_foodpark",
-   "Reggae",
-   "2026-11-21",
-   "18:00",
-   "zilvan",
-   2344
-  ],
-  [
    "r7204c401",
    "Grupo Fina Estampa",
    "o_beco_bar",
@@ -1258,6 +1249,16 @@
    0
   ],
   [
+   "rac6e2704",
+   "Noite de Karaokê — Karaokê",
+   "valete_bar",
+   "evento",
+   "2026-11-21",
+   "20:00",
+   "noite-de-karaoke-karaoke",
+   0
+  ],
+  [
    "rb012a99d",
    "Trix",
    "overdrive_music_bar",
@@ -1266,6 +1267,16 @@
    "20:00",
    "trix",
    1449
+  ],
+  [
+   "r26d6d1e5",
+   "Luiz Araujo",
+   "vo_laura_gourmet",
+   "Sertanejo",
+   "2026-11-21",
+   "20:30",
+   "luiz-araujo",
+   4799
   ],
   [
    "r83573e25",
@@ -1881,6 +1892,7 @@
   "pamela-maria": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/58dab8da-5cab-4249-a686-2189841575df/1779124756983-g72fth.webp",
   "patota-do-samba": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1774056579908-yrt44u.webp",
   "hendy-viale": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/99f519e4-d19e-4635-8fcb-104cff19c048/1782778241693-u60y6q.webp",
-  "bugao": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/698c6fca-50e7-4ace-84bc-5321b83bb0d7/1788732886038-i0bpzf.webp"
+  "bugao": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/698c6fca-50e7-4ace-84bc-5321b83bb0d7/1788732886038-i0bpzf.webp",
+  "luiz-araujo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/ae0ad5f3-0f80-4372-97ed-94b08837f4ea/1786135371168-yqlxea.webp"
  }
 }
