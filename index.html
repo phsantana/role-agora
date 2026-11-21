@@ -472,6 +472,40 @@ html.screen-open{overflow:hidden}
 .evs .lugar .go{flex:none;width:40px;height:40px;border-radius:50%;background:var(--e-text);display:grid;place-items:center}
 .evs .lugar:hover .go{background:#E5E5E5}
 .evs .alerta-risco{margin-top:0}
+.evs .vlink{border:0;background:none;padding:0;font:inherit;color:var(--e-text);text-decoration:underline;text-decoration-color:rgba(255,255,255,.4);text-underline-offset:3px;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.evs .vlink:hover{text-decoration-color:currentColor}
+/* página do estabelecimento: foto no topo, corpo claro arredondado por cima, barra fixa embaixo */
+.screen.vs{background:var(--surface);color:var(--text)}
+.vs-hero{position:relative;height:340px;background:var(--subtle)}
+.vs-hero>img{width:100%;height:100%;object-fit:cover;display:block}
+.vs-top{position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px))}
+.vs-acts{display:flex;gap:var(--s-xsm)}
+.vs-glass{width:40px;height:40px;border-radius:50%;border:0;display:grid;place-items:center;background:rgba(23,23,23,.36);color:#fff;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);cursor:pointer}
+.vs-glass:hover{background:rgba(23,23,23,.52)}
+.vs-glass:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.vs-fav.on{color:#FF3B6B}.vs-fav.on svg path{fill:currentColor}
+.vs-body{position:relative;margin-top:-32px;background:var(--surface);border-radius:var(--r-xlg) var(--r-xlg) 0 0}
+.vs-in{max-width:430px;margin:0 auto;padding:var(--s-l,32px) max(24px,env(safe-area-inset-right,0px)) calc(120px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:var(--s-sm)}
+.vs-in .h3{overflow-wrap:anywhere}
+.vs-lin{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:14px;line-height:1.5;color:var(--text-2);margin-top:calc(-1 * var(--s-xsm))}
+.vs-lin b{color:var(--text);font-weight:600}
+.vs-sep{width:4px;height:4px;border-radius:50%;background:var(--border-strong);margin:0 4px}
+.vs-dest{font-size:16px;line-height:1.5;color:var(--text-2)}
+.vs-dest b{color:var(--action);font-weight:700}
+.vs-hr{border:0;border-top:1px solid var(--border);margin:var(--s-xsm) 0;width:100%}
+.vs-in section{display:flex;flex-direction:column;gap:var(--s-xsm)}
+.vs-p{color:var(--text-2)}
+.vs-gts{display:flex;flex-wrap:wrap;gap:var(--s-xsm)}
+.vs-icons{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-xsm)}
+.vs-icons li{display:flex;flex-direction:column;align-items:center;gap:var(--s-2xsm);text-align:center;font-size:12px;line-height:1.4;color:var(--text-2)}
+.vs-icons .ico{width:28px;height:28px;color:var(--text)}
+.vs-in .ev-list{margin-top:0}
+.vs-bar{position:fixed;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:var(--s-sm);padding:var(--s-sm) max(24px,env(safe-area-inset-right,0px)) calc(var(--s-sm) + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px));background:var(--surface);border-top:1px solid var(--border);border-radius:var(--r-m) var(--r-m) 0 0;box-shadow:0 -8px 24px rgba(23,23,23,.06)}
+.vs-bar .tx{display:flex;flex-direction:column;min-width:0}
+.vs-bar .tx span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vs-bar .tx b{font-size:16px;color:var(--action);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vs-bar .btn{flex:none;text-decoration:none}
+@media (min-width:1024px){.vs-bar{position:sticky}}
 .evs .more{display:flex;flex-direction:column;gap:12px}
 .evs .mini{display:flex;align-items:center;gap:12px;border:0;background:transparent;color:inherit;padding:0;text-align:left;font:inherit}
 .evs .mini img{width:44px;height:44px;border-radius:50%;object-fit:cover;flex:none}
@@ -892,6 +926,7 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
 </section>
 <section class="screen" id="agenda" role="dialog" aria-modal="true" aria-labelledby="ag-title" aria-hidden="true"><div class="screen-in"><header class="screen-bar"><button type="button" class="back" id="ag-back" aria-label="Voltar"><svg class="ico ico-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button><div class="ag-tt"><h2 class="h5" id="ag-title">Agenda</h2><p class="desc-sm muted" id="ag-sub"></p></div><button type="button" class="fbtn ag-modo-btn" id="ag-modo-btn" aria-haspopup="dialog" aria-expanded="false"></button></header><div id="ag-body"></div></div></section>
 <section class="screen evs" id="evs" role="dialog" aria-modal="true" aria-labelledby="evs-title" aria-hidden="true"></section>
+<section class="screen vs" id="vs" role="dialog" aria-modal="true" aria-labelledby="vs-title" aria-hidden="true"></section>
 <div class="scrim" id="scrim"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title"><div class="handle"></div><button class="close" id="sheet-close" type="button" aria-label="Fechar"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button><div id="sheet-body"></div></div>
 <nav class="navbar" id="navbar" aria-label="Menu principal">
@@ -908,65 +943,65 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
 'use strict';
 /* ---------- Dados: agenda pública de Presidente Prudente (roleagora.com.br; atualizada pelo atualizar_prudente.py) ---------- */
 var VENUES={
-  varanda_boa_vista:{"name": "Varanda Boa Vista", "bairro": "Jardim Alto da Boa Vista", "lat": -22.1429023, "lng": -51.410229, "tipo": "Restaurante", "av": 311},
-  agrobar:{"name": "Agrobar", "bairro": "Vila Ocidental", "lat": -22.122218, "lng": -51.3960443, "tipo": "Bar", "av": 47},
-  cult_bar:{"name": "Cult Bar", "bairro": "Centro", "lat": -22.1223859, "lng": -51.3869472, "tipo": "Edifício"},
-  alphaville_bar_e_petiscaria:{"name": "Alphaville Bar e Petiscaria", "bairro": "Vila Boa Vista", "lat": -22.1119561, "lng": -51.3846322, "tipo": "Restaurante", "arLivre": true, "av": 1267},
-  valete_bar:{"name": "Valete Bar", "bairro": "Jardim Paulista", "lat": -22.1158889, "lng": -51.4007753, "tipo": "Bar", "av": 296},
-  exquina_bar:{"name": "Exquina Bar", "bairro": "Vila Santa Helena", "lat": -22.1212473, "lng": -51.3974565, "tipo": "Restaurante", "arLivre": true},
-  ibiza_lounge_bar:{"name": "Ibiza Lounge Bar", "bairro": "Vila Santa Helena", "lat": -22.1172046, "lng": -51.3997127, "tipo": "Bar", "arLivre": true, "av": 194},
-  villa_18_container_bar:{"name": "Villa 18 Container Bar", "bairro": "Jardim das Rosas", "lat": -22.1136449, "lng": -51.4133731, "tipo": "Bar", "arLivre": true, "av": 58},
-  new_york_lounge_nyl:{"name": "New York Lounge - NYL", "bairro": "Jardim dos Pioneiros", "lat": -22.1390956, "lng": -51.406647, "tipo": "Casa noturna", "av": 109},
-  bar_da_onca:{"name": "Bar da Onça", "bairro": "Vila Cláudia Glória", "lat": -22.1216664, "lng": -51.3988011, "tipo": "Bares", "arLivre": true, "av": 274},
-  jardim_esmeralda:{"name": "Jardim Esmeralda", "bairro": "Jardim Monte Alto", "lat": -22.1246873, "lng": -51.425278, "tipo": "Bar", "arLivre": true, "av": 34},
-  fabrica_gastrobar:{"name": "Fábrica Gastrobar", "bairro": "Jardim Petrópolis", "lat": -22.1201125, "lng": -51.4173716, "tipo": "Bar", "av": 236},
-  seu_bastiao_pub:{"name": "Seu Bastião Pub", "bairro": "UEP1-S.2", "lat": -22.1199927, "lng": -51.4033684, "tipo": "Casa noturna", "av": 54},
-  tacchino_ristorante:{"name": "Tacchino Ristorante", "bairro": "Centro", "lat": -22.1224642, "lng": -51.3841196, "tipo": "Restaurante italiano", "arLivre": true, "av": 483},
-  overdrive_music_bar:{"name": "Overdrive Music Bar", "bairro": "Vila Nova Industrial", "lat": -22.139045, "lng": -51.3916174, "tipo": "Bares", "av": 13},
-  quinta_aula:{"name": "Quinta Aula", "bairro": "Cidade Universitária", "lat": -22.1326042, "lng": -51.4031816, "tipo": "Bar", "arLivre": true, "av": 57},
-  vo_laura_gourmet:{"name": "Vó Laura Gourmet", "bairro": "Cidade Universitária", "lat": -22.1319149, "lng": -51.4022959, "tipo": "Restaurante", "av": 313},
-  pao_nosso:{"name": "Pão Nosso", "bairro": "Bairro do Bosque", "lat": -22.1217585, "lng": -51.3835183, "tipo": "Padaria", "av": 404},
-  bar_do_joao_porquinho:{"name": "Bar do João Porquinho", "bairro": "Vila Industrial", "lat": -22.1399685, "lng": -51.391707, "tipo": "Bar", "arLivre": true, "av": 734},
-  teatro_cesar_cava:{"name": "Teatro César Cava", "bairro": "Cidade Universitária", "lat": -22.1330748, "lng": -51.40260809999999, "tipo": "Teatro", "av": 620},
-  arapuca_bar:{"name": "Arapuca bar", "bairro": "Vila Malaman", "lat": -22.1191977, "lng": -51.4033625, "tipo": "Bar", "av": 54},
-  jardim_suinga:{"name": "Jardim Suinga", "bairro": "Jardim Cambui", "lat": -22.1320497, "lng": -51.4211319, "tipo": "Bar", "arLivre": true, "av": 243},
-  salao_o_limoeiro:{"name": "Salão O Limoeiro", "bairro": "Residencial Universitario", "lat": -22.1162231, "lng": -51.4473445, "tipo": "Local para eventos", "av": 493},
-  sal_grosso_choperia_e_petiscaria:{"name": "Sal Grosso Choperia e Petiscaria", "bairro": "Vila Maristela", "lat": -22.1096837, "lng": -51.3844447, "tipo": "Restaurante", "av": 28},
-  choperia_cristim:{"name": "Choperia Cristim", "bairro": "Jardim Santa Fe", "lat": -22.1387019, "lng": -51.451314, "tipo": "Restaurante", "arLivre": true, "av": 604},
-  ume_brasa_e_mar:{"name": "Umê Brasa e Mar", "bairro": "Vila Santa Helena", "lat": -22.1188162, "lng": -51.4168612, "tipo": "Casa noturna", "av": 58},
-  parque_do_povo:{"name": "Parque do Povo", "bairro": "Jardim Marupiara", "lat": -22.1236621, "lng": -51.4024172, "tipo": "Parque", "av": 11013},
-  rooftop_bar:{"name": "Rooftop Bar", "bairro": "Vila Tabajara", "lat": -22.1298069, "lng": -51.3985376, "tipo": "Bar", "arLivre": true, "av": 264},
-  magma_grill:{"name": "Magma - Grill", "bairro": "Residencial Parque dos Girassóis", "lat": -22.1324472, "lng": -51.4331511, "tipo": "Restaurante", "arLivre": true, "av": 428},
-  tenis_clube:{"name": "Tênis Clube", "bairro": "Jardim Paulista", "lat": -22.1166, "lng": -51.3991, "tipo": "Clube", "av": 870},
-  prudentina_chopperia_e_petiscaria:{"name": "Prudentina Chopperia e Petiscaria", "bairro": "Jardim Bongiovani", "lat": -22.1433946, "lng": -51.4004232, "tipo": "Restaurante", "arLivre": true, "av": 33},
-  floa_cafe_e_flor:{"name": "Floá Café e Flor", "bairro": "Bairro do Bosque", "lat": -22.1191192, "lng": -51.3860431, "tipo": "Cafeteria", "av": 29},
-  fagulha_fire:{"name": "Fagulha Fire", "bairro": "Uep1-S.2", "lat": -22.122365, "lng": -51.402647, "tipo": "Bar", "arLivre": true, "av": 516},
-  centro_historico_cultural_matarazzo:{"name": "Centro Histórico Cultural Matarazzo", "bairro": "Vila Marcondes", "lat": -22.1208288, "lng": -51.3794625, "tipo": "Local histórico", "av": 3548},
-  eden_beer_choperia:{"name": "Eden Beer Choperia", "bairro": "Jardim Aviação", "lat": -22.1094364, "lng": -51.3851004, "tipo": "Restaurante", "arLivre": true, "av": 1306},
-  coletivo_cultural_galpao_da_lua:{"name": "Coletivo Cultural Galpão da Lua", "bairro": "Centro", "lat": -22.1225597, "lng": -51.3818734, "tipo": "Centro cultural", "av": 141},
-  bar_bq:{"name": "Bar BQ", "bairro": "Jardim Paulistano", "lat": -22.1316829, "lng": -51.3973914, "tipo": "Restaurante", "av": 56},
-  sorveteria_conveniencia_e_petiscaria_serenata:{"name": "Sorveteria Conveniência e Petiscaria Serenata", "bairro": "Parque Bandeirantes", "lat": -22.1050574, "lng": -51.4103891, "tipo": "Sorveteria", "av": 424},
-  gaucho_s_costelaria:{"name": "Gaucho's Costelaria", "bairro": "Residencial Universitario", "lat": -22.1247263, "lng": -51.4470068, "tipo": "Bar", "arLivre": true, "av": 1165},
-  buteco_raiz:{"name": "BUTECO RAIZ", "bairro": "Centro", "lat": -22.1187698, "lng": -51.3936443, "tipo": "Bar", "av": 4},
-  brigada_dos_lobos_mc_sub_sede_presidente_prudente:{"name": "Brigada dos Lobos MC Sub-Sede Presidente Prudente", "bairro": "Vila Formosa", "lat": -22.1455921, "lng": -51.3953462, "av": 52},
-  deck_bar:{"name": "Deck Bar", "bairro": "Jardim Caiçara", "lat": -22.1293445, "lng": -51.4011588, "tipo": "Bar", "arLivre": true, "av": 405},
-  sesc_thermas:{"name": "Sesc Thermas", "bairro": "Jardim das Rosas", "lat": -22.120679, "lng": -51.4138809, "tipo": "Clube", "av": 2284},
-  cazulo_cultural:{"name": "Cazulo Cultural", "bairro": "Vila Liberdade", "lat": -22.1317584, "lng": -51.3999797},
-  chapeu_de_palha_bar:{"name": "Chapéu de Palha Bar", "bairro": "Centro", "lat": -22.1178232, "lng": -51.3942221},
-  sorveteria_napoles:{"name": "Sorveteria Nápoles", "bairro": "Jardim Tropical", "lat": -22.1325068, "lng": -51.4440343, "tipo": "Sorveteria", "av": 940},
-  o_beco_bar:{"name": "O Beco Bar", "bairro": "Vila Santa Helena", "lat": -22.1216222, "lng": -51.3972741, "tipo": "Restaurante", "arLivre": true, "av": 444},
-  bar_do_pisca:{"name": "Bar do Pisca", "bairro": "Núcleo Bartholomeu Bueno de Miranda", "lat": -22.1082108, "lng": -51.427301},
-  boteco_do_ana:{"name": "Boteco do Ana", "bairro": "Conjunto Habitacional Ana Jacinta", "lat": -22.1577958, "lng": -51.4515403},
-  dona_maria_espetaria:{"name": "Dona Maria Espetaria", "bairro": "Jardim Maracanã", "lat": -22.0989002, "lng": -51.423997},
-  dg_espetaria:{"name": "DG Espetaria", "bairro": "Vila Machadinho", "lat": -22.1137388, "lng": -51.39297},
-  choperia_colina_bancarios:{"name": "Choperia Colina Bancários", "bairro": "Parque Residencial Caranda", "lat": -22.0963509, "lng": -51.4279806},
-  bar_da_12:{"name": "Bar da 12", "bairro": "Vila do Estadio", "lat": -22.1161608, "lng": -51.392872},
-  estacao_foodpark:{"name": "ESTAÇÃO FOODPARK", "bairro": "Centro", "lat": -22.1210676, "lng": -51.3811818},
-  o_noobre_club:{"name": "O Noobre Club", "bairro": "Centro", "lat": -22.1217024, "lng": -51.3924387},
-  espetinho_do_japones:{"name": "Espetinho do Japonês", "bairro": "Núcleo Bartholomeu Bueno de Miranda", "lat": -22.1094107, "lng": -51.4301702},
-  restaurante_estrela_gourmet:{"name": "Restaurante Estrela Gourmet", "bairro": "Jardim Novo Bongiovani", "lat": -22.0990839, "lng": -51.423515},
-  cat_sesi_de_presidente_prudente:{"name": "CAT Sesi de Presidente Prudente", "bairro": "Parque Furquim", "lat": -22.1132333, "lng": -51.3745876, "tipo": "Clube", "av": 758},
-  toledo_prudente_centro_universitario:{"name": "Toledo Prudente - Centro Universitário", "bairro": "Vila Furquim", "lat": -22.1120551, "lng": -51.3770367, "tipo": "Universidade", "av": 117}
+  varanda_boa_vista:{"name": "Varanda Boa Vista", "bairro": "Jardim Alto da Boa Vista", "lat": -22.1429023, "lng": -51.410229, "tipo": "Restaurante", "av": 311, "nota": 4.5, "gt": ["Eletrônica", "Sertanejo", "Pagode"], "slug": "varanda-boa-vista"},
+  agrobar:{"name": "Agrobar", "bairro": "Vila Ocidental", "lat": -22.122218, "lng": -51.3960443, "tipo": "Bar", "av": 47, "nota": 4.7, "gt": ["Sertanejo", "Samba"], "slug": "agrobar-presidente-prudente-sp"},
+  cult_bar:{"name": "Cult Bar", "bairro": "Centro", "lat": -22.1223859, "lng": -51.3869472, "tipo": "Edifício", "gt": ["Rock", "Pop Rock", "Discotecagem"], "slug": "cult-bar-pp"},
+  alphaville_bar_e_petiscaria:{"name": "Alphaville Bar e Petiscaria", "bairro": "Vila Boa Vista", "lat": -22.1119561, "lng": -51.3846322, "tipo": "Restaurante", "arLivre": true, "av": 1267, "nota": 4.5, "gt": ["Sertanejo", "Pop Rock", "Brasilidades"], "slug": "alphaville-bar-e-petiscaria"},
+  valete_bar:{"name": "Valete Bar", "bairro": "Jardim Paulista", "lat": -22.1158889, "lng": -51.4007753, "tipo": "Bar", "av": 296, "nota": 4.5, "gt": ["Rock", "Discotecagem", "Pop Rock"], "slug": "valete-bar"},
+  exquina_bar:{"name": "Exquina Bar", "bairro": "Vila Santa Helena", "lat": -22.1212473, "lng": -51.3974565, "tipo": "Restaurante", "arLivre": true, "nota": 4.7, "gt": ["Sertanejo", "MPB", "Country"], "slug": "exquina-bar"},
+  ibiza_lounge_bar:{"name": "Ibiza Lounge Bar", "bairro": "Vila Santa Helena", "lat": -22.1172046, "lng": -51.3997127, "tipo": "Bar", "arLivre": true, "av": 194, "nota": 4.3, "gt": ["Pagode", "Eletrônica", "Sertanejo"], "slug": "ibiza-lounge-bar"},
+  villa_18_container_bar:{"name": "Villa 18 Container Bar", "bairro": "Jardim das Rosas", "lat": -22.1136449, "lng": -51.4133731, "tipo": "Bar", "arLivre": true, "av": 58, "nota": 4.7, "gt": ["Pagode", "Samba", "MPB"], "slug": "villa-18-container-bar"},
+  new_york_lounge_nyl:{"name": "New York Lounge - NYL", "bairro": "Jardim dos Pioneiros", "lat": -22.1390956, "lng": -51.406647, "tipo": "Casa noturna", "av": 109, "nota": 4.3, "gt": ["Eletrônica", "Discotecagem", "Pop"], "slug": "new-york-lounge-nyl"},
+  bar_da_onca:{"name": "Bar da Onça", "bairro": "Vila Cláudia Glória", "lat": -22.1216664, "lng": -51.3988011, "tipo": "Bares", "arLivre": true, "av": 274, "nota": 4.5, "gt": ["Samba", "Pagode", "Sertanejo"], "slug": "bar-da-onca"},
+  jardim_esmeralda:{"name": "Jardim Esmeralda", "bairro": "Jardim Monte Alto", "lat": -22.1246873, "lng": -51.425278, "tipo": "Bar", "arLivre": true, "av": 34, "nota": 4.9, "gt": ["Karaokê", "Rock"], "slug": "jardim-esmeralda"},
+  fabrica_gastrobar:{"name": "Fábrica Gastrobar", "bairro": "Jardim Petrópolis", "lat": -22.1201125, "lng": -51.4173716, "tipo": "Bar", "av": 236, "nota": 4.7, "gt": ["Rock", "Pop Rock", "Pagode"], "slug": "fabrica-gastrobar"},
+  seu_bastiao_pub:{"name": "Seu Bastião Pub", "bairro": "UEP1-S.2", "lat": -22.1199927, "lng": -51.4033684, "tipo": "Casa noturna", "av": 54, "nota": 4.2, "gt": ["Sertanejo", "Eletrônica", "Pagode"], "slug": "seu-bastiao-pub"},
+  tacchino_ristorante:{"name": "Tacchino Ristorante", "bairro": "Centro", "lat": -22.1224642, "lng": -51.3841196, "tipo": "Restaurante italiano", "arLivre": true, "av": 483, "nota": 4.6, "gt": ["Italiana", "Bloco de rua", "Latina"], "slug": "tacchino-ristorante"},
+  overdrive_music_bar:{"name": "Overdrive Music Bar", "bairro": "Vila Nova Industrial", "lat": -22.139045, "lng": -51.3916174, "tipo": "Bares", "av": 13, "nota": 4.8, "gt": ["Rock", "Pop Rock", "Metal Alternativo"], "slug": "overdrive-music-bar"},
+  quinta_aula:{"name": "Quinta Aula", "bairro": "Cidade Universitária", "lat": -22.1326042, "lng": -51.4031816, "tipo": "Bar", "arLivre": true, "av": 57, "nota": 4.2, "gt": ["Eletrônica", "Pop", "Discotecagem"], "slug": "quinta-aula"},
+  vo_laura_gourmet:{"name": "Vó Laura Gourmet", "bairro": "Cidade Universitária", "lat": -22.1319149, "lng": -51.4022959, "tipo": "Restaurante", "av": 313, "nota": 4.4, "gt": ["Sertanejo", "Multigênero", "Samba"], "slug": "vo-laura-gourmet"},
+  pao_nosso:{"name": "Pão Nosso", "bairro": "Bairro do Bosque", "lat": -22.1217585, "lng": -51.3835183, "tipo": "Padaria", "av": 404, "nota": 4.9, "gt": ["Bloco de rua"], "slug": "pao-nosso"},
+  bar_do_joao_porquinho:{"name": "Bar do João Porquinho", "bairro": "Vila Industrial", "lat": -22.1399685, "lng": -51.391707, "tipo": "Bar", "arLivre": true, "av": 734, "nota": 4.7, "slug": "bar-do-joao-porquinho"},
+  teatro_cesar_cava:{"name": "Teatro César Cava", "bairro": "Cidade Universitária", "lat": -22.1330748, "lng": -51.40260809999999, "tipo": "Teatro", "av": 620, "nota": 4.8, "gt": ["Stand Up"], "slug": "teatro-cesar-cava"},
+  arapuca_bar:{"name": "Arapuca bar", "bairro": "Vila Malaman", "lat": -22.1191977, "lng": -51.4033625, "tipo": "Bar", "av": 54, "nota": 4.5, "gt": ["Sertanejo", "Pagode", "Brasilidades"], "slug": "arapuca-bar"},
+  jardim_suinga:{"name": "Jardim Suinga", "bairro": "Jardim Cambui", "lat": -22.1320497, "lng": -51.4211319, "tipo": "Bar", "arLivre": true, "av": 243, "nota": 4.7, "gt": ["MPB", "Samba"], "slug": "jardim-suinga"},
+  salao_o_limoeiro:{"name": "Salão O Limoeiro", "bairro": "Residencial Universitario", "lat": -22.1162231, "lng": -51.4473445, "tipo": "Local para eventos", "av": 493, "nota": 4.6, "gt": ["Rock"], "slug": "salao-o-limoeiro"},
+  sal_grosso_choperia_e_petiscaria:{"name": "Sal Grosso Choperia e Petiscaria", "bairro": "Vila Maristela", "lat": -22.1096837, "lng": -51.3844447, "tipo": "Restaurante", "av": 28, "nota": 4.6, "gt": ["Brasilidades"], "slug": "sal-grosso-choperia-e-petiscaria"},
+  choperia_cristim:{"name": "Choperia Cristim", "bairro": "Jardim Santa Fe", "lat": -22.1387019, "lng": -51.451314, "tipo": "Restaurante", "arLivre": true, "av": 604, "nota": 4.6, "slug": "choperia-cristim"},
+  ume_brasa_e_mar:{"name": "Umê Brasa e Mar", "bairro": "Vila Santa Helena", "lat": -22.1188162, "lng": -51.4168612, "tipo": "Casa noturna", "av": 58, "nota": 3.6, "gt": ["Eletrônica", "Rock", "Sertanejo"], "slug": "ume-brasa-e-mar"},
+  parque_do_povo:{"name": "Parque do Povo", "bairro": "Jardim Marupiara", "lat": -22.1236621, "lng": -51.4024172, "tipo": "Parque", "av": 11013, "nota": 4.6, "gt": ["Forró", "Sertanejo", "MPB"], "slug": "parque-do-povo"},
+  rooftop_bar:{"name": "Rooftop Bar", "bairro": "Vila Tabajara", "lat": -22.1298069, "lng": -51.3985376, "tipo": "Bar", "arLivre": true, "av": 264, "nota": 4.8, "gt": ["Sertanejo", "Samba", "Pagode"], "slug": "rooftop-bar-seu-bar-nas-alturas"},
+  magma_grill:{"name": "Magma - Grill", "bairro": "Residencial Parque dos Girassóis", "lat": -22.1324472, "lng": -51.4331511, "tipo": "Restaurante", "arLivre": true, "av": 428, "nota": 4.6, "gt": ["Sertanejo", "Pop Rock", "Rock"], "slug": "magma-grill"},
+  tenis_clube:{"name": "Tênis Clube", "bairro": "Jardim Paulista", "lat": -22.1166, "lng": -51.3991, "tipo": "Clube", "av": 870, "nota": 4.6, "gt": ["Rock"], "slug": "tenis-clube"},
+  prudentina_chopperia_e_petiscaria:{"name": "Prudentina Chopperia e Petiscaria", "bairro": "Jardim Bongiovani", "lat": -22.1433946, "lng": -51.4004232, "tipo": "Restaurante", "arLivre": true, "av": 33, "nota": 4.6, "gt": ["Sertanejo", "Eletrônica", "Pop Rock"], "slug": "prudentina-chopperia-e-petiscaria"},
+  floa_cafe_e_flor:{"name": "Floá Café e Flor", "bairro": "Bairro do Bosque", "lat": -22.1191192, "lng": -51.3860431, "tipo": "Cafeteria", "av": 29, "nota": 4.9, "gt": ["Pop Rock"], "slug": "floa-cafe-e-flor"},
+  fagulha_fire:{"name": "Fagulha Fire", "bairro": "Uep1-S.2", "lat": -22.122365, "lng": -51.402647, "tipo": "Bar", "arLivre": true, "av": 516, "nota": 4.6, "gt": ["Discotecagem", "Eletrônica", "Pop"], "slug": "fagulha-fire-presidente-prudente-sp"},
+  centro_historico_cultural_matarazzo:{"name": "Centro Histórico Cultural Matarazzo", "bairro": "Vila Marcondes", "lat": -22.1208288, "lng": -51.3794625, "tipo": "Local histórico", "av": 3548, "nota": 4.7, "gt": ["Dança"], "slug": "centro-historico-cultural-matarazzo"},
+  eden_beer_choperia:{"name": "Eden Beer Choperia", "bairro": "Jardim Aviação", "lat": -22.1094364, "lng": -51.3851004, "tipo": "Restaurante", "arLivre": true, "av": 1306, "nota": 4.7, "slug": "eden-beer-choperia"},
+  coletivo_cultural_galpao_da_lua:{"name": "Coletivo Cultural Galpão da Lua", "bairro": "Centro", "lat": -22.1225597, "lng": -51.3818734, "tipo": "Centro cultural", "av": 141, "nota": 4.8, "gt": ["Teatro", "Bloco de rua"], "slug": "coletivo-cultural-galpao-da-lua"},
+  bar_bq:{"name": "Bar BQ", "bairro": "Jardim Paulistano", "lat": -22.1316829, "lng": -51.3973914, "tipo": "Restaurante", "av": 56, "nota": 4.2, "gt": ["Pop Rock", "Rock", "MPB"], "slug": "bar-bq"},
+  sorveteria_conveniencia_e_petiscaria_serenata:{"name": "Sorveteria Conveniência e Petiscaria Serenata", "bairro": "Parque Bandeirantes", "lat": -22.1050574, "lng": -51.4103891, "tipo": "Sorveteria", "av": 424, "nota": 4.5, "gt": ["Sertanejo", "Pop Rock"], "slug": "sorveteria-conveniencia-e-petiscaria-serenata"},
+  gaucho_s_costelaria:{"name": "Gaucho's Costelaria", "bairro": "Residencial Universitario", "lat": -22.1247263, "lng": -51.4470068, "tipo": "Bar", "arLivre": true, "av": 1165, "nota": 4.6, "gt": ["Multigênero"], "slug": "gaucho-s-costelaria"},
+  buteco_raiz:{"name": "BUTECO RAIZ", "bairro": "Centro", "lat": -22.1187698, "lng": -51.3936443, "tipo": "Bar", "av": 4, "nota": 5, "gt": ["Sertanejo", "Pagode", "Samba"], "slug": "buteco-raiz"},
+  brigada_dos_lobos_mc_sub_sede_presidente_prudente:{"name": "Brigada dos Lobos MC Sub-Sede Presidente Prudente", "bairro": "Vila Formosa", "lat": -22.1455921, "lng": -51.3953462, "av": 52, "nota": 4.9, "gt": ["Pop Rock"], "slug": "brigada-dos-lobos-mc-sub-sede-presidente-prudente"},
+  deck_bar:{"name": "Deck Bar", "bairro": "Jardim Caiçara", "lat": -22.1293445, "lng": -51.4011588, "tipo": "Bar", "arLivre": true, "av": 405, "nota": 4.4, "gt": ["Pop Rock", "Rock"], "slug": "deck-bar"},
+  sesc_thermas:{"name": "Sesc Thermas", "bairro": "Jardim das Rosas", "lat": -22.120679, "lng": -51.4138809, "tipo": "Clube", "av": 2284, "nota": 4.8, "gt": ["Teatro", "MPB", "Forró"], "slug": "sesc-thermas"},
+  cazulo_cultural:{"name": "Cazulo Cultural", "bairro": "Vila Liberdade", "lat": -22.1317584, "lng": -51.3999797, "gt": ["Rock", "MPB", "Jazz"], "slug": "cazulo-cultural"},
+  chapeu_de_palha_bar:{"name": "Chapéu de Palha Bar", "bairro": "Centro", "lat": -22.1178232, "lng": -51.3942221, "slug": "chapeu-de-palha-bar"},
+  sorveteria_napoles:{"name": "Sorveteria Nápoles", "bairro": "Jardim Tropical", "lat": -22.1325068, "lng": -51.4440343, "tipo": "Sorveteria", "av": 940, "nota": 4.7, "gt": ["Arraiá"], "slug": "sorveteria-napoles"},
+  o_beco_bar:{"name": "O Beco Bar", "bairro": "Vila Santa Helena", "lat": -22.1216222, "lng": -51.3972741, "tipo": "Restaurante", "arLivre": true, "av": 444, "nota": 4.7, "gt": ["Pop Rock", "Sertanejo", "Samba"], "slug": "o-beco-bar"},
+  bar_do_pisca:{"name": "Bar do Pisca", "bairro": "Núcleo Bartholomeu Bueno de Miranda", "lat": -22.1082108, "lng": -51.427301, "nota": 4.6, "slug": "bar-do-pisca"},
+  boteco_do_ana:{"name": "Boteco do Ana", "bairro": "Conjunto Habitacional Ana Jacinta", "lat": -22.1577958, "lng": -51.4515403, "nota": 4.7, "slug": "boteco-do-ana"},
+  dona_maria_espetaria:{"name": "Dona Maria Espetaria", "bairro": "Jardim Maracanã", "lat": -22.0989002, "lng": -51.423997, "nota": 4.7, "slug": "dona-maria-espetaria"},
+  dg_espetaria:{"name": "DG Espetaria", "bairro": "Vila Machadinho", "lat": -22.1137388, "lng": -51.39297, "nota": 4.8, "gt": ["Rock"], "slug": "dg-espetaria"},
+  choperia_colina_bancarios:{"name": "Choperia Colina Bancários", "bairro": "Parque Residencial Caranda", "lat": -22.0963509, "lng": -51.4279806, "nota": 4.6, "gt": ["Sertanejo", "Brasilidades", "Samba"], "slug": "choperia-colina-bancarios"},
+  bar_da_12:{"name": "Bar da 12", "bairro": "Vila do Estadio", "lat": -22.1161608, "lng": -51.392872, "nota": 4.4, "gt": ["Forró", "Brasilidades"], "slug": "bar-da-12"},
+  estacao_foodpark:{"name": "ESTAÇÃO FOODPARK", "bairro": "Centro", "lat": -22.1210676, "lng": -51.3811818, "nota": 4.9, "gt": ["Sertanejo", "Reggae", "Rock"], "slug": "estacao-foodpark"},
+  o_noobre_club:{"name": "O Noobre Club", "bairro": "Centro", "lat": -22.1217024, "lng": -51.3924387, "nota": 4.2, "slug": "o-noobre-club"},
+  espetinho_do_japones:{"name": "Espetinho do Japonês", "bairro": "Núcleo Bartholomeu Bueno de Miranda", "lat": -22.1094107, "lng": -51.4301702, "nota": 4.5, "slug": "espetinho-do-japones"},
+  restaurante_estrela_gourmet:{"name": "Restaurante Estrela Gourmet", "bairro": "Jardim Novo Bongiovani", "lat": -22.0990839, "lng": -51.423515, "nota": 4.2, "slug": "restaurante-estrela-gourmet"},
+  cat_sesi_de_presidente_prudente:{"name": "CAT Sesi de Presidente Prudente", "bairro": "Parque Furquim", "lat": -22.1132333, "lng": -51.3745876, "tipo": "Clube", "av": 758, "nota": 4.7, "slug": "cat-sesi-de-presidente-prudente"},
+  toledo_prudente_centro_universitario:{"name": "Toledo Prudente - Centro Universitário", "bairro": "Vila Furquim", "lat": -22.1120551, "lng": -51.3770367, "tipo": "Universidade", "av": 117, "nota": 4.7, "gt": ["Stand Up"], "slug": "toledo-prudente-centro-universitario"}
 };
 // [id, artista, lugar, gênero, data, hora (vazia = a confirmar), capa]
 var E=[
@@ -2576,7 +2611,8 @@ document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&sheet.cla
 
 // Detalhe do rolê: tela própria que entra da direita (como a agenda)
 var evsEl=document.getElementById('evs'),evsOpen=false,evsLastFocus=null,evsId=null;
-function syncScreenLock(){var h=document.documentElement;h.classList.toggle('screen-open',agOpen||evsOpen||homeOpen);h.classList.toggle('home-on',homeOpen&&!agOpen&&!evsOpen);
+var vsEl=document.getElementById('vs'),vsOpen=false,vsLastFocus=null,vsKey=null;
+function syncScreenLock(){var h=document.documentElement;h.classList.toggle('screen-open',agOpen||evsOpen||vsOpen||homeOpen);h.classList.toggle('home-on',homeOpen&&!agOpen&&!evsOpen&&!vsOpen);
   document.getElementById('nav-home').toggleAttribute('aria-current',homeOpen);if(homeOpen) document.getElementById('nav-home').setAttribute('aria-current','page');
   document.getElementById('nav-radar').toggleAttribute('aria-current',!homeOpen);if(!homeOpen) document.getElementById('nav-radar').setAttribute('aria-current','page');}
 /* ---------- Home: aba da navbar ---------- */
@@ -2786,7 +2822,7 @@ function renderEvScreen(e){
       '<h2>'+(musical?'Música':esc(e.genre))+'</h2><button type="button" class="glass" id="evs-share" aria-label="Compartilhar">'+ic('share',null,20)+'</button></div>'+
     '<div class="spacer"></div><div class="corpo">'+
     '<div class="head"><div class="tx">'+(musical?'<p class="lin">'+ic('note',C2,16)+'<span>'+esc(e.genre)+'</span></p>':'')+
-      '<h1 class="h1" id="evs-title">'+esc(e.name)+'</h1><p class="lin">'+ic('pin',C2,16)+'<span>'+esc(e.venue)+(e.arLivre?' • Ao ar livre':'')+'</span></p></div>'+cara+'</div>'+
+      '<h1 class="h1" id="evs-title">'+esc(e.name)+'</h1><p class="lin">'+ic('pin',C2,16)+(e.venueKey&&VENUES[e.venueKey]?'<button type="button" class="vlink" id="evs-venue">'+esc(e.venue)+'</button>':'<span>'+esc(e.venue)+'</span>')+(e.arLivre?'<span>• Ao ar livre</span>':'')+'</p></div>'+cara+'</div>'+
     '<div class="dados"><div><p class="h5">'+ic('cal','#fff',20)+(String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0'))+'</p><p class="desc-sm soft">'+dia+'</p></div>'+
       '<div><p class="h5">'+ic('clock','#fff',20)+(d.noTime?'A confirmar':hora(d))+'</p><p class="desc-sm soft">'+longe+'</p></div>'+tempo+'</div>'+
     (e.alerta?'<div class="alerta-risco" role="alert">'+ic('alerta','#fff',20)+'<span><b>'+(e.arLivre?'Esse rolê é muito arriscado':'Previsão de '+(e.clima.tempestade?'tempestade':'chuva'))+'</b>'+
@@ -2798,7 +2834,8 @@ function renderEvScreen(e){
       '<a class="glass" href="'+gcalLink(e)+'" target="_blank" rel="noopener" aria-label="Pôr no calendário">'+ic('cal','#fff',20)+'</a>'+
       (going?'<button type="button" class="btn success lg" id="sh-go">'+ic('check','#fff')+'Você vai!</button>':'<button type="button" class="btn primary lg" id="sh-go">'+ic('check','#fff')+'Bora</button>')+'</div></div>';
   document.getElementById('evs-back').onclick=closeEvent;
-  var lg=document.getElementById('evs-lugar');if(lg) lg.onclick=function(){openVenue(e.venueKey);};
+  var lg=document.getElementById('evs-lugar');if(lg) lg.onclick=function(){openVenuePage(e.venueKey);};
+  var vn=document.getElementById('evs-venue');if(vn) vn.onclick=function(){openVenuePage(e.venueKey);};
   document.getElementById('sh-go').onclick=function(){if(state.going[e.id]){delete state.going[e.id];persist();toast('Pode deixar, tiramos da sua agenda.');}else{addToAgenda(e);}render();renderEvScreen(e);};
   document.getElementById('evs-share').onclick=function(){
     var txt=e.name+' • '+quandoCompleto(d)+' • '+e.venue;
@@ -2806,6 +2843,71 @@ function renderEvScreen(e){
     (navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(txt+' — '+site):Promise.reject()).then(function(){toast('Copiamos os detalhes do rolê pra você colar onde quiser.');},function(){toast(txt);});
   };
   evsEl.querySelectorAll('[data-evs]').forEach(function(b){b.onclick=function(){openEvent(b.getAttribute('data-evs'));};});
+}
+/* ---------- Página do estabelecimento (aberta pela página do evento) ---------- */
+var FAV_LOCAIS={};try{FAV_LOCAIS=JSON.parse(localStorage.getItem('radar-fav-locais')||'{}')||{};}catch(e){}
+function openVenuePage(k){
+  if(!VENUES[k]) return;
+  if(sheet.classList.contains('open')) closeSheet();
+  if(!vsOpen) vsLastFocus=document.activeElement;
+  vsKey=k;renderVenuePage(k);vsEl.scrollTop=0;
+  if(!vsOpen){vsOpen=true;vsEl.classList.add('open');vsEl.setAttribute('aria-hidden','false');syncScreenLock();}
+  setTimeout(function(){var b=document.getElementById('vs-back');if(b) b.focus({preventScroll:true});},50);
+}
+function closeVenuePage(){
+  vsOpen=false;vsEl.classList.remove('open');vsEl.setAttribute('aria-hidden','true');syncScreenLock();
+  if(vsLastFocus&&vsLastFocus.focus) vsLastFocus.focus({preventScroll:true});
+}
+document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&vsOpen&&!sheet.classList.contains('open')){ev.stopImmediatePropagation();closeVenuePage();}},true);
+function renderVenuePage(k){
+  var v=VENUES[k],g=generoDoLocal(k),mus=g&&!NAO_MUSICAL[g],lv={lat:v.lat,lng:v.lng,dist:km(ME,v),approx:!!v.approx};
+  var a=state.profile&&mus?affinity({name:v.name,genre:g},state.profile):null;
+  var img=(!state.city.live&&VIMG[k])||ph(v.name,g);
+  // todos os próximos rolês do lugar, do mais cedo pro mais tarde (sem os filtros do radar)
+  var roles=events.filter(function(e){return e.venueKey===k&&!jaPassou(e);}).sort(function(x,y){return x.date-y.date;});
+  var gts=(v.gt||[g]).filter(function(x){return x&&!NAO_MUSICAL[x];});
+  var nota=v.nota?String(v.nota.toFixed?v.nota.toFixed(1):v.nota).replace('.',','):null;
+  var tipo=v.tipo&&v.tipo!=='Edifício'?v.tipo:'Lugar';
+  var lista=function(xs){return xs.length<2?xs.join(''):xs.slice(0,-1).join(', ')+' e '+xs[xs.length-1];};
+  var sobre=tipo+(v.bairro?' no '+v.bairro:'')+(gts.length?' que toca mais '+lista(gts.map(function(x){return x.toLowerCase();})):'')+'.'+
+    (v.arLivre?' Tem área ao ar livre.':'')+(roles.length?' '+(roles.length===1?'Tem 1 rolê':'Tem '+roles.length+' rolês')+' na agenda.':' Sem rolê na agenda por enquanto.');
+  var andar=lv.dist<=1.5?Math.max(1,Math.ceil(lv.dist*1000/80))+' min a pé':Math.ceil(lv.dist*2.4+3)+' min de carro';
+  // destaques: só o que o site informa de verdade
+  var dest=[];
+  if(roles.length) dest.push([ic('note',null,28),'Música ao vivo']);
+  if(v.arLivre) dest.push([ic('sol',null,28),'Ao ar livre']);
+  if(nota) dest.push([ic('star','#171717',28),'Nota '+nota]);
+  dest.push([ic(lv.dist<=1.5?'walk':'car',null,28),andar]);
+  var prox=roles[0];
+  var site='https://www.roleagora.com.br/city/'+(state.city.slug||'presidente-prudente-sp');
+  var rota='https://www.google.com/maps/dir/?api=1&destination='+v.lat+','+v.lng;
+  var fav=!!FAV_LOCAIS[k];
+  function proxTxt(d){var n=dayDiff(d),dia=n===0?'Hoje':n===1?'Amanhã':capt(SEM[d.getDay()])+', '+d.getDate()+'/'+(d.getMonth()+1);return dia+(d.noTime?'':' • '+hora(d));}
+  vsEl.innerHTML='<div class="vs-hero"><img src="'+img+'" alt=""><div class="vs-top">'+
+      '<button type="button" class="vs-glass" id="vs-back" aria-label="Voltar"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>'+
+      '<span class="vs-acts"><button type="button" class="vs-glass" id="vs-share" aria-label="Compartilhar">'+ic('share',null,20)+'</button>'+
+      '<button type="button" class="vs-glass vs-fav'+(fav?' on':'')+'" id="vs-fav" aria-pressed="'+fav+'" aria-label="Salvar lugar">'+ic('heart',null,20)+'</button></span></div></div>'+
+    '<div class="vs-body"><div class="vs-in">'+
+      '<h1 class="h3" id="vs-title">'+esc(v.name)+'</h1>'+
+      '<p class="vs-lin">'+ic('pin','#525252',16)+'<span>'+esc(v.bairro||state.city.name)+' • '+dTxt(lv)+'</span>'+(nota?'<span class="vs-sep" aria-hidden="true"></span>'+ic('star','#FFC21A',16)+'<span><b>'+nota+'</b>'+(v.av?' ('+v.av+')':'')+'</span>':'')+'</p>'+
+      '<p class="vs-dest">'+(a?'<b>'+a.pct+'% compatível</b> com o seu gosto':'<b>'+esc(tipo)+'</b>'+(g?' • '+esc(g):''))+'</p>'+
+      '<hr class="vs-hr">'+
+      '<section aria-labelledby="vs-sobre"><h2 class="h6" id="vs-sobre">Sobre o lugar</h2><p class="body-sm muted vs-p">'+esc(sobre)+'</p></section>'+
+      (gts.length?'<div class="vs-gts" role="list" aria-label="O que toca">'+gts.map(function(x){return '<span class="chip static" role="listitem">'+esc(x)+'</span>';}).join('')+'</div>':'')+
+      '<hr class="vs-hr">'+
+      '<section aria-labelledby="vs-dest"><h2 class="h6" id="vs-dest">Destaques</h2><ul class="vs-icons">'+dest.map(function(d){return '<li>'+d[0]+'<span>'+d[1]+'</span></li>';}).join('')+'</ul></section>'+
+      (roles.length?'<hr class="vs-hr"><section aria-labelledby="vs-roles"><h2 class="h6" id="vs-roles">Próximos rolês</h2><div class="ev-list">'+roles.map(function(e){return evHtml(e);}).join('')+'</div></section>':'')+
+    '</div></div>'+
+    '<div class="vs-bar"><div class="tx">'+(prox?'<b>'+proxTxt(prox.date)+'</b><span class="desc-sm muted">Próximo rolê: '+esc(prox.name)+'</span>':'<b>Sem rolê marcado</b><span class="desc-sm muted">Por enquanto</span>')+'</div>'+
+      '<a class="btn primary lg" href="'+rota+'" target="_blank" rel="noopener">Como chegar</a></div>';
+  document.getElementById('vs-back').onclick=closeVenuePage;
+  document.getElementById('vs-fav').onclick=function(){if(FAV_LOCAIS[k]) delete FAV_LOCAIS[k];else FAV_LOCAIS[k]=1;try{localStorage.setItem('radar-fav-locais',JSON.stringify(FAV_LOCAIS));}catch(e){}
+    var on=!!FAV_LOCAIS[k];this.classList.toggle('on',on);this.setAttribute('aria-pressed',String(on));toast(on?'Salvamos o '+v.name+' nos seus lugares.':'Tiramos o '+v.name+' dos seus lugares.');};
+  document.getElementById('vs-share').onclick=function(){var txt=v.name+' • '+(v.bairro||state.city.name)+', '+state.city.name;
+    if(navigator.share){navigator.share({title:v.name,text:txt,url:site}).catch(function(){});return;}
+    (navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(txt+' — '+site):Promise.reject()).then(function(){toast('Copiamos o endereço do lugar pra você colar onde quiser.');},function(){toast(txt);});};
+  // rolê da lista: fecha a página do lugar e abre a do rolê
+  vsEl.querySelectorAll('[data-open]').forEach(function(b){b.onclick=function(){var id=b.getAttribute('data-open');closeVenuePage();openEvent(id);};});
 }
 function openVenue(k){
   var v=VENUES[k],items=visible().filter(function(e){return e.venueKey===k;}).sort(state.profile?byTop:byList);
