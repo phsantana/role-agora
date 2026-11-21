@@ -446,7 +446,17 @@ html.screen-open{overflow:hidden}
 .evs .glass{width:48px;height:48px;border-radius:50%;border:0;display:grid;place-items:center;background:var(--e-subtle);color:var(--e-text);text-decoration:none;flex:none}
 .evs .glass:hover{background:#333}
 .evs .spacer{height:186px} /* corpo começa em 250 px, como no Figma */
-.evs .corpo{display:flex;flex-direction:column;gap:var(--s-lg)}
+.evs .corpo{display:flex;flex-direction:column;gap:var(--s-m)}
+.evs .ceu-ev{flex:none;display:flex;flex-direction:column;align-items:flex-end}
+.evs .ceu-ev .arte{width:72px;height:64px;margin-right:4px}
+.evs .ceu-ev .arte svg{width:100%;height:100%;overflow:visible}
+.evs .ceu-ev .pv{margin-top:-8px;position:relative;padding:6px 12px;border-radius:var(--r-pill);background:rgba(0,0,0,.18);font-size:12px;line-height:1.5;color:var(--e-text);white-space:nowrap}
+.evs .quando{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-xsm)}
+.evs .quando>div{display:flex;align-items:center;justify-content:space-between;gap:var(--s-xsm);min-width:0;padding:16px clamp(16px,6vw,24px);border-radius:var(--r-xsm);border:1px solid rgba(255,255,255,.12);background:var(--e-surface)}
+.evs .quando .tx{min-width:0;display:flex;flex-direction:column;gap:var(--s-2xsm)}
+.evs .quando .h5{color:var(--e-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.evs .quando .desc-sm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.evs .quando .ico{width:24px;height:24px}
 .evs .artista{display:flex;flex-direction:column;gap:var(--s-xsm)}
 .evs .vids{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;margin-right:calc(-1 * max(24px,env(safe-area-inset-right,0px)));padding-right:max(24px,env(safe-area-inset-right,0px))}
 .evs .vids::-webkit-scrollbar{display:none}
@@ -458,6 +468,8 @@ html.screen-open{overflow:hidden}
 .evs .head{display:flex;align-items:center;gap:var(--s-sm)}
 .evs .head .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--s-2xsm)}
 .evs .head .h1{color:var(--e-text);overflow-wrap:anywhere}
+.evs .head .lin.livre{padding-left:22px;margin-top:-4px}
+.evs .head .lin .vlink{max-width:calc(100% - 22px)}
 .evs .lin{display:flex;gap:6px;align-items:center;font-size:14px;line-height:1.5;color:var(--e-text-2);min-width:0}
 .evs .lin span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .evs .cara{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:var(--s-2xsm);text-align:right}
@@ -469,11 +481,11 @@ html.screen-open{overflow:hidden}
 .evs .motivos{display:flex;flex-direction:column;gap:var(--s-xsm)}
 .evs .motivos .row{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;margin:0 calc(-1 * max(24px,env(safe-area-inset-right,0px))) 0 0;padding-right:max(24px,env(safe-area-inset-right,0px))}
 .evs .motivos .row::-webkit-scrollbar{display:none}
-.evs .motivo{flex:none;width:144px;min-height:122px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:space-between;gap:var(--s-xsm);padding:var(--s-m);border-radius:var(--r-xsm);border:1px solid rgba(255,255,255,.12);background:transparent;font-size:14px;line-height:1.5}
+.evs .motivo{flex:none;width:144px;min-height:122px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:space-between;gap:var(--s-xsm);padding:var(--s-m);border-radius:var(--r-xsm);border:1px solid rgba(255,255,255,.12);background:var(--e-surface);font-size:14px;line-height:1.5}
 .evs .motivo .ico,.evs .motivo .fogo svg{width:24px;height:24px}
-.evs .lugar{display:flex;align-items:center;gap:var(--s-sm);width:100%;padding:var(--s-m);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-xsm);background:transparent;color:var(--e-text);text-align:left;font:inherit;cursor:pointer}
-.evs .lugar:hover{background:rgba(255,255,255,.04)}
-.evs .lugar>img{flex:none;width:48px;height:48px;border-radius:50%;object-fit:cover}
+.evs .lugar{display:flex;align-items:center;gap:var(--s-sm);width:100%;padding:var(--s-m);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-xsm);background:var(--e-surface);color:var(--e-text);text-align:left;font:inherit;cursor:pointer}
+.evs .lugar:hover{background:#1f1f1f}
+.evs .lugar>img{flex:none;width:48px;height:48px;border-radius:50%;object-fit:cover;border:1px solid #fff}
 .evs .lugar .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--s-2xsm)}
 .evs .lugar .tx .h6{overflow-wrap:anywhere}
 .evs .lugar .go{flex:none;width:40px;height:40px;border-radius:50%;background:var(--e-text);display:grid;place-items:center}
@@ -3305,10 +3317,14 @@ function renderEvScreen(e){
   var site='https://www.roleagora.com.br/city/'+(state.city.slug||'presidente-prudente-sp');
   var musical=!NAO_MUSICAL[e.genre];
   // compatibilidade (canto direito do título): "Sua cara" acima de 80%, "Pode curtir" de 60% a 80%
-  var cara=e.aff==null?'':'<div class="cara"><p class="h6">'+(e.aff>=DECK_MIN?ic('star','#FF9F1A',16)+'Sua cara':e.aff>=TOP_MIN?ic('star','#A3A3A3',16)+'Pode curtir':'')+'</p><p class="desc-sm soft">'+e.aff+'% compatível</p></div>';
+  // canto direito do título: ilustração do céu na hora do rolê + temperatura e resumo
+  var cara='';
+  if(e.clima){var hh=d.noTime?20:d.getHours(),pp=hh>=5&&hh<12?'manha':hh>=12&&hh<18?'tarde':'noite',cl=e.clima;
+    var tt=cl.tempestade?'tempestade':cl.chuva?'chuva':(cl.max!=null&&cl.max<=20)?'frio':'sol';
+    cara='<div class="ceu-ev" title="'+esc(cl.resumo)+'"><div class="arte" aria-hidden="true">'+hhArte(pp,tt)+'</div><p class="pv">'+cl.max+'° • '+climaCurto(cl)+'</p></div>';}
+  // tempo até o rolê: "Em 2 horas", "Em 3 dias"…
+  var falta=+d-NOW,quandoTxt=d.noTime?'Horário':falta<0?(falta>-DURACAO?'Tá rolando':'Já passou'):falta<36e5?'Em '+Math.max(1,Math.round(falta/6e4))+' min':dd===0?'Em '+Math.round(falta/36e5)+(Math.round(falta/36e5)>1?' horas':' hora'):dd===1?'Amanhã':'Em '+dd+' dias';
   // tempo: emoji + resumo curto; embaixo, a faixa de temperatura (o INMET não dá a chance de chuva)
-  var tempo=e.clima?'<div><p class="h5">'+climaEmoji(e.clima)+' '+climaCurto(e.clima)+'</p><p class="desc-sm soft">'+e.clima.min+'°–'+e.clima.max+'° • '+(e.clima.periodo==='dia'?'no dia':e.clima.periodo)+'</p></div>'
-    :'<div><p class="h5 soft">–</p><p class="desc-sm soft" title="'+semClimaTxt(e)+'">Sem previsão</p></div>';
   // "Por que é a sua cara": cards com os motivos
   var mot=[];
   if(e.aff!=null&&e.aff>=TOP_MIN){
@@ -3325,15 +3341,13 @@ function renderEvScreen(e){
       '<h2>'+(musical?'Música':esc(e.genre))+'</h2><button type="button" class="glass" id="evs-share" aria-label="Compartilhar">'+ic('share',null,20)+'</button></div>'+
     '<div class="spacer"></div><div class="corpo">'+
     '<div class="head"><div class="tx">'+(musical?'<p class="lin">'+ic('note',C2,16)+'<span>'+esc(e.genre)+'</span></p>':'')+
-      '<h1 class="h1" id="evs-title">'+esc(e.name)+'</h1><p class="lin">'+ic('pin',C2,16)+(e.venueKey&&VENUES[e.venueKey]?'<button type="button" class="vlink" id="evs-venue">'+esc(e.venue)+'</button>':'<span>'+esc(e.venue)+'</span>')+(e.arLivre?'<span>• Ao ar livre</span>':'')+'</p></div>'+cara+'</div>'+
-    '<div class="dados"><div><p class="h5">'+ic('cal','#fff',20)+(String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0'))+'</p><p class="desc-sm soft">'+dia+'</p></div>'+
-      '<div><p class="h5">'+ic('clock','#fff',20)+(d.noTime?'A confirmar':hora(d))+'</p><p class="desc-sm soft">'+longe+'</p></div>'+tempo+'</div>'+
-    (e.alerta?'<div class="alerta-risco" role="alert">'+ic('alerta','#fff',20)+'<span><b>'+(e.arLivre?'Esse rolê é muito arriscado':'Previsão de '+(e.clima.tempestade?'tempestade':'chuva'))+'</b>'+
-      (e.arLivre?'Previsão de '+(e.clima.tempestade?'tempestade':'chuva')+' e o lugar é ao ar livre. Confere com o lugar antes de sair.':'Parece que vai chover bastante, então leva blusa e guarda-chuva.')+'</span></div>':'')+
-    (musical?'<div class="artista"><h3 class="h6">Um pouco sobre o artista</h3><div class="vids">'+vidsDo(e).map(function(src,i){return '<a class="vid" href="https://www.youtube.com/results?search_query='+encodeURIComponent(e.name+(i===0?' ao vivo':i===1?' show':' clipe'))+'" target="_blank" rel="noopener" aria-label="Ver vídeos de '+esc(e.name)+' no YouTube" style="background-image:url(\''+src+'\')"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#fff"/><path d="M16 12.5v15l12-7.5z" fill="#03030F"/></svg></a>';}).join('')+'</div></div>':'')+
+      '<h1 class="h1" id="evs-title">'+esc(e.name)+'</h1><p class="lin">'+ic('pin',C2,16)+(e.venueKey&&VENUES[e.venueKey]?'<button type="button" class="vlink" id="evs-venue">'+esc(e.venue)+'</button>':'<span>'+esc(e.venue)+'</span>')+'</p>'+(e.arLivre?'<p class="lin livre"><span>Lugar ao ar livre</span></p>':'')+'</div>'+cara+'</div>'+
+    '<div class="quando"><div><div class="tx"><p class="h5">'+(String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0'))+'</p><p class="desc-sm soft">'+capt(dia)+'</p></div>'+ic('cal','#fff',24)+'</div>'+
+      '<div><div class="tx"><p class="h5">'+(d.noTime?'A confirmar':hora(d))+'</p><p class="desc-sm soft">'+quandoTxt+'</p></div>'+ic('clock','#fff',24)+'</div></div>'+
+    (musical?'<div class="artista"><h3 class="h6">Ouça o trabalho</h3><div class="vids">'+vidsDo(e).map(function(src,i){return '<a class="vid" href="https://www.youtube.com/results?search_query='+encodeURIComponent(e.name+(i===0?' ao vivo':i===1?' show':' clipe'))+'" target="_blank" rel="noopener" aria-label="Ver vídeos de '+esc(e.name)+' no YouTube" style="background-image:url(\''+src+'\')"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#fff"/><path d="M16 12.5v15l12-7.5z" fill="#03030F"/></svg></a>';}).join('')+'</div></div>':'')+
     (mot.length?'<div class="motivos"><h3 class="h6">'+(e.aff!=null&&e.aff>=TOP_MIN?'Por que é a sua cara':'Por que ir')+'</h3><div class="row">'+mot.map(function(m){return '<div class="motivo">'+m[0]+'<p>'+m[1]+'</p></div>';}).join('')+'</div></div>':'')+
-    (e.venueKey&&VENUES[e.venueKey]?'<button type="button" class="lugar" id="evs-lugar"><img src="'+(vimg||ph(e.venue,generoDoLocal(e.venueKey)))+'" alt=""><span class="tx"><span class="desc-lg soft">Sobre o lugar</span><span class="h6">'+esc(e.venue)+'</span></span><span class="go">'+ic('arrow','#D10A87',24)+'</span></button>':'')+
     (outros.length?'<div class="more"><h3 class="h6">Também no '+esc(e.venue)+'</h3>'+outros.map(function(x){return '<button type="button" class="mini" data-evs="'+x.id+'"><img src="'+x.img+'" alt=""><span><b>'+esc(x.name)+'</b><span class="desc-sm soft">'+capt(SEM[x.date.getDay()])+', '+x.date.getDate()+' '+MES[x.date.getMonth()]+(x.date.noTime?'':' • '+hora(x.date))+'</span></span></button>';}).join('')+'</div>':'')+
+    (e.venueKey&&VENUES[e.venueKey]?'<button type="button" class="lugar" id="evs-lugar"><img src="'+(vimg||ph(e.venue,generoDoLocal(e.venueKey)))+'" alt=""><span class="tx"><span class="desc-lg soft">Sobre o lugar</span><span class="h6">'+esc(e.venue)+'</span></span><span class="go">'+ic('arrow','#D10A87',24)+'</span></button>':'')+
     '</div><div class="bar"><a class="glass" href="'+site+'" target="_blank" rel="noopener" aria-label="Ver no site do Rolê Agora">'+ic('link','#fff',20)+'</a>'+
       '<a class="glass" href="'+gcalLink(e)+'" target="_blank" rel="noopener" aria-label="Pôr no calendário">'+ic('cal','#fff',20)+'</a>'+
       (going?'<button type="button" class="btn success lg" id="sh-go">'+ic('check','#fff')+'Você vai!</button>':'<button type="button" class="btn primary lg" id="sh-go">'+ic('check','#fff')+'Bora</button>')+'</div></div>';
