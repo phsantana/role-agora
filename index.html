@@ -206,7 +206,11 @@ button.tchip:hover{background:var(--action-subtle)}
 .filtros{display:flex;gap:var(--s-xsm);overflow-x:auto;scrollbar-width:none;margin:var(--s-m) calc(-1 * max(16px,env(safe-area-inset-right,0px))) 0;padding:2px max(16px,env(safe-area-inset-right,0px))}
 .filtros::-webkit-scrollbar{display:none}
 .found+.filtros,.grab+.filtros{margin-top:0}
-.fopts-extra{margin-top:var(--s-sm);width:100%}
+.gpick{margin:var(--s-m) 0}
+.gpick .chip{cursor:pointer;height:40px;padding:0 14px 0 16px;font-size:16px}
+.gpick .gn{font-size:12px;font-weight:400;opacity:.72}
+.gacts{display:grid;grid-template-columns:1fr 2fr;gap:var(--s-xsm);margin-bottom:var(--s-xsm)}
+.gacts .btn:disabled{opacity:.4;cursor:default}
 .fbtn{flex:none;display:inline-flex;align-items:center;gap:var(--s-2xsm);height:45px;padding:0 14px 0 18px;border:1px solid var(--border-strong);border-radius:var(--r-pill);background:var(--surface);font:inherit;font-size:16px;color:var(--text);white-space:nowrap;cursor:pointer;transition:background .15s,box-shadow .15s,border-color .15s}
 .fbtn svg{width:20px;height:20px;flex:none}
 .fbadge{min-width:20px;height:20px;padding:0 6px;border-radius:var(--r-pill);background:var(--action);color:var(--inverse);font-size:12px;font-weight:600;line-height:20px;text-align:center;font-variant-numeric:tabular-nums}
@@ -1057,7 +1061,7 @@ var SIM={
 };
 var SPOTIFY_MOCK={name:'Seu Spotify',weights:{Pop:.92,Rock:.85,Soul:.74,Sertanejo:.61}};
 
-var state={profile:null,source:null,q:'',dismissed:{},going:{},topIdx:0,modo:'roles',whenAuto:true,genre:null,city:{name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false}};
+var state={profile:null,source:null,q:'',dismissed:{},going:{},topIdx:0,modo:'roles',whenAuto:true,genres:[],city:{name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false}};
 try{var saved=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(saved&&saved.profile){state.profile=saved.profile;state.source=saved.source;state.going=saved.going||{};state.dismissed=saved.dismissed||{};}}catch(e){}
 try{var savedI=JSON.parse(localStorage.getItem('radar-roles')||'null'); if(savedI&&savedI.going&&!saved.profile) state.going=savedI.going;}catch(e){}
 try{if(localStorage.getItem('radar-modo')==='locais') state.modo='locais';}catch(e){}
@@ -1494,7 +1498,7 @@ function whenRange(k){var t=dayStart(NOW),wd=t.getDay();
   if(k==='fds'){if(wd===0) return {from:t,to:addDays(t,1)};if(wd===6) return {from:t,to:addDays(t,2)};var fri=addDays(t,5-wd);return {from:new Date(fri.getFullYear(),fri.getMonth(),fri.getDate(),18),to:addDays(fri,3)};}
   return null;}
 function inWhen(e){var w=state.when;if(!w) return true;return e.date>=w.from&&e.date<w.to;}
-function inGenre(e){return !state.genre||e.genre===state.genre;}
+function inGenre(e){return !state.genres.length||state.genres.indexOf(e.genre)>=0;}
 function visible(){computeAutoR();return events.filter(function(e){return !jaPassou(e)&&matchesQuery(e)&&inArea(e)&&inWhen(e)&&inGenre(e);});}
 function byTop(a,b){ // 1º afinidade, 2º horário mais próximo, 3º distância
   return ((b.aff||0)-(a.aff||0))||(a.date-b.date)||(a.dist-b.dist);}
@@ -1522,7 +1526,7 @@ function locais(){
     if(!l) return false;
     if(!state.city.live&&l.dist>RADIUS_KM) return false;
     if(state.when&&!l.roles.length) return false; // escolheu uma data: só os locais com rolê nela
-    if(state.genre&&!l.roles.length&&l.genre!==state.genre) return false; // escolheu um gênero: locais com rolê dele ou que mais tocam ele
+    if(state.genres.length&&!l.roles.length&&state.genres.indexOf(l.genre)<0) return false; // escolheu gêneros: locais com rolê deles ou que mais tocam eles
     if(q&&!l.roles.length&&[l.name,l.bairro,l.genre].join(' ').toLowerCase().indexOf(q)<0) return false;
     return inArea(l);
   }).sort(function(a,b){return ((b.aff||0)-(a.aff||0))||(a.dist-b.dist);});
@@ -2109,25 +2113,42 @@ document.getElementById('f-when').onclick=function(){
 /* ---------- Gênero musical: filtro com seta, como Rolê ou Local e Data ---------- */
 function generoMusical(g){return g&&!NAO_MUSICAL[g]&&!/^(evento|outros?|show)$/i.test(g);}
 // gêneros com rolê nos outros filtros (data, busca, região), com a contagem de cada um
+function comGeneros(gs,fn){var g0=state.genres;state.genres=gs;try{return fn();}finally{state.genres=g0;}}
 function generosDisponiveis(){
-  var g0=state.genre;state.genre=null;var vis=visible();state.genre=g0;
+  var vis=comGeneros([],visible);
   var c={};vis.forEach(function(e){if(generoMusical(e.genre)) c[e.genre]=(c[e.genre]||0)+1;});
   var p=state.profile||{};
   // primeiro os do seu gosto (pelo peso), depois os com mais rolês
   return Object.keys(c).sort(function(a,b){return ((p[b]||0)-(p[a]||0))||(c[b]-c[a])||a.localeCompare(b);}).map(function(g){return {g:g,n:c[g],seu:!!p[g]};});
 }
-function renderGenre(){var g=state.genre;fbtn(document.getElementById('f-genre'),g||'Gênero',!!g,g?'Gênero: '+g+'. Trocar o gênero':'Todos os gêneros. Escolher um gênero');}
+// um gênero: o nome no botão; vários: "Gêneros" com a quantidade na badge
+function renderGenre(){var gs=state.genres,n=gs.length;
+  fbtn(document.getElementById('f-genre'),n===1?gs[0]:n?'Gêneros':'Gênero',!!n,n?'Gêneros: '+gs.join(', ')+'. Trocar os gêneros':'Todos os gêneros. Escolher gêneros',n>1?n:null);}
 document.getElementById('f-genre').onclick=function(){
-  var gs=generosDisponiveis(),cur=state.genre||'all';
-  if(state.genre&&!gs.some(function(x){return x.g===state.genre;})) gs.unshift({g:state.genre,n:0,seu:!!(state.profile&&state.profile[state.genre])});
-  var opts=[{v:'all',t:'Todos os gêneros'}].concat(gs.map(function(x){return {v:x.g,t:x.g,d:plural(x.n,'rolê','rolês')+(x.seu?' • Seu gosto':'')};}));
-  var extra='<button type="button" class="btn secondary md fopts-extra" id="g-edit">'+(state.profile?'Editar meu gosto':'Escolher meu gosto')+'</button>';
-  openFiltro(this,'Qual som você quer ouvir?',opts,cur,function(v){state.genre=v==='all'?null:v;moreOpen={};render();startScan();},extra);
+  var btn=this,gs=generosDisponiveis(),sel=state.genres.slice();
+  sel.forEach(function(g){if(!gs.some(function(x){return x.g===g;})) gs.unshift({g:g,n:0,seu:!!(state.profile&&state.profile[g])});});
+  var locs=state.modo==='locais';
+  openSheet('<h2 class="h4" id="sheet-title">Qual som você quer ouvir?</h2><p class="body-sm muted">Escolha um ou mais.'+(state.profile?' Os do seu gosto vêm primeiro.':'')+'</p>'+
+    '<div class="genres gpick" role="group" aria-label="Gêneros">'+gs.map(function(x){return '<button type="button" class="chip" data-g="'+esc(x.g)+'" aria-pressed="'+(sel.indexOf(x.g)>=0)+'">'+esc(x.g)+'<span class="gn" aria-label="'+plural(x.n,'rolê','rolês')+'">'+x.n+'</span></button>';}).join('')+'</div>'+
+    '<div class="gacts"><button type="button" class="btn secondary md" id="g-clear">Limpar</button><button type="button" class="btn primary md" id="g-ok"></button></div>'+
+    '<button type="button" class="btn ghost md block" id="g-edit">'+(state.profile?'Editar meu gosto':'Escolher meu gosto')+'</button>','Escolher gêneros');
+  btn.setAttribute('aria-expanded','true');
+  sheetOnClose=function(){btn.setAttribute('aria-expanded','false');};
+  // o botão principal mostra quantos rolês (ou locais) aparecem com a escolha
+  function conta(){var n=comGeneros(sel,function(){return locs?locais().length:visible().length;});
+    document.getElementById('g-ok').textContent=n?'Ver '+plural(n,locs?'local':'rolê',locs?'locais':'rolês'):'Nada com esses gêneros';
+    document.getElementById('g-ok').disabled=!n;document.getElementById('g-clear').disabled=!sel.length;}
+  conta();
+  document.querySelectorAll('.gpick [data-g]').forEach(function(c){c.onclick=function(){var g=c.getAttribute('data-g'),i=sel.indexOf(g);
+    if(i>=0) sel.splice(i,1);else sel.push(g);c.setAttribute('aria-pressed',String(i<0));conta();};});
+  document.getElementById('g-clear').onclick=function(){sel=[];document.querySelectorAll('.gpick [data-g]').forEach(function(c){c.setAttribute('aria-pressed','false');});conta();};
+  document.getElementById('g-ok').onclick=function(){var mudou=sel.slice().sort().join('|')!==state.genres.slice().sort().join('|');closeSheet();
+    if(mudou){state.genres=sel;moreOpen={};render();startScan();}};
   document.getElementById('g-edit').onclick=function(){closeSheet();setTimeout(openGenres,320);};
 };
 // data padrão: "Hoje" se tem rolê hoje; senão "Qualquer data". Vale até a pessoa escolher outra data
 function autoWhen(){
-  if(state.genre&&!events.some(function(e){return e.genre===state.genre;})) state.genre=null;
+  state.genres=state.genres.filter(function(g){return events.some(function(e){return e.genre===g;});});
   if(!state.whenAuto) return;
   var r=whenRange('hoje'),tem=events.some(function(e){return e.date>=r.from&&e.date<r.to&&+e.date+3*36e5>NOW;});
   state.when=tem?Object.assign({k:'hoje'},r):null;
