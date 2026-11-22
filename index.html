@@ -2893,7 +2893,7 @@ function syncScreenLock(){var h=document.documentElement;h.classList.toggle('scr
   document.getElementById('nav-home').toggleAttribute('aria-current',homeOpen);if(homeOpen) document.getElementById('nav-home').setAttribute('aria-current','page');
   document.getElementById('nav-radar').toggleAttribute('aria-current',!homeOpen);if(!homeOpen) document.getElementById('nav-radar').setAttribute('aria-current','page');}
 /* ---------- Home: aba da navbar ---------- */
-var abrirBuscaCidade=function(){},homeOpen=false,homeEl=document.getElementById('home');
+var abrirBuscaCidade=function(){},aoEscolherCidade=function(){},homeOpen=false,homeEl=document.getElementById('home');
 function openHome(){
   if(sheet.classList.contains('open')) closeSheet();
   if(evsOpen) closeEvent();if(agOpen) closeAgenda();
@@ -3046,6 +3046,8 @@ function renderHhExtra(){
   var fechar=function(manter){if(manter!==true&&state.q){bdq.value='';state.q='';lastQ='';render();}bd.classList.remove('open');bd.setAttribute('aria-hidden','true');document.documentElement.classList.remove('busca-aberta');bdq.blur();if(bdLast&&bdLast.focus) bdLast.focus({preventScroll:true});};
   document.getElementById('hh-busca').onclick=function(){abrir();};
   abrirBuscaCidade=function(){abrir(true);};
+  // escolheu uma cidade na busca: pela troca de cidade do topo (bdCidade), volta pra Home; digitando na busca da Home, vai pro Radar já na cidade
+  aoEscolherCidade=function(){if(!bd.classList.contains('open')) return;var praHome=bdCidade;bdCidade=false;fechar(true);if(!praHome) document.getElementById('nav-radar').click();};
   document.getElementById('bd-x').onclick=function(){fechar(false);};
   document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&bd.classList.contains('open')&&!sheet.classList.contains('open')&&(!document.getElementById('bdsug')||document.getElementById('bdsug').hidden)) fechar();});
   // escolheu um rolê ou lugar: a página dele abre por cima; escolheu gênero/cidade: fecha a busca e mostra a Home filtrada
@@ -3657,6 +3659,7 @@ function cityMsg(html){var el=document.getElementById('city-msg');el.innerHTML=h
 function stopLoadingPill(){scan.on=false;scan.order=[];scan.shown=0;var el=document.getElementById('found');el.classList.add('hide');setTimeout(function(){if(el.classList.contains('hide')) el.hidden=true;},400);}
 function chooseCity(c){
   renderSuggest([]);q.value='';state.q='';lastQ='';qc.hidden=true;q.blur();
+  aoEscolherCidade(); // se veio da busca da Home: fecha a busca (e vai pro Radar) antes de carregar, pra varredura aparecer no mapa
   if(isCurrent(c)){render();return;}
   if(citySlug(c)==='presidente-prudente-sp') c={name:c.name,uf:c.uf,sync:true};
   loadCity(c);
