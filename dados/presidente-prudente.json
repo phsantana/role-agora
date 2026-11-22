@@ -1107,7 +1107,11 @@
    "r84a8feb7": "Samba",
    "rf49cb3f4": "Samba",
    "rdc4bc0a1": "Pagode",
-   "r3addf2ab": "Samba"
+   "r3addf2ab": "Samba",
+   "rea584df5": "Samba",
+   "re89b1da1": "Samba",
+   "r475d0e10": "Pagode",
+   "rfeabb076": "Sertanejo"
   },
   "cult_bar": {
    "antigo48": "Rock",
@@ -1211,36 +1215,6 @@
  },
  "rows": [
   [
-   "r6293b9e6",
-   "Germano E Guilherme",
-   "alphaville_bar_e_petiscaria",
-   "Sertanejo",
-   "2026-11-22",
-   "13:30",
-   "germano-e-guilherme",
-   837
-  ],
-  [
-   "r2468ea9a",
-   "Obompó-Ropongá",
-   "sesc_thermas",
-   "Teatro",
-   "2026-11-22",
-   "16:00",
-   "obompo-roponga",
-   0
-  ],
-  [
-   "r506fb753",
-   "Dissonância",
-   "valete_bar",
-   "Rock",
-   "2026-11-22",
-   "17:00",
-   "dissonancia",
-   610
-  ],
-  [
    "rdaea61fb",
    "Grupo TeDeJota",
    "rooftop_bar",
@@ -1279,6 +1253,16 @@
    "20:30",
    "robson-reis",
    11172
+  ],
+  [
+   "rea584df5",
+   "Soul do Samba",
+   "bar_da_onca",
+   "Samba",
+   "2026-11-23",
+   "20:00",
+   "soul-do-samba",
+   6546
   ],
   [
    "r004b45b1",
@@ -1321,6 +1305,26 @@
    0
   ],
   [
+   "re89b1da1",
+   "Samba E Suor",
+   "bar_da_onca",
+   "Samba",
+   "2026-11-26",
+   "20:00",
+   "samba-e-suor",
+   2238
+  ],
+  [
+   "r475d0e10",
+   "Grupo Classe A",
+   "bar_da_onca",
+   "Pagode",
+   "2026-11-27",
+   "20:00",
+   "grupo-classe-a",
+   9741
+  ],
+  [
    "ra4ad9a0c",
    "Cia Pé de Ciranda",
    "sesc_thermas",
@@ -1349,6 +1353,16 @@
    "20:00",
    "matheus-ceara",
    6818873
+  ],
+  [
+   "rfeabb076",
+   "Denise Leal",
+   "bar_da_onca",
+   "Sertanejo",
+   "2026-11-28",
+   "20:00",
+   "denise-leal",
+   5918
   ],
   [
    "r880ac75a",
