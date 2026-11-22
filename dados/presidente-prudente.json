@@ -1,6 +1,6 @@
 {
  "coletado": "2026-11-22",
- "fonte": "https://www.roleagora.com.br/city/presidente-prudente-sp",
+ "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-22T19:24)",
  "V": {
   "varanda_boa_vista": {
    "name": "Varanda Boa Vista",
@@ -30,7 +30,8 @@
    "genero": "Sertanejo",
    "generosTop": [
     "Sertanejo",
-    "Samba"
+    "Samba",
+    "Encontros e Palestras"
    ],
    "avaliacoes": 47,
    "nota": 4.7
@@ -95,8 +96,8 @@
    "genero": "Sertanejo",
    "generosTop": [
     "Sertanejo",
-    "MPB",
-    "Country"
+    "Country",
+    "MPB"
    ],
    "tipo": "Restaurante",
    "areaExterna": true,
@@ -233,11 +234,11 @@
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/89189bb9-eeb9-4d2c-8806-f5bef8dfc0dc/1778461107557-xjybby.webp",
    "slug": "tacchino-ristorante",
    "tipo": "Restaurante italiano",
-   "genero": "Italiana",
+   "genero": "Bloco de rua",
    "generosTop": [
-    "Italiana",
     "Bloco de rua",
-    "Latina"
+    "Italiana",
+    "Jazz"
    ],
    "areaExterna": true,
    "avaliacoes": 483,
@@ -254,8 +255,7 @@
    "genero": "Rock",
    "generosTop": [
     "Rock",
-    "Pop Rock",
-    "Metal Alternativo"
+    "Pop Rock"
    ],
    "avaliacoes": 13,
    "nota": 4.8
@@ -290,7 +290,7 @@
    "generosTop": [
     "Sertanejo",
     "Multigênero",
-    "Samba"
+    "Brasilidades"
    ],
    "avaliacoes": 313,
    "nota": 4.4
@@ -326,7 +326,7 @@
    "name": "Teatro César Cava",
    "bairro": "Cidade Universitária",
    "lat": -22.1330748,
-   "lng": -51.40260809999999,
+   "lng": -51.4026081,
    "slug": "teatro-cesar-cava",
    "tipo": "Teatro",
    "genero": "Stand Up",
@@ -420,11 +420,11 @@
    "slug": "ume-brasa-e-mar",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/a25d7a7d-36be-4176-b77e-3dc1715a2a3f/1778774586241-7uvhg3.webp",
    "tipo": "Casa noturna",
-   "genero": "Eletrônica",
+   "genero": "Rock",
    "generosTop": [
-    "Eletrônica",
     "Rock",
-    "Sertanejo"
+    "Discotecagem",
+    "Eletrônica"
    ],
    "avaliacoes": 58,
    "nota": 3.6
@@ -456,8 +456,8 @@
    "genero": "Sertanejo",
    "generosTop": [
     "Sertanejo",
-    "Samba",
-    "Pagode"
+    "Pagode",
+    "Samba"
    ],
    "areaExterna": true,
    "avaliacoes": 264,
@@ -471,10 +471,10 @@
    "slug": "magma-grill",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/ba3cd5f8-6b2f-4d21-b2ac-1787fd93bba8/1778774729824-ju9erb.webp",
    "tipo": "Restaurante",
-   "genero": "Sertanejo",
+   "genero": "Pop Rock",
    "generosTop": [
-    "Sertanejo",
     "Pop Rock",
+    "Sertanejo",
     "Rock"
    ],
    "areaExterna": true,
@@ -508,7 +508,7 @@
    "generosTop": [
     "Sertanejo",
     "Eletrônica",
-    "Pop Rock"
+    "Pagode"
    ],
    "areaExterna": true,
    "avaliacoes": 33,
@@ -581,10 +581,10 @@
    "slug": "coletivo-cultural-galpao-da-lua",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/86e7713c-e1b0-470a-b136-e68b554eac19/1778774684781-t7dizw.webp",
    "tipo": "Centro cultural",
-   "genero": "Teatro",
+   "genero": "Bloco de rua",
    "generosTop": [
-    "Teatro",
-    "Bloco de rua"
+    "Bloco de rua",
+    "Teatro"
    ],
    "avaliacoes": 141,
    "nota": 4.8
@@ -699,7 +699,7 @@
    "generosTop": [
     "Teatro",
     "MPB",
-    "Forró"
+    "Rock"
    ],
    "avaliacoes": 2284,
    "nota": 4.8
@@ -714,8 +714,8 @@
    "genero": "Rock",
    "generosTop": [
     "Rock",
-    "MPB",
-    "Jazz"
+    "Choro",
+    "Forró"
    ],
    "tipo": null
   },
@@ -757,8 +757,8 @@
    "genero": "Pop Rock",
    "generosTop": [
     "Pop Rock",
-    "Sertanejo",
-    "Samba"
+    "Samba",
+    "Sertanejo"
    ]
   },
   "bar_do_pisca": {
@@ -828,10 +828,10 @@
    "lng": -51.392872,
    "slug": "bar-da-12",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794511679368-cc5bed.webp",
-   "genero": "Forró",
+   "genero": "Brasilidades",
    "generosTop": [
-    "Forró",
-    "Brasilidades"
+    "Brasilidades",
+    "Forró"
    ],
    "nota": 4.4,
    "tipo": null
@@ -1215,6 +1215,16 @@
  },
  "rows": [
   [
+   "r506fb753",
+   "Dissonância",
+   "valete_bar",
+   "Rock",
+   "2026-11-22",
+   "17:00",
+   "dissonancia",
+   610
+  ],
+  [
    "rdaea61fb",
    "Grupo TeDeJota",
    "rooftop_bar",
@@ -1236,7 +1246,7 @@
   ],
   [
    "recf95b11",
-   "Estácio Lima",
+   "Estácio Lima",
    "vo_laura_gourmet",
    "Sertanejo",
    "2026-11-22",
