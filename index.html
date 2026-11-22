@@ -3741,8 +3741,7 @@ function cityFail(code,c,url,err){
     msg='<h3 class="h6">Não deu pra usar sua localização agora</h3><p class="desc-lg muted">Continuamos em '+esc(back)+'. Dá pra trocar de cidade na busca.</p>';
   else if(code==='cancelled'||code==='not_in_manifest'||code==='approval_required'||code==='consent_required')
     msg='<h3 class="h6">A busca em '+esc(c.name)+' precisa da sua permissão</h3><p class="desc-lg muted">Libere o navegador do Claude para este app e tente de novo. Enquanto isso, seguimos em '+esc(back)+'.</p><div class="row">'+retry+link+'</div>';
-  else if(code==='notfound'||code==='empty')
-    msg='<h3 class="h6">Nada rolando em '+esc(c.name)+', '+c.uf+' por enquanto</h3><p class="desc-lg muted">Confira o nome da cidade e o estado, ou veja direto no site.</p><div class="row">'+link+'</div>';
+  else if(code==='notfound'||code==='empty') return; // cidade sem rolê na agenda: sem aviso, segue na cidade atual
   else
     msg='<h3 class="h6">Não deu pra carregar '+esc(c.name)+'</h3><p class="desc-lg muted">O site do Rolê Agora não respondeu agora. Seus rolês em '+esc(back)+' continuam aqui. Tente de novo em instantes.</p><div class="row">'+retry+link+'</div>';
   cityMsg(msg);
