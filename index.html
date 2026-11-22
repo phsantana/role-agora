@@ -2913,7 +2913,7 @@ function syncScreenLock(){var h=document.documentElement;h.classList.toggle('scr
   document.getElementById('nav-home').toggleAttribute('aria-current',homeOpen);if(homeOpen) document.getElementById('nav-home').setAttribute('aria-current','page');
   document.getElementById('nav-radar').toggleAttribute('aria-current',!homeOpen);if(!homeOpen) document.getElementById('nav-radar').setAttribute('aria-current','page');}
 /* ---------- Home: aba da navbar ---------- */
-var homeOpen=false,homeEl=document.getElementById('home');
+var abrirBuscaCidade=function(){},homeOpen=false,homeEl=document.getElementById('home');
 function openHome(){
   if(sheet.classList.contains('open')) closeSheet();
   if(evsOpen) closeEvent();if(agOpen) closeAgenda();
@@ -3049,23 +3049,28 @@ function renderHhExtra(){
   document.getElementById('hh-slide2').addEventListener('click',function(ev){var b=ev.target.closest('[data-open]');if(b) openEvent(b.getAttribute('data-open'));});
   // lupa: leva pra busca do radar
   // lupa: abre a busca em tela cheia (campo no topo, resultados no corpo)
-  var bd=document.getElementById('bd'),bdq=document.getElementById('bdq'),bdHost=null,bdLast=null;
-  var abrir=function(){
+  var bd=document.getElementById('bd'),bdq=document.getElementById('bdq'),bdHost=null,bdLast=null,bdCidade=false;
+  var abrir=function(cidade){
     if(!bdHost){bdHost=searchHost(bdq,document.getElementById('bdqc'),document.getElementById('bdsug'),'Qual rolê você procura?',false);bindSearch(bdHost);
       // aqui os resultados ficam na tela mesmo sem foco (teclado fechado)
       bdq.addEventListener('keydown',function(ev){if(ev.key==='Enter') setTimeout(function(){bdq.dispatchEvent(new Event(bdq.value?'input':'focus'));},0);}); // Enter mantém os resultados
       bdq.addEventListener('blur',function(){setTimeout(function(){if(bd.classList.contains('open')&&!sheet.classList.contains('open')) bdq.dispatchEvent(new Event(bdq.value?'input':'focus'));},200);});}
     bdLast=document.activeElement;bd.classList.add('open');bd.setAttribute('aria-hidden','false');document.documentElement.classList.add('busca-aberta');
     bdq.value=state.q||'';document.getElementById('bdqc').hidden=!bdq.value;
+    bdCidade=cidade===true;
+    if(!bdCidade){showPopular=false;bdq.placeholder='Qual rolê você procura?';} // saiu do modo cidade: volta a busca de rolês
+    if(cidade===true){bdq.value='';document.getElementById('bdqc').hidden=true;setTimeout(function(){useSearch(bdHost);openCityPicker();},60);return;} // cidade no hero: a lista de cidades abre na busca
     setTimeout(function(){bdq.focus();bdq.dispatchEvent(new Event(bdq.value?'input':'focus'));},60); // mostra os populares já ao abrir
   };
   // fechar no X descarta o que foi digitado; escolher um gênero (manter=true) deixa a Home filtrada por ele
   var fechar=function(manter){if(manter!==true&&state.q){bdq.value='';state.q='';lastQ='';render();}bd.classList.remove('open');bd.setAttribute('aria-hidden','true');document.documentElement.classList.remove('busca-aberta');bdq.blur();if(bdLast&&bdLast.focus) bdLast.focus({preventScroll:true});};
-  document.getElementById('hh-busca').onclick=abrir;
+  document.getElementById('hh-busca').onclick=function(){abrir();};
+  abrirBuscaCidade=function(){abrir(true);};
   document.getElementById('bd-x').onclick=function(){fechar(false);};
   document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&bd.classList.contains('open')&&!sheet.classList.contains('open')&&(!document.getElementById('bdsug')||document.getElementById('bdsug').hidden)) fechar();});
   // escolheu um rolê ou lugar: a página dele abre por cima; escolheu gênero/cidade: fecha a busca e mostra a Home filtrada
-  document.getElementById('bdsug').addEventListener('click',function(){setTimeout(function(){var abriuPagina=document.getElementById('evs').classList.contains('open')||document.getElementById('vs').classList.contains('open');if(!abriuPagina&&!bdq.value) return;if(!abriuPagina&&document.activeElement!==bdq) fechar(true);},120);});
+  document.getElementById('bdsug').addEventListener('click',function(ev){var escolheu=!!ev.target.closest('[role=option]');setTimeout(function(){if(bdCidade&&escolheu&&!bdq.value){bdCidade=false;fechar(true);return;} // escolheu a cidade: volta pra Home
+    var abriuPagina=document.getElementById('evs').classList.contains('open')||document.getElementById('vs').classList.contains('open');if(!abriuPagina&&!bdq.value) return;if(!abriuPagina&&document.activeElement!==bdq) fechar(true);},120);});
   document.getElementById('hh-cupons').onclick=function(){var el=document.getElementById('home-sec-cupom');if(el) homeEl.scrollTo({top:el.offsetTop-16,behavior:reduceMotion?'auto':'smooth'});};
 })();
 function renderHh(){
@@ -3873,7 +3878,7 @@ document.getElementById('locate').onclick=function(){toMap();resetArea();render(
 // Home: os dois campos de busca e o botão da cidade usam a mesma busca, sem sair da Home
 var homeBuscaTopo=searchHost(document.getElementById('hq1'),document.getElementById('hq1c'),document.getElementById('hsug1'),'Qual rolê você procura?',false);
 bindSearch(homeBuscaTopo);
-document.getElementById('home-city').onclick=function(){useSearch(homeBuscaTopo);openCityPicker();};
+document.getElementById('home-city').onclick=function(){abrirBuscaCidade();};
 document.addEventListener('click',function(ev){var o=ev.target.closest('[data-open]');if(o&&!sheet.contains(o)&&!evsEl.contains(o)&&!vsEl.contains(o)){openEvent(o.getAttribute('data-open'));return;}var p=ev.target.closest('.pin');if(p){openVenue(p.getAttribute('data-venue'));}});
 var rt=null;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){layout();renderMap(buckets());},120);});
 // a agenda atualizada troca os códigos dos rolês: o que você marcou com o código antigo passa pro rolê novo (mesmo artista, dia e hora)
