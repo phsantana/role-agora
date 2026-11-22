@@ -1135,7 +1135,8 @@
    "rc9ccd037": "Sertanejo",
    "r3c8c50ed": "Sertanejo",
    "ra2227a74": "Sertanejo",
-   "r26d6d1e5": "Sertanejo"
+   "r26d6d1e5": "Sertanejo",
+   "recf95b11": "Sertanejo"
   },
   "sesc_thermas": {
    "r620d9408": "Teatro",
@@ -1165,7 +1166,8 @@
    "re234f584": "Sertanejo",
    "r38962096": "Sertanejo",
    "r3fb9374d": "Sertanejo",
-   "rc5c7a9ef": "Sertanejo"
+   "rc5c7a9ef": "Sertanejo",
+   "r3ce223b2": "Sertanejo"
   },
   "dg_espetaria": {
    "r2a432d92": "Rock",
@@ -1257,6 +1259,26 @@
    "20:00",
    "caso-a-parte",
    26204
+  ],
+  [
+   "recf95b11",
+   "Estácio Lima",
+   "vo_laura_gourmet",
+   "Sertanejo",
+   "2026-11-22",
+   "20:00",
+   "estacio-lima",
+   15114
+  ],
+  [
+   "r3ce223b2",
+   "Robson Reis",
+   "arapuca_bar",
+   "Sertanejo",
+   "2026-11-22",
+   "20:30",
+   "robson-reis",
+   11172
   ],
   [
    "r004b45b1",
