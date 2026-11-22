@@ -190,11 +190,40 @@ button.tchip:hover{background:var(--action-subtle)}
 .when .chip svg{width:16px;height:16px}
 .when+.total{margin-top:var(--s-sm)}
 .dates{display:flex;flex-direction:column;gap:var(--s-sm);margin-top:var(--s-m)}
+.cal-top{display:flex;align-items:center;justify-content:space-between;gap:var(--s-sm)}
+.cal-limpar{border:0;background:none;padding:4px 0;font:inherit;font-size:14px;color:var(--text-2);cursor:pointer}
+.cal-limpar:hover{color:var(--text)}
+.cal-pontas{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-xsm);margin-top:var(--s-m)}
+.cal-ponta{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 16px;border:1px solid var(--border);border-radius:var(--r-xsm);background:var(--surface);font:inherit;text-align:left;cursor:pointer;min-width:0}
+.cal-ponta small{font-size:12px;line-height:1.5;color:var(--text-2)}
+.cal-ponta b{font-family:var(--display);font-size:16px;line-height:1.3;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.cal-ponta b.vz{font-family:inherit;font-weight:400;font-size:14px;color:var(--text-2)}
+.cal-ponta[aria-pressed="true"]{border:2px solid var(--action);padding:11px 15px}
+.cal-mes{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s-m)}
+.cal-mes h3{font-family:var(--display);font-size:18px;line-height:1.3;font-weight:700;color:var(--text)}
+.cal-mes h3::first-letter{text-transform:uppercase}
+.cal-nav{display:flex;gap:var(--s-xsm)}
+.cal-nav button{width:36px;height:36px;border-radius:50%;border:0;background:var(--subtle,#F5F5F5);display:grid;place-items:center;color:var(--text);cursor:pointer}
+.cal-nav button:disabled{opacity:.35;cursor:default}
+.cal-grade{display:grid;grid-template-columns:repeat(7,1fr);row-gap:4px;margin-top:var(--s-sm)}
+.cal-grade .sem{height:28px;display:grid;place-items:center;font-size:12px;color:var(--text-2)}
+.cal-dia{position:relative;height:44px;border:0;background:none;padding:0;font:inherit;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;display:grid;place-items:center}
+.cal-dia span{position:relative;z-index:1;width:40px;height:40px;border-radius:50%;display:grid;place-items:center}
+.cal-dia:not(:disabled):hover span{background:rgba(209,10,135,.08)}
+.cal-dia:disabled{color:#C7C7C7;font-weight:400;cursor:default}
+.cal-dia.hj::after{content:'';position:absolute;z-index:2;left:50%;bottom:5px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--action)}
+.cal-dia.faixa{background:rgba(209,10,135,.1)}
+.cal-dia.ini{background:linear-gradient(90deg,transparent 50%,rgba(209,10,135,.1) 50%)}
+.cal-dia.fim{background:linear-gradient(90deg,rgba(209,10,135,.1) 50%,transparent 50%)}
+.cal-dia.ini.fim{background:none}
+.cal-dia.ini span,.cal-dia.fim span{background:var(--action)!important;color:#fff}
+.cal-dia.hj.ini::after,.cal-dia.hj.fim::after{background:#fff}
+.dates .acts{display:grid;grid-template-columns:1fr 2fr;gap:var(--s-xsm);margin-top:var(--s-m)}
 .dates .row2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-sm)}
 .dates label{display:flex;flex-direction:column;gap:var(--s-2xsm);font-size:14px;font-weight:600;color:var(--text)}
 .dates input{height:48px;border:1px solid var(--border);border-radius:var(--r-2xsm);padding:0 12px;font:inherit;font-weight:400;font-size:16px;color:var(--text);background:var(--surface);min-width:0}
 .dates input:focus{outline:2px solid var(--action);outline-offset:1px}
-.dates .acts{display:flex;flex-direction:column;gap:var(--s-xsm);margin-top:var(--s-xsm)}
+
 .dates .acts .btn{width:100%}
 .modo{display:flex;gap:4px;padding:4px;border-radius:var(--r-pill);background:var(--subtle);margin:var(--s-m) 0 0}
 .modo button{flex:1;height:37px;border:0;border-radius:var(--r-pill);background:transparent;font:inherit;font-size:14px;color:var(--text-2);display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2xsm);cursor:pointer}
@@ -2447,14 +2476,43 @@ function setWhen(w){state.whenAuto=false;state.when=w;moreOpen={};render();start
 function isoDay(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function parseDay(v){var p=String(v||'').split('-');return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null;}
 function openDates(){
-  var w=state.when&&state.when.k==='custom'?state.when:null,min=isoDay(dayStart(NOW));
-  openSheet('<h2 class="h4" id="sheet-title">Quando você quer sair?</h2><p class="body-sm muted">Escolha um dia ou um período. Deixe o “até” vazio pra ver só um dia.</p>'+
-    '<div class="dates"><div class="row2"><label>De<input type="date" id="d-from" min="'+min+'" value="'+(w?isoDay(w.from):min)+'"></label><label>Até<input type="date" id="d-to" min="'+min+'" value="'+(w?isoDay(addDays(w.to,-1)):'')+'"></label></div>'+
-    '<div class="acts"><button type="button" class="btn primary lg" id="d-ok">Ver rolês</button><button type="button" class="btn secondary lg" id="d-clear">Qualquer data</button></div></div>','Escolher data');
-  var f=document.getElementById('d-from'),t=document.getElementById('d-to');
-  f.onchange=function(){t.min=f.value||min;if(t.value&&t.value<f.value) t.value=f.value;};
-  document.getElementById('d-ok').onclick=function(){var a=parseDay(f.value);if(!a){f.focus();return;}var b=parseDay(t.value)||a;if(b<a){var x=a;a=b;b=x;}closeSheet();setWhen({k:'custom',from:a,to:addDays(b,1)});};
-  document.getElementById('d-clear').onclick=function(){closeSheet();setWhen(null);};
+  // calendário de intervalo: toca no início e depois no fim (um toque só = um dia)
+  var w=state.when&&state.when.k==='custom'?state.when:null,hoje=dayStart(NOW);
+  var ini=w?dayStart(w.from):null,fim=w?addDays(w.to,-1):null,editando=w?'fim':'ini';
+  if(fim&&ini&&+fim===+ini) fim=null;
+  var mes=new Date((ini||hoje).getFullYear(),(ini||hoje).getMonth(),1),mesMin=new Date(hoje.getFullYear(),hoje.getMonth(),1),mesMax=new Date(hoje.getFullYear(),hoje.getMonth()+6,1);
+  var SEMI=['D','S','T','Q','Q','S','S'],cur=function(d){return capt(SEM[d.getDay()])+', '+d.getDate()+' '+MES[d.getMonth()];};
+  openSheet('<h2 class="h4" id="sheet-title">Quando você quer sair?</h2><div class="dates" id="cal"></div>','Escolher data');
+  var box=document.getElementById('cal');
+  function contar(){if(!ini) return 0;var a=ini,b=addDays(fim||ini,1);return events.filter(function(e){return e.date>=a&&e.date<b&&+e.date+DURACAO>NOW;}).length;}
+  function desenhar(){
+    var y=mes.getFullYear(),m=mes.getMonth(),pri=new Date(y,m,1).getDay(),nd=new Date(y,m+1,0).getDate(),h='';
+    for(var k=0;k<7;k++) h+='<span class="sem" aria-hidden="true">'+SEMI[k]+'</span>';
+    for(k=0;k<pri;k++) h+='<span></span>';
+    for(var d=1;d<=nd;d++){var dt=new Date(y,m,d),c='cal-dia',t=+dt;
+      if(+dt===+hoje) c+=' hj';
+      if(ini&&t===+ini) c+=' ini';
+      if((fim&&t===+fim)||(ini&&!fim&&t===+ini)) c+=' fim';
+      if(ini&&fim&&t>+ini&&t<+fim) c+=' faixa';
+      h+='<button type="button" class="'+c+'" data-d="'+t+'"'+(dt<hoje?' disabled':'')+' aria-label="'+d+' de '+MES_LONGO[m]+'"'+(c.indexOf(' ini')>0||c.indexOf(' fim')>0?' aria-pressed="true"':'')+'><span>'+d+'</span></button>';}
+    var n=contar();
+    box.innerHTML='<div class="cal-pontas"><button type="button" class="cal-ponta" data-p="ini" aria-pressed="'+(editando==='ini')+'"><small>De</small>'+(ini?'<b>'+cur(ini)+'</b>':'<b class="vz">Escolha o dia</b>')+'</button>'+
+      '<button type="button" class="cal-ponta" data-p="fim" aria-pressed="'+(editando==='fim')+'"><small>Até</small>'+(fim?'<b>'+cur(fim)+'</b>':'<b class="vz">'+(ini?'Só esse dia':'Opcional')+'</b>')+'</button></div>'+
+      '<div class="cal-mes"><h3>'+MES_LONGO[m]+' '+y+'</h3><div class="cal-nav"><button type="button" id="cal-ant" aria-label="Mês anterior"'+(+mes<=+mesMin?' disabled':'')+'><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" id="cal-prox" aria-label="Próximo mês"'+(+mes>=+mesMax?' disabled':'')+'><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div></div>'+
+      '<div class="cal-grade" role="group" aria-label="'+MES_LONGO[m]+' de '+y+'">'+h+'</div>'+
+      '<div class="acts"><button type="button" class="btn secondary lg" id="d-clear"'+(ini?'':' disabled')+'>Limpar</button><button type="button" class="btn primary lg" id="d-ok"'+(ini?'':' disabled')+'>'+(!ini?'Escolha um dia':n?'Ver '+n+(n>1?' rolês':' rolê'):'Ver rolês')+'</button></div>';
+    box.querySelectorAll('.cal-dia').forEach(function(b){b.onclick=function(){var dt=new Date(+b.getAttribute('data-d'));
+      if(editando==='ini'||!ini||dt<ini){ini=dt;if(fim&&fim<=ini) fim=null;editando='fim';}
+      else if(+dt===+ini){fim=null;}
+      else{fim=dt;editando='ini';}
+      desenhar();};});
+    box.querySelectorAll('.cal-ponta').forEach(function(b){b.onclick=function(){editando=b.getAttribute('data-p');var alvo=editando==='ini'?ini:fim;if(alvo) mes=new Date(alvo.getFullYear(),alvo.getMonth(),1);desenhar();};});
+    document.getElementById('cal-ant').onclick=function(){mes=new Date(y,m-1,1);desenhar();};
+    document.getElementById('cal-prox').onclick=function(){mes=new Date(y,m+1,1);desenhar();};
+    document.getElementById('d-clear').onclick=function(){ini=fim=null;editando='ini';desenhar();};
+    document.getElementById('d-ok').onclick=function(){if(!ini) return;closeSheet();setWhen({k:'custom',from:ini,to:addDays(fim||ini,1)});};
+  }
+  desenhar();
 }
 function renderTotal(b){var n=b.all.length,el=document.getElementById('total');
   if(state.modo==='locais') return renderTotalLocais(b,el);
@@ -2883,6 +2941,7 @@ function ceuAlvo(){
 }
 // sobrancelha do título: "Hoje • 21/11 • Manhã", "Amanhã • 22/11 • Noite"…
 function ceuQuando(c,p){var d=c.d,dd=dayDiff(d),k=state.when&&state.when.k;
+  if(k==='custom'){var ult=addDays(state.when.to,-1);if(+dayStart(ult)!==+dayStart(state.when.from)) return capt(SEM[state.when.from.getDay()])+' a '+SEM[ult.getDay()]+' • '+ddmm(state.when.from)+' a '+ddmm(ult);}
   var nome=dd===0?'Hoje':dd===1?'Amanhã':k==='fds'?'Fim de semana':capt(SEM_LONGO[d.getDay()]);
   return nome+' • '+ddmm(d)+' • '+CEU_P[p];}
 // frases pra outro dia (o "agora" das frases de hoje não serve)
