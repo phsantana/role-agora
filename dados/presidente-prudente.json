@@ -1,6 +1,6 @@
 {
- "coletado": "2026-11-22",
- "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-22T19:24)",
+ "coletado": "2026-11-23",
+ "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-23T13:51)",
  "V": {
   "varanda_boa_vista": {
    "name": "Varanda Boa Vista",
@@ -815,8 +815,8 @@
    "genero": "Sertanejo",
    "generosTop": [
     "Sertanejo",
-    "Brasilidades",
-    "Samba"
+    "Samba",
+    "Brasilidades"
    ],
    "nota": 4.6,
    "tipo": null
@@ -1014,7 +1014,12 @@
    "rb8c1599a": "Sertanejo",
    "r51a810c0": "Sertanejo",
    "r734ee31e": "Sertanejo",
-   "rb3c8a0b1": "Sertanejo"
+   "rb3c8a0b1": "Sertanejo",
+   "r4fbd17cd": "Sertanejo",
+   "r61611370": "Sertanejo",
+   "r717fd457": "Sertanejo",
+   "r836bac6f": "Sertanejo",
+   "rbe65939e": "Sertanejo"
   },
   "fabrica_gastrobar": {
    "antigo15": "Rock",
@@ -1183,7 +1188,8 @@
    "r9ba3c4ef": "Sertanejo",
    "r68307672": "Sertanejo",
    "r83573e25": "Brasilidades",
-   "r2a38ec99": "Sertanejo"
+   "r2a38ec99": "Sertanejo",
+   "r657cb132": "Samba"
   },
   "o_beco_bar": {
    "r1bc80066": "Pop Rock",
@@ -1214,56 +1220,6 @@
   }
  },
  "rows": [
-  [
-   "r506fb753",
-   "Dissonância",
-   "valete_bar",
-   "Rock",
-   "2026-11-22",
-   "17:00",
-   "dissonancia",
-   610
-  ],
-  [
-   "rdaea61fb",
-   "Grupo TeDeJota",
-   "rooftop_bar",
-   "Pagode",
-   "2026-11-22",
-   "18:00",
-   "grupo-tedejota",
-   16352
-  ],
-  [
-   "rda734941",
-   "Caso à Parte",
-   "villa_18_container_bar",
-   "Pagode",
-   "2026-11-22",
-   "20:00",
-   "caso-a-parte",
-   26204
-  ],
-  [
-   "recf95b11",
-   "Estácio Lima",
-   "vo_laura_gourmet",
-   "Sertanejo",
-   "2026-11-22",
-   "20:00",
-   "estacio-lima",
-   15114
-  ],
-  [
-   "r3ce223b2",
-   "Robson Reis",
-   "arapuca_bar",
-   "Sertanejo",
-   "2026-11-22",
-   "20:30",
-   "robson-reis",
-   11172
-  ],
   [
    "rea584df5",
    "Soul do Samba",
@@ -1333,6 +1289,56 @@
    "20:00",
    "grupo-classe-a",
    9741
+  ],
+  [
+   "r4fbd17cd",
+   "Samuel Casati",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-27",
+   "22:00",
+   "samuel-casati",
+   4345
+  ],
+  [
+   "r61611370",
+   "Bruna Michelle",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-27",
+   "22:00",
+   "bruna-michelle",
+   7755
+  ],
+  [
+   "r717fd457",
+   "Felipe Corazza",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-27",
+   "22:00",
+   "felipe-corazza",
+   9058
+  ],
+  [
+   "r836bac6f",
+   "João Markos",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-27",
+   "22:00",
+   "joao-markos",
+   8916
+  ],
+  [
+   "rbe65939e",
+   "João Marcelo e Juliano",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-27",
+   "22:00",
+   "joao-marcelo-e-juliano",
+   31050
   ],
   [
    "ra4ad9a0c",
@@ -1545,6 +1551,16 @@
    11172
   ],
   [
+   "r657cb132",
+   "Galo",
+   "choperia_colina_bancarios",
+   "Samba",
+   "2026-12-20",
+   "14:00",
+   "galo",
+   1366
+  ],
+  [
    "r890ef37e",
    "É o Tchan",
    "fabrica_gastrobar",
@@ -1669,6 +1685,8 @@
   "patota-do-samba": "https://wasuztoskiwrfeyiofgl.supabase.co/storage/v1/object/public/event-images/artists/31a7d435-26ed-40e4-bb65-91b4a4037df6/1774056579908-yrt44u.webp",
   "hendy-viale": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/99f519e4-d19e-4635-8fcb-104cff19c048/1782778241693-u60y6q.webp",
   "bugao": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/698c6fca-50e7-4ace-84bc-5321b83bb0d7/1788732886038-i0bpzf.webp",
-  "luiz-araujo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/ae0ad5f3-0f80-4372-97ed-94b08837f4ea/1786135371168-yqlxea.webp"
+  "luiz-araujo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/ae0ad5f3-0f80-4372-97ed-94b08837f4ea/1786135371168-yqlxea.webp",
+  "samuel-casati": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/20a987c8-fe05-400b-92ad-c035db446c46/1779043741843-3vybm0.webp",
+  "galo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/cab64589-9aee-4383-8d39-b5b4a3de6579/1795398141290-fijoyn.webp"
  }
 }
