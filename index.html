@@ -1111,9 +1111,76 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
   :root,.app{--col:clamp(520px,40vw,720px)}
 }
 @media (prefers-reduced-motion:reduce){.fogo,.estrela{animation:none}.pulse,.sweep,.spin{animation:none}.pulse{opacity:.25;transform:translate(-50%,-50%) scale(.6)}*{transition:none!important}}
+/* ---------- Radar no formato da referência (celular): topo com voltar e mapa, mapa em card, chips, lista de cards ---------- */
+.rd-top{display:none}
+@media (max-width:1023px){
+  .rd-top{display:flex;align-items:center;gap:var(--s-sm);padding:max(16px,env(safe-area-inset-top,0px)) 16px var(--s-sm);background:var(--page);position:relative;z-index:8}
+  .rd-ib{flex:none;width:48px;height:48px;border:0;border-radius:var(--r-xsm);background:var(--subtle);color:var(--text);display:grid;place-items:center;cursor:pointer}
+  .rd-ib:hover{background:var(--bg-default)}
+  .rd-ib[aria-pressed="true"]{background:var(--action);color:var(--inverse)}
+  .rd-tt{flex:1;min-width:0;border:0;background:none;padding:0;display:flex;flex-direction:column;align-items:center;cursor:pointer;font:inherit;color:var(--text)}
+  .rd-tt .h5{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rd-sub{font-size:14px;line-height:1.5;color:var(--text-2);max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .map{position:relative;top:auto;height:280px;margin:0 16px;border-radius:var(--r-m);cursor:grab}
+  .app.mapa-cheio .map{height:calc(100vh - 200px)}
+  .map .search,.map .city,.map .clima-chip,.map .suggest,.map .map-ctl,.map .attr{display:none}
+  .app.mapa-cheio .map .map-ctl{display:flex}
+  .app.buscando .map .search{display:flex;top:12px;left:12px;right:12px}
+  .app.buscando .map .suggest:not([hidden]){display:block;top:72px;left:12px;right:12px}
+  .map .search .bell{display:none}
+  .content{margin-top:0!important;box-shadow:none;border-radius:0;padding-top:var(--s-sm)}
+  .grab{display:none}
+  .found{margin-bottom:var(--s-sm)}
+  .filtros{margin-top:0}
+  .found+.filtros,.grab+.filtros{margin-top:0}
+  .filtros .fbtn{height:48px}
+  .rd-ico{width:48px;padding:0!important;justify-content:center;border-radius:var(--r-xsm)!important}
+  .rd-ico svg{width:22px;height:22px}
+  .rd-todos{padding:0 20px!important}
+  .rd-todos[aria-pressed="true"]{background:var(--action);border-color:var(--action);color:var(--inverse)}
+  /* etiquetas no mapa: nome do lugar + horário */
+  .pin.pill{transform:translate(-50%,-50%)}
+  .pin.pill .pl{display:inline-flex;align-items:center;gap:6px;max-width:156px;height:36px;padding:0 12px;border-radius:var(--r-xsm);background:var(--surface);color:var(--text);font-size:13px;font-weight:500;white-space:nowrap;box-shadow:0 2px 10px rgba(23,23,23,.16)}
+  .pin.pill .pl span{overflow:hidden;text-overflow:ellipsis}
+  .pin.pill .pl b{flex:none;font-weight:700}
+  .pin.pill.sel{z-index:5}
+  .pin.pill.sel .pl{background:var(--action);color:var(--inverse)}
+}
+.rd-h{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s-sm);margin-bottom:var(--s-sm)}
+.rd-h .h4{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rd-h .lk{flex:none;border:0;background:none;padding:8px 0;color:var(--brand-text);font:600 14px/1.5 var(--body);cursor:pointer}
+.rd-cards{display:flex;flex-direction:column;gap:var(--s-sm)}
+.rc{position:relative;display:flex;gap:var(--s-sm);padding:12px;border-radius:var(--r-m);background:var(--surface);box-shadow:0 2px 12px rgba(23,23,23,.08);border:1px solid var(--subtle)}
+.rc-hit{position:absolute;inset:0;border:0;background:transparent;border-radius:inherit;cursor:pointer;z-index:1}
+.rc-hit:focus-visible{outline:2px solid var(--action);outline-offset:2px}
+.rc-img{position:relative;flex:none;width:104px;height:104px;border-radius:var(--r-2xsm);overflow:hidden;background:var(--subtle)}
+.rc-img img{width:100%;height:100%;object-fit:cover;display:block}
+.rc-img .badge{position:absolute;left:4px;bottom:4px}
+.rc-b{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;padding-right:28px}
+.rc-t{font-family:var(--display);font-weight:700;font-size:16px;line-height:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rc-l{font-size:13px;line-height:20px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rc-n{display:flex;align-items:center;gap:4px;font-size:13px;line-height:20px;color:var(--brand-text);white-space:nowrap;overflow:hidden}
+.rc-n b{font-weight:700}
+.rc-f{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s-xsm);margin-right:-28px}
+.rc-g{font-size:12px;line-height:18px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;display:flex;align-items:center;gap:2px}
+.rc-v{flex:none;white-space:nowrap;color:var(--brand-text);font-size:12px}
+.rc-v b{font-family:var(--display);font-size:18px;font-weight:700;line-height:24px}
+.rc-v span{color:var(--text-2)}
+.rc-fav{position:absolute;z-index:2;top:8px;right:8px;width:36px;height:36px;border:0;border-radius:50%;background:transparent;color:var(--text);display:grid;place-items:center;cursor:pointer}
+.rc-fav:hover{background:var(--subtle)}
+.rc-fav[aria-pressed="true"]{color:var(--action)}
+.rd-mais{margin-top:var(--s-sm)}
+.rd-vazio{margin:0}
+@media (min-width:1024px){.rd-cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-sm)}}
+@media (min-width:1440px){.rd-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 
 <div class="app" id="app">
+  <div class="rd-top" id="rd-top">
+    <button type="button" class="rd-ib" id="rd-back" aria-label="Voltar pra Home"><svg class="ico ico-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button type="button" class="rd-tt" id="rd-city" aria-label="Trocar cidade"><span class="h5" id="rd-nome"></span><span class="rd-sub" id="rd-sub"></span></button>
+    <button type="button" class="rd-ib" id="rd-mapa" aria-pressed="false" aria-label="Ampliar o mapa"></button>
+  </div>
   <header class="map" id="map" aria-label="Radar de rolês no mapa">
     <div class="tiles" id="tiles"></div>
     <div class="map-veil"></div>
@@ -1145,19 +1212,25 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
     <div id="geo-msg" aria-live="polite"></div>
 
     <div class="filtros" id="filtros" role="group" aria-label="Filtros">
+      <button type="button" class="fbtn rd-ico" id="f-busca" aria-label="Buscar bar, rolê ou gênero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+      <button type="button" class="fbtn rd-todos" id="f-todos" aria-pressed="true">Todos</button>
       <button type="button" class="fbtn" id="f-when" aria-haspopup="dialog" aria-expanded="false"></button>
       <button type="button" class="fbtn" id="f-genre" aria-haspopup="dialog" aria-expanded="false"></button>
       <button type="button" class="fbtn" id="f-modo" aria-haspopup="dialog" aria-expanded="false"></button>
     </div>
     <p class="sr" id="total" aria-live="polite"></p>
-    <section class="section" id="sec-top" aria-labelledby="t-top">
+    <section class="section" id="sec-top" aria-labelledby="t-top" hidden>
       <div class="sec-head"><div><h2 class="h2" id="t-top">São a sua cara</h2><p class="desc-lg muted" id="top-sub">Rolês que você provavelmente vai adorar!</p></div></div>
       <div id="taste"></div>
       <div id="top"></div>
     </section>
 
-    <section class="section" id="sec-rail" aria-labelledby="t-rail">
+    <section class="section" id="sec-rail" aria-labelledby="t-rail" hidden>
       <div class="sec-head"><div><h2 class="h6" id="t-rail">Rolês que você pode gostar</h2></div></div>
+    </section>
+    <section class="section rd-lista" id="sec-lista" aria-labelledby="t-lista">
+      <div class="rd-h"><h2 class="h4" id="t-lista"></h2><button type="button" class="lk" id="rd-ordem" aria-haspopup="dialog" aria-expanded="false">Ordenar</button></div>
+      <div class="rd-cards" id="rd-cards"></div>
     </section>
   </main>
 </div>
@@ -2050,7 +2123,7 @@ function renderMap(b){
   var w=mapEl.clientWidth,h=mapEl.clientHeight,vis=visH();
   mapEl.style.setProperty('--vis',vis+'px');mapEl.classList.toggle('low',vis<220);
   if(vis<140) return; // folha cobrindo o mapa: nada pra desenhar
-  var top=128,bottom=Math.max(top+120,vis-32),cx=w/2+view.px,cy=(top+bottom)/2+view.py;
+  var card=!wide(),top=card?(document.getElementById('app').classList.contains('buscando')?76:16):128,bottom=card?vis-16:Math.max(top+120,vis-32),cx=w/2+view.px,cy=(top+bottom)/2+view.py;
   var R=Math.min(w*0.46,(bottom-top)/2+24);lastR=R;
   if(!radarEls){var r=document.getElementById('radar');r.innerHTML='<div class="area"></div><div class="sweep"></div><div class="pulse"></div><div class="pulse"></div><div class="pulse"></div>';radarEls=[].slice.call(r.children);}
   radarEls.forEach(function(el,i){var d=(i===0?R*2.2:R*2)+'px';el.style.left=cx+'px';el.style.top=cy+'px';el.style.width=d;el.style.height=d;});
@@ -2060,10 +2133,10 @@ function renderMap(b){
   var byVenue={};all.forEach(function(e){var k=e.venueKey;if(!byVenue[k]) byVenue[k]=[];byVenue[k].push(e);});
   // um marcador por local: no modo Rolês, com a capa do rolê mais compatível; no modo Locais, com o local e a compatibilidade pelo gênero
   var marks={};
-  if(state.modo==='locais') (b.locais||locais()).forEach(function(l){marks[l.k]={lat:l.lat,lng:l.lng,img:l.img,aff:l.aff,label:dTxt(l)+(l.aff!=null?' • '+l.aff+'%':''),count:0,
+  if(state.modo==='locais') (b.locais||locais()).forEach(function(l){marks[l.k]={lat:l.lat,lng:l.lng,img:l.img,aff:l.aff,pill:dTxt(l),label:dTxt(l)+(l.aff!=null?' • '+l.aff+'%':''),count:0,
     hot:l.roles.some(quenteAgora),aria:l.name+(l.genre?', '+l.genre:'')+(l.aff!=null?', '+l.aff+'% compatível':'')+', '+dTxt(l)+' '+deVoce()+(l.roles.some(quenteAgora)?', bombando':'')};});
   else Object.keys(byVenue).forEach(function(k){var arr=byVenue[k].slice().sort(state.profile?byTop:byList),e=arr[0];
-    marks[k]={lat:e.lat,lng:e.lng,img:e.img,aff:e.aff,label:dTxt(e)+(e.aff!=null?' • '+e.aff+'%':''),count:arr.length,hot:arr.some(quenteAgora),aria:VENUES[k].name+', '+arr.length+(arr.length>1?' rolês':' rolê')+', '+dTxt(e)+' '+deVoce()+(arr.some(quenteAgora)?', bombando':'')};});
+    marks[k]={lat:e.lat,lng:e.lng,img:e.img,aff:e.aff,pill:pillTxt(e),label:dTxt(e)+(e.aff!=null?' • '+e.aff+'%':''),count:arr.length,hot:arr.some(quenteAgora),aria:VENUES[k].name+', '+arr.length+(arr.length>1?' rolês':' rolê')+', '+dTxt(e)+' '+deVoce()+(arr.some(quenteAgora)?', bombando':'')};});
   var baseKm=state.area?(state.area.baseKm||AREA_KM):autoR;lastBaseKm=baseKm;
   var base=R/baseKm;
   var scale=Math.max(sScale(MIN_Z),Math.min(sScale(14.45),base*view.zoom));view.zoom=scale/base;
@@ -2075,13 +2148,15 @@ function renderMap(b){
   // posição real (escala única a partir do usuário) + afastamento para os pins não se sobreporem
   // cidades grandes: até 12 locais no radar (os de rolê mais compatível, ou mais cedo)
   var vk=Object.keys(marks);
-  if(vk.length>12){var best=function(k){if(state.modo==='locais') return state.profile?(marks[k].aff||0):-km(ME,marks[k]);var a=byVenue[k];return state.profile?Math.max.apply(null,a.map(function(e){return e.aff||0;})):-Math.min.apply(null,a.map(function(e){return e.date;}));};vk.sort(function(a,b){return best(b)-best(a);});vk=vk.slice(0,12);}
-  var minX=40,maxX=w-40,minY=top+16,maxY=bottom-8,gapPin=72,gapMe=80;
+  var maxPins=card&&!document.getElementById('app').classList.contains('mapa-cheio')?6:12,selK=(state.modo==='locais'?ordenarLocais((b.locais||locais()).slice()):ordenar(all.slice())).map(function(x){return x.venueKey||x.k;})[0];
+  if(selK&&marks[selK]&&vk.indexOf(selK)<0) vk.unshift(selK);
+  if(vk.length>maxPins){var best=function(k){if(state.modo==='locais') return state.profile?(marks[k].aff||0):-km(ME,marks[k]);var a=byVenue[k];return state.profile?Math.max.apply(null,a.map(function(e){return e.aff||0;})):-Math.min.apply(null,a.map(function(e){return e.date;}));};vk.sort(function(a,b){return (b===selK)-(a===selK)||best(b)-best(a);});vk=vk.slice(0,maxPins);}
+  var minX=card?92:40,maxX=card?w-92:w-40,minY=card?top+20:top+16,maxY=card?bottom-6:bottom-8,gapPin=card?42:72,gapMe=card?36:80,sx=card?.26:1;
   var pts=vk.map(function(k){var e=marks[k];var dx=(e.lng-ME.lng)*111.32*cos,dy=(e.lat-ME.lat)*110.57;var x=cx+dx*scale,y=cy-dy*scale;return {k:k,x:x,y:y,out:x<minX-20||x>maxX+20||y<minY-20||y>maxY+20};});
   for(var it=0;it<80;it++){
     pts.forEach(function(p,i){
       var mx=p.x-cx,my=p.y-cy,md=Math.hypot(mx,my)||1;if(md<gapMe){p.x+=mx/md*(gapMe-md);p.y+=my/md*(gapMe-md);}
-      for(var j=i+1;j<pts.length;j++){var q=pts[j],ax=q.x-p.x,ay=q.y-p.y,d=Math.hypot(ax,ay)||1;if(d<gapPin){var push=(gapPin-d)/2;p.x-=ax/d*push;p.y-=ay/d*push;q.x+=ax/d*push;q.y+=ay/d*push;}}
+      for(var j=i+1;j<pts.length;j++){var q=pts[j],ax=(q.x-p.x)*sx,ay=q.y-p.y,d=Math.hypot(ax,ay)||1;if(d<gapPin){var push=(gapPin-d)/2;p.x-=ax/d*push/sx;p.y-=ay/d*push;q.x+=ax/d*push/sx;q.y+=ay/d*push;}}
       if(!free){p.x=Math.max(minX,Math.min(maxX,p.x));p.y=Math.max(minY,Math.min(maxY,p.y));}
     });
   }
@@ -2090,11 +2165,12 @@ function renderMap(b){
     var k=pt.k,e=marks[k];
     var tier=e.aff==null?'mid':e.aff>=80?'hi':e.aff>=60?'mid':'low';
     var size=tier==='hi'?56:tier==='mid'?44:34;
-    var inner='<span class="ring">'+(e.aff>ESTRELA_MIN?'<span class="pin-estrela">'+estrela(20)+'</span>':'')+'<img src="'+e.img+'" alt="" style="width:'+size+'px;height:'+size+'px"></span><span class="tag">'+(e.hot?fogo(14):'')+e.label+'</span>'+(e.count>1?'<span class="count">'+e.count+'</span>':'');
+    var sel=card&&k===selK,inner=card?'<span class="pl"><span>'+esc(VENUES[k]?VENUES[k].name:'')+'</span><b>'+esc(e.pill||'')+'</b></span>':'<span class="ring">'+(e.aff>ESTRELA_MIN?'<span class="pin-estrela">'+estrela(20)+'</span>':'')+'<img src="'+e.img+'" alt="" style="width:'+size+'px;height:'+size+'px"></span><span class="tag">'+(e.hot?fogo(14):'')+e.label+'</span>'+(e.count>1?'<span class="count">'+e.count+'</span>':'');
     var el=pinEls[k];
-    if(!el){el=document.createElement('button');el.type='button';el.setAttribute('data-venue',k);el.className='pin '+tier+(scan.seen[k]?'':' in');pinEls[k]=el;pinsEl.appendChild(el);}
+    var cls=card?'pill'+(sel?' sel':''):tier;
+    if(!el){el=document.createElement('button');el.type='button';el.setAttribute('data-venue',k);el.className='pin '+cls+(scan.seen[k]?'':' in');pinEls[k]=el;pinsEl.appendChild(el);}
     scan.seen[k]=1;
-    if(el._inner!==inner){el.innerHTML=inner;el._inner=inner;el.className='pin '+tier+(el.classList.contains('in')?' in':'');}
+    if(el._inner!==inner||el._cls!==cls){el.innerHTML=inner;el._inner=inner;el._cls=cls;el.className='pin '+cls+(el.classList.contains('in')?' in':'');}
     el.setAttribute('aria-label',e.aria);
     el.style.left=pt.x+'px';el.style.top=pt.y+'px';el.hidden=free&&pt.out;keep[k]=1;
   });
@@ -2115,19 +2191,19 @@ function vh(){return window.innerHeight||document.documentElement.clientHeight||
 var wideMQ=window.matchMedia?window.matchMedia('(min-width:1024px)'):null;
 function wide(){return !!(wideMQ&&wideMQ.matches);}
 // altura do mapa que está à vista: até o topo da folha (celular) ou o mapa todo (tela larga)
-function visH(){var h=mapEl.clientHeight;return wide()?h:Math.max(0,Math.min(h,Math.round(contentEl.getBoundingClientRect().top)));}
-function layout(){var H=vh();mapEl.style.height=H+'px';contentEl.style.marginTop=wide()?'0':(Math.round(H*PEEK)-H)+'px';}
+function visH(){var h=mapEl.clientHeight;return wide()||true?h:Math.max(0,Math.min(h,Math.round(contentEl.getBoundingClientRect().top)));}
+function layout(){var H=vh();mapEl.style.height=wide()?H+'px':'';contentEl.style.marginTop='0';}
 function openY(){return Math.round(vh()*(PEEK-OPEN));}
 function smooth(y){window.scrollTo({top:y,behavior:reduceMotion?'auto':'smooth'});}
-function toMap(){if(!wide()&&window.scrollY>2) smooth(0);}
+function toMap(){}
 // durante a busca o mapa fica em destaque: nada puxa os resultados para cima até ela terminar
-function toResults(){if(scan.on) return;if(!wide()&&window.scrollY<openY()-4) smooth(openY());}
+function toResults(){}
 var rafM=0,lastY=0,dirY=0,snapT=null;
 window.addEventListener('scroll',function(){
   var y=window.scrollY;if(y!==lastY){dirY=y>lastY?1:-1;lastY=y;}
   if(!rafM) rafM=requestAnimationFrame(function(){rafM=0;renderMap(lastB||buckets());});
   // solta no meio do caminho: encaixa no mapa em destaque ou nos resultados, conforme a direção
-  clearTimeout(snapT);if(!wide()) snapT=setTimeout(function(){var y=window.scrollY,o=openY();if(y>4&&y<o-4) smooth(dirY<0?0:o);},160);
+  clearTimeout(snapT);if(false) snapT=setTimeout(function(){var y=window.scrollY,o=openY();if(y>4&&y<o-4) smooth(dirY<0?0:o);},160);
 },{passive:true});
 // mexeu nos resultados: eles sobem e ficam à vista
 contentEl.addEventListener('click',function(){toResults();});
@@ -2503,7 +2579,77 @@ function renderTotal(b){var n=b.all.length,el=document.getElementById('total');
   var quando=whenText();quando=quando?quando+' ':'';
   var onde=quando+(state.q?'em '+esc(state.city.name):state.area?(state.area.label?'em '+esc(state.area.label):'nesta região do mapa'):'em '+esc(state.city.name));
   el.innerHTML=n?'<b>'+n+(n===1?' rolê encontrado':' rolês encontrados')+'</b> '+(state.q?'pra “'+esc(state.q)+'” ':'')+onde:'Nenhum rolê encontrado'+(state.q?' pra “'+esc(state.q)+'”':'')+' '+onde+(state.q?'':!state.area?(state.when?'. Tenta outra data.':''):state.when?'. Tenta outra data ou afaste o mapa.':'. Afaste o mapa pra ver mais.');}
-function render(){if(typeof syncBuscas==='function') syncBuscas();if(typeof homeOpen!=='undefined'&&homeOpen) setTimeout(renderHome,0);withScores();var b=buckets();b.locais=locais();renderCityChip();renderClimaChip();renderMap(b);renderModo(b);renderWhen();renderGenre();renderTotal(b);renderTop(b);renderRail(b);renderLists(b);renderLocais(b);renderAgendaFab();renderAgenda();checarNovos();}
+/* ---------- Radar no formato da referência: topo, chips e lista única de cards ---------- */
+var ORDENS=[['perto','Mais perto'],['cedo','Mais cedo'],['cara','Mais a sua cara']];
+try{state.ordem=localStorage.getItem('radar-ordem')||'perto';}catch(e){state.ordem='perto';}
+var LISTA_PAG=10,listaN=LISTA_PAG;
+function pillTxt(e){var dd=dayDiff(e.date);if(e.date.noTime) return dd===0?'Hoje':ddmm(e.date);return (dd===0?'':ddmm(e.date)+' ')+hora(e.date);}
+function ordemAtual(){return state.ordem==='cara'&&!state.profile?'perto':state.ordem;}
+function ordenar(a){var o=ordemAtual();return a.sort(o==='cedo'?byList:o==='cara'?byTop:function(x,y){return (x.dist-y.dist)||(x.date-y.date);});}
+function ordenarLocais(a){var o=ordemAtual();return a.sort(o==='cedo'?function(x,y){var dx=x.roles[0]?+x.roles[0].date:Infinity,dy=y.roles[0]?+y.roles[0].date:Infinity;return (dx-dy)||(x.dist-y.dist);}:o==='cara'?function(x,y){return ((y.aff||0)-(x.aff||0))||(x.dist-y.dist);}:function(x,y){return x.dist-y.dist;});}
+function diaCurto(d){var dd=dayDiff(d);return dd===0?'hoje':dd===1?'amanhã':SEM[d.getDay()].toLowerCase()+' '+ddmm(d);}
+function notaHtml(k){var v=VENUES[k];if(!v||!v.nota) return '';var n=String(v.nota.toFixed?v.nota.toFixed(1):v.nota).replace('.',',');return ic('star','#FFC21A',16)+'<b>'+n+'</b>'+(v.av?'<span class="muted">&nbsp;('+milhar(v.av)+(v.av===1?' avaliação':' avaliações')+')</span>':'');}
+function cardRole(e){
+  var going=!!state.going[e.id],v=VENUES[e.venueKey]||{},other=e.city&&e.city!==state.city.name;
+  var linha2=e.aff!=null?(e.aff>ESTRELA_MIN?estrela(16):ic('star','#D10A87',16))+'<b>'+e.aff+'%</b>&nbsp;sua cara':notaHtml(e.venueKey);
+  var tags=[e.genre];
+  var hr=e.date.noTime?'<b>'+capt(diaCurto(e.date))+'</b>':'<b>'+hora(e.date)+'</b><span> /'+diaCurto(e.date)+'</span>';
+  return '<div class="rc"><button type="button" class="rc-hit" data-open="'+e.id+'" aria-label="'+esc(e.name)+', '+esc(e.venue||v.name||'')+', '+quando(e.date)+'"></button>'+
+    '<span class="rc-img"><img src="'+e.img+'" alt="">'+(e.alerta?'<span class="badge risco">'+ic('alerta','#fff',12)+(e.arLivre?'Arriscado':e.clima.tempestade?'Tempestade':'Chuva')+'</span>':going?'<span class="badge going">Você vai</span>':'')+'</span>'+
+    '<span class="rc-b"><span class="rc-t">'+esc(e.name)+'</span>'+
+    '<span class="rc-l">'+esc(e.venue||v.name||'')+' • '+(other?esc(e.city):dTxt(e))+'</span>'+
+    (linha2?'<span class="rc-n">'+linha2+'</span>':'<span class="rc-l">'+esc(e.bairro||'')+'</span>')+
+    '<span class="rc-f"><span class="rc-g">'+(e.quente&&!e.alerta?fogo(14):'')+esc(tags.filter(Boolean).join(' · '))+'</span><span class="rc-v">'+hr+'</span></span></span>'+
+    '<button type="button" class="rc-fav" data-rc-fav="'+e.id+'" aria-pressed="'+going+'" aria-label="'+(going?'Tirar da agenda':'Salvar na agenda')+'"><svg viewBox="0 0 24 24" width="22" height="22" fill="'+(going?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.8 4 4.5 7.4 4.5c2 0 3.5 1.1 4.6 2.7 1.1-1.6 2.6-2.7 4.6-2.7 3.4 0 5.8 3.3 4.6 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg></button></div>';
+}
+function cardLocal(l){
+  var n=l.roles.length,linha2=l.aff!=null?ic('star','#D10A87',16)+'<b>'+l.aff+'%</b>&nbsp;sua cara':notaHtml(l.k);
+  var e=l.roles[0];
+  var val=e?(e.date.noTime?'<b>'+capt(diaCurto(e.date))+'</b>':'<b>'+hora(e.date)+'</b><span> /'+diaCurto(e.date)+'</span>'):'<span>Sem rolê</span>';
+  return '<div class="rc"><button type="button" class="rc-hit" data-venue="'+l.k+'" aria-label="'+esc(l.name)+', '+dTxt(l)+'"></button>'+
+    '<span class="rc-img"><img src="'+l.img+'" alt=""></span>'+
+    '<span class="rc-b" style="padding-right:0"><span class="rc-t">'+esc(l.name)+'</span>'+
+    '<span class="rc-l">'+esc([l.tipo,l.bairro].filter(Boolean).join(' • ')||state.city.name)+'</span>'+
+    (linha2?'<span class="rc-n">'+linha2+'</span>':'<span class="rc-l">'+dTxt(l)+'</span>')+
+    '<span class="rc-f" style="margin-right:0"><span class="rc-g">'+esc([l.genre,n?plural(n,'rolê','rolês'):'',dTxt(l)].filter(Boolean).join(' · '))+'</span><span class="rc-v">'+val+'</span></span></span></div>';
+}
+function renderTopo(b){
+  document.getElementById('rd-nome').textContent=state.city.name;
+  var loc=state.modo==='locais',n=loc?b.locais.length:b.all.length;
+  document.getElementById('rd-sub').textContent=capt(whenLabel())+' • '+(loc?plural(n,'local','locais'):plural(n,'rolê','rolês'))+(state.genres.length?' • '+(state.genres.length===1?state.genres[0]:state.genres.length+' gêneros'):'');
+  var t=document.getElementById('f-todos'),tudo=!state.when&&!state.genres.length;t.setAttribute('aria-pressed',String(tudo));
+  var m=document.getElementById('rd-mapa'),cheio=document.getElementById('app').classList.contains('mapa-cheio');
+  m.setAttribute('aria-pressed',String(cheio));m.setAttribute('aria-label',cheio?'Voltar pra lista':'Ampliar o mapa');
+  m.innerHTML=cheio?'<svg class="ico ico-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>':'<svg class="ico ico-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4L3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5L9 4z"/><path d="M9 4v13.5M15 6.5V20"/></svg>';
+}
+function renderLista(b){
+  var loc=state.modo==='locais',itens=loc?ordenarLocais(b.locais.slice()):ordenar(b.all.slice()),n=itens.length;
+  var onde=state.area?(state.area.label?' em '+state.area.label:' nesta região'):'';
+  document.getElementById('t-lista').textContent=n?(loc?plural(n,'local','locais')+onde:plural(n,'rolê','rolês')+' rolando'+onde):(loc?'Nenhum local':'Nenhum rolê')+onde;
+  var o=ordemAtual(),ob=document.getElementById('rd-ordem');ob.textContent='Ordenar';ob.setAttribute('aria-label','Ordenar: '+ORDENS.filter(function(x){return x[0]===o;})[0][1]+'. Trocar');
+  var el=document.getElementById('rd-cards'),vis=itens.slice(0,listaN),resto=n-vis.length;
+  el.innerHTML=n?vis.map(loc?cardLocal:cardRole).join('')+(resto>0?'<button type="button" class="btn secondary md block rd-mais" id="rd-mais">Ver mais '+Math.min(resto,LISTA_PAG)+'</button>':''):
+    '<p class="desc-lg muted rd-vazio">'+(state.q?'Nada por aqui com essa busca. Que tal limpar a busca?':state.when?'Nenhum rolê nessa data. Tenta outra.':state.area?'Nada nesta região. Afaste o mapa pra ver mais.':'Nenhum rolê rolando por aqui agora.')+'</p>';
+  var mais=document.getElementById('rd-mais');if(mais) mais.onclick=function(){listaN+=LISTA_PAG;renderLista(b);};
+}
+document.getElementById('rd-cards').addEventListener('click',function(ev){
+  var v=ev.target.closest('.rc-hit[data-venue]');if(v){openVenue(v.getAttribute('data-venue'));return;}
+  var f=ev.target.closest('[data-rc-fav]');if(!f) return;ev.stopPropagation();
+  var id=f.getAttribute('data-rc-fav'),e=findEvent(id);if(!e) return;
+  if(state.going[id]){var snap=state.going[id];delete state.going[id];persist();render();toast('Tiramos '+e.name+' da sua agenda.',function(){state.going[id]=snap;persist();render();},'Desfazer');}
+  else{addToAgenda(e);render();}
+});
+document.getElementById('rd-ordem').onclick=function(){
+  var opts=ORDENS.filter(function(o){return o[0]!=='cara'||state.profile;}).map(function(o){return {v:o[0],t:o[1]};});
+  openFiltro(this,'Ordenar por',opts,ordemAtual(),function(v){state.ordem=v;try{localStorage.setItem('radar-ordem',v);}catch(e){}listaN=LISTA_PAG;render();});
+};
+document.getElementById('f-todos').onclick=function(){if(!state.when&&!state.genres.length) return;state.genres=[];listaN=LISTA_PAG;setWhen(null);};
+document.getElementById('rd-back').onclick=function(){openHome();};
+document.getElementById('rd-city').onclick=function(){document.getElementById('city').click();};
+document.getElementById('rd-mapa').onclick=function(){var a=document.getElementById('app');a.classList.toggle('mapa-cheio');window.scrollTo(0,0);layout();render();};
+document.getElementById('f-busca').onclick=function(){var a=document.getElementById('app');a.classList.add('buscando');window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'});renderMap(buckets());setTimeout(function(){document.getElementById('q').focus();},50);};
+document.getElementById('q').addEventListener('blur',function(){setTimeout(function(){var q=document.getElementById('q');if(!q.value&&document.activeElement!==q&&document.getElementById('suggest').hidden){document.getElementById('app').classList.remove('buscando');renderMap(buckets());}},250);});
+function render(){if(typeof syncBuscas==='function') syncBuscas();if(typeof homeOpen!=='undefined'&&homeOpen) setTimeout(renderHome,0);withScores();var b=buckets();b.locais=locais();renderCityChip();renderClimaChip();renderMap(b);renderModo(b);renderWhen();renderGenre();renderTotal(b);renderTopo(b);renderLista(b);renderAgendaFab();renderAgenda();checarNovos();}
 
 /* ---------- Agenda: rolês com "Bora", do que acontece antes para o que acontece depois ---------- */
 /* A agenda guarda um retrato de cada rolê, então sobrevive à troca de cidade */
