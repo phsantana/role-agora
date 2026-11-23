@@ -1,6 +1,6 @@
 {
  "coletado": "2026-11-23",
- "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-23T13:51)",
+ "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-23T18:04)",
  "V": {
   "varanda_boa_vista": {
    "name": "Varanda Boa Vista",
@@ -397,6 +397,7 @@
    "genero": "Brasilidades",
    "generosTop": [
     "Brasilidades",
+    "Pop Rock",
     "Rock"
    ]
   },
@@ -880,7 +881,11 @@
    "slug": "restaurante-estrela-gourmet",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/757ec9b2-ce34-4eeb-bca5-46fdb54a5d8b/1794619038033-6iashy.webp",
    "nota": 4.2,
-   "tipo": null
+   "tipo": null,
+   "genero": "Sertanejo",
+   "generosTop": [
+    "Sertanejo"
+   ]
   },
   "cat_sesi_de_presidente_prudente": {
    "name": "CAT Sesi de Presidente Prudente",
@@ -943,7 +948,8 @@
    "rd084bc73": "Sertanejo",
    "r592e4da9": "Sertanejo",
    "r3dcf5726": "Rock",
-   "rd5ac5fe5": "Eletrônica"
+   "rd5ac5fe5": "Eletrônica",
+   "r483a1840": "Rock"
   },
   "alphaville_bar_e_petiscaria": {
    "antigo6": "Pop Rock",
@@ -982,7 +988,9 @@
    "rb9584e45": "Pagode",
    "r8aceb79d": "Pagode",
    "re7fe522e": "Pagode",
-   "rda734941": "Pagode"
+   "rda734941": "Pagode",
+   "rd8894593": "Pagode",
+   "ra5d5dac1": "Samba"
   },
   "seu_bastiao_pub": {
    "antigo12": "Eletrônica",
@@ -1019,7 +1027,14 @@
    "r61611370": "Sertanejo",
    "r717fd457": "Sertanejo",
    "r836bac6f": "Sertanejo",
-   "rbe65939e": "Sertanejo"
+   "rbe65939e": "Sertanejo",
+   "r64cc1f99": "Sertanejo",
+   "r9bd2a0b9": "Eletrônica",
+   "rdf378d88": "Sertanejo",
+   "reaa2de67": "Brasilidades",
+   "r460458e4": "Sertanejo",
+   "r4c8114b8": "Sertanejo",
+   "r55021a42": "Eletrônica"
   },
   "fabrica_gastrobar": {
    "antigo15": "Rock",
@@ -1125,7 +1140,8 @@
    "r08670074": "Pop Rock",
    "r81697eef": "Pop Rock",
    "r40f62d5d": "Rock",
-   "ra96a717a": "Pop Rock"
+   "ra96a717a": "Pop Rock",
+   "rfa132189": "Música regional brasileira"
   },
   "quinta_aula": {
    "rb1ca2ffe": "Pop",
@@ -1203,7 +1219,9 @@
    "r6efd56f6": "Stand Up"
   },
   "jardim_suinga": {
-   "r1ce66177": "MPB"
+   "r1ce66177": "MPB",
+   "r44ab4757": "MPB",
+   "r75f65968": "MPB"
   },
   "sal_grosso_choperia_e_petiscaria": {
    "r4f2ca1c5": "Brasilidades",
@@ -1216,7 +1234,11 @@
   },
   "deck_bar": {
    "rafee94b7": "Pop Rock",
-   "rd88b9e8f": "Pop Rock"
+   "rd88b9e8f": "Pop Rock",
+   "rb05c361c": "Rock"
+  },
+  "restaurante_estrela_gourmet": {
+   "r08000ac8": "Sertanejo"
   }
  },
  "rows": [
@@ -1231,6 +1253,16 @@
    6546
   ],
   [
+   "r44ab4757",
+   "Da Silva",
+   "jardim_suinga",
+   "MPB",
+   "2026-11-25",
+   "18:00",
+   "da-silva",
+   4085
+  ],
+  [
    "r004b45b1",
    "Ebun Cia de Teatro Negro",
    "sesc_thermas",
@@ -1241,6 +1273,16 @@
    0
   ],
   [
+   "r75f65968",
+   "Da Silva",
+   "jardim_suinga",
+   "MPB",
+   "2026-11-26",
+   "18:00",
+   "da-silva",
+   4085
+  ],
+  [
    "rf531f167",
    "Ari",
    "quinta_aula",
@@ -1249,6 +1291,16 @@
    "18:30",
    "ari",
    1272
+  ],
+  [
+   "r483a1840",
+   "Fernanda Lessa",
+   "varanda_boa_vista",
+   "Rock",
+   "2026-11-26",
+   "19:00",
+   "fernanda-lessa",
+   3475
   ],
   [
    "r3375f3c5",
@@ -1281,6 +1333,26 @@
    2238
   ],
   [
+   "rb05c361c",
+   "Krivos",
+   "deck_bar",
+   "Rock",
+   "2026-11-27",
+   "18:00",
+   "krivos",
+   2007
+  ],
+  [
+   "r08000ac8",
+   "Andreo E Henrique",
+   "restaurante_estrela_gourmet",
+   "Sertanejo",
+   "2026-11-27",
+   "20:00",
+   "andreo-e-henrique",
+   2135
+  ],
+  [
    "r475d0e10",
    "Grupo Classe A",
    "bar_da_onca",
@@ -1289,6 +1361,16 @@
    "20:00",
    "grupo-classe-a",
    9741
+  ],
+  [
+   "rd8894593",
+   "Grupo TeDeJota",
+   "villa_18_container_bar",
+   "Pagode",
+   "2026-11-27",
+   "21:30",
+   "grupo-tedejota",
+   16467
   ],
   [
    "r4fbd17cd",
@@ -1308,7 +1390,17 @@
    "2026-11-27",
    "22:00",
    "bruna-michelle",
-   7755
+   7801
+  ],
+  [
+   "r64cc1f99",
+   "Pedro Henrique & Eduardo",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-27",
+   "22:00",
+   "pedro-henrique-eduardo",
+   12940
   ],
   [
    "r717fd457",
@@ -1331,6 +1423,16 @@
    8916
   ],
   [
+   "r9bd2a0b9",
+   "DJ Misper",
+   "seu_bastiao_pub",
+   "Eletrônica",
+   "2026-11-27",
+   "22:00",
+   "dj-misper",
+   1927
+  ],
+  [
    "rbe65939e",
    "João Marcelo e Juliano",
    "seu_bastiao_pub",
@@ -1338,7 +1440,27 @@
    "2026-11-27",
    "22:00",
    "joao-marcelo-e-juliano",
-   31050
+   31044
+  ],
+  [
+   "rdf378d88",
+   "Alan Reis",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-27",
+   "22:00",
+   "alan-reis",
+   17686
+  ],
+  [
+   "reaa2de67",
+   "Madera",
+   "seu_bastiao_pub",
+   "Brasilidades",
+   "2026-11-27",
+   "22:00",
+   "madera",
+   1586
   ],
   [
    "ra4ad9a0c",
@@ -1371,6 +1493,16 @@
    6818873
   ],
   [
+   "rfa132189",
+   "Ernesto Farah",
+   "cult_bar",
+   "Música regional brasileira",
+   "2026-11-28",
+   "20:00",
+   "ernesto-farah",
+   648
+  ],
+  [
    "rfeabb076",
    "Denise Leal",
    "bar_da_onca",
@@ -1379,6 +1511,46 @@
    "20:00",
    "denise-leal",
    5918
+  ],
+  [
+   "ra5d5dac1",
+   "Samba Do Caixa",
+   "villa_18_container_bar",
+   "Samba",
+   "2026-11-28",
+   "21:30",
+   "samba-do-caixa",
+   97
+  ],
+  [
+   "r460458e4",
+   "João Marcelo e Juliano",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-28",
+   "22:00",
+   "joao-marcelo-e-juliano",
+   31044
+  ],
+  [
+   "r4c8114b8",
+   "Pedro Henrique e Trevisan",
+   "seu_bastiao_pub",
+   "Sertanejo",
+   "2026-11-28",
+   "22:00",
+   "pedro-henrique-e-trevisan",
+   15083
+  ],
+  [
+   "r55021a42",
+   "DJ Misper",
+   "seu_bastiao_pub",
+   "Eletrônica",
+   "2026-11-28",
+   "22:00",
+   "dj-misper",
+   1927
   ],
   [
    "r880ac75a",
@@ -1418,7 +1590,7 @@
    "2026-12-05",
    "15:00",
    "kota",
-   468847
+   453112
   ],
   [
    "r73d43592",
@@ -1488,7 +1660,7 @@
    "2026-12-05",
    "15:00",
    "grupo-tedejota",
-   16352
+   16467
   ],
   [
    "rf0a659ad",
@@ -1687,6 +1859,11 @@
   "bugao": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/698c6fca-50e7-4ace-84bc-5321b83bb0d7/1788732886038-i0bpzf.webp",
   "luiz-araujo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/ae0ad5f3-0f80-4372-97ed-94b08837f4ea/1786135371168-yqlxea.webp",
   "samuel-casati": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/20a987c8-fe05-400b-92ad-c035db446c46/1779043741843-3vybm0.webp",
-  "galo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/cab64589-9aee-4383-8d39-b5b4a3de6579/1795398141290-fijoyn.webp"
+  "galo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/cab64589-9aee-4383-8d39-b5b4a3de6579/1795398141290-fijoyn.webp",
+  "andreo-e-henrique": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/6c4e742d-6e36-45c8-9d79-aa3945a2184c/1782778321537-ggr4dl.webp",
+  "pedro-henrique-eduardo": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/4aa2dac5-76e1-4d33-bde5-dfa6289c6997/1779043751013-12so9b.webp",
+  "madera": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/be2d447f-4f90-4cde-8fcc-cf54286c3452/1792608300901-bhydcx.webp",
+  "ernesto-farah": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/dc310d06-fdd0-4915-a284-cedd646423c1/1795453670188-veg1ok.webp",
+  "samba-do-caixa": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/ca9af58b-ca11-435a-ae5b-c1f96e806a36/1785502814977-htu3ma.webp"
  }
 }
