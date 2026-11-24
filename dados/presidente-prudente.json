@@ -1,6 +1,6 @@
 {
  "coletado": "2026-11-24",
- "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-24T10:51)",
+ "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-24T19:57)",
  "V": {
   "varanda_boa_vista": {
    "name": "Varanda Boa Vista",
@@ -331,7 +331,8 @@
    "tipo": "Teatro",
    "genero": "Stand Up",
    "generosTop": [
-    "Stand Up"
+    "Stand Up",
+    "Espetáculo"
    ],
    "avaliacoes": 620,
    "nota": 4.8
@@ -490,8 +491,9 @@
    "slug": "tenis-clube",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/9477ac66-eb29-4745-905a-bcdb4e7e916c/1778775098849-rvu9ip.webp",
    "tipo": "Clube",
-   "genero": "Rock",
+   "genero": "Pop Rock",
    "generosTop": [
+    "Pop Rock",
     "Rock"
    ],
    "avaliacoes": 870,
@@ -1084,7 +1086,9 @@
    "r9848fbfc": "Pop",
    "rea245ea8": "Pop",
    "r088f7aae": "Pop",
-   "r12be7692": "Pop"
+   "r12be7692": "Pop",
+   "r5bdff208": "Discotecagem",
+   "r75505395": "Discotecagem"
   },
   "tacchino_ristorante": {
    "antigo23": "Pop Rock",
@@ -1172,7 +1176,8 @@
    "r3c8c50ed": "Sertanejo",
    "ra2227a74": "Sertanejo",
    "r26d6d1e5": "Sertanejo",
-   "recf95b11": "Sertanejo"
+   "recf95b11": "Sertanejo",
+   "rbc93d4cf": "Encontros e Palestras"
   },
   "sesc_thermas": {
    "r620d9408": "Teatro",
@@ -1192,7 +1197,9 @@
    "rf72d1b9d": "Sertanejo",
    "r6e9f4c69": "Sertanejo",
    "r947a9b8a": "Reggae",
-   "r42df5e59": "Rock"
+   "r42df5e59": "Rock",
+   "r9f39b084": "Sertanejo",
+   "r84f55ed6": "Sertanejo"
   },
   "bar_da_12": {
    "rc898dd65": "Forró",
@@ -1216,7 +1223,8 @@
    "r68307672": "Sertanejo",
    "r83573e25": "Brasilidades",
    "r2a38ec99": "Sertanejo",
-   "r657cb132": "Samba"
+   "r657cb132": "Samba",
+   "r96f86ae4": "Sertanejo"
   },
   "o_beco_bar": {
    "r1bc80066": "Pop Rock",
@@ -1253,6 +1261,16 @@
   }
  },
  "rows": [
+  [
+   "rbc93d4cf",
+   "Zé Pedro",
+   "vo_laura_gourmet",
+   "Encontros e Palestras",
+   "2026-11-24",
+   "20:30",
+   "ze-pedro",
+   0
+  ],
   [
    "r44ab4757",
    "Da Silva",
@@ -1342,6 +1360,16 @@
    "20:00",
    "samba-e-suor",
    2238
+  ],
+  [
+   "r9f39b084",
+   "Denise Leal",
+   "estacao_foodpark",
+   "Sertanejo",
+   "2026-11-27",
+   "18:00",
+   "denise-leal",
+   5918
   ],
   [
    "rb05c361c",
@@ -1544,6 +1572,16 @@
    356226
   ],
   [
+   "r84f55ed6",
+   "Tofano",
+   "estacao_foodpark",
+   "Sertanejo",
+   "2026-11-28",
+   "18:00",
+   "tofano",
+   6293
+  ],
+  [
    "r30336207",
    "Vertex",
    "overdrive_music_bar",
@@ -1632,6 +1670,36 @@
    "22:00",
    "dj-misper",
    1927
+  ],
+  [
+   "r5bdff208",
+   "Dj Abduzza",
+   "new_york_lounge_nyl",
+   "Discotecagem",
+   "2026-11-28",
+   "23:00",
+   "dj-abduzza",
+   194
+  ],
+  [
+   "r75505395",
+   "Mariah Bernardes Maia",
+   "new_york_lounge_nyl",
+   "Discotecagem",
+   "2026-11-28",
+   "23:00",
+   "mariah-bernardes-maia",
+   565241
+  ],
+  [
+   "r96f86ae4",
+   "Robson Reis",
+   "choperia_colina_bancarios",
+   "Sertanejo",
+   "2026-11-29",
+   "12:30",
+   "robson-reis",
+   11172
   ],
   [
    "re8ac9a2d",
@@ -1824,6 +1892,26 @@
    42203
   ],
   [
+   "r9ef2c682",
+   "Show Liga Joe Em Presidente Prudente",
+   "tenis_clube",
+   "evento",
+   "2026-12-12",
+   "00:00",
+   "show-liga-joe-em-presidente-prudente",
+   0
+  ],
+  [
+   "r8bd0f4b6",
+   "Va Idosas Em Presidente Prudente",
+   "teatro_cesar_cava",
+   "evento",
+   "2026-12-19",
+   "00:00",
+   "va-idosas-em-presidente-prudente",
+   0
+  ],
+  [
    "r2a38ec99",
    "Robson Reis",
    "choperia_colina_bancarios",
@@ -1842,16 +1930,6 @@
    "14:00",
    "galo",
    1366
-  ],
-  [
-   "r890ef37e",
-   "É o Tchan",
-   "fabrica_gastrobar",
-   "Axé",
-   "2027-01-30",
-   "22:00",
-   "e-o-tchan",
-   661425
   ]
  ],
  "imgs": {
@@ -1978,6 +2056,7 @@
   "samba-do-caixa": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/ca9af58b-ca11-435a-ae5b-c1f96e806a36/1785502814977-htu3ma.webp",
   "giovani-damazio": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/894141d0-9855-4e64-97f6-6623c2efa6a7/1783987918539-5n25rx.webp",
   "cavernous": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/63611a64-8ad2-4615-a1f6-ca12e3c0eb59/1779155466958-0udq49.webp",
-  "qdahorapp": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/3a5d50a3-95e6-4a59-bb6e-ecec266ba18e/1789045254266-xub7kj.webp"
+  "qdahorapp": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/3a5d50a3-95e6-4a59-bb6e-ecec266ba18e/1789045254266-xub7kj.webp",
+  "dj-abduzza": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/b356ed02-54f7-4a03-93ca-b9a7b62bf42f/1789046095678-okh5yc.webp"
  }
 }
