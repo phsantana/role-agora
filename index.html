@@ -1113,6 +1113,16 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
 @media (prefers-reduced-motion:reduce){.fogo,.estrela{animation:none}.pulse,.sweep,.spin{animation:none}.pulse{opacity:.25;transform:translate(-50%,-50%) scale(.6)}*{transition:none!important}}
 /* ---------- Home: "Para você" (cards grandes com foto, nota, horário e quem toca) ---------- */
 .hc-pv{margin-top:var(--s-m)}
+.vs-vibe{margin:0 0 12px;font-size:14px;line-height:1.5;color:var(--text-2)}
+.vs-vibe b{color:var(--text)}
+.vs-pub{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.vs-pub li{display:grid;grid-template-columns:132px 1fr 40px;align-items:center;gap:12px}
+.vs-pub .nm{display:flex;flex-direction:column;font-size:14px;font-weight:600;line-height:1.3;min-width:0}
+.vs-pub .nm small{font-size:12px;font-weight:400;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vs-pub .br{height:8px;border-radius:var(--r-pill);background:var(--subtle);overflow:hidden}
+.vs-pub .br i{display:block;height:100%;border-radius:inherit;background:var(--action)}
+.vs-pub .pc{font-size:14px;font-weight:600;text-align:right}
+.vs-fonte{margin:12px 0 0}
 .hc-pv .hc-h{margin-bottom:8px}
 .hc-pv .hc-h p{margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hc-pv+.hc-filtros{margin-top:var(--s-m)}
@@ -1211,6 +1221,7 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
   </div></div>
   <div class="home-body"><div class="home-in">
     <section class="hc-pv" id="hc-pv-s" aria-labelledby="hc-pv-t"><div class="hc-h"><h2 class="h5" id="hc-pv-t">Para você</h2></div><div class="hc-rail" id="hc-pv"></div></section>
+    <section class="hc-pv" id="hc-fam-s" aria-labelledby="hc-fam-t" hidden><div class="hc-h"><h2 class="h5" id="hc-fam-t">Outros estilos pra você</h2></div><div class="hc-rail" id="hc-fam"></div></section>
     <div class="filtros hc-filtros" role="group" aria-label="Filtros"><button type="button" class="fbtn" id="hc-f-when" aria-haspopup="dialog"></button><button type="button" class="fbtn" id="hc-f-genre" aria-haspopup="dialog"></button><button type="button" class="hh-cupons" id="hh-cupons" aria-label="Ver cupons" hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M9.5 14.5l5-5M9.5 9.5h.01M14.5 14.5h.01"/></svg><span class="n" aria-hidden="true">0</span></button></div>
     <section class="hc-sec" id="hc-momento-s" aria-labelledby="hc-momento-t"><div class="hc-h hc-h2"><div><h2 class="h5" id="hc-momento-t">Pro momento</h2><p class="body-sm muted" id="hc-momento-sub"></p></div></div><div class="hc-rail" id="hc-momento"></div></section>
     <section class="hc-sec" aria-labelledby="hc-locais-t"><div class="hc-h"><h2 class="h5" id="hc-locais-t">Lugares em alta</h2><button type="button" class="lk" id="hc-locais-ver">Ver todos</button></div><div class="hc-rail" id="hc-locais"></div></section>
@@ -1371,6 +1382,8 @@ var VIMG={"agrobar":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhp
 function vfoto(k){if(!state.city.live) return VIMG[k]||null;var v=VENUES[k];return (v&&v.img)||null;}
 
 var VGEN={"varanda_boa_vista": "Eletrônica", "agrobar": "Sertanejo", "cult_bar": "Rock", "alphaville_bar_e_petiscaria": "Sertanejo", "valete_bar": "Rock", "exquina_bar": "Sertanejo", "ibiza_lounge_bar": "Pagode", "villa_18_container_bar": "Pagode", "new_york_lounge_nyl": "Eletrônica", "bar_da_onca": "Samba", "jardim_esmeralda": "Karaokê", "fabrica_gastrobar": "Rock", "seu_bastiao_pub": "Sertanejo", "tacchino_ristorante": "Bloco de rua", "overdrive_music_bar": "Rock", "quinta_aula": "Eletrônica", "vo_laura_gourmet": "Sertanejo", "pao_nosso": "Bloco de rua", "teatro_cesar_cava": "Stand Up", "arapuca_bar": "Sertanejo", "jardim_suinga": "MPB", "salao_o_limoeiro": "Rock", "sal_grosso_choperia_e_petiscaria": "Brasilidades", "ume_brasa_e_mar": "Rock", "parque_do_povo": "Forró", "rooftop_bar": "Sertanejo", "magma_grill": "Pop Rock", "tenis_clube": "Rock", "prudentina_chopperia_e_petiscaria": "Sertanejo", "floa_cafe_e_flor": "Pop Rock", "fagulha_fire": "Discotecagem", "centro_historico_cultural_matarazzo": "Dança", "coletivo_cultural_galpao_da_lua": "Bloco de rua", "bar_bq": "Pop Rock", "sorveteria_conveniencia_e_petiscaria_serenata": "Sertanejo", "gaucho_s_costelaria": "Multigênero", "buteco_raiz": "Sertanejo", "brigada_dos_lobos_mc_sub_sede_presidente_prudente": "Pop Rock", "deck_bar": "Pop Rock", "sesc_thermas": "Teatro", "cazulo_cultural": "Rock", "sorveteria_napoles": "Arraiá", "o_beco_bar": "Pop Rock", "dg_espetaria": "Rock", "choperia_colina_bancarios": "Sertanejo", "bar_da_12": "Brasilidades", "estacao_foodpark": "Sertanejo", "restaurante_estrela_gourmet": "Sertanejo", "toledo_prudente_centro_universitario": "Stand Up"}; // gênero que mais toca em cada local, pelo histórico da agenda
+var VHIST={"varanda_boa_vista": {"Sertanejo": 6, "Rock": 2, "Eletrônica": 4, "Pagode": 1}, "agrobar": {"Sertanejo": 11, "Encontros e Palestras": 2, "Samba": 2}, "cult_bar": {"Rock": 7, "Pop Rock": 5, "Música regional brasileira": 1, "Discotecagem": 1}, "alphaville_bar_e_petiscaria": {"Pop Rock": 4, "Sertanejo": 10, "Brasilidades": 2, "Pagode": 1}, "valete_bar": {"Discotecagem": 3, "Rock": 6, "Blues": 1, "Pop Rock": 1}, "exquina_bar": {"Samba": 2, "Sertanejo": 12, "Country": 3, "Pop Rock": 1, "MPB": 2}, "ibiza_lounge_bar": {"Sertanejo": 7, "Eletrônica": 5, "Pagode": 5, "MPB": 2, "Rock": 3}, "villa_18_container_bar": {"Pagode": 13, "Samba": 6, "MPB": 1}, "new_york_lounge_nyl": {"Discotecagem": 8, "Eletrônica": 12, "MPB": 1, "Brasilidades": 1, "Pop": 3}, "bar_da_onca": {"Pagode": 13, "Sertanejo": 8, "Samba": 18, "Brasilidades": 1}, "jardim_esmeralda": {"Karaokê": 3, "Rock": 2}, "fabrica_gastrobar": {"Rock": 11, "MPB": 2, "Pagode": 4, "Reggae": 2, "Axé": 1, "Pop Rock": 2}, "seu_bastiao_pub": {"Eletrônica": 10, "Sertanejo": 31, "Pagode": 5, "Rock": 1, "Brasilidades": 1}, "tacchino_ristorante": {"Pop Rock": 2, "Bloco de rua": 3, "Jazz": 1}, "overdrive_music_bar": {"Rock": 5, "Pop Rock": 3}, "quinta_aula": {"Pop": 7, "Eletrônica": 5, "Discotecagem": 1}, "vo_laura_gourmet": {"Sertanejo": 12, "Brasilidades": 1}, "pao_nosso": {"Bloco de rua": 3}, "arapuca_bar": {"Sertanejo": 8, "Pagode": 2, "Brasilidades": 1}, "jardim_suinga": {"MPB": 6, "Samba": 2}, "salao_o_limoeiro": {"Rock": 3}, "sal_grosso_choperia_e_petiscaria": {"Brasilidades": 4, "Rock": 2, "Pop Rock": 2}, "ume_brasa_e_mar": {"Rock": 3, "Discotecagem": 2, "Eletrônica": 1}, "parque_do_povo": {"Forró": 3, "Sertanejo": 2, "MPB": 1}, "rooftop_bar": {"Sertanejo": 4, "Samba": 2, "Pagode": 3}, "magma_grill": {"Pop Rock": 3, "Sertanejo": 2, "Rock": 1}, "tenis_clube": {"Rock": 3}, "prudentina_chopperia_e_petiscaria": {"Sertanejo": 3, "Eletrônica": 2, "Pagode": 1}, "floa_cafe_e_flor": {"Pop Rock": 4}, "fagulha_fire": {"Discotecagem": 3, "Eletrônica": 2, "Pop": 1}, "centro_historico_cultural_matarazzo": {"Dança": 3}, "coletivo_cultural_galpao_da_lua": {"Bloco de rua": 3}, "bar_bq": {"Pop Rock": 3, "Rock": 2, "MPB": 1}, "sorveteria_conveniencia_e_petiscaria_serenata": {"Sertanejo": 3, "Pop Rock": 2}, "buteco_raiz": {"Sertanejo": 3, "Pagode": 2, "Samba": 1}, "brigada_dos_lobos_mc_sub_sede_presidente_prudente": {"Pop Rock": 3}, "deck_bar": {"Pop Rock": 5, "Rock": 3}, "sesc_thermas": {"Jazz": 1, "MPB": 4, "Soul": 1, "Rock": 2, "Infantil": 1, "Performance": 1}, "cazulo_cultural": {"Rock": 3, "Choro": 2, "Forró": 1}, "sorveteria_napoles": {"Arraiá": 3}, "o_beco_bar": {"Pop Rock": 4, "Sertanejo": 2, "Samba": 3}, "dg_espetaria": {"Rock": 5}, "choperia_colina_bancarios": {"Samba": 4, "Sertanejo": 7, "Brasilidades": 2}, "bar_da_12": {"Forró": 3, "Brasilidades": 4}, "estacao_foodpark": {"Sertanejo": 5, "Reggae": 3, "Rock": 2}, "restaurante_estrela_gourmet": {"Sertanejo": 4}}; // estilos que já tocaram em cada local (quantos rolês de cada), pelo histórico da agenda + o que o site diz que mais toca
+var PUBLICO={}; // público real de cada local, por família de gosto (Supabase, só locais com 5+ pessoas); vazio enquanto não há volume
 var COLETADO='2026-11-23';
 // agenda das outras cidades, do Supabase do Rolê Agora (consulta_cidades_supabase.sql), embutida no app: nada é lido do site
 // {coletado, cidades:[[slug, nome, uf, [[local, bairro, lat, lng, foto], ...], [[artista, índice do local, gênero, data, hora, fãs, foto], ...]], ...]}
@@ -1409,14 +1422,69 @@ function persist(){try{localStorage.setItem('radar-roles',JSON.stringify({profil
 /* ---------- Cálculos ---------- */
 function hash(s){var h=0;for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0;}return Math.abs(h);}
 function km(a,b){var R=6371,toR=Math.PI/180,dLat=(b.lat-a.lat)*toR,dLng=(b.lng-a.lng)*toR;var x=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a.lat*toR)*Math.cos(b.lat*toR)*Math.sin(dLng/2)*Math.sin(dLng/2);return 2*R*Math.asin(Math.sqrt(x));}
+/* ---------- Famílias de gosto (Rentfrow & Gosling, 2003; Pereira, 2015, revista Interações 29) ----------
+   O estudo agrupa os gêneros em 4 dimensões: quem curte um gênero tende a curtir os outros da mesma.
+   Reflexiva: acústica, complexa, introspectiva. Rebelde: elétrica, intensa. Convencional: simples, positiva, popular.
+   Energética: batida, eletrônica, dançante. Os gêneros brasileiros (que o estudo não tinha) entram pela mesma
+   descrição de cada dimensão — essa parte é adaptação nossa. */
+var TRIBO_DE={
+  'Jazz':'reflexiva','Blues':'reflexiva','MPB':'reflexiva','Bossa Nova':'reflexiva','Choro':'reflexiva','Brasilidades':'reflexiva','Voz e Violão':'reflexiva','Clássica':'reflexiva','Erudita':'reflexiva','Instrumental':'reflexiva','Folk':'reflexiva','Música regional brasileira':'reflexiva','World':'reflexiva',
+  'Rock':'rebelde','Pop Rock':'rebelde','Rock Alternativo':'rebelde','Indie':'rebelde','Metal':'rebelde','Metal Alternativo':'rebelde','Nu Metal':'rebelde','Punk':'rebelde','Hardcore':'rebelde','Grunge':'rebelde','Festival de Rock':'rebelde',
+  'Pop':'convencional','Sertanejo':'convencional','Pagode':'convencional','Samba':'convencional','Forró':'convencional','Arrocha':'convencional','Axé':'convencional','Brega':'convencional','Gospel':'convencional','Country':'convencional','Arraiá':'convencional','Bloco de rua':'convencional','Karaokê':'convencional','Samba Rock':'convencional',
+  'Eletrônica':'energetica','Funk':'energetica','Hip Hop':'energetica','Rap':'energetica','Trap':'energetica','R&B':'energetica','Soul':'energetica','Reggae':'energetica','Discotecagem':'energetica','Dança':'energetica','Afrobeat':'energetica','Open Format':'energetica','Flashback':'energetica'};
+var TRIBOS=['reflexiva','rebelde','convencional','energetica'];
+var TRIBO_NOME={reflexiva:'Reflexiva',rebelde:'Rebelde',convencional:'Popular',energetica:'Energética'};
+var TRIBO_EX={reflexiva:'MPB, jazz, blues',rebelde:'rock, metal, indie',convencional:'sertanejo, pagode, pop',energetica:'eletrônica, funk, hip hop'};
+var FAM_MIN=50; // "Outros estilos pra você" é descoberta: entra a partir de 50%
+var FAMILIA_SIM=.78; // gênero diferente, mesma família: quase tão bom quanto o gênero que você curte
+function triboDe(g){return g?TRIBO_DE[g]||null:null;}
+function mixVazio(){return {reflexiva:0,rebelde:0,convencional:0,energetica:0};}
+// a sua família: o seu gosto (Spotify ou o que você escolheu) + os rolês que você marcou com "Bora" (0,3 cada)
+function triboUsuario(){
+  var m=mixVazio(),tot=0;
+  if(state.profile) Object.keys(state.profile).forEach(function(g){var t=triboDe(g);if(t){m[t]+=state.profile[g];tot+=state.profile[g];}});
+  Object.keys(state.going).forEach(function(id){var v=state.going[id],g=(findEvent(id)||{}).genre||(v&&v.genre),t=triboDe(g);if(t){m[t]+=.3;tot+=.3;}});
+  if(!tot) return null;TRIBOS.forEach(function(t){m[t]/=tot;});return m;
+}
+// estilos que já tocaram no local: histórico salvo (Prudente) ou a agenda carregada (outras cidades)
+function historicoDoLocal(k){
+  if(!state.city.live&&VHIST[k]) return VHIST[k];
+  var h={};(state.city.live?events:PRUDENTE.all).forEach(function(e){if(e.venueKey===k&&e.genre&&!NAO_MUSICAL[e.genre]) h[e.genre]=(h[e.genre]||0)+1;});
+  return h;
+}
+/* o público do local, por família: quem marca interesse nos rolês de lá (dado real, quando tem 5+ pessoas) ou,
+   enquanto não tem, uma estimativa pelos estilos que tocam lá (quem vai num rolê de sertanejo tende a ser da família popular) */
+function publicoDoLocal(k){
+  var m=mixVazio(),tot=0,h=historicoDoLocal(k);
+  Object.keys(h).forEach(function(g){var t=triboDe(g);if(t){m[t]+=h[g];tot+=h[g];}});
+  var est=tot?TRIBOS.reduce(function(o,t){o[t]=m[t]/tot;return o;},{}):null;
+  var slug=VENUES[k]&&VENUES[k].slug,real=slug&&PUBLICO[slug];
+  if(real&&real.pessoas>=5){var n=0;TRIBOS.forEach(function(t){n+=real[t]||0;});
+    if(n){var r=TRIBOS.reduce(function(o,t){o[t]=(real[t]||0)/n;return o;},{}),w=Math.min(1,real.pessoas/20);
+      return {mix:est?TRIBOS.reduce(function(o,t){o[t]=w*r[t]+(1-w)*est[t];return o;},{}):r,pessoas:real.pessoas,real:true};}}
+  return est?{mix:est,pessoas:0,real:false}:null;
+}
+// "tem a sua vibe": quanto o público do local se parece com você (interseção das duas misturas de famílias, 0 a 1)
+function vibeDoLocal(k,u){u=u||triboUsuario();var p=publicoDoLocal(k);if(!u||!p) return null;var s=0;TRIBOS.forEach(function(t){s+=Math.min(u[t],p.mix[t]);});return s;}
+function triboPrincipal(m){var best=null;TRIBOS.forEach(function(t){if(!best||m[t]>m[best]) best=t;});return best;}
+// compatibilidade do local: cada estilo que já tocou lá pesa pelo tanto que tocou (75%) + a vibe do público (25%)
+function compatLocal(k,u){
+  if(!state.profile) return null;
+  var h=historicoDoLocal(k),v=VENUES[k]||{},s=0,tot=0,why=null,best=-1;
+  Object.keys(h).forEach(function(g){if(!triboDe(g)) return;var a=affinity({name:v.name||k,genre:g},state.profile);if(!a) return;s+=h[g]*a.pct;tot+=h[g];if(h[g]*a.pct>best){best=h[g]*a.pct;why=g;}});
+  if(!tot) return null;
+  var estilos=s/tot,vb=vibeDoLocal(k,u),pct=vb==null?estilos:.75*estilos+.25*vb*100;
+  return {pct:Math.max(12,Math.min(99,Math.round(pct))),why:why,vibe:vb,estilos:Math.round(estilos)};
+}
 function affinity(ev,profile){
   if(!profile) return null;
-  var best=0,sum=0,wsum=0,why=null,maxW=Math.max.apply(null,Object.keys(profile).map(function(g){return profile[g];}))||1;
-  Object.keys(profile).forEach(function(g){var w=Math.min(1,profile[g]/maxW*.98),s=(SIM[g]&&SIM[g][fam(ev.genre)])||0;var v=w*s;if(v>best){best=v;why=g;}sum+=v;wsum+=w;});
-  var name=ev.name.toLowerCase();Object.keys(profile).forEach(function(g){if(name.indexOf(g.toLowerCase())>=0){best=Math.min(1,best+.12);why=g;}});
+  var best=0,sum=0,wsum=0,why=null,viaFam=false,tE=triboDe(ev.genre),maxW=Math.max.apply(null,Object.keys(profile).map(function(g){return profile[g];}))||1;
+  // mesma família do estudo (e gênero diferente): conta quase como o gênero que você curte
+  Object.keys(profile).forEach(function(g){var w=Math.min(1,profile[g]/maxW*.98),s=(SIM[g]&&SIM[g][fam(ev.genre)])||0,sf=tE&&g!==ev.genre&&triboDe(g)===tE?FAMILIA_SIM:0;var v=w*Math.max(s,sf);if(v>best){best=v;why=g;viaFam=sf>s;}sum+=v;wsum+=w;});
+  var name=ev.name.toLowerCase();Object.keys(profile).forEach(function(g){if(name.indexOf(g.toLowerCase())>=0){best=Math.min(1,best+.12);why=g;viaFam=false;}});
   var base=.78*best+.22*(wsum?sum/wsum:0);
   var jitter=(hash(ev.name)%9)-4;
-  return {pct:Math.max(12,Math.min(99,Math.round(base*100+jitter))),why:why};
+  return {pct:Math.max(12,Math.min(99,Math.round(base*100+jitter))),why:why,fam:viaFam?tE:null};
 }
 // cores das capas geradas (rolê sem foto do artista no site): precisa existir antes de montar os rolês
 var PALETTE=[['#D10A87','#46042F'],['#411C62','#150920'],['#E11410','#4A0705'],['#218A85','#104441'],['#1E810D','#0C3205'],['#F4890A','#512D03']];
@@ -1434,7 +1502,11 @@ function fam(g){return SIM.Rock[g]!=null?g:(FAMILY[g]||'MPB');}
 function estrela(t){return '<span class="estrela" aria-hidden="true"><svg width="'+(t||16)+'" height="'+(t||16)+'" viewBox="0 0 24 24"><path fill="#FFC21A" stroke="#F4890A" stroke-width="1" stroke-linejoin="round" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg></span>';}
 // foguinho animado: rolê que deve lotar
 function fogo(t){return '<span class="fogo" aria-hidden="true"><svg width="'+(t||16)+'" height="'+(t||16)+'" viewBox="0 0 24 24"><path fill="#FF5A1F" d="M12 2c.6 3.2 3.8 5 4.9 8.4C18.2 14.6 15.9 21 12 21c-3.8 0-6.4-3.1-6-7.2.3-2.6 1.9-4 2.6-5.3.4 1.6 1.2 2.6 2.2 3.2-.3-3.6.5-6.6 1.2-9.7z"/><path fill="#FFC21A" d="M12.3 11.5c.8 1.7 2.9 2.9 2.4 5.6-.3 1.8-1.6 2.9-3 2.9s-2.8-1.1-2.8-3c0-1.5.8-2.3 1.4-3 .2.8.6 1.3 1.1 1.6 0-1.4.3-2.7.9-4.1z"/></svg></span>';}
-function withScores(){var pr=state.profile;events.forEach(function(e){var a=affinity(e,pr);e.aff=a?a.pct:null;e.why=a?a.why:null;comClima(e);});lotacao();}
+function withScores(){var pr=state.profile,u=pr?triboUsuario():null,vb={};
+  events.forEach(function(e){var a=affinity(e,pr);e.aff=a?a.pct:null;e.why=a?a.why:null;e.famVia=a?a.fam:null;e.vibe=null;
+    // o público do lugar tem a sua vibe? entra com 15% na compatibilidade do rolê
+    if(a&&u&&e.venueKey){if(!(e.venueKey in vb)) vb[e.venueKey]=vibeDoLocal(e.venueKey,u);e.vibe=vb[e.venueKey];if(e.vibe!=null) e.aff=Math.max(12,Math.min(99,Math.round(.85*e.aff+.15*e.vibe*100)));}
+    comClima(e);});lotacao();}
 /* Lotação estimada (não é contagem ao vivo): por rolê (mesmo lugar e horário), somando
    fãs dos artistas no Rolê Agora (50%), quão conhecido é o lugar pelas avaliações no Google (20%),
    dia e hora (30%: sexta e sábado à noite pesam mais) e +5% por atração a mais na mesma noite (até +15%).
@@ -1854,11 +1926,11 @@ function generoDoLocal(k){
   return best;
 }
 function locais(){
-  var vis=visible(),porLocal={};vis.forEach(function(e){(porLocal[e.venueKey]=porLocal[e.venueKey]||[]).push(e);});
+  var vis=visible(),porLocal={},u=state.profile?triboUsuario():null;vis.forEach(function(e){(porLocal[e.venueKey]=porLocal[e.venueKey]||[]).push(e);});
   var q=state.q.trim().toLowerCase();
   return Object.keys(VENUES).map(function(k){
     var v=VENUES[k];if(v.lat==null||v.lng==null) return null;
-    var g=generoDoLocal(k),a=state.profile&&g&&!NAO_MUSICAL[g]?affinity({name:v.name,genre:g},state.profile):null;
+    var g=generoDoLocal(k),a=compatLocal(k,u);
     var roles=(porLocal[k]||[]).slice().sort(byList);
     return {k:k,name:v.name,venue:v.name,bairro:v.bairro,tipo:v.tipo||'',lat:v.lat,lng:v.lng,approx:!!v.approx,dist:km(ME,v),genre:g,aff:a?a.pct:null,why:a?a.why:null,roles:roles,img:vfoto(k)||ph(v.name,g)};
   }).filter(function(l){
@@ -2796,7 +2868,8 @@ function melhorDia(pool,score,max){
 }
 // por que cada rolê entrou: só com o que o app sabe de verdade (gosto, artista, compatibilidade, distância)
 function motivos(e,ant){var out=[],g=e.why||e.genre;
-  if(state.profile&&state.profile[g]!=null) out.push('Porque você curte '+g+', e quem sobe no palco é '+e.name);
+  if(state.profile&&state.profile[g]!=null&&e.famVia) out.push('Porque você curte '+g+', e '+e.genre+' é da mesma família ('+TRIBO_NOME[e.famVia].toLowerCase()+')');
+  else if(state.profile&&state.profile[g]!=null) out.push('Porque você curte '+g+', e quem sobe no palco é '+e.name);
   else out.push('Porque quem sobe no palco é '+e.name);
   if(e.aff>DECK_MIN) out.push(e.aff+'% sua cara: tá entre os rolês mais a sua cara da cidade');
   if(!ant&&e.dist<=1.2) out.push('Fica a '+distTxt(e.dist)+' de você, dá pra ir a pé');
@@ -3229,22 +3302,31 @@ function renderParaVoce(){
   var pts=function(e){var v=VENUES[e.venueKey]||{};return state.profile?(e.aff||0)*10+Math.log10((e.fans||0)+1):Math.log10((e.fans||0)+1)*2+(v.nota||3.5)+(semFotoHc(e)?-3:0)-dayDiff(e.date)*.15;};
   var vistos={},lista=base.slice().sort(function(a,b){return pts(b)-pts(a)||(a.date-b.date);}).filter(function(e){var k=norm(e.name);if(vistos[k]) return false;vistos[k]=1;return true;}).slice(0,6);
   document.getElementById('hc-pv-s').hidden=!lista.length;
-  document.getElementById('hc-pv').innerHTML=lista.map(function(e){
+  // "Outros estilos pra você": rolês de gêneros que você não marcou, mas da mesma família de um que você curte
+  var jaPv={};lista.forEach(function(e){jaPv[e.id]=1;});
+  var vistosF={},fam=state.profile?base.filter(function(e){return e.famVia&&e.aff>=FAM_MIN&&!jaPv[e.id];}).sort(function(a,b){return b.aff-a.aff||(a.date-b.date);}).filter(function(e){var k=norm(e.name);if(vistosF[k]) return false;vistosF[k]=1;return true;}).slice(0,6):[];
+  document.getElementById('hc-fam-s').hidden=!fam.length;
+  document.getElementById('hc-fam').innerHTML=fam.map(function(e){return pvCard(e,noite,true);}).join('');
+  document.getElementById('hc-fam').scrollLeft=0;
+  document.getElementById('hc-pv').innerHTML=lista.map(function(e){return pvCard(e,noite);}).join('');
+  document.getElementById('hc-pv').scrollLeft=0;
+}
+function pvCard(e,noite,familia){
     var v=VENUES[e.venueKey]||{},on=!!state.going[e.id],n=dayDiff(e.date),dia=n===0?'hoje':n===1?'amanhã':SEM[e.date.getDay()].toLowerCase();
     var rs=(noite[e.venueKey+'|'+(+e.date)]||[e]),fans=0;rs.forEach(function(x){fans+=x.fans||0;});
     var fotos=rs.filter(function(x){return !semFotoHc(x);}).slice(0,2).map(function(x){return '<img src="'+x.img+'" alt="">';}).join('');
     var pill=fans>=10?milhar(fans)+' fãs':rs.length>1?rs.length+' atrações':'';
     var nota=v.nota?'<span class="st">'+pvEstrelas(v.nota)+'<span class="n">'+String(v.nota.toFixed?v.nota.toFixed(1):v.nota).replace('.',',')+'</span></span>':'';
-    var cp=e.aff!=null?'<span class="cp">'+e.aff+'% sua cara • '+esc(e.genre)+'</span>':'<span class="cp">'+esc(e.genre)+' • '+esc(v.name||e.venue)+'</span>';
+    var cp=familia?'<span class="cp">Parecido com '+esc(e.why)+'</span>':e.aff!=null?'<span class="cp">'+e.aff+'% sua cara • '+esc(e.genre)+'</span>':'<span class="cp">'+esc(e.genre)+' • '+esc(v.name||e.venue)+'</span>';
     var hr=e.date.noTime?'<strong>'+capt(dia)+'</strong>':'<strong>'+hora(e.date)+'</strong> / '+dia;
     return '<article class="pv"><img src="'+e.img+'" alt="">'+
       '<button type="button" class="hit" data-hc-ev="'+e.id+'" aria-label="'+esc(e.name)+', '+esc(v.name||e.venue)+', '+quando(e.date)+'"></button>'+
       '<span class="tx"><b>'+esc(e.name)+'</b>'+(nota||'')+cp+'<span class="hr">'+hr+'</span></span>'+
       ((fotos||pill)?'<span class="gt" aria-hidden="true">'+fotos+(pill?'<span>'+pill+'</span>':'')+'</span>':'')+
-      '<button type="button" class="sv" data-fav="'+e.id+'" aria-pressed="'+on+'" aria-label="'+(on?'Tirar '+esc(e.name)+' da agenda':'Salvar '+esc(e.name)+' na agenda')+'"><svg width="20" height="20" viewBox="0 0 24 24" fill="'+(on?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h12a1 1 0 0 1 1 1v16l-7-4.5-7 4.5v-16a1 1 0 0 1 1-1z"/></svg></button></article>';}).join('');
-  document.getElementById('hc-pv').scrollLeft=0;
+      '<button type="button" class="sv" data-fav="'+e.id+'" aria-pressed="'+on+'" aria-label="'+(on?'Tirar '+esc(e.name)+' da agenda':'Salvar '+esc(e.name)+' na agenda')+'"><svg width="20" height="20" viewBox="0 0 24 24" fill="'+(on?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h12a1 1 0 0 1 1 1v16l-7-4.5-7 4.5v-16a1 1 0 0 1 1-1z"/></svg></button></article>';
 }
 document.getElementById('hc-pv').addEventListener('click',function(ev){var b=ev.target.closest('[data-hc-ev]');if(b) openEvent(b.getAttribute('data-hc-ev'));});
+document.getElementById('hc-fam').addEventListener('click',function(ev){var b=ev.target.closest('[data-hc-ev]');if(b) openEvent(b.getAttribute('data-hc-ev'));});
 function renderHc(){
   renderHcFiltros();renderParaVoce();
   var vis=visible().slice().sort(function(a,b){return a.date-b.date;});
@@ -3465,11 +3547,10 @@ function renderEvScreen(e){
   // tempo: emoji + resumo curto; embaixo, a faixa de temperatura (o INMET não dá a chance de chuva)
   // "Por que é a sua cara": cards com os motivos
   var mot=[];
-  if(e.aff!=null&&e.aff>=TOP_MIN){
-    if(e.why) mot.push([ic('note',RS,24),'Rolê de '+esc(String(e.why).toLowerCase())]);
+  if(e.aff!=null&&(e.aff>=TOP_MIN||(e.famVia&&e.aff>=FAM_MIN))){
+    if(e.why) mot.push([ic('note',RS,24),e.famVia?'Mesma família do '+esc(e.why)+' que você curte':'Rolê de '+esc(String(e.why).toLowerCase())]);
     if(!(e.city&&e.city!==state.city.name)&&e.dist<=3) mot.push([ic('route',RS,24),(ME.you?'Perto de você':'Perto do centro')+' ('+(e.dist<=1.5?Math.max(1,Math.ceil(e.dist*1000/80))+' min a pé':Math.ceil(e.dist*2.4+3)+' min de carro')+')']);
-    var gl=e.venueKey&&generoDoLocal(e.venueKey),al=gl&&!NAO_MUSICAL[gl]&&state.profile?affinity({name:e.venue,genre:gl},state.profile):null;
-    if(al&&al.pct>=TOP_MIN) mot.push([ic('heart',RS,24),'O lugar tem a sua vibe']);
+    if(e.vibe!=null&&e.vibe>=.6) mot.push([ic('heart',RS,24),'O público de lá tem a sua vibe']);
     if(e.climaAdj>0) mot.push([ic('sol',RS,24),'Tempo firme ajudando']);
   }
   if(e.quente) mot.push([fogo(24),(dd===0?'Tá bombando':'Vai bombar')+' (estimativa)']);
@@ -3517,7 +3598,7 @@ function closeVenuePage(){
 document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&vsOpen&&!sheet.classList.contains('open')){ev.stopImmediatePropagation();closeVenuePage();}},true);
 function renderVenuePage(k){
   var v=VENUES[k],g=generoDoLocal(k),mus=g&&!NAO_MUSICAL[g],lv={lat:v.lat,lng:v.lng,dist:km(ME,v),approx:!!v.approx};
-  var a=state.profile&&mus?affinity({name:v.name,genre:g},state.profile):null;
+  var a=compatLocal(k),pub=publicoDoLocal(k);
   var img=vfoto(k)||ph(v.name,g);
   // todos os próximos rolês do lugar, do mais cedo pro mais tarde (sem os filtros do radar)
   var roles=events.filter(function(e){return e.venueKey===k&&!jaPassou(e);}).sort(function(x,y){return x.date-y.date;});
@@ -3551,6 +3632,11 @@ function renderVenuePage(k){
       '<section aria-labelledby="vs-sobre"><h2 class="h6" id="vs-sobre">Sobre o lugar</h2><p class="body-sm muted vs-p">'+esc(sobre)+'</p></section>'+
       (gts.length?'<div class="vs-gts" role="list" aria-label="O que toca">'+gts.map(function(x){return '<span class="chip static" role="listitem">'+esc(x)+'</span>';}).join('')+'</div>':'')+
       '<hr class="vs-hr">'+
+      (pub?'<section aria-labelledby="vs-pub"><h2 class="h6" id="vs-pub">Quem curte este lugar</h2>'+
+        (a&&a.vibe!=null?'<p class="vs-vibe"><b>'+(a.vibe>=.6?'Tem a sua vibe':a.vibe>=.35?'Tem um pouco da sua vibe':'Público diferente do seu')+'</b> • '+Math.round(a.vibe*100)+'% parecido com você</p>':'')+
+        '<ul class="vs-pub">'+TRIBOS.filter(function(t){return pub.mix[t]>=.05;}).sort(function(x,y){return pub.mix[y]-pub.mix[x];}).map(function(t){var pc=Math.round(pub.mix[t]*100);
+          return '<li><span class="nm">'+TRIBO_NOME[t]+'<small>'+TRIBO_EX[t]+'</small></span><span class="br" aria-hidden="true"><i style="width:'+pc+'%"></i></span><span class="pc">'+pc+'%</span></li>';}).join('')+'</ul>'+
+        '<p class="desc-sm muted vs-fonte">'+(pub.real?'Pelas '+pub.pessoas+' pessoas que marcaram interesse nos rolês daqui.':'Estimativa pelos estilos que já tocaram aqui.')+'</p></section><hr class="vs-hr">':'')+
       '<section aria-labelledby="vs-dest"><h2 class="h6" id="vs-dest">Destaques</h2><ul class="vs-icons">'+dest.map(function(d){return '<li>'+d[0]+'<span>'+d[1]+'</span></li>';}).join('')+'</ul></section>'+
       (roles.length?'<hr class="vs-hr"><section aria-labelledby="vs-roles"><h2 class="h6" id="vs-roles">Próximos rolês</h2><div class="ev-list">'+roles.map(function(e){return evHtml(e);}).join('')+'</div></section>':'')+
     '</div></div>'+
