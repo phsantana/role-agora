@@ -1,6 +1,6 @@
 {
- "coletado": "2026-11-24",
- "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-24T19:57)",
+ "coletado": "2026-11-25",
+ "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-25T10:07)",
  "V": {
   "varanda_boa_vista": {
    "name": "Varanda Boa Vista",
@@ -1261,16 +1261,6 @@
   }
  },
  "rows": [
-  [
-   "rbc93d4cf",
-   "Zé Pedro",
-   "vo_laura_gourmet",
-   "Encontros e Palestras",
-   "2026-11-24",
-   "20:30",
-   "ze-pedro",
-   0
-  ],
   [
    "r44ab4757",
    "Da Silva",
