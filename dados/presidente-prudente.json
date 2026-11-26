@@ -1,6 +1,6 @@
 {
  "coletado": "2026-11-26",
- "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-26T10:28)",
+ "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-26T19:02)",
  "V": {
   "varanda_boa_vista": {
    "name": "Varanda Boa Vista",
@@ -214,7 +214,7 @@
    "bairro": "UEP1-S.2",
    "lat": -22.1199927,
    "lng": -51.4033684,
-   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/9915e8e8-358f-4473-ae8c-d28d57cc4949/1778774604095-tyl1kw.webp",
+   "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/9915e8e8-358f-4473-ae8c-d28d57cc4949/1795701972489-vxya7j.webp",
    "slug": "seu-bastiao-pub",
    "tipo": "Casa noturna",
    "genero": "Sertanejo",
@@ -224,7 +224,7 @@
     "Pagode"
    ],
    "avaliacoes": 54,
-   "nota": 4.2
+   "nota": 4.3
   },
   "tacchino_ristorante": {
    "name": "Tacchino Ristorante",
@@ -1214,7 +1214,8 @@
    "r38962096": "Sertanejo",
    "r3fb9374d": "Sertanejo",
    "rc5c7a9ef": "Sertanejo",
-   "r3ce223b2": "Sertanejo"
+   "r3ce223b2": "Sertanejo",
+   "ra489ffe2": "Sertanejo"
   },
   "dg_espetaria": {
    "r2a432d92": "Rock",
@@ -1354,6 +1355,16 @@
    "20:00",
    "samba-e-suor",
    2238
+  ],
+  [
+   "ra489ffe2",
+   "Robson Lemos",
+   "arapuca_bar",
+   "Sertanejo",
+   "2026-11-26",
+   "20:30",
+   "robson-lemos",
+   1763
   ],
   [
    "r9f39b084",
