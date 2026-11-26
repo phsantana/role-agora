@@ -1,6 +1,6 @@
 {
- "coletado": "2026-11-25",
- "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-25T18:03)",
+ "coletado": "2026-11-26",
+ "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-26T10:28)",
  "V": {
   "varanda_boa_vista": {
    "name": "Varanda Boa Vista",
@@ -930,7 +930,10 @@
    "r47da8ddd": "Sertanejo",
    "r79628beb": "Sertanejo",
    "r5610fb3a": "Samba",
-   "r92536511": "Sertanejo"
+   "r92536511": "Sertanejo",
+   "rb2468004": "Country",
+   "refb3d48f": "Rock",
+   "ra133615f": "MPB"
   },
   "agrobar": {
    "antigo1": "Sertanejo",
@@ -1165,7 +1168,8 @@
    "r09a849a9": "Pop",
    "ra5cd4d71": "Eletrônica",
    "rf531f167": "Pop",
-   "r7187c6d2": "Pop"
+   "r7187c6d2": "Pop",
+   "re29bf5fb": "Eletrônica"
   },
   "vo_laura_gourmet": {
    "r56e0e4a0": "Sertanejo",
@@ -1262,16 +1266,6 @@
  },
  "rows": [
   [
-   "r44ab4757",
-   "Da Silva",
-   "jardim_suinga",
-   "MPB",
-   "2026-11-25",
-   "18:00",
-   "da-silva",
-   4085
-  ],
-  [
    "r004b45b1",
    "Ebun Cia de Teatro Negro",
    "sesc_thermas",
@@ -1330,6 +1324,16 @@
    "20:00",
    "giovani-damazio",
    3137
+  ],
+  [
+   "rb2468004",
+   "Suy Correia",
+   "exquina_bar",
+   "Country",
+   "2026-11-26",
+   "20:00",
+   "suy-correia",
+   10081
   ],
   [
    "rbcbfcac8",
@@ -1410,6 +1414,16 @@
    "20:00",
    "grupo-classe-a",
    9741
+  ],
+  [
+   "refb3d48f",
+   "Fernanda Lessa",
+   "exquina_bar",
+   "Rock",
+   "2026-11-27",
+   "20:30",
+   "fernanda-lessa",
+   3475
   ],
   [
    "rd8894593",
@@ -1562,6 +1576,16 @@
    356226
   ],
   [
+   "re29bf5fb",
+   "Felpz",
+   "quinta_aula",
+   "Eletrônica",
+   "2026-11-28",
+   "16:30",
+   "felpz",
+   2178
+  ],
+  [
    "r84f55ed6",
    "Tofano",
    "estacao_foodpark",
@@ -1620,6 +1644,16 @@
    "20:00",
    "denise-leal",
    5918
+  ],
+  [
+   "ra133615f",
+   "Da Silva",
+   "exquina_bar",
+   "MPB",
+   "2026-11-28",
+   "20:30",
+   "da-silva",
+   4085
   ],
   [
    "ra5d5dac1",
