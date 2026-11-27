@@ -1,6 +1,6 @@
 {
- "coletado": "2026-11-26",
- "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-26T19:02)",
+ "coletado": "2026-11-27",
+ "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-27T12:24)",
  "V": {
   "varanda_boa_vista": {
    "name": "Varanda Boa Vista",
@@ -395,11 +395,11 @@
    "tipo": "Restaurante",
    "avaliacoes": 28,
    "nota": 4.6,
-   "genero": "Brasilidades",
+   "genero": "Rock",
    "generosTop": [
+    "Rock",
     "Brasilidades",
-    "Pop Rock",
-    "Rock"
+    "Pop Rock"
    ]
   },
   "choperia_cristim": {
@@ -455,10 +455,10 @@
    "slug": "rooftop-bar-seu-bar-nas-alturas",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/c2d30cdf-a2a4-4ba3-8858-226777155efc/1778727079700-3td179.webp",
    "tipo": "Bar",
-   "genero": "Sertanejo",
+   "genero": "Pagode",
    "generosTop": [
-    "Sertanejo",
     "Pagode",
+    "Sertanejo",
     "Samba"
    ],
    "areaExterna": true,
@@ -1181,7 +1181,9 @@
    "ra2227a74": "Sertanejo",
    "r26d6d1e5": "Sertanejo",
    "recf95b11": "Sertanejo",
-   "rbc93d4cf": "Encontros e Palestras"
+   "rbc93d4cf": "Encontros e Palestras",
+   "rc5b602ea": "Sertanejo",
+   "rcbbd209c": "Sertanejo"
   },
   "sesc_thermas": {
    "r620d9408": "Teatro",
@@ -1195,7 +1197,8 @@
    "ra4ad9a0c": "Infantil",
    "r22fee87c": "Teatro",
    "r880ac75a": "Performance",
-   "r4b0453cf": "MPB"
+   "r4b0453cf": "MPB",
+   "r2cf0774d": "Teatro"
   },
   "estacao_foodpark": {
    "rf72d1b9d": "Sertanejo",
@@ -1207,7 +1210,8 @@
   },
   "bar_da_12": {
    "rc898dd65": "Forró",
-   "r59af6dab": "Brasilidades"
+   "r59af6dab": "Brasilidades",
+   "r0d91deef": "Brasilidades"
   },
   "arapuca_bar": {
    "re234f584": "Sertanejo",
@@ -1249,12 +1253,14 @@
   },
   "sal_grosso_choperia_e_petiscaria": {
    "r4f2ca1c5": "Brasilidades",
-   "rce43905c": "Rock"
+   "rce43905c": "Rock",
+   "rdae36a7a": "Rock"
   },
   "rooftop_bar": {
    "r10ec85e3": "Sertanejo",
    "r7792cc2c": "Samba",
-   "rdaea61fb": "Pagode"
+   "rdaea61fb": "Pagode",
+   "rbbc5bdd1": "Pagode"
   },
   "deck_bar": {
    "rafee94b7": "Pop Rock",
@@ -1266,106 +1272,6 @@
   }
  },
  "rows": [
-  [
-   "r004b45b1",
-   "Ebun Cia de Teatro Negro",
-   "sesc_thermas",
-   "Teatro",
-   "2026-11-26",
-   "17:00",
-   "ebun-cia-de-teatro-negro",
-   0
-  ],
-  [
-   "r75f65968",
-   "Da Silva",
-   "jardim_suinga",
-   "MPB",
-   "2026-11-26",
-   "18:00",
-   "da-silva",
-   4085
-  ],
-  [
-   "rf531f167",
-   "Ari",
-   "quinta_aula",
-   "Pop",
-   "2026-11-26",
-   "18:30",
-   "ari",
-   1272
-  ],
-  [
-   "r483a1840",
-   "Fernanda Lessa",
-   "varanda_boa_vista",
-   "Rock",
-   "2026-11-26",
-   "19:00",
-   "fernanda-lessa",
-   3475
-  ],
-  [
-   "r3375f3c5",
-   "Marcus Cirillo",
-   "agrobar",
-   "Stand Up",
-   "2026-11-26",
-   "20:00",
-   "marcus-cirillo",
-   1610814
-  ],
-  [
-   "r6493ce0c",
-   "Giovani Damazio",
-   "alphaville_bar_e_petiscaria",
-   "Sertanejo",
-   "2026-11-26",
-   "20:00",
-   "giovani-damazio",
-   3137
-  ],
-  [
-   "rb2468004",
-   "Suy Correia",
-   "exquina_bar",
-   "Country",
-   "2026-11-26",
-   "20:00",
-   "suy-correia",
-   10081
-  ],
-  [
-   "rbcbfcac8",
-   "Os Gregórios",
-   "sesc_thermas",
-   "Soul",
-   "2026-11-26",
-   "20:00",
-   "os-gregorios",
-   0
-  ],
-  [
-   "re89b1da1",
-   "Samba E Suor",
-   "bar_da_onca",
-   "Samba",
-   "2026-11-26",
-   "20:00",
-   "samba-e-suor",
-   2238
-  ],
-  [
-   "ra489ffe2",
-   "Robson Lemos",
-   "arapuca_bar",
-   "Sertanejo",
-   "2026-11-26",
-   "20:30",
-   "robson-lemos",
-   1763
-  ],
   [
    "r9f39b084",
    "Denise Leal",
@@ -1385,6 +1291,16 @@
    "18:00",
    "krivos",
    2007
+  ],
+  [
+   "rdae36a7a",
+   "Oscaraveio Rock Cover",
+   "sal_grosso_choperia_e_petiscaria",
+   "Rock",
+   "2026-11-27",
+   "18:00",
+   "oscaraveio-rock-cover",
+   2203
   ],
   [
    "r4ee2903a",
@@ -1407,6 +1323,16 @@
    2135
   ],
   [
+   "r0d91deef",
+   "Giovani",
+   "bar_da_12",
+   "Brasilidades",
+   "2026-11-27",
+   "20:00",
+   "giovani",
+   517
+  ],
+  [
    "r3e079c47",
    "Edu Santos",
    "alphaville_bar_e_petiscaria",
@@ -1425,6 +1351,36 @@
    "20:00",
    "grupo-classe-a",
    9741
+  ],
+  [
+   "r2cf0774d",
+   "Ebun Cia de Teatro Negro",
+   "sesc_thermas",
+   "Teatro",
+   "2026-11-27",
+   "20:30",
+   "ebun-cia-de-teatro-negro",
+   0
+  ],
+  [
+   "rc5b602ea",
+   "Samuel",
+   "vo_laura_gourmet",
+   "Sertanejo",
+   "2026-11-27",
+   "20:30",
+   "samuel",
+   37221
+  ],
+  [
+   "rcbbd209c",
+   "Fábio Henrique E Samuel",
+   "vo_laura_gourmet",
+   "Sertanejo",
+   "2026-11-27",
+   "20:30",
+   "fabio-henrique-e-samuel",
+   622
   ],
   [
    "refb3d48f",
@@ -1767,6 +1723,16 @@
    0
   ],
   [
+   "rbbc5bdd1",
+   "Pagode Do Kota",
+   "rooftop_bar",
+   "Pagode",
+   "2026-11-29",
+   "18:00",
+   "pagode-do-kota",
+   17991
+  ],
+  [
    "re9077750",
    "Qdahorapp",
    "villa_18_container_bar",
@@ -2092,6 +2058,9 @@
   "giovani-damazio": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/894141d0-9855-4e64-97f6-6623c2efa6a7/1783987918539-5n25rx.webp",
   "cavernous": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/63611a64-8ad2-4615-a1f6-ca12e3c0eb59/1779155466958-0udq49.webp",
   "qdahorapp": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/3a5d50a3-95e6-4a59-bb6e-ecec266ba18e/1789045254266-xub7kj.webp",
-  "dj-abduzza": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/b356ed02-54f7-4a03-93ca-b9a7b62bf42f/1789046095678-okh5yc.webp"
+  "dj-abduzza": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/b356ed02-54f7-4a03-93ca-b9a7b62bf42f/1789046095678-okh5yc.webp",
+  "samuel": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/7edc88be-21f3-44bd-935c-5f03818c3818/1792017166970-ihkhfs.webp",
+  "fabio-henrique-e-samuel": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/cb8d57c9-714b-44bd-b32c-4cf4322309ba/1779198542812-526ru6.webp",
+  "pagode-do-kota": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/artists/a855185f-4fe2-4e09-82d9-0b186fff6e42/1794638179202-0v4io7.webp"
  }
 }
