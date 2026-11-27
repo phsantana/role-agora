@@ -1221,7 +1221,6 @@ html.home-on .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
   </div></div>
   <div class="home-body"><div class="home-in">
     <section class="hc-pv" id="hc-pv-s" aria-labelledby="hc-pv-t"><div class="hc-h"><h2 class="h5" id="hc-pv-t">Para você</h2></div><div class="hc-rail" id="hc-pv"></div></section>
-    <section class="hc-pv" id="hc-fam-s" aria-labelledby="hc-fam-t" hidden><div class="hc-h"><h2 class="h5" id="hc-fam-t">Outros estilos pra você</h2></div><div class="hc-rail" id="hc-fam"></div></section>
     <div class="filtros hc-filtros" role="group" aria-label="Filtros"><button type="button" class="fbtn" id="hc-f-when" aria-haspopup="dialog"></button><button type="button" class="fbtn" id="hc-f-genre" aria-haspopup="dialog"></button><button type="button" class="hh-cupons" id="hh-cupons" aria-label="Ver cupons" hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M9.5 14.5l5-5M9.5 9.5h.01M14.5 14.5h.01"/></svg><span class="n" aria-hidden="true">0</span></button></div>
     <section class="hc-sec" id="hc-momento-s" aria-labelledby="hc-momento-t"><div class="hc-h hc-h2"><div><h2 class="h5" id="hc-momento-t">Pro momento</h2><p class="body-sm muted" id="hc-momento-sub"></p></div></div><div class="hc-rail" id="hc-momento"></div></section>
     <section class="hc-sec" aria-labelledby="hc-locais-t"><div class="hc-h"><h2 class="h5" id="hc-locais-t">Lugares em alta</h2><button type="button" class="lk" id="hc-locais-ver">Ver todos</button></div><div class="hc-rail" id="hc-locais"></div></section>
@@ -1455,7 +1454,7 @@ var TRIBO_DE={
 var TRIBOS=['reflexiva','rebelde','convencional','energetica'];
 var TRIBO_NOME={reflexiva:'Reflexiva',rebelde:'Rebelde',convencional:'Popular',energetica:'Energética'};
 var TRIBO_EX={reflexiva:'MPB, jazz, blues',rebelde:'rock, metal, indie',convencional:'sertanejo, pagode, pop',energetica:'eletrônica, funk, hip hop'};
-var FAM_MIN=50; // "Outros estilos pra você" é descoberta: entra a partir de 50%
+var FAM_MIN=50; // gênero da mesma família de um que você curte: conta a partir de 50%
 var FAMILIA_SIM=.78; // gênero diferente, mesma família: quase tão bom quanto o gênero que você curte
 function triboDe(g){return g?TRIBO_DE[g]||null:null;}
 function mixVazio(){return {reflexiva:0,rebelde:0,convencional:0,energetica:0};}
@@ -3322,12 +3321,6 @@ function renderParaVoce(){
   var pts=function(e){var v=VENUES[e.venueKey]||{};return state.profile?(e.aff||0)*10+Math.log10((e.fans||0)+1):Math.log10((e.fans||0)+1)*2+(v.nota||3.5)+(semFotoHc(e)?-3:0)-dayDiff(e.date)*.15;};
   var vistos={},lista=base.slice().sort(function(a,b){return pts(b)-pts(a)||(a.date-b.date);}).filter(function(e){var k=norm(e.name);if(vistos[k]) return false;vistos[k]=1;return true;}).slice(0,6);
   document.getElementById('hc-pv-s').hidden=!lista.length;
-  // "Outros estilos pra você": rolês de gêneros que você não marcou, mas da mesma família de um que você curte
-  var jaPv={};lista.forEach(function(e){jaPv[e.id]=1;});
-  var vistosF={},fam=state.profile?base.filter(function(e){return e.famVia&&e.aff>=FAM_MIN&&!jaPv[e.id];}).sort(function(a,b){return b.aff-a.aff||(a.date-b.date);}).filter(function(e){var k=norm(e.name);if(vistosF[k]) return false;vistosF[k]=1;return true;}).slice(0,6):[];
-  document.getElementById('hc-fam-s').hidden=!fam.length;
-  document.getElementById('hc-fam').innerHTML=fam.map(function(e){return pvCard(e,noite,true);}).join('');
-  document.getElementById('hc-fam').scrollLeft=0;
   document.getElementById('hc-pv').innerHTML=lista.map(function(e){return pvCard(e,noite);}).join('');
   document.getElementById('hc-pv').scrollLeft=0;
 }
@@ -3346,7 +3339,6 @@ function pvCard(e,noite,familia){
       '<button type="button" class="sv" data-fav="'+e.id+'" aria-pressed="'+on+'" aria-label="'+(on?'Tirar '+esc(e.name)+' da agenda':'Salvar '+esc(e.name)+' na agenda')+'"><svg width="20" height="20" viewBox="0 0 24 24" fill="'+(on?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h12a1 1 0 0 1 1 1v16l-7-4.5-7 4.5v-16a1 1 0 0 1 1-1z"/></svg></button></article>';
 }
 document.getElementById('hc-pv').addEventListener('click',function(ev){var b=ev.target.closest('[data-hc-ev]');if(b) openEvent(b.getAttribute('data-hc-ev'));});
-document.getElementById('hc-fam').addEventListener('click',function(ev){var b=ev.target.closest('[data-hc-ev]');if(b) openEvent(b.getAttribute('data-hc-ev'));});
 function renderHc(){
   renderHcFiltros();renderParaVoce();
   var vis=visible().slice().sort(function(a,b){return a.date-b.date;});
