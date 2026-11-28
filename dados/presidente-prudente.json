@@ -1,6 +1,6 @@
 {
- "coletado": "2026-11-27",
- "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-27T12:24)",
+ "coletado": "2026-11-28",
+ "fonte": "Supabase do Rolê Agora (consulta_supabase.sql, 2026-11-28T11:50)",
  "V": {
   "varanda_boa_vista": {
    "name": "Varanda Boa Vista",
@@ -10,11 +10,11 @@
    "slug": "varanda-boa-vista",
    "foto": "https://wjbyflxshtfxsgpesrry.supabase.co/storage/v1/object/public/event-images/venues/31a7d435-26ed-40e4-bb65-91b4a4037df6/1780681371429-385xlj.webp",
    "tipo": "Restaurante",
-   "genero": "Eletrônica",
+   "genero": "Samba",
    "generosTop": [
+    "Samba",
     "Eletrônica",
-    "Sertanejo",
-    "Pagode"
+    "Sertanejo"
    ],
    "avaliacoes": 311,
    "nota": 4.5
@@ -954,7 +954,17 @@
    "r592e4da9": "Sertanejo",
    "r3dcf5726": "Rock",
    "rd5ac5fe5": "Eletrônica",
-   "r483a1840": "Rock"
+   "r483a1840": "Rock",
+   "r0f9cca77": "Samba",
+   "r68487454": "Samba",
+   "re891e397": "Brasilidades",
+   "r95d5ea8b": "Brasilidades",
+   "r03edcad7": "Samba",
+   "rbf595231": "Samba",
+   "rf7f7a908": "Brasilidades",
+   "r0afb8bb3": "Samba",
+   "r3f93d94b": "Samba",
+   "r7ca6b3db": "Brasilidades"
   },
   "alphaville_bar_e_petiscaria": {
    "antigo6": "Pop Rock",
@@ -1273,256 +1283,6 @@
  },
  "rows": [
   [
-   "r9f39b084",
-   "Denise Leal",
-   "estacao_foodpark",
-   "Sertanejo",
-   "2026-11-27",
-   "18:00",
-   "denise-leal",
-   5918
-  ],
-  [
-   "rb05c361c",
-   "Krivos",
-   "deck_bar",
-   "Rock",
-   "2026-11-27",
-   "18:00",
-   "krivos",
-   2007
-  ],
-  [
-   "rdae36a7a",
-   "Oscaraveio Rock Cover",
-   "sal_grosso_choperia_e_petiscaria",
-   "Rock",
-   "2026-11-27",
-   "18:00",
-   "oscaraveio-rock-cover",
-   2203
-  ],
-  [
-   "r4ee2903a",
-   "Raiz Urbana",
-   "overdrive_music_bar",
-   "Rock",
-   "2026-11-27",
-   "18:30",
-   "raiz-urbana",
-   0
-  ],
-  [
-   "r08000ac8",
-   "Andreo E Henrique",
-   "restaurante_estrela_gourmet",
-   "Sertanejo",
-   "2026-11-27",
-   "20:00",
-   "andreo-e-henrique",
-   2135
-  ],
-  [
-   "r0d91deef",
-   "Giovani",
-   "bar_da_12",
-   "Brasilidades",
-   "2026-11-27",
-   "20:00",
-   "giovani",
-   517
-  ],
-  [
-   "r3e079c47",
-   "Edu Santos",
-   "alphaville_bar_e_petiscaria",
-   "Forró",
-   "2026-11-27",
-   "20:00",
-   "edu-santos",
-   1350
-  ],
-  [
-   "r475d0e10",
-   "Grupo Classe A",
-   "bar_da_onca",
-   "Pagode",
-   "2026-11-27",
-   "20:00",
-   "grupo-classe-a",
-   9741
-  ],
-  [
-   "r2cf0774d",
-   "Ebun Cia de Teatro Negro",
-   "sesc_thermas",
-   "Teatro",
-   "2026-11-27",
-   "20:30",
-   "ebun-cia-de-teatro-negro",
-   0
-  ],
-  [
-   "rc5b602ea",
-   "Samuel",
-   "vo_laura_gourmet",
-   "Sertanejo",
-   "2026-11-27",
-   "20:30",
-   "samuel",
-   37221
-  ],
-  [
-   "rcbbd209c",
-   "Fábio Henrique E Samuel",
-   "vo_laura_gourmet",
-   "Sertanejo",
-   "2026-11-27",
-   "20:30",
-   "fabio-henrique-e-samuel",
-   622
-  ],
-  [
-   "refb3d48f",
-   "Fernanda Lessa",
-   "exquina_bar",
-   "Rock",
-   "2026-11-27",
-   "20:30",
-   "fernanda-lessa",
-   3475
-  ],
-  [
-   "rd8894593",
-   "Grupo TeDeJota",
-   "villa_18_container_bar",
-   "Pagode",
-   "2026-11-27",
-   "21:30",
-   "grupo-tedejota",
-   16467
-  ],
-  [
-   "r4fbd17cd",
-   "Samuel Casati",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-27",
-   "22:00",
-   "samuel-casati",
-   4345
-  ],
-  [
-   "r61611370",
-   "Bruna Michelle",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-27",
-   "22:00",
-   "bruna-michelle",
-   7801
-  ],
-  [
-   "r64cc1f99",
-   "Pedro Henrique & Eduardo",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-27",
-   "22:00",
-   "pedro-henrique-eduardo",
-   12938
-  ],
-  [
-   "r717fd457",
-   "Felipe Corazza",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-27",
-   "22:00",
-   "felipe-corazza",
-   9058
-  ],
-  [
-   "r836bac6f",
-   "João Markos",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-27",
-   "22:00",
-   "joao-markos",
-   8916
-  ],
-  [
-   "r9bd2a0b9",
-   "DJ Misper",
-   "seu_bastiao_pub",
-   "Eletrônica",
-   "2026-11-27",
-   "22:00",
-   "dj-misper",
-   1927
-  ],
-  [
-   "rbe65939e",
-   "João Marcelo e Juliano",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-27",
-   "22:00",
-   "joao-marcelo-e-juliano",
-   31044
-  ],
-  [
-   "rd4c87411",
-   "Cavernous",
-   "fabrica_gastrobar",
-   "Rock",
-   "2026-11-27",
-   "22:00",
-   "cavernous",
-   1804
-  ],
-  [
-   "rdf378d88",
-   "Alan Reis",
-   "seu_bastiao_pub",
-   "Sertanejo",
-   "2026-11-27",
-   "22:00",
-   "alan-reis",
-   17686
-  ],
-  [
-   "reaa2de67",
-   "Madera",
-   "seu_bastiao_pub",
-   "Brasilidades",
-   "2026-11-27",
-   "22:00",
-   "madera",
-   1586
-  ],
-  [
-   "r088f7aae",
-   "Dj Barakaty",
-   "new_york_lounge_nyl",
-   "Pop",
-   "2026-11-27",
-   "23:00",
-   "dj-barakaty",
-   1566
-  ],
-  [
-   "r12be7692",
-   "Bruno José",
-   "new_york_lounge_nyl",
-   "Pop",
-   "2026-11-27",
-   "23:00",
-   "bruno-jose",
-   0
-  ],
-  [
    "ra4ad9a0c",
    "Cia Pé de Ciranda",
    "sesc_thermas",
@@ -1531,6 +1291,36 @@
    "11:00",
    "cia-pe-de-ciranda",
    0
+  ],
+  [
+   "r0f9cca77",
+   "Elly Guimaraes",
+   "varanda_boa_vista",
+   "Samba",
+   "2026-11-28",
+   "12:00",
+   "elly-guimaraes",
+   6324
+  ],
+  [
+   "r68487454",
+   "Soul do Samba",
+   "varanda_boa_vista",
+   "Samba",
+   "2026-11-28",
+   "12:00",
+   "soul-do-samba",
+   6546
+  ],
+  [
+   "re891e397",
+   "Berta Tofanelli",
+   "varanda_boa_vista",
+   "Brasilidades",
+   "2026-11-28",
+   "12:00",
+   "berta-tofanelli",
+   2330
   ],
   [
    "r09abd8eb",
@@ -1753,6 +1543,16 @@
    6546
   ],
   [
+   "r95d5ea8b",
+   "Berta Tofanelli",
+   "varanda_boa_vista",
+   "Brasilidades",
+   "2026-12-05",
+   "12:00",
+   "berta-tofanelli",
+   2330
+  ],
+  [
    "r5217ffbb",
    "Samba E Suor",
    "bar_da_onca",
@@ -1903,6 +1703,36 @@
    0
   ],
   [
+   "r03edcad7",
+   "Elly Guimaraes",
+   "varanda_boa_vista",
+   "Samba",
+   "2026-12-12",
+   "12:00",
+   "elly-guimaraes",
+   6324
+  ],
+  [
+   "rbf595231",
+   "Soul do Samba",
+   "varanda_boa_vista",
+   "Samba",
+   "2026-12-12",
+   "12:00",
+   "soul-do-samba",
+   6546
+  ],
+  [
+   "rf7f7a908",
+   "Berta Tofanelli",
+   "varanda_boa_vista",
+   "Brasilidades",
+   "2026-12-12",
+   "12:00",
+   "berta-tofanelli",
+   2330
+  ],
+  [
    "r8bd0f4b6",
    "Va Idosas Em Presidente Prudente",
    "teatro_cesar_cava",
@@ -1911,6 +1741,36 @@
    "00:00",
    "va-idosas-em-presidente-prudente",
    0
+  ],
+  [
+   "r0afb8bb3",
+   "Soul do Samba",
+   "varanda_boa_vista",
+   "Samba",
+   "2026-12-19",
+   "12:00",
+   "soul-do-samba",
+   6546
+  ],
+  [
+   "r3f93d94b",
+   "Elly Guimaraes",
+   "varanda_boa_vista",
+   "Samba",
+   "2026-12-19",
+   "12:00",
+   "elly-guimaraes",
+   6324
+  ],
+  [
+   "r7ca6b3db",
+   "Berta Tofanelli",
+   "varanda_boa_vista",
+   "Brasilidades",
+   "2026-12-19",
+   "12:00",
+   "berta-tofanelli",
+   2330
   ],
   [
    "r2a38ec99",
