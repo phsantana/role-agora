@@ -479,7 +479,7 @@ html.screen-open{overflow:hidden}
 .evs .ceu-ev{flex:none;display:flex;flex-direction:column;align-items:flex-end}
 .evs .ceu-ev .arte{width:72px;height:64px;margin-right:4px}
 .evs .ceu-ev .arte svg{width:100%;height:100%;overflow:visible}
-.evs .ceu-ev .pv{margin-top:-8px;position:relative;padding:6px 12px;border-radius:var(--r-pill);background:rgba(0,0,0,.18);font-size:12px;line-height:1.5;color:var(--e-text);white-space:nowrap}
+.evs .ceu-ev .ceu-legenda{margin-top:-8px;position:relative;padding:6px 12px;border-radius:var(--r-pill);background:rgba(0,0,0,.18);font-size:12px;line-height:1.5;color:var(--e-text);white-space:nowrap}
 .evs .quando{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-xsm)}
 .evs .quando>div{display:flex;align-items:center;justify-content:space-between;gap:var(--s-xsm);min-width:0;padding:16px clamp(16px,6vw,24px);border-radius:var(--r-xsm);border:1px solid rgba(255,255,255,.12);background:transparent}
 .evs .quando .tx{min-width:0;display:flex;flex-direction:column;gap:var(--s-2xsm)}
@@ -3534,7 +3534,7 @@ function renderEvScreen(e){
   var cara='';
   if(e.clima){var hh=d.noTime?20:d.getHours(),pp=hh>=5&&hh<12?'manha':hh>=12&&hh<18?'tarde':'noite',cl=e.clima;
     var tt=cl.tempestade?'tempestade':cl.chuva?'chuva':(cl.max!=null&&cl.max<=20)?'frio':'sol';
-    cara='<div class="ceu-ev" title="'+esc(cl.resumo)+'"><div class="arte" aria-hidden="true">'+hhArte(pp,tt)+'</div><p class="pv">'+cl.max+'° • '+climaCurto(cl)+'</p></div>';}
+    cara='<div class="ceu-ev" title="'+esc(cl.resumo)+'"><div class="arte" aria-hidden="true">'+hhArte(pp,tt)+'</div><p class="ceu-legenda">'+cl.max+'° • '+climaCurto(cl)+'</p></div>';}
   // tempo até o rolê: "Em 2 horas", "Em 3 dias"…
   var falta=+d-NOW,quandoTxt=d.noTime?'Horário':falta<0?(falta>-DURACAO?'Tá rolando':'Já passou'):falta<36e5?'Em '+Math.max(1,Math.round(falta/6e4))+' min':dd===0?'Em '+Math.round(falta/36e5)+(Math.round(falta/36e5)>1?' horas':' hora'):dd===1?'Amanhã':'Em '+dd+' dias';
   // tempo: emoji + resumo curto; embaixo, a faixa de temperatura (o INMET não dá a chance de chuva)
