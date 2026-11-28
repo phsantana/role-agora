@@ -1935,7 +1935,7 @@ function locais(){
     return {k:k,name:v.name,venue:v.name,bairro:v.bairro,tipo:v.tipo||'',lat:v.lat,lng:v.lng,approx:!!v.approx,dist:km(ME,v),genre:g,aff:a?a.pct:null,why:a?a.why:null,roles:roles,img:vfoto(k)||ph(v.name,g)};
   }).filter(function(l){
     if(!l) return false;
-    if(!state.city.live&&l.dist>RADIUS_KM) return false;
+    if(!state.city.live&&km(DEMO_ME,l)>RADIUS_KM) return false;
     if(state.when&&!l.roles.length) return false; // escolheu uma data: só os locais com rolê nela
     if(state.genres.length&&!l.roles.length&&state.genres.indexOf(l.genre)<0) return false; // escolheu gêneros: locais com rolê deles ou que mais tocam eles
     if(q&&!l.roles.length&&[l.name,l.bairro,l.genre].join(' ').toLowerCase().indexOf(q)<0) return false;
@@ -2072,11 +2072,12 @@ function geoMsg(html){document.getElementById('geo-msg').innerHTML=html||'';}
 /* ---------- Sua localização ---------- */
 function useDemo(){
   resetArea();
-  var inP=loc.src!=='demo'&&km(loc,DEMO_ME)<30;
+  // dentro da cidade (até RADIUS_KM do Centro): distâncias a partir de você; numa cidade vizinha (ex.: Regente Feijó), a partir do Centro
+  var inP=loc.src!=='demo'&&km(loc,DEMO_ME)<=RADIUS_KM;
   ME=inP?{lat:loc.lat,lng:loc.lng,you:true}:{lat:DEMO_ME.lat,lng:DEMO_ME.lng,you:loc.src==='demo'};
   VENUES=PRUDENTE.venues;NOW=PRUDENTE.now;
   PRUDENTE.all.forEach(function(e){e.dist=km(ME,e);});
-  events=PRUDENTE.all.filter(function(e){return +e.date+3*36e5>NOW&&e.dist<=(inP?8:RADIUS_KM);});PRUDENTE.events=events;
+  events=PRUDENTE.all.filter(function(e){return +e.date+3*36e5>NOW&&km(DEMO_ME,e)<=RADIUS_KM;}); // a agenda é a da cidade, não só a perto de vocêPRUDENTE.events=events;
   state.city={name:'Presidente Prudente',uf:'SP',slug:'presidente-prudente-sp',live:false,center:DEMO_ME};state.dismissed={};
   autoWhen();
 }
